@@ -67,7 +67,7 @@ const NotificationDropdown = () => {
             exit={{ opacity: 0, scale: 0.95, y: -5 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             className={`
-              absolute z-50 mt-2 bg-white border border-gray-300 rounded-xl shadow-md overflow-hidden
+              absolute z-10 mt-2 bg-white border border-gray-300 rounded-xl shadow-md overflow-hidden
               right-0 sm:w-80 w-[calc(100vw-2rem)]
             `}
           >

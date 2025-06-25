@@ -41,7 +41,7 @@ export default function CandidatesList() {
   return (
     <section className="w-full px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mx-auto">
       {/* Sticky Top Bar */}
-      <div className="sticky top-0 z-20 pt-6 pb-4 backdrop-blur border-b border-gray-200">
+      <div className="sticky top-0 z-10 pt-6 pb-4 backdrop-blur border-b border-gray-200">
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <input
             type="text"

@@ -7,7 +7,7 @@ import { Input } from "@/app/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/app/components/ui/select"
 import { Card, CardContent } from "@/app/components/ui/card"
 import { Badge } from "@/app/components/ui/badge"
-import { mockJobs } from "../data/mock-jobs"
+import { mockJobs } from "../../data/mock-jobs"
 
 const ITEMS_PER_PAGE = 5
 

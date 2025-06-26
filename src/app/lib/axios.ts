@@ -1,16 +1,13 @@
-// src/app/lib/axios.ts
 import axios from "axios";
 
 const api = axios.create({
-  // Remover baseURL o usar la URL base de la API externa
-  baseURL: "https://api.andeshire.com", // URL base de la API externa
+  baseURL: "https://7s188gjl82.execute-api.sa-east-1.amazonaws.com/test/test", 
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 10000, // 10 segundos de timeout
+  timeout: 0,
 });
 
-// Interceptor para manejar errores globalmente
 api.interceptors.response.use(
   (response) => response,
   (error) => {

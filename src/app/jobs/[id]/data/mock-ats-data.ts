@@ -1,4 +1,4 @@
-import type { JobResponse, JobPipeline, Candidate } from "../types/ats"
+import type { JobResponse, JobPipeline, Candidate } from "../[id]/types/ats"
 
 // Convert the new mock data to match our existing types
 export const mockJobResponse: JobResponse = {

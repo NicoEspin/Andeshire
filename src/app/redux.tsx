@@ -1,4 +1,3 @@
-// src/app/redux.ts
 "use client";
 
 import { useRef } from "react";

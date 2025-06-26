@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, MapPin, Plus, SlidersHorizontal } from "lucide-react";
 
+
 const mockCandidates = [
   {
     id: 1,
@@ -91,6 +92,7 @@ export default function CandidatesList() {
           </Link>
         ))}
       </div>
+
     </section>
   );
 }

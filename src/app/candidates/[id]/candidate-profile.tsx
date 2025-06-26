@@ -571,8 +571,8 @@ export default function CandidateProfile() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50">
-      <div className="max-w-6xl mx-auto">
+    <div className="min-h-screen w-full bg-gray-50/50">
+      <div className="mx-auto">
         {/* Toolbar */}
         <CandidateToolbar
           onVincular={handleVincular}

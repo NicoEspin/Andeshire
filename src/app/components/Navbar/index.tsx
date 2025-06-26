@@ -1,7 +1,7 @@
 "use client";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state/index";
-import { Bell, Menu, Search, Settings } from "lucide-react";
+import {  Menu,  Settings } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import NotificationDropdown from "./NotificationDropdown";
@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-7 z-10 flex justify-between items-center w-full mb-7">
+    <nav className="sticky top-7 z-10 flex justify-between items-center w-full mb-7 bg-white">
       {/* Left Side */}
       <div className="flex justify-between items-center gap-5">
         <button

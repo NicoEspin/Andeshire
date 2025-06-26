@@ -15,6 +15,8 @@ import {
 import { Badge } from "@/app/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/app/components/ui/avatar"
 import type { JobResponse } from "../types/ats"
+import JobTitleDisplay from "./JobDetail"
+import JobDetail from "./JobDetail"
 
 interface JobHeaderProps {
   job: JobResponse
@@ -177,6 +179,7 @@ export function JobHeader({ job, activeTab, onTabChange }: JobHeaderProps) {
           </nav>
         </div>
       </div>
+      <JobDetail jobId="b1a947d7-ec97-4380-b1de-0416f0f5c3e4" />
     </div>
   )
 }

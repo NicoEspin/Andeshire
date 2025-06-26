@@ -58,7 +58,7 @@ export function CandidateNavigation({
   ];
 
   return (
-    <div className="bg-white border-b sticky top-0 z-10 animate-in fade-in-0 slide-in-from-top-2 duration-500 delay-200">
+    <div className="bg-white border-b animate-in fade-in-0 slide-in-from-top-2 duration-500 delay-200">
       <div className="flex space-x-8 px-6">
         {navigationItems.map((item, index) => {
           const Icon = item.icon;

@@ -1,14 +1,14 @@
+// src/app/redux.ts
+"use client";
+
 import { useRef } from "react";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import {
   TypedUseSelectorHook,
   useDispatch,
   useSelector,
   Provider,
 } from "react-redux";
-import globalReducer from "@/state";
-
-
 import {
   persistStore,
   persistReducer,
@@ -22,16 +22,19 @@ import {
 import { PersistGate } from "redux-persist/integration/react";
 import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
-/* REDUX PERSISTENCE */
+import globalReducer from "@/state";
+import jobReducer from "@/store/slices/JobSlice"; // Asegurate de tener este slice creado
+
+// ⛔ Safe storage fallback para SSR
 const createNoopStorage = () => {
   return {
-    getItem(_key: any) {
+    getItem(_key: string) {
       return Promise.resolve(null);
     },
-    setItem(_key: any, value: any) {
+    setItem(_key: string, value: any) {
       return Promise.resolve(value);
     },
-    removeItem(_key: any) {
+    removeItem(_key: string) {
       return Promise.resolve();
     },
   };
@@ -42,21 +45,25 @@ const storage =
     ? createNoopStorage()
     : createWebStorage("local");
 
+// 🎯 Redux Persist config
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["global"],
+  whitelist: ["global"], // podés agregar 'job' si querés persistencia de ese estado también
 };
 
+// 🎯 Combine reducers
 const rootReducer = combineReducers({
   global: globalReducer,
+  job: jobReducer,
 });
 
+// 🎯 Apply persistencia
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-/* REDUX STORE */
-export const makeStore = () => {
-  return configureStore({
+// 🎯 Factory de store
+export const makeStore = () =>
+  configureStore({
     reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
@@ -65,16 +72,16 @@ export const makeStore = () => {
         },
       }),
   });
-};
 
-/* REDUX TYPES */
+// Tipado Redux
 export type AppStore = ReturnType<typeof makeStore>;
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];
+
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
-/* PROVIDER */
+// 🎯 Provider funcional para Next.js App Router
 export default function StoreProvider({
   children,
 }: {
@@ -84,7 +91,6 @@ export default function StoreProvider({
 
   if (!storeRef.current) {
     storeRef.current = makeStore();
-    // setupListeners(storeRef.current.dispatch); // Ya no es necesario
   }
 
   const persistor = persistStore(storeRef.current);

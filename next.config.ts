@@ -1,7 +1,14 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+// next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/mock/job_detail/:path*",
+        destination: "https://api.andeshire.com/mock/job_detail/:path*", // 🔁 proxy a la API real
+      },
+    ];
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

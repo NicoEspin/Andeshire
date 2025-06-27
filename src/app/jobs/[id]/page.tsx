@@ -3,38 +3,43 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { fetchJobById } from "@/state/api/fetchJob";
-import { ATSJobView } from "./components/ats-job-view";
-import { mockJobPipeline } from "./data/mock-ats-data"; // conservar si pipeline sigue siendo mock
-import { useParams } from "next/navigation";
-import { JobPipeline } from "./types/ats";
-import type { Job } from "@/store/slices/JobSlice";
+import JobHeader from "./components/JobHeader";
+import JobNav from "./components/JobNav";
+import JobContentRenderer from "./components/JobContentRenderer";
 
-
-interface ATSJobViewProps {
-  job: Job | null;
-  pipeline: JobPipeline;
-  isLoading: boolean;
-  error?: string;
-}
-export default function ATSJobPage({ jobId = "b1a947d7-ec97-4380-b1de-0416f0f5c3e4" }) {
+export default function JobPage() {
   const dispatch = useAppDispatch();
-  const { job, loading, error } = useAppSelector((state) => state.job);
-  const [pipeline, setPipeline] = useState<JobPipeline>(mockJobPipeline);
-
+  const { job, stages, candidatesByStage, loading, error } = useAppSelector(
+    (state) => state.job
+  );
+  const [activeTab, setActiveTab] = useState("detalles");
   useEffect(() => {
-    fetchJobById(jobId, dispatch);
-  }, [jobId, dispatch]);
+    // 🔒 ID fijo temporalmente
+    fetchJobById("06e26558-770d-4c74-a392-d5042218007f", dispatch);
+  }, [dispatch]);
 
-  if (loading || !job) {
-    return <div className="p-4 text-gray-500">Cargando información del trabajo...</div>;
+  if (loading) {
+    return <div className="p-6 text-gray-500">Loading job data...</div>;
+  }
+
+  if (error) {
+    return <div className="p-6 text-red-500">Error: {error}</div>;
+  }
+
+  if (!job) {
+    return <div className="p-6 text-gray-500">No job found.</div>;
   }
 
   return (
-    <ATSJobView
-      job={Response}
-      pipeline={pipeline}
-      isLoading={loading}
-      error={error || undefined}
-    />
+    <div className="p-6 space-y-6">
+      <JobHeader job={job} />
+      <JobNav activeTab={activeTab} onTabChange={setActiveTab} />
+      <JobContentRenderer
+        job={job}
+        stages={stages} 
+        candidatesByStage={candidatesByStage}
+        activeTab={activeTab}
+      />
+    </div>
   );
 }

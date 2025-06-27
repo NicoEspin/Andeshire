@@ -48,7 +48,7 @@ const storage =
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["global"], // podés agregar 'job' si querés persistencia de ese estado también
+  whitelist: ["global", "job"], 
 };
 
 // 🎯 Combine reducers

@@ -1,27 +1,24 @@
+
 import api from "@/lib/axios";
 import { AppDispatch } from "@/app/redux";
 import {
-  setJob,
-  setStages,
-  setCandidatesByStage,
+  setCandidate,
   setLoading,
   setError,
-} from "@/store/slices/JobSlice";
+} from "@/store/slices/CandidateDetailSlice";
 
-export const fetchJobById = async (_jobId: string, dispatch: AppDispatch) => {
+export const fetchCandidateById = async (candidateId: string, dispatch: AppDispatch) => {
   dispatch(setLoading(true));
   dispatch(setError(null));
 
   try {
-    const response = await api.get("/test");
+    const response = await api.get("/candidate-detail", {
+      params: { id: candidateId },
+    });
 
     console.log("API Response:", response.data);
 
-    const jobData = response.data.job || response.data;
-
-    dispatch(setJob(jobData));
-    dispatch(setStages(response.data.stages || []));
-    dispatch(setCandidatesByStage(response.data.candidates_by_stage || []));
+    dispatch(setCandidate(response.data.candidate));
   } catch (error: any) {
     console.error("API Error:", error);
 
@@ -29,7 +26,7 @@ export const fetchJobById = async (_jobId: string, dispatch: AppDispatch) => {
       dispatch(setError("Network error - please check your connection"));
     } else {
       const errorMessage =
-        error.response?.data?.message || error.message || "Failed to load job";
+        error.response?.data?.message || error.message || "Failed to load candidate";
       dispatch(setError(errorMessage));
     }
   } finally {

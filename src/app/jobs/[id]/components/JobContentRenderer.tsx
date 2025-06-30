@@ -22,7 +22,7 @@ export default function JobContentRenderer({
 }: JobContentRendererProps) {
   switch (activeTab) {
     case "detalles":
-      return <DetailsView job={job} />;
+      return <DetailsView job={job} stages={stages} />;
     case "descripcion":
       return <DescriptionView job={job}/>;
     case "candidatos":

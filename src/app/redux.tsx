@@ -23,6 +23,8 @@ import createWebStorage from "redux-persist/lib/storage/createWebStorage";
 
 import globalReducer from "@/state";
 import jobReducer from "@/store/slices/JobSlice"; // Asegurate de tener este slice creado
+import modalReducer from "@/store/slices/ModalSlice";
+import candidateDetailReducer from "@/store/slices/CandidateDetailSlice";
 
 // ⛔ Safe storage fallback para SSR
 const createNoopStorage = () => {
@@ -48,13 +50,15 @@ const storage =
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["global", "job"], 
+  whitelist: ["global", "job",  "candidateDetail"],
 };
 
 // 🎯 Combine reducers
 const rootReducer = combineReducers({
   global: globalReducer,
   job: jobReducer,
+  modal: modalReducer,
+  candidateDetail: candidateDetailReducer,
 });
 
 // 🎯 Apply persistencia

@@ -17,7 +17,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Stage } from "../../types/StagesTypes";
-import { CandidatesByStage, CandidateDetail } from "../../types/CandidatesByStagesTypes";
+import {
+  CandidatesByStage,
+  CandidateDetail,
+} from "../../types/CandidatesByStagesTypes";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
@@ -25,12 +28,17 @@ interface TableViewProps {
   stages: Stage[];
   candidatesByStage: CandidatesByStage;
 }
+import { useAppDispatch } from "@/app/redux";
+import { openModal } from "@/store/slices/ModalSlice";
 
 const TableView = ({ stages, candidatesByStage }: TableViewProps) => {
+  const dispatch = useAppDispatch();
   const allCandidatesMap = new Map<string, CandidateDetail>();
-  Object.values(candidatesByStage).flat().forEach((candidate) => {
-    allCandidatesMap.set(candidate.id, candidate);
-  });
+  Object.values(candidatesByStage)
+    .flat()
+    .forEach((candidate) => {
+      allCandidatesMap.set(candidate.id, candidate);
+    });
   const allCandidates = Array.from(allCandidatesMap.values());
 
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
@@ -41,6 +49,14 @@ const TableView = ({ stages, candidatesByStage }: TableViewProps) => {
     } else {
       setSelectedIds(new Set(allCandidates.map((c) => c.id)));
     }
+  };
+  const handleCandidateClick = (candidateId: string) => {
+    dispatch(
+      openModal({
+        type: "DETAILS",
+        props: { candidateId },
+      })
+    );
   };
 
   const toggleSelect = (id: string) => {
@@ -84,12 +100,26 @@ const TableView = ({ stages, candidatesByStage }: TableViewProps) => {
                   onCheckedChange={() => toggleSelect(candidate.id)}
                 />
               </TableCell>
-              <TableCell className="font-medium">{candidate.name}</TableCell>
+              <TableCell
+                className="font-medium"
+                onClick={() => handleCandidateClick(candidate.id)}
+              >
+                <Button
+                  variant="link"
+                  className="p-0 m-0 text-primary hover:underline cursor-pointer"
+                  onClick={() => handleCandidateClick(candidate.id)}
+                >
+                  {candidate.name}
+                </Button>
+              </TableCell>
               <TableCell>{candidate.email}</TableCell>
               <TableCell>
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="text-left w-full justify-between">
+                    <Button
+                      variant="outline"
+                      className="text-left w-full justify-between"
+                    >
                       {candidate.current_stage?.name || "Sin etapa"}
                       <ChevronDown className="w-4 h-4 ml-2" />
                     </Button>

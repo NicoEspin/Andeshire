@@ -4,6 +4,25 @@ export interface JobApiResponse {
   status: string;
   job: Job;
 }
+export interface JobFile {
+  id: string;
+  filename: string;
+  description: string;
+  uploaded_at: string;
+  url: string;
+}
+
+export interface JobStageJob {
+  id: string;
+  title: string;
+  company: string;
+  description: string;
+}
+
+export interface JobStage {
+  id: string;
+  job: JobStageJob;
+}
 
 export interface Job {
   id: string;
@@ -32,7 +51,7 @@ export interface Job {
   is_open: string;
   positions: number;
   tags: string[];
-  files: string[];
+  files: JobFile[];
   salary_min: string;
   salary_max: string;
   salary_expected: string;

@@ -4,7 +4,15 @@ import { useState } from "react";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { cn } from "@/lib/utils"; // Si usas ShadCN probablemente ya tienes esta función
-import { FileText, Briefcase, CheckCircle, ClipboardList, MessageSquare, Calendar } from "lucide-react";
+import {
+  FileText,
+  Briefcase,
+  CheckCircle,
+  ClipboardList,
+  MessageSquare,
+  Calendar,
+  Settings2,
+} from "lucide-react";
 
 interface Tab {
   name: string;
@@ -17,14 +25,46 @@ interface CandidateNavProps {
   setActiveTab: (tab: string) => void;
 }
 
-export default function CandidateNav({ activeTab, setActiveTab }: CandidateNavProps) {
+export default function CandidateNav({
+  activeTab,
+  setActiveTab,
+}: CandidateNavProps) {
   const tabs: Tab[] = [
-    { name: "Resumen", icon: <FileText className="w-4 h-4" />, value: "summary" },
-    { name: "Trabajos", icon: <Briefcase className="w-4 h-4" />, value: "jobs" },
-    { name: "Matching", icon: <CheckCircle className="w-4 h-4" />, value: "matching" },
-    { name: "Formularios", icon: <ClipboardList className="w-4 h-4" />, value: "forms" },
-    { name: "Comentarios", icon: <MessageSquare className="w-4 h-4" />, value: "comments" },
-    { name: "Reuniones", icon: <Calendar className="w-4 h-4" />, value: "meetings" },
+    {
+      name: "Resumen",
+      icon: <FileText className="w-4 h-4" />,
+      value: "summary",
+    },
+    {
+      name: "Trabajos",
+      icon: <Briefcase className="w-4 h-4" />,
+      value: "jobs",
+    },
+    {
+      name: "Matching",
+      icon: <CheckCircle className="w-4 h-4" />,
+      value: "matching",
+    },
+    {
+      name: "Formularios",
+      icon: <ClipboardList className="w-4 h-4" />,
+      value: "forms",
+    },
+    {
+      name: "Comentarios",
+      icon: <MessageSquare className="w-4 h-4" />,
+      value: "comments",
+    },
+    {
+      name: "Reuniones",
+      icon: <Calendar className="w-4 h-4" />,
+      value: "meetings",
+    },
+    {
+      name: "Personalizados",
+      icon: <Settings2 className="w-4 h-4" />,
+      value: "custom",
+    },
   ];
 
   return (

@@ -3,7 +3,7 @@
 import { Job, JobStage } from "./JobTypes";
 
 export interface CandidatesByStage {
-   [stageId: string]: CandidateDetail[];
+  [stageId: string]: CandidateDetail[];
 }
 
 export interface Recruiter {
@@ -11,7 +11,6 @@ export interface Recruiter {
   name: string;
   email: string;
   consulting_firm: string;
-  
 }
 export interface CandidateExperience {
   id: string;
@@ -22,6 +21,37 @@ export interface CandidateExperience {
   start_time: string | null;
   end_time: string | null;
 }
+export type CustomField = {
+  id: string;
+  field_name: string;
+  field_type:
+    | "text"
+    | "textarea"
+    | "number"
+    | "email"
+    | "tel"
+    | "date"
+    | "datetime"
+    | "time"
+    | "checkbox"
+    | "radio"
+    | "select"
+    | "multi_select"
+    | "file"
+    | "url"
+    | "hidden"
+    | "password"
+    | "range"
+    | string; // Para soportar tipos futuros o personalizados
+  is_required: "true" | "false";
+  placeholder: string | null;
+  help_text: string | null;
+  options: string[] | null;
+  default_value: string | string[] | null;
+  order: number;
+  value: string | string[] | null;
+  has_value: "true" | "false";
+};
 
 export interface CandidateDetail {
   id: string;
@@ -62,10 +92,10 @@ export interface CandidateDetail {
   created_at: string;
   interview_date_scoreboard: string | null;
   jobs: Job[];
+  experiences?: CandidateExperience[];
 
-  experiences?: CandidateExperience[]; // ✅ Nuevo campo agregado
+  custom_fields?: CustomField[]; // ✅ Campo agregado
 }
-
 
 export interface Tag {
   id: string;

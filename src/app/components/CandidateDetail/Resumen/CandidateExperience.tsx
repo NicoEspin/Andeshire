@@ -7,11 +7,11 @@ import {
   Calendar,
   Building2,
   Briefcase,
-  Plus,
   Pencil,
   Trash2,
 } from "lucide-react";
 import CandidateFiles from "./CandidateFiles";
+import AddCandidateExperience from "./AddCandidateExperience";
 
 type CandidateExperienceProps = {
   candidate: CandidateDetail;
@@ -27,13 +27,7 @@ export default function CandidateExperience({
         {/* Header */}
         <div className="flex items-center justify-between p-2">
           <h2 className="text-xl font-bold text-gray-900">Experiencia</h2>
-          <Button
-            variant="default"
-            className="bg-purple-700 hover:bg-purple-800 text-white"
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            Agregar Experiencia
-          </Button>
+         <AddCandidateExperience />
         </div>
 
         {/* Timeline */}

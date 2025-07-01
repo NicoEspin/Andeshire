@@ -3,6 +3,8 @@
 import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import { Button } from "@/components/ui/button";
 import { Plus, FileText, FolderOpen } from "lucide-react";
+import { useState } from "react";
+import AddCandidateFiles from "./AddCandidateFiles";
 
 type CandidateFilesProps = {
   candidate: CandidateDetail;
@@ -10,6 +12,7 @@ type CandidateFilesProps = {
 
 export default function CandidateFiles({ candidate }: CandidateFilesProps) {
   const { files } = candidate;
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="border rounded-2xl p-6 space-y-6 shadow-sm bg-white h-fit">
@@ -18,6 +21,7 @@ export default function CandidateFiles({ candidate }: CandidateFilesProps) {
         <Button
           variant="default"
           className="bg-purple-700 hover:bg-purple-800 text-white"
+          onClick={() => setOpen(true)}
         >
           <Plus className="w-4 h-4 mr-2" />
           Agregar Archivo
@@ -54,6 +58,8 @@ export default function CandidateFiles({ candidate }: CandidateFilesProps) {
           <p className="text-sm italic">No hay archivos disponibles.</p>
         </div>
       )}
+
+      <AddCandidateFiles open={open} onOpenChange={setOpen} />
     </div>
   );
 }

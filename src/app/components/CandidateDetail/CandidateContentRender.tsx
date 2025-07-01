@@ -6,13 +6,18 @@ import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import CandidateCv from "./Resumen/CandidateCv";
 import CandidateExperience from "./Resumen/CandidateExperience";
 import CandidateJobsTable from "./Trabajos/CandidateJobsTable";
+import CandidateComments from "./Comentarios/CandidateComments";
+import CandidateMeetings from "./Reuniones/CandidateMeetings";
+import CandidateScoreboard from "./Formularios/CandidateScoreboard";
+import CandidatesMatching from "./Matching/CandidatesMatching";
+import CandidateCustom from "./Personalizados/CandidateCustom";
 
-interface CandidateHeaderProps {
+interface CandidateContentRenderProps {
   candidate: CandidateDetail;
 }
 export default function CandidateContentRender({
   candidate,
-}: CandidateHeaderProps) {
+}: CandidateContentRenderProps) {
   const [activeTab, setActiveTab] = useState("summary");
 
   return (
@@ -26,10 +31,11 @@ export default function CandidateContentRender({
           </div>
         )}
         {activeTab === "jobs" && <CandidateJobsTable candidate={candidate} />}
-        {activeTab === "matching" && <div>Contenido de Matching</div>}
-        {activeTab === "forms" && <div>Contenido de Formularios</div>}
-        {activeTab === "comments" && <div>Contenido de Comentarios</div>}
-        {activeTab === "meetings" && <div>Contenido de Reuniones</div>}
+        {activeTab === "matching" && <CandidatesMatching />}
+        {activeTab === "forms" && <CandidateScoreboard />}
+        {activeTab === "comments" && <CandidateComments />}
+        {activeTab === "meetings" && <CandidateMeetings />}
+        {activeTab === "custom" && <CandidateCustom candidate={candidate} />}
       </div>
     </div>
   );

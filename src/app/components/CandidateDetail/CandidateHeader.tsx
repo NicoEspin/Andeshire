@@ -4,6 +4,7 @@ import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, Flag, Building2, Linkedin, User } from "lucide-react";
+import AddCandidateTags from "./AddCandidateTags";
 
 interface CandidateHeaderProps {
   candidate: CandidateDetail;
@@ -64,12 +65,7 @@ export default function CandidateHeader({ candidate }: CandidateHeaderProps) {
           ) : (
             <Badge variant="secondary">Sin tags</Badge>
           )}
-          <Button
-            size="sm"
-            className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-1"
-          >
-            + Añadir tag
-          </Button>
+         <AddCandidateTags />
         </div>
       </div>
 

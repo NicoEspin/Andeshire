@@ -50,7 +50,7 @@ const storage =
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["global", "job",  "candidateDetail"],
+  whitelist: ["global", "job", "modal",  "candidateDetail"],
 };
 
 // 🎯 Combine reducers

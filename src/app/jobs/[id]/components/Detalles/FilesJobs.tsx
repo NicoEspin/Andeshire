@@ -1,16 +1,12 @@
 "use client";
 
 import React from "react";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { FileText, Folder, Plus } from "lucide-react";
 import { Job } from "../../types/JobTypes";
+import AddJobFile from "./AddJobFile";
 
 type Props = {
   job: Job;
@@ -20,19 +16,12 @@ const FilesJobs = ({ job }: Props) => {
   const files = job.files;
 
   return (
-    <Card className="w-full">
+    <Card className="w-full h-fit">
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-lg">Archivos del Puesto</CardTitle>
-        <Button
-          size="sm"
-          variant="default"
-          className="flex items-center gap-2 rounded-md shadow-md"
-        >
-          <Plus className="w-4 h-4" />
-          Añadir Archivo
-        </Button>
+        <AddJobFile />
       </CardHeader>
-      <CardContent>
+      <CardContent className="max-h-100 overflow-auto">
         {files && files.length > 0 ? (
           <ul className="space-y-4">
             {files.map((file) => (

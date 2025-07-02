@@ -20,17 +20,39 @@ import {
   Kanban,
 } from "lucide-react";
 import { useAppDispatch } from "@/app/redux";
+import TableConfiguration from "./TableConfiguration";
 
 interface CandidatesViewProps {
   stages: Stage[];
   candidateByStage: CandidatesByStage;
 }
+export type TableColumnsVisibility = {
+  Nombre: boolean;
+  Email: boolean;
+  Etapa: boolean;
+  "Fecha de aplicación": boolean;
+  Match: boolean;
+  Compensación: boolean;
+  "Estado en otros procesos": boolean;
+};
+
 
 const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
   const dispatch = useAppDispatch();
   const [view, setView] = useState<"table" | "kanban">("kanban");
   const [search, setSearch] = useState("");
   const [onlyValidStages, setOnlyValidStages] = useState(true);
+  const [showConfig, setShowConfig] = useState(false);
+ const [columns, setColumns] = useState<TableColumnsVisibility>({
+  Nombre: true,
+  Email: true,
+  Etapa: true,
+  "Fecha de aplicación": true,
+  Match: true,
+  Compensación: true,
+  "Estado en otros procesos": true,
+});
+
 
   const candidatesCount = Object.values(candidateByStage).reduce(
     (total, candidates) => total + candidates.length,
@@ -126,14 +148,24 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
             />
             <span className="text-sm text-gray-700">Solo etapas posibles</span>
           </div>
-
-          <Button
-            variant="ghost"
-            className="flex items-center gap-2 text-sm text-gray-600"
-          >
-            <Settings className="w-4 h-4" />
-            Configurar columnas
-          </Button>
+          {view === "table" && (
+            <Button
+              variant="ghost"
+              className="flex items-center gap-2 text-sm text-gray-600"
+              onClick={() => setShowConfig(true)}
+            >
+              <Settings className="w-4 h-4" />
+              Configurar columnas
+            </Button>
+          )}
+          {view === "table" && (
+            <TableConfiguration
+              open={showConfig}
+              setOpen={setShowConfig}
+              columns={columns}
+              setColumns={setColumns}
+            />
+          )}
 
           <Button
             variant="ghost"
@@ -148,7 +180,11 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
       {/* Vista dinámico */}
       <div>
         {view === "table" ? (
-          <TableView stages={stages} candidatesByStage={candidateByStage} />
+          <TableView
+            stages={stages}
+            candidatesByStage={candidateByStage}
+            visibleColumns={columns}
+          />
         ) : (
           <KanbanView
             stages={stages}

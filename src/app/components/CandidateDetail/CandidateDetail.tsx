@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { fetchCandidateById } from "@/state/api/fetchCandidateById";
 import { clearCandidate } from "@/store/slices/CandidateDetailSlice";
 import { Button } from "@/components/ui/button";
-import CandidateActions from "./CandidateActions";
+import CandidateActions from "./CandidateActions/CandidateActions";
 import CandidateHeader from "./CandidateHeader";
 import CandidateContentRender from "./CandidateContentRender";
 

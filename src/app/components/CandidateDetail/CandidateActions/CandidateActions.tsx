@@ -11,6 +11,9 @@ import {
   Settings,
   ArrowLeftRight,
 } from "lucide-react";
+import ActionChat from "./ActionChat";
+import ActionUpdate from "./ActionUpdate";
+import ActionGenerate from "./ActionGenerate";
 
 interface CandidateActionsProps {
   onClose: () => void;
@@ -52,14 +55,7 @@ export default function CandidateActions({ onClose }: CandidateActionsProps) {
           <Link className="w-4 h-4" />
           Vincular
         </Button>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="flex items-center gap-1 cursor-pointer transition-colors hover:bg-green-100 hover:text-green-700"
-        >
-          <MessageSquare className="w-4 h-4" />
-          Chat
-        </Button>
+        <ActionChat />
         <Button
           variant="secondary"
           size="sm"
@@ -76,22 +72,8 @@ export default function CandidateActions({ onClose }: CandidateActionsProps) {
           <ArrowLeftRight className="w-4 h-4" />
           Comparar
         </Button>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="flex items-center gap-1 cursor-pointer transition-colors hover:bg-indigo-100 hover:text-indigo-700"
-        >
-          <RefreshCcw className="w-4 h-4" />
-          Actualizar
-        </Button>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="flex items-center gap-1 cursor-pointer transition-colors hover:bg-gray-200 hover:text-gray-800"
-        >
-          <Settings className="w-4 h-4" />
-          Generar
-        </Button>
+        <ActionUpdate />
+        <ActionGenerate />
       </div>
       <Button
         variant="destructive"

@@ -23,15 +23,20 @@ import {
 } from "../../types/CandidatesByStagesTypes";
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { useAppDispatch } from "@/app/redux";
+import { openModal } from "@/store/slices/ModalSlice";
 
 interface TableViewProps {
   stages: Stage[];
   candidatesByStage: CandidatesByStage;
+  visibleColumns: Record<string, boolean>; // 👈 NUEVO
 }
-import { useAppDispatch } from "@/app/redux";
-import { openModal } from "@/store/slices/ModalSlice";
 
-const TableView = ({ stages, candidatesByStage }: TableViewProps) => {
+const TableView = ({
+  stages,
+  candidatesByStage,
+  visibleColumns,
+}: TableViewProps) => {
   const dispatch = useAppDispatch();
   const allCandidatesMap = new Map<string, CandidateDetail>();
   Object.values(candidatesByStage)
@@ -50,6 +55,7 @@ const TableView = ({ stages, candidatesByStage }: TableViewProps) => {
       setSelectedIds(new Set(allCandidates.map((c) => c.id)));
     }
   };
+
   const handleCandidateClick = (candidateId: string) => {
     dispatch(
       openModal({
@@ -82,15 +88,23 @@ const TableView = ({ stages, candidatesByStage }: TableViewProps) => {
                 onCheckedChange={toggleSelectAll}
               />
             </TableHead>
-            <TableHead>Nombre</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Etapa</TableHead>
-            <TableHead>Fecha de aplicación</TableHead>
-            <TableHead>Match</TableHead>
-            <TableHead>Compensación</TableHead>
-            <TableHead>Estado en otros procesos</TableHead>
+
+            {visibleColumns["Nombre"] && <TableHead>Nombre</TableHead>}
+            {visibleColumns["Email"] && <TableHead>Email</TableHead>}
+            {visibleColumns["Etapa"] && <TableHead>Etapa</TableHead>}
+            {visibleColumns["Fecha de aplicación"] && (
+              <TableHead>Fecha de aplicación</TableHead>
+            )}
+            {visibleColumns["Match"] && <TableHead>Match</TableHead>}
+            {visibleColumns["Compensación"] && (
+              <TableHead>Compensación</TableHead>
+            )}
+            {visibleColumns["Estado en otros procesos"] && (
+              <TableHead>Estado en otros procesos</TableHead>
+            )}
           </TableRow>
         </TableHeader>
+
         <TableBody>
           {allCandidates.map((candidate) => (
             <TableRow key={candidate.id}>
@@ -100,45 +114,60 @@ const TableView = ({ stages, candidatesByStage }: TableViewProps) => {
                   onCheckedChange={() => toggleSelect(candidate.id)}
                 />
               </TableCell>
-              <TableCell
-                className="font-medium"
-                onClick={() => handleCandidateClick(candidate.id)}
-              >
-                <Button
-                  variant="link"
-                  className="p-0 m-0 text-primary hover:underline cursor-pointer"
+
+              {visibleColumns["Nombre"] && (
+                <TableCell
+                  className="font-medium"
                   onClick={() => handleCandidateClick(candidate.id)}
                 >
-                  {candidate.name}
-                </Button>
-              </TableCell>
-              <TableCell>{candidate.email}</TableCell>
-              <TableCell>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="outline"
-                      className="text-left w-full justify-between"
-                    >
-                      {candidate.current_stage?.name || "Sin etapa"}
-                      <ChevronDown className="w-4 h-4 ml-2" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    {stages.map((stage) => (
-                      <DropdownMenuItem key={stage.id}>
-                        {stage.name}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </TableCell>
-              <TableCell>
-                {new Date(candidate.created_at).toLocaleDateString("es-AR")}
-              </TableCell>
-              <TableCell>—</TableCell>
-              <TableCell>—</TableCell>
-              <TableCell>—</TableCell>
+                  <Button
+                    variant="link"
+                    className="p-0 m-0 text-primary hover:underline cursor-pointer"
+                    onClick={() => handleCandidateClick(candidate.id)}
+                  >
+                    {candidate.name}
+                  </Button>
+                </TableCell>
+              )}
+
+              {visibleColumns["Email"] && (
+                <TableCell>{candidate.email}</TableCell>
+              )}
+
+              {visibleColumns["Etapa"] && (
+                <TableCell>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="text-left w-full justify-between"
+                      >
+                        {candidate.current_stage?.name || "Sin etapa"}
+                        <ChevronDown className="w-4 h-4 ml-2" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      {stages.map((stage) => (
+                        <DropdownMenuItem key={stage.id}>
+                          {stage.name}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </TableCell>
+              )}
+
+              {visibleColumns["Fecha de aplicación"] && (
+                <TableCell>
+                  {new Date(candidate.created_at).toLocaleDateString("es-AR")}
+                </TableCell>
+              )}
+
+              {visibleColumns["Match"] && <TableCell>—</TableCell>}
+              {visibleColumns["Compensación"] && <TableCell>—</TableCell>}
+              {visibleColumns["Estado en otros procesos"] && (
+                <TableCell>—</TableCell>
+              )}
             </TableRow>
           ))}
         </TableBody>

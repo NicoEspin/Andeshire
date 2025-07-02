@@ -65,7 +65,7 @@ export default function CandidateDetail({
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center z-50 p-10 overflow-auto">
       <div className="bg-white p-6 rounded-lg shadow w-full max-w-6xl space-y-4 overflow-auto">
-        <CandidateActions onClose={onClose} />
+        <CandidateActions onClose={onClose} candidate={candidate} />
         <CandidateHeader candidate={candidate} />
         <CandidateContentRender candidate={candidate} />
       </div>

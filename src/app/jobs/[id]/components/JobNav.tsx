@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { FileText, Users, Shield, UserCheck } from "lucide-react";
+import { FileText, Users, Shield, UserCheck, Sliders } from "lucide-react";
 
 interface JobNavProps {
   activeTab: string;
@@ -24,6 +24,12 @@ const tabs = [
     value: "aplicantes",
     icon: UserCheck,
     color: "emerald",
+  },
+  {
+    label: "Personalizados",
+    value: "personalizados",
+    icon: Sliders, // Usa un icono que represente custom
+    color: "amber",
   },
 ];
 
@@ -57,6 +63,12 @@ const tabColors = {
     hoverBg: "hover:bg-emerald-100",
     icon: "text-emerald-600",
     activeBg: "bg-gradient-to-r from-emerald-500 to-emerald-600",
+  },
+  amber: {
+    text: "text-amber-600",
+    hoverBg: "hover:bg-amber-100",
+    icon: "text-amber-600",
+    activeBg: "bg-gradient-to-r from-amber-500 to-amber-600",
   },
 };
 

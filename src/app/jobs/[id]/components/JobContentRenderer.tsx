@@ -6,6 +6,7 @@ import CandidatesView from "./Candidatos/CandidatesView";
 import DescriptionView from "./Descripcion/DescriptionView";
 import DetailsView from "./Detalles/DetailsView";
 import HeimdallView from "./Heimdall/HeimdallView";
+import CustomView from "./Personalizados/CustomView";
 
 interface JobContentRendererProps {
   activeTab: string;
@@ -34,6 +35,8 @@ export default function JobContentRenderer({
       return <HeimdallView />;
     case "aplicantes":
       return <ApplicantsView />;
+    case "personalizados":
+      return <CustomView job={job} />;
     default:
       return <div className="p-4 text-gray-500">Selecciona una pestaña</div>;
   }

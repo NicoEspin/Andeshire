@@ -15,11 +15,35 @@ import ActionChat from "./ActionChat";
 import ActionUpdate from "./ActionUpdate";
 import ActionGenerate from "./ActionGenerate";
 
+import { useAppDispatch, useAppSelector } from "@/app/redux";
+import ActionLink from "./ActionLink";
+import { fetchJobList } from "@/state/api/fetchJobList";
+import ActionCompare from "./ActionCompare";
+import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
+import ActionEdit from "./ActionEdit";
+
 interface CandidateActionsProps {
   onClose: () => void;
+  candidate: CandidateDetail;
 }
 
-export default function CandidateActions({ onClose }: CandidateActionsProps) {
+export default function CandidateActions({
+  onClose,
+  candidate,
+}: CandidateActionsProps) {
+  const dispatch = useAppDispatch();
+  const {
+    list: jobList,
+    loading: jobListLoading,
+    error: jobListError,
+  } = useAppSelector((state) => state.jobList);
+
+  useEffect(() => {
+    if (!jobList.length && !jobListLoading) {
+      fetchJobList(dispatch);
+    }
+  }, [dispatch, jobList.length, jobListLoading]);
+
   // 👉 Escuchar la tecla Escape
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -30,7 +54,6 @@ export default function CandidateActions({ onClose }: CandidateActionsProps) {
 
     window.addEventListener("keydown", handleKeyDown);
 
-    // Limpia el listener al desmontar el componente
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -47,32 +70,23 @@ export default function CandidateActions({ onClose }: CandidateActionsProps) {
           <X className="w-4 h-4" />
           Rechazar
         </Button>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="flex items-center gap-1 cursor-pointer transition-colors hover:bg-blue-100 hover:text-blue-700"
-        >
-          <Link className="w-4 h-4" />
-          Vincular
-        </Button>
+        <ActionLink
+          jobList={jobList}
+          loading={jobListLoading}
+          error={jobListError}
+        />
         <ActionChat />
-        <Button
-          variant="secondary"
-          size="sm"
-          className="flex items-center gap-1 cursor-pointer transition-colors hover:bg-yellow-100 hover:text-yellow-700"
-        >
-          <Pencil className="w-4 h-4" />
-          Editar
-        </Button>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="flex items-center gap-1 cursor-pointer transition-colors hover:bg-purple-100 hover:text-purple-700"
-        >
-          <ArrowLeftRight className="w-4 h-4" />
-          Comparar
-        </Button>
+
+        <ActionEdit candidate={candidate} />
+
+        <ActionCompare
+          jobList={jobList}
+          loading={jobListLoading}
+          error={jobListError}
+        />
+       
         <ActionUpdate />
+        
         <ActionGenerate />
       </div>
       <Button

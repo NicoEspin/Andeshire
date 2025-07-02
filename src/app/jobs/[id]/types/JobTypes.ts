@@ -1,3 +1,4 @@
+import { CustomField } from "./CandidatesByStagesTypes";
 import type { Stage } from "./StagesTypes";
 
 /** 📌 Job API Response */
@@ -51,8 +52,38 @@ export interface Job {
   place_of_work: string;
   job_perks: string;
   scoreboards: Scoreboard[];
+  custom_fields: CustomField[];
 }
 
+export interface JobListItem {
+  id: string;
+  pk: string;
+  title: string;
+  description: string;
+  category: string;
+  company: Company;  // ya tienes este type ✔️
+  is_public: boolean;
+  is_open: boolean;
+  positions: number;
+  created_at: string;
+  updated_at: string;
+  is_job_analyzed: boolean;
+  applicant_count: number;
+  candidate_count: number;
+  priority: string;
+  note: string | null;
+  visible_id: string;
+}
+
+export interface JobListResponse {
+  results: JobListItem[];
+  count: number;
+  next: number | null;
+  previous: number | null;
+  total_pages: number;
+  current_page: number;
+  page_size: number;
+}
 /** ✅ Nueva estructura: JobStage, basado en la response real */
 export interface JobStage {
   id: string;

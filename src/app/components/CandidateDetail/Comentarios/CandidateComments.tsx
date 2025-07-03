@@ -1,75 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Plus, MessageSquare } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import AddCandidateComment from "./AddCandidateComment";
 
-// Tipos exactos de tu API
-type RegularComment = {
-  id: string;
-  text: string;
-  recruiter: string;
-  created_at: string;
-  type: string; // "Regular"
-};
-
-type TechnicalComment = {
-  id: string;
-  comment: string;
-  recruiter: string;
-  created_at: string;
-  type: string; // "Technical"
-};
-
-// Mock data EXACTA de tu API
-const mockData: {
-  status: string;
-  data: {
-    regular_comments: RegularComment[];
-    technical_comments: TechnicalComment[];
-  };
-} = {
-  status: "success",
-  data: {
-    regular_comments: [
-      {
-        id: "b3379483-8259-4d93-af11-00ca09239eca",
-        text: "Este candidato tiene buena actitud.",
-        recruiter: "Mauricio",
-        created_at: "2025-06-26 15:12:55",
-        type: "Regular",
-      },
-    ],
-    technical_comments: [
-      {
-        id: "23a5802e-2e06-4a89-ab1d-44bc098235c6",
-        comment: "Buen conocimiento de APIs REST y manejo de bases de datos.",
-        recruiter: "Mauricio",
-        created_at: "2025-07-01 13:51:24",
-        type: "Technical",
-      },
-      // Simula infinitos:
-      {
-        id: "2",
-        comment: "Dominio avanzado de Python y frameworks como Django.",
-        recruiter: "Mauricio",
-        created_at: "2025-07-01 14:00:00",
-        type: "Technical",
-      },
-    ],
-  },
-};
+import { useAppDispatch, useAppSelector } from "@/app/redux";
+import { fetchCandidateComments } from "@/state/api/Candidates/id/FetchCandidateComments";
 
 export default function CandidateComments() {
+  const dispatch = useAppDispatch();
+
+  const { regularComments, technicalComments, loading, error, loaded } =
+    useAppSelector((state) => state.candidateComments);
+
   const [tab, setTab] = useState<"regular" | "technical">("regular");
 
-  const { regular_comments, technical_comments } = mockData.data;
+  // Llama al fetch solo si no está cargado
+  useEffect(() => {
+    if (!loaded) {
+      fetchCandidateComments(dispatch);
+    }
+  }, [dispatch, loaded]);
 
   const currentComments =
-    tab === "regular" ? regular_comments : technical_comments;
+    tab === "regular" ? regularComments : technicalComments;
 
   return (
     <Card className="w-full">
@@ -101,8 +57,11 @@ export default function CandidateComments() {
           </TabsList>
         </Tabs>
 
-        {/* Lista de comentarios */}
-        {currentComments.length === 0 ? (
+        {loading ? (
+          <p className="text-gray-500">Cargando comentarios...</p>
+        ) : error ? (
+          <p className="text-red-500">Error: {error}</p>
+        ) : currentComments.length === 0 ? (
           <Card className="flex flex-col items-center justify-center p-8 text-center border-dashed">
             <MessageSquare className="w-10 h-10 text-gray-400 mb-2" />
             <p className="text-gray-500">
@@ -114,9 +73,7 @@ export default function CandidateComments() {
             {currentComments.map((comment) => (
               <Card key={comment.id} className="p-4">
                 <p className="text-sm text-gray-800 mb-2">
-                  {tab === "regular"
-                    ? (comment as RegularComment).text
-                    : (comment as TechnicalComment).comment}
+                  {"text" in comment ? comment.text : comment.comment}
                 </p>
                 <div className="text-xs text-gray-500 flex justify-between">
                   <span>Por: {comment.recruiter}</span>

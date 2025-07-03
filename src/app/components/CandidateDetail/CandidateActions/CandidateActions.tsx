@@ -17,7 +17,7 @@ import ActionGenerate from "./ActionGenerate";
 
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import ActionLink from "./ActionLink";
-import { fetchJobList } from "@/state/api/fetchJobList";
+import { fetchJobList } from "@/state/api/Jobs/fetchJobList";
 import ActionCompare from "./ActionCompare";
 import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import ActionEdit from "./ActionEdit";

@@ -12,14 +12,22 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type AddCandidateFormProps = {
   templates: { id: string; name: string }[];
 };
 
 export default function AddCandidateForm({ templates }: AddCandidateFormProps) {
-  const [selectedTemplate, setSelectedTemplate] = React.useState<string | null>(null);
+  const [selectedTemplate, setSelectedTemplate] = React.useState<string | null>(
+    null
+  );
   const [isPublic, setIsPublic] = React.useState(false);
   const [toComplete, setToComplete] = React.useState(false);
 
@@ -54,12 +62,20 @@ export default function AddCandidateForm({ templates }: AddCandidateFormProps) {
           </div>
 
           <div className="flex items-center space-x-2">
-            <Checkbox id="public" checked={isPublic} onCheckedChange={(checked) => setIsPublic(!!checked)} />
+            <Checkbox
+              id="public"
+              checked={isPublic}
+              onCheckedChange={(checked) => setIsPublic(!!checked)}
+            />
             <Label htmlFor="public">Hacer público</Label>
           </div>
 
           <div className="flex items-center space-x-2">
-            <Checkbox id="toComplete" checked={toComplete} onCheckedChange={(checked) => setToComplete(!!checked)} />
+            <Checkbox
+              id="toComplete"
+              checked={toComplete}
+              onCheckedChange={(checked) => setToComplete(!!checked)}
+            />
             <Label htmlFor="toComplete">Pendiente de completar</Label>
           </div>
 
@@ -70,7 +86,9 @@ export default function AddCandidateForm({ templates }: AddCandidateFormProps) {
 
           <div className="flex justify-end space-x-2">
             <Button variant="outline">Cancelar</Button>
-            <Button className="bg-purple-700 text-white hover:bg-purple-800">Guardar</Button>
+            <Button className="bg-purple-700 text-white hover:bg-purple-800">
+              Guardar
+            </Button>
           </div>
         </div>
       </DialogContent>

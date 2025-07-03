@@ -7,7 +7,7 @@ import {
   setJobList,
   setJobListLoading,
   setJobListError,
-} from "@/store/slices/JobListSlice";
+} from "@/store/slices/Jobs/JobListSlice";
 
 export const fetchJobList = async (dispatch: AppDispatch) => {
   dispatch(setJobListLoading(true));

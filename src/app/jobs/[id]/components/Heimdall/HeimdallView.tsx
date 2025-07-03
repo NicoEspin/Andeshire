@@ -1,7 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import { mockHeimdallAnalysis } from "../../data/mockHeimdallAnalysis";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/redux";
+import { fetchJobHeimdall } from "@/state/api/Jobs/Id/FetchJobHeimdall";
+
 import {
   Table,
   TableBody,
@@ -22,16 +26,35 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Eye, EyeOff, RefreshCcw } from "lucide-react";
-import Link from "next/link";
 import { Input } from "@/components/ui/input";
+import CandidateCompare from "./CandidateCompare";
 
-const HeimdallView = () => {
-  const data = mockHeimdallAnalysis;
-  const candidates = data.candidates;
+// ✅ Ya NO necesitas esta interface
+// interface HeimdallViewProps {
+//   jobId: string;
+// }
 
+const HeimdallView: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<string[]>([]);
-  const currentPage = data.pagination.current_page;
-  const totalPages = data.pagination.total_pages;
+
+  const {
+    candidates,
+    analysisProcess,
+    filters,
+    pagination,
+    totalCandidatesAnalyzed,
+    loading,
+    error,
+  } = useSelector((state: RootState) => state.jobHeimdall);
+
+  useEffect(() => {
+    if (!candidates.length && !loading) {
+      fetchJobHeimdall(dispatch, page);
+    }
+  }, [dispatch, page, candidates.length, loading]);
 
   const allSelected = selected.length === candidates.length;
   const toggleAll = () => {
@@ -52,36 +75,53 @@ const HeimdallView = () => {
   const renderPaginationNumbers = () => {
     const visiblePages: (number | string)[] = [];
     const maxVisible = 5;
+    const totalPages = pagination?.total_pages || 1;
 
-    for (let i = 1; i <= Math.min(maxVisible, totalPages); i++) {
+    let startPage = Math.max(1, page - 2);
+    let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+
+    if (endPage - startPage < maxVisible - 1) {
+      startPage = Math.max(1, endPage - maxVisible + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
       visiblePages.push(i);
     }
 
-    if (totalPages > maxVisible) {
+    if (endPage < totalPages) {
       visiblePages.push("...");
       visiblePages.push(totalPages);
     }
 
-    return visiblePages.map((page, idx) =>
-      typeof page === "number" ? (
+    return visiblePages.map((p, idx) =>
+      typeof p === "number" ? (
         <Button
           key={idx}
           size="sm"
-          variant={page === currentPage ? "default" : "outline"}
+          variant={p === page ? "default" : "outline"}
+          onClick={() => setPage(p)}
         >
-          {page}
+          {p}
         </Button>
       ) : (
         <span key={idx} className="text-muted-foreground px-2">
-          {page}
+          {p}
         </span>
       )
     );
   };
 
+  if (loading) {
+    return <div className="p-4">Cargando análisis...</div>;
+  }
+
+  if (error) {
+    return <div className="p-4 text-red-600">Ocurrió un error: {error}</div>;
+  }
+
   return (
     <div className="rounded-lg border shadow-sm overflow-x-auto p-4 space-y-4">
-      {/* HEADER CON DATOS DEL MOCK */}
+      {/* HEADER */}
       <Card className="bg-green-50 border-green-200">
         <CardHeader className="pb-2">
           <CardTitle className="text-green-800 text-sm font-medium flex items-center gap-2">
@@ -89,13 +129,14 @@ const HeimdallView = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="text-sm text-muted-foreground">
-          Se han analizado {data.analysis_process.total_candidates} candidatos.
+          Se han analizado {totalCandidatesAnalyzed} candidatos.
           <br />
-          Procesados: {data.analysis_process.processed_candidates}
+          Procesados: {analysisProcess?.processed_candidates}
           <br />
           <span className="text-xs text-gray-500">
             Completado:{" "}
-            {new Date(data.analysis_process.completed_at).toLocaleString()}
+            {analysisProcess?.completed_at &&
+              new Date(analysisProcess.completed_at).toLocaleString()}
           </span>
         </CardContent>
       </Card>
@@ -122,7 +163,7 @@ const HeimdallView = () => {
           </Select>
 
           <Button variant="outline" size="icon">
-            <EyeOff className="h-4 w-4" /> {/* Ver candidatos ocultos */}
+            <EyeOff className="h-4 w-4" />
           </Button>
 
           <Button
@@ -135,6 +176,8 @@ const HeimdallView = () => {
           </Button>
         </div>
       </div>
+
+      {/* TABLA */}
       <Table>
         <TableHeader>
           <TableRow>
@@ -188,14 +231,16 @@ const HeimdallView = () => {
                   {candidate.heimdall}
                 </Badge>
               </TableCell>
-              <TableCell>
-                <Badge className={getBadgeClass(candidate.strong_result)}>
-                  {candidate.strong_result}
-                </Badge>
+              <TableCell >
+                <CandidateCompare
+                  candidateId={candidate.candidate_id} 
+                  candidateName={candidate.candidate_name}
+                  keyPoints={candidate.key_points}
+                />
               </TableCell>
               <TableCell>
-                <Button size="icon" variant="outline">
-                  <Eye className="h-4 w-4" />
+                <Button size="sm" variant="outline">
+                  Ocultar
                 </Button>
               </TableCell>
             </TableRow>
@@ -206,13 +251,14 @@ const HeimdallView = () => {
       {/* PAGINACIÓN */}
       <div className="flex justify-between items-center pt-4 border-t">
         <span className="text-sm text-muted-foreground">
-          Página {currentPage} de {totalPages}
+          Página {pagination?.current_page} de {pagination?.total_pages}
         </span>
         <div className="flex items-center gap-2">
           <Button
             variant="outline"
             size="sm"
-            disabled={data.pagination.has_previous === "false"}
+            disabled={(pagination?.current_page || 1) <= 1}
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
           >
             Anterior
           </Button>
@@ -222,7 +268,12 @@ const HeimdallView = () => {
           <Button
             variant="outline"
             size="sm"
-            disabled={data.pagination.has_next === "false"}
+            disabled={
+              (pagination?.current_page || 1) >= (pagination?.total_pages || 1)
+            }
+            onClick={() =>
+              setPage((p) => Math.min(p + 1, pagination?.total_pages || 1))
+            }
           >
             Siguiente
           </Button>

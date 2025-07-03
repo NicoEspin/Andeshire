@@ -106,7 +106,7 @@ const Sidebar = () => {
           isCollapsed={isSideBarCollapsed}
         />
         <SidebarLink
-          href="/trabajos"
+          href="/jobs"
           icon={Briefcase}
           label="Trabajos"
           isCollapsed={isSideBarCollapsed}

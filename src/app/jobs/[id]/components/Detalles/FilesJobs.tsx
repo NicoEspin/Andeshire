@@ -16,7 +16,7 @@ const FilesJobs = ({ job }: Props) => {
   const files = job.files;
 
   return (
-    <Card className="w-full h-fit">
+    <Card className="w-full ">
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="text-lg">Archivos del Puesto</CardTitle>
         <AddJobFile />

@@ -1,4 +1,5 @@
 import { CustomField } from "./CandidatesByStagesTypes";
+import { Scoreboard, ScoreboardDetail } from "./ScoreboardsTypes";
 import type { Stage } from "./StagesTypes";
 
 /** 📌 Job API Response */
@@ -54,6 +55,14 @@ export interface Job {
   scoreboards: Scoreboard[];
   custom_fields: CustomField[];
 }
+export interface JobNote {
+  id: string;
+  content: string;
+  created_at: string;
+  updated_at: string;
+  last_modified_by: string | null;
+  last_modified_at: string | null;
+}
 
 export interface JobListItem {
   id: string;
@@ -61,7 +70,7 @@ export interface JobListItem {
   title: string;
   description: string;
   category: string;
-  company: Company;  // ya tienes este type ✔️
+  company: Company; // ya tienes este type ✔️
   is_public: boolean;
   is_open: boolean;
   positions: number;
@@ -71,7 +80,7 @@ export interface JobListItem {
   applicant_count: number;
   candidate_count: number;
   priority: string;
-  note: string | null;
+  note: JobNote | null; // ✅ ahora usa el nuevo type
   visible_id: string;
 }
 
@@ -120,39 +129,15 @@ export interface StageHistory {
   scoreboards: ScoreboardDetail[]; // Array real de formularios
 }
 
-export interface ScoreboardDetail {
-  id: string;
-  template: {
-    id: string;
-    name: string;
-    description: string;
-  };
-  public: string;
-  public_link: string | null;
-  public_url: string | null;
-  by_admin: string;
-  to_complete: string;
-  created_at: string;
-  updated_at: string;
-  entries: Record<string, string>;
-  responses: any[];
-}
+
 
 export interface Recruiter {
   id: string;
   name: string;
 }
 
-/** 📌 Scoreboard general que sigue usando tu Job */
-export interface Scoreboard {
-  id: string;
-  template_name: string;
-  recruiter_name: string;
-  to_complete: boolean;
-  created_at: string;
-  updated_at: string;
-  entries: [];
-}
+
+
 
 export interface Company {
   id: string;

@@ -1,5 +1,6 @@
 // src/types/CandidatesByStagesTypes.ts
 
+import { RegularComment } from "./CandidateCommentsTypes";
 import { Job, JobStage } from "./JobTypes";
 
 export interface CandidatesByStage {
@@ -81,6 +82,7 @@ export interface CandidateDetail {
   latest_update_linkedin: string | null;
   tags: Tag[];
   files: FileAttachment[];
+  regular_comments: RegularComment[];
   technical_comments: TechnicalComment[];
   candidate_job_stage_id: string;
   current_stage: StageSummary;

@@ -7,7 +7,7 @@ import JobValidationCriteriaCard from "./JobValidationCriteriaCard";
 import CandidatesPerWorkflowChart from "./CandidatesPerWorkflowChart";
 import { Stage } from "../../types/StagesTypes";
 import FilesJobs from "./FilesJobs";
-import JobForms from "./JobForms";
+import JobForms from "./Scoreboards/JobForms";
 
 interface DetailsViewProps {
   job: Job;

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Table,
   TableHeader,
@@ -19,10 +19,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { mockApplicants } from "../../data/mockApplicants";
 import { Eye, Globe, ChevronDown } from "lucide-react";
 
-type Applicant = (typeof mockApplicants.applicants)[0];
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/app/redux";
+import { fetchJobApplicants } from "@/state/api/Jobs/Id/FetchJobApplicants";
+import { updateApplicantStatus } from "@/store/slices/Jobs/id/JobApplicantsSlice";
 
 const getBadgeColor = (score: number) => {
   if (score < 50) return "bg-red-100 text-red-700";
@@ -31,13 +33,24 @@ const getBadgeColor = (score: number) => {
 };
 
 const ApplicantsView = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { applicants, loading, error, loaded } = useSelector(
+    (state: RootState) => state.jobApplicants
+  );
+
   const [search, setSearch] = useState("");
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
-  const [applicants, setApplicants] = useState(mockApplicants.applicants);
 
-  const filteredApplicants = applicants.filter((applicant) =>
-    applicant.name.toLowerCase().includes(search.toLowerCase())
-  );
+  useEffect(() => {
+    if (!loaded && !loading) {
+      fetchJobApplicants(dispatch, "79f03bb1-ada2-4c99-998e-74c2da154c51");
+    }
+  }, [dispatch, loaded, loading]);
+
+  const filteredApplicants =
+    applicants?.filter((applicant) =>
+      applicant.name.toLowerCase().includes(search.toLowerCase())
+    ) || [];
 
   const isAllSelected =
     filteredApplicants.length > 0 &&
@@ -60,11 +73,7 @@ const ApplicantsView = () => {
   };
 
   const handleStatusChange = (id: string, newStatus: string) => {
-    setApplicants((prev) =>
-      prev.map((applicant) =>
-        applicant.id === id ? { ...applicant, status: newStatus } : applicant
-      )
-    );
+    dispatch(updateApplicantStatus({ id, status: newStatus }));
   };
 
   return (
@@ -75,6 +84,9 @@ const ApplicantsView = () => {
         onChange={(e) => setSearch(e.target.value)}
         className="w-1/3"
       />
+
+      {loading && <div>Cargando aplicantes...</div>}
+      {error && <div className="text-red-500">{error}</div>}
 
       <div className="rounded-lg border shadow-sm overflow-x-auto">
         <Table>
@@ -149,7 +161,7 @@ const ApplicantsView = () => {
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() =>
-                          handleStatusChange(applicant.id, "rejected")
+                          handleStatusChange(applicant.id, "NOT_SELECTED")
                         }
                       >
                         No Seleccionado

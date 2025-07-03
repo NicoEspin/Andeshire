@@ -25,7 +25,13 @@ import globalReducer from "@/state";
 import jobReducer from "@/store/slices/JobSlice"; // Asegurate de tener este slice creado
 import modalReducer from "@/store/slices/ModalSlice";
 import candidateDetailReducer from "@/store/slices/CandidateDetailSlice";
-import jobListReducer from "@/store/slices/JobListSlice";
+import jobListReducer from "@/store/slices/Jobs/JobListSlice";
+import jobHeimdallReducer from "@/store/slices/Jobs/id/JobHeimdallSlice";
+import jobApplicantsReducer from "@/store/slices/Jobs/id/JobApplicantsSlice";
+import jobScoreboardsReducer from "@/store/slices/Jobs/id/JobScoreboardsSlice";
+import candidateScoreboardsReducer from "@/store/slices/candidates/id/CandidateScoreboardsSlice";
+import candidateAnalysisReducer from "@/store/slices/candidates/id/CandidateAnalysisSlice";
+import candidateCommentsReducer from "@/store/slices/candidates/id/CandidateCommentsSlice";
 
 // ⛔ Safe storage fallback para SSR
 const createNoopStorage = () => {
@@ -60,7 +66,14 @@ const rootReducer = combineReducers({
   job: jobReducer,
   modal: modalReducer,
   candidateDetail: candidateDetailReducer,
+  candidateScoreboards: candidateScoreboardsReducer,
   jobList: jobListReducer,
+  jobHeimdall: jobHeimdallReducer,
+  jobApplicants: jobApplicantsReducer,
+  jobScoreboards: jobScoreboardsReducer,
+  candidateAnalysis: candidateAnalysisReducer,
+  candidateComments: candidateCommentsReducer,
+
 });
 
 // 🎯 Apply persistencia

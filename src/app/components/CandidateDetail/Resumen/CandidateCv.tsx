@@ -3,7 +3,6 @@
 import React from "react";
 import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 
 type Props = {
   candidate: CandidateDetail;
@@ -23,15 +22,23 @@ const parseTechnicalResume = (technicalResume: string) => {
   }
 };
 
+// ✅ Función para limpiar la URL usando regex
+const cleanCvUrl = (url: string) => {
+  const match = url.match(/^[^?]+/);
+  return match ? match[0] : url;
+};
+
 const CandidateCv = ({ candidate }: Props) => {
   const skills = parseTechnicalResume(candidate.technical_resume);
+
+  const cleanedCvUrl = cleanCvUrl(candidate.cv_url);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* CV PDF */}
       <div className="border rounded-xl overflow-auto shadow-lg">
         <iframe
-          src={candidate.cv_url}
+          src={cleanedCvUrl}
           className="w-full h-[55vh]"
           title="Candidate CV"
         />
@@ -59,7 +66,7 @@ const CandidateCv = ({ candidate }: Props) => {
                     className="h-2.5 rounded-full"
                     style={{
                       width: `${percentage}%`,
-                      backgroundColor: "#7e22ce", 
+                      backgroundColor: "#7e22ce",
                     }}
                   ></div>
                 </div>

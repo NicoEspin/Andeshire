@@ -7,14 +7,19 @@ import {
   setJobList,
   setJobListLoading,
   setJobListError,
+  setJobListFiltersApplied,
 } from "@/store/slices/Jobs/JobListSlice";
 
-export const fetchJobList = async (dispatch: AppDispatch) => {
+export const fetchJobList = async (
+  dispatch: AppDispatch,
+  filters: Record<string, any> = {}
+) => {
   dispatch(setJobListLoading(true));
   dispatch(setJobListError(null));
+  dispatch(setJobListFiltersApplied(filters)); // ✅ Guarda filtros aplicados
 
   try {
-    const response = await api.get("/job_list");
+    const response = await api.get("/job_list", { params: filters });
     console.log("Job List API Response:", response.data);
 
     const data: JobListResponse = {
@@ -25,17 +30,27 @@ export const fetchJobList = async (dispatch: AppDispatch) => {
       total_pages: response.data.total_pages || 0,
       current_page: response.data.current_page || 1,
       page_size: response.data.page_size || 0,
+      filters: response.data.filters || {
+        categories: [],
+        companies: [],
+        tags: [],
+        recruiters: [],
+        countries: [],
+        cities: [],
+        state_provinces: [],
+      },
     };
 
     dispatch(setJobList(data));
   } catch (error: any) {
     console.error("Job List API Error:", error);
-
     if (error.code === "ERR_NETWORK" || error.message.includes("CORS")) {
       dispatch(setJobListError("Network error - please check your connection"));
     } else {
       const errorMessage =
-        error.response?.data?.message || error.message || "Failed to fetch job list";
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to fetch job list";
       dispatch(setJobListError(errorMessage));
     }
   } finally {

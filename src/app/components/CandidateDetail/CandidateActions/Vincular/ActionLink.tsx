@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Link } from "lucide-react";
 import { JobListItem } from "@/app/jobs/[id]/types/JobTypes";
+import LinkCandidateStage from "./LinkCandidateStage";
 
 interface CandidateLinkProps {
   jobList: JobListItem[];
@@ -59,12 +60,7 @@ const ActionLink = ({ jobList }: CandidateLinkProps) => {
               className="flex items-center justify-between p-3 border rounded-lg"
             >
               <span className="text-sm font-medium">{job.title} - {job.company?.name}</span>
-              <Button
-                size="sm"
-                className="bg-purple-600 hover:bg-purple-700 text-white"
-              >
-                Vincular
-              </Button>
+             <LinkCandidateStage />
             </div>
           ))}
 

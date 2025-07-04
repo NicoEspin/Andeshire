@@ -84,6 +84,29 @@ export interface JobListItem {
   visible_id: string;
 }
 
+export interface TagFilter {
+  id: string;
+  name: string;
+}
+
+/** 📌 Recruiter individual en filtros */
+export interface RecruiterFilter {
+  id: string;
+  name: string;
+}
+
+/** 📌 Filtros disponibles para el listado de Jobs */
+export interface JobListFilters {
+  categories: string[];
+  companies: string[];
+  tags: TagFilter[];
+  recruiters: RecruiterFilter[];
+  countries: string[];
+  cities: string[];
+  state_provinces: string[];
+}
+
+/** 📌 Respuesta completa de JobList con filtros */
 export interface JobListResponse {
   results: JobListItem[];
   count: number;
@@ -92,6 +115,7 @@ export interface JobListResponse {
   total_pages: number;
   current_page: number;
   page_size: number;
+  filters: JobListFilters;
 }
 /** ✅ Nueva estructura: JobStage, basado en la response real */
 export interface JobStage {
@@ -129,15 +153,10 @@ export interface StageHistory {
   scoreboards: ScoreboardDetail[]; // Array real de formularios
 }
 
-
-
 export interface Recruiter {
   id: string;
   name: string;
 }
-
-
-
 
 export interface Company {
   id: string;

@@ -32,6 +32,9 @@ import jobScoreboardsReducer from "@/store/slices/Jobs/id/JobScoreboardsSlice";
 import candidateScoreboardsReducer from "@/store/slices/candidates/id/CandidateScoreboardsSlice";
 import candidateAnalysisReducer from "@/store/slices/candidates/id/CandidateAnalysisSlice";
 import candidateCommentsReducer from "@/store/slices/candidates/id/CandidateCommentsSlice";
+import candidateListReducer from "@/store/slices/candidates/CandidateListSlice";
+import candidateMeetingReducer from "@/store/slices/candidates/id/CandidateMeetingsSlice";
+import jobStagesReducer from "@/store/slices/Jobs/id/JobStagesSlice";
 
 // ⛔ Safe storage fallback para SSR
 const createNoopStorage = () => {
@@ -73,7 +76,9 @@ const rootReducer = combineReducers({
   jobScoreboards: jobScoreboardsReducer,
   candidateAnalysis: candidateAnalysisReducer,
   candidateComments: candidateCommentsReducer,
-
+  candidateList: candidateListReducer,
+  candidateMeeting: candidateMeetingReducer,
+  jobStages: jobStagesReducer,
 });
 
 // 🎯 Apply persistencia

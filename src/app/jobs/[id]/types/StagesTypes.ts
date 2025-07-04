@@ -22,3 +22,11 @@ export interface Candidate {
   id: string;
   name: string;
 }
+
+export interface JobStage {
+  id: string;
+  name: string;
+  status_options: string[];
+}
+
+export type JobStagesApiResponse = JobStage[];

@@ -35,6 +35,8 @@ import candidateCommentsReducer from "@/store/slices/candidates/id/CandidateComm
 import candidateListReducer from "@/store/slices/candidates/CandidateListSlice";
 import candidateMeetingReducer from "@/store/slices/candidates/id/CandidateMeetingsSlice";
 import jobStagesReducer from "@/store/slices/Jobs/id/JobStagesSlice";
+import workflowDetailSlice from "@/store/slices/workflows/Id/WorkflowDetailSlice";
+import workflowListSlice from "@/store/slices/workflows/WorkflowListSlice";
 
 // ⛔ Safe storage fallback para SSR
 const createNoopStorage = () => {
@@ -79,6 +81,8 @@ const rootReducer = combineReducers({
   candidateList: candidateListReducer,
   candidateMeeting: candidateMeetingReducer,
   jobStages: jobStagesReducer,
+  workflowDetail: workflowDetailSlice,
+  workflowList: workflowListSlice,
 });
 
 // 🎯 Apply persistencia

@@ -1,0 +1,606 @@
+{
+  "Sidebar": {
+    "Dashboard": "Dashboard",
+    "Workflow": "Workflow",
+    "Trabajos": "Jobs",
+    "Candidatos": "Candidates",
+    "Compañías": "Companies",
+    "Formularios": "Forms",
+    "Linkedin": "Linkedin",
+    "Campañas": "Campaigns"
+  },
+  "ActionModal": {
+    "Title": "Action Status",
+    "Loading": "Processing..."
+  },
+  "Notifications": {
+    "Title": "Notifications",
+    "ViewAll": "View all"
+  },
+  "Candidates": {
+    "FilterCardTitle": "Filter candidates",
+    "NamePlaceholder": "🔍 Search by name",
+    "JobNamePlaceholder": "🔍 Search by job name",
+    "TableTitle": "Candidate List",
+    "TableHeadName": "Name",
+    "TableHeadCurrentJob": "Current Job",
+    "TableHeadRecruiter": "Recruiter",
+    "FilterRecruiterPlaceholder": "Filter recruiter",
+    "TableHeadCategory": "Category",
+    "SelectAllCategories": "All",
+    "TableHeadLastUpdate": "Last update",
+    "TableHeadTechnicalResume": "Technical Resume",
+    "TableHeadTags": "Tags",
+    "FilterTagsPlaceholder": "Filter tags",
+    "LoadingText": "Loading...",
+    "EmptyStateText": "No candidates found.",
+    "TechnicalResume": {
+      "DialogTitle": "Technical Resume - ",
+      "DialogDescription": "Detailed experience by technology",
+      "NoAvailable": "No technical resume available.",
+      "Years": "years",
+      "Months": "months"
+    }
+  },
+  "Jobs": {
+    "filterTitle": "Filter jobs",
+    "searchPlaceholder": "🔍 Search by job name",
+    "tableTitle": "Job List",
+    "columns": {
+      "title": "Title",
+      "category": "Category",
+      "company": "Company",
+      "lastUpdate": "Last Update",
+      "analyzed": "Analyzed",
+      "applicants": "Applicants",
+      "candidates": "Candidates",
+      "priority": "Priority",
+      "all": "All"
+    },
+    "status": {
+      "loading": "Loading...",
+      "noJobs": "No jobs.",
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
+  "JobId": {
+    "tabs": {
+      "detalles": "Details",
+      "descripcion": "Description",
+      "candidatos": "Candidates",
+      "heimdall": "Heimdall",
+      "aplicantes": "Applicants",
+      "personalizados": "Custom Fields"
+    },
+    "Header": {
+      "status": {
+        "active": "Active"
+      },
+      "dates": {
+        "created": "Created:",
+        "updated": "Updated:"
+      }
+    },
+
+    "Details": {
+      "GeneralInfo": {
+        "title": "General Information",
+        "openDate": "Open Date:",
+        "applicationPeriod": "Application Period:",
+        "linkedCandidates": "Linked Candidates:",
+        "status": "Status:",
+        "statusOpen": "Open",
+        "portalPublication": "Portal Publication:",
+        "yes": "Yes",
+        "no": "No",
+        "publicLink": "Public Link:",
+        "view": "View",
+        "workflow": "Workflow:"
+      },
+      "ValidationCriteria": {
+        "title": "Validation Criteria",
+        "requiredTechnologies": "Required Technologies:",
+        "years": "years",
+        "englishLevel": "English Level:",
+        "workModality": "Work Modality:"
+      },
+      "DashboardChart": {
+        "title": "Job Dashboard",
+        "description": "Candidate progress in the workflow",
+        "noData": "No candidate data to display."
+      },
+      "Files": {
+        "title": "Job Files",
+        "uploaded": "Uploaded:",
+        "download": "Download",
+        "noFiles": "No files available",
+        "noAttachments": "No attachments",
+        "addFileButton": "Add File",
+        "dialogTitle": "Add File",
+        "uploadHint": "Click to select or drag and drop a file",
+        "maxSize": "Max size: 10MB",
+        "descriptionLabel": "Description:",
+        "descriptionPlaceholder": "File description",
+        "cancel": "Cancel",
+        "upload": "Upload File",
+        "modal": {
+          "noFile": "You must select a file.",
+          "uploading": "Uploading file...",
+          "success": "File uploaded successfully."
+        }
+      },
+      "Scoreboards": {
+        "title": "Forms",
+        "loading": "Loading forms...",
+        "empty": "No forms available.",
+        "updated": "Updated:",
+        "delete": "Delete",
+        "edit": "Edit",
+        "Add": {
+          "addNewButton": "Add New",
+          "title": "Create New Form",
+          "selectLabel": "Select a template",
+          "selectPlaceholder": "Select a template",
+          "fieldsSection": "Form fields",
+          "cancel": "Cancel",
+          "save": "Save"
+        },
+        "Edit": {
+          "title": "Edit Form",
+          "makePublic": "Make public",
+          "toComplete": "Pending to complete",
+          "fieldsSection": "Form fields",
+          "selectPlaceholder": "Select an option",
+          "cancel": "Cancel",
+          "save": "Save"
+        }
+      }
+    },
+    "Description": {
+      "Tabs": {
+        "Summary": "Summary",
+        "PublicNotice": "Public Notice",
+        "PrivateDescription": "Private Description",
+        "Images": "Images",
+        "ImagesBeta": "BETA"
+      },
+      "Sections": {
+        "DetailedAnalysis": "Detailed Analysis",
+        "TechnicalSummary": "Technical Summary"
+      },
+      "Placeholders": {
+        "NoInfo": "No information available.",
+        "NoTechnicalInfo": "No technical information provided.",
+        "NoNotice": "No notice available."
+      },
+      "Images": {
+        "Title": "Images",
+        "Subtitle": "Image generator for your job ads.",
+        "GenerateButton": "Generate image",
+        "CreatedLabel": "Created"
+      }
+    },
+    "Candidates": {
+      "Title": "Linked candidates",
+      "Table": "Table",
+      "Kanban": "Kanban",
+      "SearchPlaceholder": "Search candidates...",
+      "OnlyValidStages": "Only valid stages",
+      "ConfigureColumns": "Configure columns",
+      "TaskHistory": "Task history",
+      "TableView": {
+        "Columns": {
+          "Name": "Name",
+          "Email": "Email",
+          "Stage": "Stage",
+          "ApplicationDate": "Application date",
+          "Match": "Match",
+          "Compensation": "Compensation",
+          "OtherProcesses": "Status in other processes",
+          "NoStage": "No stage"
+        }
+      },
+      "TableConfig": {
+        "Title": "Configure columns",
+        "Cancel": "Cancel",
+        "Save": "Save"
+      }
+    },
+    "Heimdall": {
+      "AnalysisCompleted": "✅ Analysis completed",
+      "AnalyzedCandidates": "Candidates analyzed",
+      "Processed": "Processed",
+      "CompletedAt": "Completed",
+      "SearchPlaceholder": "Search suggested candidates...",
+      "OrderBy": "Order by",
+      "OrderBestMatch": "Best match",
+      "OrderBestSkills": "Best skills",
+      "OrderBestAdaptability": "Best adaptability",
+      "ResetAnalysis": "Reset analysis",
+      "Hide": "Hide",
+      "Table": {
+        "Name": "Name",
+        "LinkedIn": "LinkedIn",
+        "Location": "Location",
+        "Email": "Email",
+        "Phone": "Phone",
+        "CurrentPosition": "Current Position",
+        "Heimdall": "Heimdall",
+        "Comparison": "Comparison",
+        "Actions": "Actions"
+      },
+      "Profile": "Profile",
+      "NoProfile": "-",
+      "NoLocation": "-",
+      "NoEmail": "-",
+      "NoPhone": "-",
+      "Pagination": {
+        "PageOf": "Page {current} of {total}",
+        "Previous": "Previous",
+        "Next": "Next"
+      },
+      "Error": "An error occurred",
+      "Loading": "Loading analysis...",
+      "Compare": "Key points of the candidate."
+    },
+    "Applicants": {
+      "SearchPlaceholder": "Search applicants...",
+      "Loading": "Loading applicants...",
+      "Error": "An error occurred while loading applicants.",
+      "Table": {
+        "Applicant": "Applicant",
+        "Scores": "Scores",
+        "Status": "Status",
+        "Source": "Source",
+        "Actions": "Actions"
+      },
+      "Status": {
+        "Submitted": "Submitted",
+        "NotSelected": "Not Selected"
+      },
+      "SourceWeb": "Web"
+    },
+    "CustomFields": {
+      "Title": "Custom Fields",
+      "DefinedBadge": "{count} fields defined",
+      "NoFields": "No custom fields defined.",
+      "Completed": "Completed",
+      "Empty": "Empty",
+      "NoValue": "No value assigned",
+      "NoValuesSelected": "No values selected",
+      "AvailableOptions": "Available options:",
+      "DownloadFile": "Download file",
+      "BooleanYes": "Yes",
+      "BooleanNo": "No",
+      "FieldTypes": {
+        "text": "TEXT",
+        "select": "SELECT",
+        "multi_select": "MULTI SELECT",
+        "date": "DATE",
+        "file": "FILE",
+        "boolean": "BOOLEAN",
+        "default": "FIELD"
+      }
+    }
+  },
+  "CandidateDetail": {
+    "Header": {
+      "NoName": "No name",
+      "NoEmail": "No email",
+      "NoPhone": "No phone",
+      "NoTitle": "No title",
+      "NoExperience": "No data",
+      "Years": "{years} years",
+      "NoRecruiter": "No recruiter",
+      "NoTags": "No tags",
+      "Email": "Email",
+      "Phone": "Phone",
+      "Country": "Country",
+      "City": "City",
+      "LinkedIn": "LinkedIn",
+      "LinkedInProfile": "Profile",
+      "Recruiter": "Recruiter"
+    },
+    "Tags": {
+      "addTagButton": "Add tag",
+      "dialogTitle": "Select Tag",
+      "searchPlaceholder": "Search tags...",
+      "cancelButton": "Cancel",
+      "availableTags": {
+        "highTurnover": "HIGH TURNOVER",
+        "normalTurnover": "NORMAL TURNOVER",
+        "prospect": "PROSPECT"
+      }
+    },
+    "Nav": {
+      "Summary": "Summary",
+      "Jobs": "Jobs",
+      "Matching": "Matching",
+      "Forms": "Forms",
+      "Comments": "Comments",
+      "Meetings": "Meetings",
+      "Custom": "Custom Fields"
+    },
+    "Summary": {
+      "Cv": {
+        "TechnicalResumeTitle": "Technical Summary",
+        "SkillYearsMonths": "{years} years {months} months",
+        "CvTitle": "Candidate CV"
+      },
+      "experience": {
+        "title": "Experience",
+        "edit": "Edit",
+        "delete": "Delete",
+        "company": "Company",
+        "duration": "Duration",
+        "Add": {
+          "button": "Add Experience",
+          "title": "Add Experience",
+          "company": "Company",
+          "companyPlaceholder": "Company name",
+          "role": "Role",
+          "rolePlaceholder": "Job title",
+          "startDate": "Start Date",
+          "endDate": "End Date",
+          "currentJobHint": "Leave empty if current job",
+          "description": "Description",
+          "descriptionPlaceholder": "Role details, achievements, responsibilities...",
+          "cancel": "Cancel",
+          "save": "Save"
+        }
+      },
+      "Files": {
+        "title": "Files",
+        "add": "Add File",
+        "empty": "No files available.",
+        "Add": {
+          "title": "Add File",
+          "clickToSelect": "Click to select",
+          "dragAndDrop": "or drag and drop a file",
+          "maxSize": "Max size: 10MB",
+          "description": "Description",
+          "descriptionPlaceholder": "File description",
+          "cancel": "Cancel",
+          "upload": "Upload File"
+        }
+      }
+    },
+    "Jobs": {
+      "Title": "Jobs",
+      "Add": "Add Job",
+      "NoJobs": "No jobs associated with this candidate.",
+      "ColumnTitle": "Title",
+      "ColumnAction": "Action",
+      "JobDetailModal": {
+        "TriggerButton": "View detail",
+        "DialogTitle": "Detail: {title}",
+        "DialogCompany": "Company: {company}",
+        "FilterBy": "Filter by:",
+        "NextStages": "Next stages",
+        "History": "History",
+        "ShowAll": "Show all",
+        "SelectStagePlaceholder": "Select stage",
+        "NoStagesAvailable": "No stages available",
+        "MoveCandidate": "Move candidate",
+        "NextPossibleStages": "Next possible stages",
+        "StageHistory": "Stage history",
+        "Table": {
+          "Stage": "Stage",
+          "Recruiter": "Recruiter",
+          "Form": "Form",
+          "Created": "Created",
+          "Updated": "Updated"
+        }
+      }
+    },
+    "Matching": {
+      "Title": "Heimdall Analysis",
+      "Subtitle": "Smart candidate evaluation",
+      "Loading": "Loading analysis...",
+      "Error": "Error: {error}",
+      "NoAnalyses": "No analyses available.",
+      "Skills": "Skills",
+      "Match": "Match",
+      "Adaptability": "Adaptability",
+      "ShowKeyPoints": "Show key points",
+      "HideKeyPoints": "Hide key points",
+      "Heimdall": {
+        "APLICA": "Applies",
+        "APLICA FUERTEMENTE": "Strongly applies",
+        "NO APLICA": "Does not apply",
+        "NO APLICA FUERTEMENTE": "Strongly does not apply"
+      }
+    },
+    "Scoreboards": {
+      "Header": "Forms for {name}",
+      "Loading": "Loading forms...",
+      "Updated": "Updated",
+      "Recruiter": "Recruiter",
+      "Share": "Share",
+      "Edit": "Edit",
+      "Delete": "Delete",
+      "Pending": "Pending to complete",
+      "Completed": "Completed",
+      "Add": {
+        "Button": "Create New",
+        "Title": "Create New Form",
+        "SelectLabel": "Select a template",
+        "SelectPlaceholder": "Select a template...",
+        "Public": "Make public",
+        "ToComplete": "Pending to complete",
+        "FieldsTitle": "Form fields",
+        "Cancel": "Cancel",
+        "Save": "Save"
+      }
+    },
+    "Comments": {
+      "Title": "Comments",
+      "Tabs": {
+        "Regular": "Personal",
+        "Technical": "Technical"
+      },
+      "Loading": "Loading comments...",
+      "Error": "Error: {error}",
+      "Empty": {
+        "Title": "There are no comments in this category."
+      },
+      "By": "By",
+      "Add": {
+        "Button": {
+          "Regular": "Add personal comment",
+          "Technical": "Add technical comment"
+        },
+        "DialogTitle": {
+          "Regular": "Add personal comment",
+          "Technical": "Add technical comment"
+        },
+        "Label": "Comment",
+        "Placeholder": "Write your comment here...",
+        "Cancel": "Cancel",
+        "Save": "Save"
+      }
+    },
+    "Meetings": {
+      "Title": "Meetings",
+      "Loading": "Loading meetings...",
+      "Error": "Error: {error}",
+      "Join": "Join Meet",
+      "CreatedAt": "Created: {date}",
+      "NoMeetings": "No meetings scheduled for this candidate.",
+      "Add": {
+        "Button": "Add meeting",
+        "Title": "Add a new meeting",
+        "SummaryLabel": "Meeting title",
+        "SummaryPlaceholder": "Title",
+        "StartLabel": "Start date",
+        "EndLabel": "End date",
+        "ParticipantsLabel": "Participants (comma separated)",
+        "ParticipantsPlaceholder": "email1@example.com, email2@example.com",
+        "DescriptionLabel": "Description",
+        "DescriptionPlaceholder": "Meeting details",
+        "Cancel": "Cancel",
+        "Submit": "Schedule Meeting"
+      }
+    },
+    "CustomFields": {
+      "Title": "Custom Fields",
+      "Count": "{count} fields defined",
+      "Empty": "No custom fields defined.",
+      "Placeholder": "Placeholder",
+      "AvailableOptions": "Available options:",
+      "DownloadFile": "Download file",
+      "AssignedNone": "No value assigned",
+      "SelectedNone": "No selected values",
+      "Completed": "Completed",
+      "EmptyBadge": "Empty",
+      "Yes": "Yes",
+      "No": "No",
+      "Types": {
+        "text": "TEXT",
+        "select": "SELECT",
+        "multi_select": "MULTI SELECT",
+        "date": "DATE",
+        "file": "FILE",
+        "boolean": "BOOLEAN",
+        "default": "FIELD"
+      }
+    },
+    "CandidateActions": {
+      "Reject": "Reject",
+      "ActionLink": {
+        "Button": "Link",
+        "Title": "Select a job to link the candidate",
+        "SearchPlaceholder": "Search jobs...",
+        "NoResults": "No jobs found.",
+        "Link": {
+          "Button": "Link",
+          "Title": "Select a stage to link",
+          "Label": "Stage",
+          "Placeholder": "Select a stage",
+          "Back": "Back",
+          "Confirm": "Confirm"
+        }
+      },
+      "ActionChat": {
+        "Button": "Chat",
+        "Title": "WhatsApp Chat",
+        "NoMessagesTitle": "No previous messages",
+        "NoMessagesDescription": "Send your first message to start the conversation",
+        "Placeholder": "Type a message...",
+        "Send": "Send"
+      },
+      "ActionEdit": {
+        "button": "Edit",
+        "title": "Edit Candidate",
+        "save": "Save changes",
+        "cancel": "Cancel",
+        "delete": "Delete candidate",
+        "confirmDelete": "Are you sure you want to delete this candidate?",
+        "fileUpload": "Curriculum Vitae (PDF)",
+        "viewCv": "View current CV",
+        "uploadNew": "Click to upload a new CV",
+        "selectedFile": "Selected file",
+        "onlyPdf": "PDF files only (max. 10MB)",
+        "fields": {
+          "name": "Name",
+          "email": "Email",
+          "phone_number": "Phone",
+          "location": "Location",
+          "age": "Age",
+          "date_of_birth": "Date of Birth",
+          "current_job_title": "Current Job Title",
+          "previous_job_title": "Previous Job Title",
+          "years_in_last_job": "Years in Last Job",
+          "linkedin": "LinkedIn",
+          "other_url": "Other URL",
+          "category": "Category",
+          "cv": "Curriculum Vitae"
+        },
+        "placeholders": {
+          "input": "Enter {field}"
+        },
+        "CustomFields": {
+          "title": "Edit Custom Fields",
+          "defined": "{count} fields defined",
+          "none": "No custom fields defined.",
+          "completed": "Completed",
+          "empty": "Empty",
+          "placeholder": "Placeholder",
+          "help": "Help",
+          "types": {
+            "text": "TEXT",
+            "select": "SELECT",
+            "multi_select": "MULTI SELECT",
+            "date": "DATE",
+            "file": "FILE",
+            "boolean": "BOOLEAN",
+            "default": "FIELD"
+          },
+          "selectPlaceholder": "Select..."
+        }
+      },
+      "ActionCompare": {
+        "button": "Compare",
+        "dialogTitle": "Select a job to compare the candidate",
+        "searchPlaceholder": "Search jobs...",
+        "compareButton": "Compare",
+        "noJobsFound": "No jobs found."
+      },
+      "ActionGenerate": {
+        "GenerateButton": "Generate",
+        "DrawerTitle": "Generated PDFs",
+        "EmptyMessage": "There are no PDFs generated for this candidate",
+        "CreateNew": "Create new"
+      },
+      "ActionUpdate": {
+        "Button": "Update",
+        "Title": "Update Options",
+        "LinkedIn": "Update via LinkedIn",
+        "CV": "Update via CV",
+        "Experience": "Update via Experience",
+        "Back": "Back"
+      }
+    }
+  }
+}

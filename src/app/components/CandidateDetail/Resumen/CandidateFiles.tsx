@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import { Button } from "@/components/ui/button";
 import { Plus, FileText, FolderOpen } from "lucide-react";
@@ -11,20 +12,21 @@ type CandidateFilesProps = {
 };
 
 export default function CandidateFiles({ candidate }: CandidateFilesProps) {
+  const t = useTranslations("CandidateDetail.Summary.Files");
   const { files } = candidate;
   const [open, setOpen] = useState(false);
 
   return (
     <div className="border rounded-2xl p-6 space-y-6 shadow-sm bg-white h-fit">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-gray-900">Archivos</h2>
+        <h2 className="text-xl font-bold text-gray-900">{t("title")}</h2>
         <Button
           variant="default"
           className="bg-purple-700 hover:bg-purple-800 text-white"
           onClick={() => setOpen(true)}
         >
           <Plus className="w-4 h-4 mr-2" />
-          Agregar Archivo
+          {t("add")}
         </Button>
       </div>
 
@@ -55,7 +57,7 @@ export default function CandidateFiles({ candidate }: CandidateFilesProps) {
       ) : (
         <div className="flex flex-col items-center justify-center text-center py-10 text-gray-500">
           <FolderOpen className="w-12 h-12 mb-4 text-purple-700" />
-          <p className="text-sm italic">No hay archivos disponibles.</p>
+          <p className="text-sm italic">{t("empty")}</p>
         </div>
       )}
 

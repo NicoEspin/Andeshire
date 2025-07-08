@@ -14,11 +14,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Plus, UploadCloud } from "lucide-react";
 import ActionModal from "@/app/components/ActionModal/ActionModal";
+import { useTranslations } from "next-intl";
 
 
 export default function AddJobFile() {
   const [file, setFile] = React.useState<File | null>(null);
   const [description, setDescription] = React.useState("");
+  const t = useTranslations("JobId.Details.Files");
 
   // 💡 Estados para feedback modal
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -61,13 +63,13 @@ export default function AddJobFile() {
             className="flex items-center gap-2 rounded-md shadow-md cursor-pointer bg-purple-700 hover:bg-purple-800 text-white"
           >
             <Plus className="w-4 h-4" />
-            Añadir Archivo
+            {t("addFileButton")}
           </Button>
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Agregar archivo</DialogTitle>
+            <DialogTitle>{t("dialogTitle")}</DialogTitle>
           </DialogHeader>
 
           <div className="flex flex-col gap-4">
@@ -78,9 +80,9 @@ export default function AddJobFile() {
                   htmlFor="file-upload"
                   className="text-sm text-muted-foreground"
                 >
-                  Haz clic para seleccionar <br /> o arrastra y suelta un archivo
+                 {t("uploadHint")}
                 </Label>
-                <p className="text-xs text-muted-foreground">Tamaño máximo: 10MB</p>
+                <p className="text-xs text-muted-foreground">{t("maxSize")}</p>
                 <Input
                   id="file-upload"
                   type="file"
@@ -91,10 +93,10 @@ export default function AddJobFile() {
             </label>
 
             <div>
-              <Label htmlFor="description">Descripción:</Label>
+              <Label htmlFor="description">{t("descriptionLabel")}</Label>
               <Input
                 id="description"
-                placeholder="Descripción del archivo"
+                placeholder={t("descriptionPlaceholder")}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
@@ -102,13 +104,13 @@ export default function AddJobFile() {
           </div>
 
           <DialogFooter className="pt-4">
-            <Button variant="outline" type="button">Cancelar</Button>
+            <Button variant="outline" type="button">{t("cancel")}</Button>
             <Button
               type="button"
               onClick={handleUpload}
               className="bg-purple-700 text-white hover:bg-purple-800"
             >
-              Subir Archivo
+              {t("upload")}
             </Button>
           </DialogFooter>
         </DialogContent>

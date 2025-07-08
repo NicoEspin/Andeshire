@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 import {
   Dialog,
   DialogContent,
@@ -38,6 +39,7 @@ export default function JobDetailModal({
   candidate,
   jobId,
 }: JobDetailModalProps) {
+  const t = useTranslations("CandidateDetail.Jobs.JobDetailModal");
   const [open, setOpen] = React.useState(false);
   const [selectedStage, setSelectedStage] = React.useState<string | null>(null);
   const [filter, setFilter] = React.useState<"next" | "history" | "all">(
@@ -47,7 +49,6 @@ export default function JobDetailModal({
   const jobStage = candidate.job_stages.find((stage) => stage.job.id === jobId);
   if (!jobStage) return null;
 
-  // Combinar todas las etapas disponibles
   const allStages = [
     ...(jobStage.next_possible_stages || []),
     ...(jobStage.stage_history?.map((h) => ({
@@ -66,12 +67,10 @@ export default function JobDetailModal({
       : []),
   ];
 
-  // Eliminar duplicados por ID
   const uniqueStages = Array.from(
     new Map(allStages.map((s) => [s.id, s])).values()
   );
 
-  // Filtrar etapas según filtro activo
   const filteredStages =
     filter === "next"
       ? jobStage.next_possible_stages || []
@@ -90,7 +89,7 @@ export default function JobDetailModal({
   const handleMoveCandidate = () => {
     if (selectedStage) {
       console.log("Mover candidato a etapa:", selectedStage);
-      // Aquí integras tu lógica para hacer PATCH o actualizar vía API
+      // Aquí conectas tu lógica para actualizar vía API
     }
   };
 
@@ -99,42 +98,44 @@ export default function JobDetailModal({
       <DialogTrigger asChild>
         <Button size="sm" variant="outline" className="gap-1 cursor-pointer">
           <Info className="w-4 h-4" />
-          Ver detalle
+          {t("TriggerButton")}
         </Button>
       </DialogTrigger>
 
       <DialogContent className="min-w-fit w-full">
         <DialogHeader>
-          <DialogTitle>Detalle: {jobStage.job.title}</DialogTitle>
+          <DialogTitle>
+            {t("DialogTitle", { title: jobStage.job.title })}
+          </DialogTitle>
           <p className="text-muted-foreground">
-            Empresa: {jobStage.job.company}
+            {t("DialogCompany", { company: jobStage.job.company })}
           </p>
         </DialogHeader>
 
-        {/* ✅ Sección: Filtros y mover candidato */}
+        {/* ✅ Filtros y mover candidato */}
         <div className="mt-4 space-y-4">
           <div className="flex items-center gap-4 flex-wrap">
-            <span className="font-semibold">Filtrar por:</span>
+            <span className="font-semibold">{t("FilterBy")}</span>
             <Button
               variant={filter === "next" ? "default" : "outline"}
               size="sm"
               onClick={() => setFilter("next")}
             >
-              Próximas etapas
+              {t("NextStages")}
             </Button>
             <Button
               variant={filter === "history" ? "default" : "outline"}
               size="sm"
               onClick={() => setFilter("history")}
             >
-              Historial
+              {t("History")}
             </Button>
             <Button
               variant={filter === "all" ? "default" : "outline"}
               size="sm"
               onClick={() => setFilter("all")}
             >
-              Mostrar todas
+              {t("ShowAll")}
             </Button>
           </div>
 
@@ -144,7 +145,7 @@ export default function JobDetailModal({
               value={selectedStage || undefined}
             >
               <SelectTrigger className="w-64">
-                <SelectValue placeholder="Selecciona etapa" />
+                <SelectValue placeholder={t("SelectStagePlaceholder")} />
               </SelectTrigger>
               <SelectContent>
                 {filteredStages.length > 0 ? (
@@ -155,7 +156,7 @@ export default function JobDetailModal({
                   ))
                 ) : (
                   <div className="text-muted-foreground p-2">
-                    No hay etapas disponibles
+                    {t("NoStagesAvailable")}
                   </div>
                 )}
               </SelectContent>
@@ -168,7 +169,7 @@ export default function JobDetailModal({
               disabled={!selectedStage}
             >
               <MoveRight className="w-4 h-4 mr-2" />
-              Mover candidato
+              {t("MoveCandidate")}
             </Button>
           </div>
         </div>
@@ -176,7 +177,7 @@ export default function JobDetailModal({
         {/* ✅ Próximas etapas */}
         {jobStage.next_possible_stages?.length ? (
           <div className="mt-6">
-            <h3 className="font-semibold mb-2">Próximas etapas posibles</h3>
+            <h3 className="font-semibold mb-2">{t("NextPossibleStages")}</h3>
             <div className="flex flex-wrap gap-2">
               {jobStage.next_possible_stages.map((stage) => (
                 <Badge key={stage.id} variant="outline">
@@ -189,16 +190,26 @@ export default function JobDetailModal({
 
         {/* ✅ Historial de etapas */}
         <div className="mt-6">
-          <h3 className="font-semibold mb-2">Historial de etapas</h3>
+          <h3 className="font-semibold mb-2">{t("StageHistory")}</h3>
           <div className="border rounded-md overflow-x-auto">
             <Table className="min-w-[700px]">
               <TableHeader>
                 <TableRow>
-                  <TableHead className="min-w-[120px]">Etapa</TableHead>
-                  <TableHead className="min-w-[120px]">Reclutador</TableHead>
-                  <TableHead className="min-w-[200px]">Formulario</TableHead>
-                  <TableHead className="min-w-[150px]">Creado</TableHead>
-                  <TableHead className="min-w-[150px]">Actualizado</TableHead>
+                  <TableHead className="min-w-[120px]">
+                    {t("Table.Stage")}
+                  </TableHead>
+                  <TableHead className="min-w-[120px]">
+                    {t("Table.Recruiter")}
+                  </TableHead>
+                  <TableHead className="min-w-[200px]">
+                    {t("Table.Form")}
+                  </TableHead>
+                  <TableHead className="min-w-[150px]">
+                    {t("Table.Created")}
+                  </TableHead>
+                  <TableHead className="min-w-[150px]">
+                    {t("Table.Updated")}
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

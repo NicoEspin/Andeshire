@@ -4,21 +4,14 @@ import React from "react";
 import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import {
-  Info,
-  TextCursorInput,
-  List,
-  CheckSquare,
-  Calendar,
-  FileText,
-  ToggleRight,
-} from "lucide-react";
+import { Info, TextCursorInput, List, CheckSquare, Calendar, FileText, ToggleRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type CandidateCustomProps = {
   candidate: CandidateDetail;
 };
 
-// Define los iconos por tipo de campo
+// Iconos por tipo
 const fieldIcons: Record<string, React.ReactNode> = {
   text: <TextCursorInput className="w-5 h-5 text-purple-700" />,
   select: <List className="w-5 h-5 text-purple-700" />,
@@ -26,25 +19,23 @@ const fieldIcons: Record<string, React.ReactNode> = {
   date: <Calendar className="w-5 h-5 text-purple-700" />,
   file: <FileText className="w-5 h-5 text-purple-700" />,
   boolean: <ToggleRight className="w-5 h-5 text-purple-700" />,
-  // Añade aquí más tipos si lo necesitas
 };
 
 export default function CandidateCustom({ candidate }: CandidateCustomProps) {
+  const t = useTranslations("CandidateDetail.CustomFields");
   const fields = candidate?.custom_fields || [];
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between border-b pb-4">
-        <h2 className="text-2xl font-semibold">Campos Personalizados</h2>
+        <h2 className="text-2xl font-semibold">{t("Title")}</h2>
         <Badge variant="outline" className="text-purple-700 border-purple-700">
-          {fields.length} campos definidos
+          {t("Count", { count: fields.length })}
         </Badge>
       </div>
 
       {fields.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">
-          No hay campos personalizados definidos.
-        </p>
+        <p className="text-gray-500 text-center py-8">{t("Empty")}</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {fields.map((field) => (
@@ -55,23 +46,15 @@ export default function CandidateCustom({ candidate }: CandidateCustomProps) {
                     {fieldIcons[field.field_type] || (
                       <TextCursorInput className="w-5 h-5 text-purple-700" />
                     )}
-                    <h3 className="text-lg font-semibold">
-                      {field.field_name}
-                    </h3>
+                    <h3 className="text-lg font-semibold">{field.field_name}</h3>
                   </div>
                   {field.has_value === "true" ? (
-                    <Badge
-                      variant="outline"
-                      className="text-green-700 border-green-700"
-                    >
-                      Completado
+                    <Badge variant="outline" className="text-green-700 border-green-700">
+                      {t("Completed")}
                     </Badge>
                   ) : (
-                    <Badge
-                      variant="outline"
-                      className="text-gray-500 border-gray-300"
-                    >
-                      Vacío
+                    <Badge variant="outline" className="text-gray-500 border-gray-300">
+                      {t("EmptyBadge")}
                     </Badge>
                   )}
                 </div>
@@ -79,16 +62,14 @@ export default function CandidateCustom({ candidate }: CandidateCustomProps) {
 
               <CardContent>
                 <p className="text-xs uppercase text-gray-400 mb-1">
-                  {getFieldTypeLabel(field.field_type)}
+                  {getFieldTypeLabel(field.field_type, t)}
                 </p>
 
                 {field.placeholder && (
-                  <p className="italic text-gray-500 mb-2">
-                    {field.placeholder}
-                  </p>
+                  <p className="italic text-gray-500 mb-2">{field.placeholder}</p>
                 )}
 
-                {renderFieldValue(field)}
+                {renderFieldValue(field, t)}
 
                 {field.help_text && (
                   <div className="flex items-center mt-4">
@@ -105,36 +86,23 @@ export default function CandidateCustom({ candidate }: CandidateCustomProps) {
   );
 }
 
-function getFieldTypeLabel(fieldType: string) {
-  switch (fieldType) {
-    case "text":
-      return "TEXTO";
-    case "select":
-      return "SELECCIÓN";
-    case "multi_select":
-      return "SELECCIÓN MÚLTIPLE";
-    case "date":
-      return "FECHA";
-    case "file":
-      return "ARCHIVO";
-    case "boolean":
-      return "BOOLEANO";
-    default:
-      return "CAMPO";
-  }
+function getFieldTypeLabel(fieldType: string, t: ReturnType<typeof useTranslations>) {
+  return t(`Types.${fieldType}`) || t("Types.default");
 }
 
-function renderFieldValue(field: {
-  field_type: string;
-  value: string | string[] | null;
-  options?: string[] | null;
-  has_value: string;
-}) {
+function renderFieldValue(
+  field: {
+    field_type: string;
+    value: string | string[] | null;
+    options?: string[] | null;
+    has_value: string;
+  },
+  t: ReturnType<typeof useTranslations>
+) {
   if (field.has_value === "false" || !field.value) {
-    return <p className="text-sm text-gray-500 italic">Sin valor asignado</p>;
+    return <p className="text-sm text-gray-500 italic">{t("AssignedNone")}</p>;
   }
 
-  // Si es array, mostrar todos los valores seleccionados
   const selectedValues: string[] =
     Array.isArray(field.value) && field.value.length > 0
       ? field.value
@@ -149,7 +117,6 @@ function renderFieldValue(field: {
     case "multi_select":
       return (
         <div className="space-y-2">
-          {/* Valores seleccionados */}
           {selectedValues.length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {selectedValues.map((val, index) => (
@@ -159,24 +126,15 @@ function renderFieldValue(field: {
               ))}
             </div>
           ) : (
-            <p className="text-sm text-gray-500 italic">
-              Sin valores seleccionados
-            </p>
+            <p className="text-sm text-gray-500 italic">{t("SelectedNone")}</p>
           )}
 
-          {/* Mostrar todas las opciones disponibles */}
           {hasOptions && (
             <div className="mt-2">
-              <p className="text-xs uppercase text-gray-400 mb-1">
-                Opciones disponibles:
-              </p>
+              <p className="text-xs uppercase text-gray-400 mb-1">{t("AvailableOptions")}</p>
               <div className="flex flex-wrap gap-2">
                 {field.options!.map((option, index) => (
-                  <Badge
-                    key={index}
-                    variant="secondary"
-                    className="text-xs text-gray-700"
-                  >
+                  <Badge key={index} variant="secondary" className="text-xs text-gray-700">
                     {option}
                   </Badge>
                 ))}
@@ -202,28 +160,21 @@ function renderFieldValue(field: {
           rel="noopener noreferrer"
           className="text-sm text-purple-700 underline"
         >
-          Descargar archivo
+          {t("DownloadFile")}
         </a>
       );
 
     case "boolean":
     case "checkbox": {
-      const valueStr = Array.isArray(field.value)
-        ? field.value.join(",")
-        : field.value ?? "";
-
+      const valueStr = Array.isArray(field.value) ? field.value.join(",") : field.value ?? "";
       const isTrue = valueStr === "true" || valueStr === "1";
 
       return (
         <Badge
           variant="outline"
-          className={`${
-            isTrue
-              ? "text-green-700 border-green-700"
-              : "text-red-700 border-red-700"
-          }`}
+          className={isTrue ? "text-green-700 border-green-700" : "text-red-700 border-red-700"}
         >
-          {isTrue ? "Sí" : "No"}
+          {isTrue ? t("Yes") : t("No")}
         </Badge>
       );
     }

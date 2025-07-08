@@ -26,6 +26,8 @@ import { AppDispatch, RootState } from "@/app/redux";
 import { fetchJobApplicants } from "@/state/api/Jobs/Id/FetchJobApplicants";
 import { updateApplicantStatus } from "@/store/slices/Jobs/id/JobApplicantsSlice";
 
+import { useTranslations } from "next-intl";
+
 const getBadgeColor = (score: number) => {
   if (score < 50) return "bg-red-100 text-red-700";
   if (score < 75) return "bg-yellow-100 text-yellow-700";
@@ -33,6 +35,7 @@ const getBadgeColor = (score: number) => {
 };
 
 const ApplicantsView = () => {
+  const t = useTranslations("JobId.Applicants");
   const dispatch = useDispatch<AppDispatch>();
   const { applicants, loading, error, loaded } = useSelector(
     (state: RootState) => state.jobApplicants
@@ -79,14 +82,14 @@ const ApplicantsView = () => {
   return (
     <div className="space-y-4">
       <Input
-        placeholder="Buscar aplicantes..."
+        placeholder={t("SearchPlaceholder")}
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         className="w-1/3"
       />
 
-      {loading && <div>Cargando aplicantes...</div>}
-      {error && <div className="text-red-500">{error}</div>}
+      {loading && <div>{t("Loading")}</div>}
+      {error && <div className="text-red-500">{t("Error")}</div>}
 
       <div className="rounded-lg border shadow-sm overflow-x-auto">
         <Table>
@@ -98,11 +101,11 @@ const ApplicantsView = () => {
                   onCheckedChange={toggleSelectAll}
                 />
               </TableHead>
-              <TableHead>Aplicante</TableHead>
-              <TableHead>Puntajes</TableHead>
-              <TableHead>Estado</TableHead>
-              <TableHead>Fuente</TableHead>
-              <TableHead>Acciones</TableHead>
+              <TableHead>{t("Table.Applicant")}</TableHead>
+              <TableHead>{t("Table.Scores")}</TableHead>
+              <TableHead>{t("Table.Status")}</TableHead>
+              <TableHead>{t("Table.Source")}</TableHead>
+              <TableHead>{t("Table.Actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -146,8 +149,8 @@ const ApplicantsView = () => {
                         className="flex items-center gap-2 text-xs"
                       >
                         {applicant.status === "submitted"
-                          ? "Enviado"
-                          : "No Seleccionado"}
+                          ? t("Status.Submitted")
+                          : t("Status.NotSelected")}
                         <ChevronDown className="w-4 h-4" />
                       </Button>
                     </DropdownMenuTrigger>
@@ -157,21 +160,21 @@ const ApplicantsView = () => {
                           handleStatusChange(applicant.id, "submitted")
                         }
                       >
-                        Enviado
+                        {t("Status.Submitted")}
                       </DropdownMenuItem>
                       <DropdownMenuItem
                         onClick={() =>
                           handleStatusChange(applicant.id, "NOT_SELECTED")
                         }
                       >
-                        No Seleccionado
+                        {t("Status.NotSelected")}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </TableCell>
                 <TableCell className="flex items-center gap-1">
                   <Globe className="w-4 h-4 text-muted-foreground" />
-                  <span>Web</span>
+                  <span>{t("SourceWeb")}</span>
                 </TableCell>
                 <TableCell>
                   <Button size="icon" variant="ghost">

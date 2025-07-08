@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ReactNode } from "react";
-import { cn } from "@/lib/utils"; // Si usas ShadCN probablemente ya tienes esta función
+import { cn } from "@/lib/utils";
 import {
   FileText,
   Briefcase,
@@ -15,7 +14,7 @@ import {
 } from "lucide-react";
 
 interface Tab {
-  name: string;
+  nameKey: string; // Ahora usamos clave de traducción
   icon: ReactNode;
   value: string;
 }
@@ -29,39 +28,37 @@ export default function CandidateNav({
   activeTab,
   setActiveTab,
 }: CandidateNavProps) {
+  const t = useTranslations("CandidateDetail.Nav");
+
   const tabs: Tab[] = [
     {
-      name: "Resumen",
+      nameKey: "Summary",
       icon: <FileText className="w-4 h-4" />,
       value: "summary",
     },
+    { nameKey: "Jobs", icon: <Briefcase className="w-4 h-4" />, value: "jobs" },
     {
-      name: "Trabajos",
-      icon: <Briefcase className="w-4 h-4" />,
-      value: "jobs",
-    },
-    {
-      name: "Matching",
+      nameKey: "Matching",
       icon: <CheckCircle className="w-4 h-4" />,
       value: "matching",
     },
     {
-      name: "Formularios",
+      nameKey: "Forms",
       icon: <ClipboardList className="w-4 h-4" />,
       value: "forms",
     },
     {
-      name: "Comentarios",
+      nameKey: "Comments",
       icon: <MessageSquare className="w-4 h-4" />,
       value: "comments",
     },
     {
-      name: "Reuniones",
+      nameKey: "Meetings",
       icon: <Calendar className="w-4 h-4" />,
       value: "meetings",
     },
     {
-      name: "Personalizados",
+      nameKey: "Custom",
       icon: <Settings2 className="w-4 h-4" />,
       value: "custom",
     },
@@ -81,7 +78,7 @@ export default function CandidateNav({
           )}
         >
           {tab.icon}
-          <span>{tab.name}</span>
+          <span>{t(tab.nameKey)}</span>
         </button>
       ))}
     </div>

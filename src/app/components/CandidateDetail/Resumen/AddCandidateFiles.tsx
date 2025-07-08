@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +21,7 @@ export default function AddCandidateFiles({
   open,
   onOpenChange,
 }: AddCandidateFilesProps) {
+  const t = useTranslations("CandidateDetail.Summary.Files.Add");
   const [file, setFile] = useState<File | null>(null);
   const [description, setDescription] = useState("");
 
@@ -39,21 +41,19 @@ export default function AddCandidateFiles({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Agregar archivo</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
         </DialogHeader>
 
         <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 flex flex-col items-center text-center space-y-2">
-      <CloudUpload className="size-10 text-purple-700" />
+          <CloudUpload className="size-10 text-purple-700" />
           <label
             htmlFor="fileInput"
             className="cursor-pointer text-sm text-gray-600 hover:underline"
           >
-            Haz clic para seleccionar
+            {t("clickToSelect")}
           </label>
-          <p className="text-xs text-gray-500">
-            o arrastra y suelta un archivo
-          </p>
-          <p className="text-xs text-gray-500">Tamaño máximo: 10MB</p>
+          <p className="text-xs text-gray-500">{t("dragAndDrop")}</p>
+          <p className="text-xs text-gray-500">{t("maxSize")}</p>
           <Input
             id="fileInput"
             type="file"
@@ -64,10 +64,10 @@ export default function AddCandidateFiles({
 
         <div className="mt-4 space-y-2">
           <label className="block text-sm font-medium text-gray-700">
-            Descripción:
+            {t("description")}:
           </label>
           <Input
-            placeholder="Descripción del archivo"
+            placeholder={t("descriptionPlaceholder")}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
@@ -75,13 +75,13 @@ export default function AddCandidateFiles({
 
         <div className="flex justify-end gap-2 mt-6">
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            Cancelar
+            {t("cancel")}
           </Button>
           <Button
             className="bg-purple-700 text-white hover:bg-purple-800"
             onClick={handleSubmit}
           >
-            Subir Archivo
+            {t("upload")}
           </Button>
         </div>
       </DialogContent>

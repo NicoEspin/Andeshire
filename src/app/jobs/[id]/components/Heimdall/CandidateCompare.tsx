@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Eye } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface CandidateCompareProps {
   candidateId: string;      // 👈 ID único del candidato
@@ -23,6 +24,7 @@ const CandidateCompare: React.FC<CandidateCompareProps> = ({
   candidateName,
   keyPoints,
 }) => {
+  const t = useTranslations("JobId.Heimdall");
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -37,7 +39,7 @@ const CandidateCompare: React.FC<CandidateCompareProps> = ({
             {candidateName} (ID: {candidateId})
           </DialogTitle>
           <DialogDescription className="text-muted-foreground">
-            Puntos clave del candidato.
+           {t("Compare")}
           </DialogDescription>
         </DialogHeader>
 

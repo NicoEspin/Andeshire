@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { FileText, Folder, Plus } from "lucide-react";
 import { Job } from "../../types/JobTypes";
 import AddJobFile from "./AddJobFile";
+import { useTranslations } from "next-intl";
 
 type Props = {
   job: Job;
@@ -14,11 +15,11 @@ type Props = {
 
 const FilesJobs = ({ job }: Props) => {
   const files = job.files;
-
+  const t = useTranslations("JobId.Details.Files");
   return (
     <Card className="w-full ">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-lg">Archivos del Puesto</CardTitle>
+        <CardTitle className="text-lg">{t("title")}</CardTitle>
         <AddJobFile />
       </CardHeader>
       <CardContent className="max-h-100 overflow-auto">
@@ -39,7 +40,8 @@ const FilesJobs = ({ job }: Props) => {
                       </p>
                     )}
                     <p className="text-xs text-muted-foreground">
-                      Subido: {new Date(file.uploaded_at).toLocaleDateString()}
+                      {t("uploaded")}{" "}
+                      {new Date(file.uploaded_at).toLocaleDateString()}
                     </p>
                   </div>
                 </div>
@@ -49,7 +51,7 @@ const FilesJobs = ({ job }: Props) => {
                   rel="noopener noreferrer"
                   className="mt-2 md:mt-0 text-sm text-blue-600 hover:underline"
                 >
-                  Descargar
+                  {t("download")}
                 </a>
               </li>
             ))}
@@ -57,10 +59,8 @@ const FilesJobs = ({ job }: Props) => {
         ) : (
           <div className="flex flex-col items-center justify-center text-center gap-2 py-10">
             <Folder className="w-12 h-12 text-muted-foreground" />
-            <p className="text-muted-foreground font-medium">
-              No hay archivos disponibles
-            </p>
-            <Badge variant="secondary">Sin adjuntos</Badge>
+            <p className="text-muted-foreground font-medium">{t("noFiles")}</p>
+            <Badge variant="secondary">{t("noAttachments")}</Badge>
           </div>
         )}
       </CardContent>

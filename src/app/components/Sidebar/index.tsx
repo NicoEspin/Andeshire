@@ -16,6 +16,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import { useTranslations } from "next-intl"; // ✅ Importa useTranslations
 
 interface SidebarLinkProps {
   href: string;
@@ -70,6 +71,8 @@ const Sidebar = () => {
     bg-white transition-all duration-500 overflow-hidden h-full
     shadow-md z-40`;
 
+  const t = useTranslations("Sidebar"); // ✅ Instancia de traducciones
+
   return (
     <aside className={sidebarClassNames}>
       {/* Logo */}
@@ -96,52 +99,51 @@ const Sidebar = () => {
         <SidebarLink
           href="/dashboard"
           icon={LineChart}
-          label="Dashboard"
+          label={t("Dashboard")}
           isCollapsed={isSideBarCollapsed}
         />
         <SidebarLink
           href="/workflow"
           icon={Share2}
-          label="Workflow"
+          label={t("Workflow")}
           isCollapsed={isSideBarCollapsed}
         />
         <SidebarLink
           href="/jobs"
           icon={Briefcase}
-          label="Trabajos"
+          label={t("Trabajos")}
           isCollapsed={isSideBarCollapsed}
         />
         <SidebarLink
           href="/candidates"
           icon={Users}
-          label="Candidatos"
+          label={t("Candidatos")}
           isCollapsed={isSideBarCollapsed}
         />
         <SidebarLink
           href="/companies"
           icon={Building}
-          label="Compañías"
+          label={t("Compañías")}
           isCollapsed={isSideBarCollapsed}
         />
         <SidebarLink
           href="/forms"
           icon={ClipboardList}
-          label="Formularios"
+          label={t("Formularios")}
           isCollapsed={isSideBarCollapsed}
         />
         <SidebarLink
           href="/linkedin"
           icon={Linkedin}
-          label="Linkedin"
+          label={t("Linkedin")}
           isCollapsed={isSideBarCollapsed}
         />
         <SidebarLink
           href="/campaigns"
           icon={Megaphone}
-          label="Campañas"
+          label={t("Campañas")}
           isCollapsed={isSideBarCollapsed}
         />
-       
       </div>
 
       {/* Footer */}

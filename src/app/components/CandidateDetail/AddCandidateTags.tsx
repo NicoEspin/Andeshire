@@ -11,12 +11,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Plus } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function AddCandidateTags() {
   const [open, setOpen] = React.useState(false);
+  const t = useTranslations("CandidateDetail.Tags");
 
-  // Aquí podrías manejar la lógica para buscar o filtrar tags
-  const availableTags = ["ALTA ROTACIÓN", "ROTACIÓN NORMAL", "PROSPECTO"];
+  const availableTags = [
+    t("availableTags.highTurnover"),
+    t("availableTags.normalTurnover"),
+    t("availableTags.prospect"),
+  ];
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -26,14 +31,14 @@ export default function AddCandidateTags() {
           className="bg-blue-600 text-white hover:bg-blue-700 flex items-center gap-1"
         >
           <Plus className="w-4 h-4" />
-          Añadir tag
+          {t("addTagButton")}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Seleccionar Tag</DialogTitle>
+          <DialogTitle>{t("dialogTitle")}</DialogTitle>
         </DialogHeader>
-        <Input placeholder="Buscar tags..." />
+        <Input placeholder={t("searchPlaceholder")} />
         <div className="grid grid-cols-2 gap-4 mt-4">
           {availableTags.map((tag) => (
             <Button
@@ -51,7 +56,7 @@ export default function AddCandidateTags() {
           onClick={() => setOpen(false)}
           className="mt-4 w-full"
         >
-          Cancelar
+          {t("cancelButton")}
         </Button>
       </DialogContent>
     </Dialog>

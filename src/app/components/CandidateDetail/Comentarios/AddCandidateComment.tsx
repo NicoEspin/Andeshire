@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useTranslations } from "next-intl";
 
 type AddCandidateCommentProps = {
   type: "regular" | "technical";
@@ -18,6 +19,7 @@ type AddCandidateCommentProps = {
 export default function AddCandidateComment({
   type,
 }: AddCandidateCommentProps) {
+  const t = useTranslations("CandidateDetail.Comments.Add");
   const [open, setOpen] = React.useState(false);
   const [comment, setComment] = React.useState("");
 
@@ -27,11 +29,6 @@ export default function AddCandidateComment({
     setOpen(false);
     setComment("");
   };
-
-  const dialogTitle =
-    type === "regular"
-      ? "Añadir comentario personal"
-      : "Añadir comentario técnico";
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -45,27 +42,35 @@ export default function AddCandidateComment({
               : "bg-purple-700 text-white hover:bg-purple-800"
           }
         >
-          Añadir comentario {type === "regular" ? "personal" : "técnico"}
+          {type === "regular" ? t("Button.Regular") : t("Button.Technical")}
         </Button>
       </DialogTrigger>
 
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>{dialogTitle}</DialogTitle>
+          <DialogTitle>
+            {type === "regular"
+              ? t("DialogTitle.Regular")
+              : t("DialogTitle.Technical")}
+          </DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
-          <label className="text-sm font-medium">Comentario</label>
+          <label className="text-sm font-medium">{t("Label")}</label>
           <Textarea
-            placeholder="Escribe tu comentario aquí..."
+            placeholder={t("Placeholder")}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />
           <div className="flex justify-end gap-2">
             <Button variant="outline" onClick={() => setOpen(false)}>
-              Cancelar
+              {t("Cancel")}
             </Button>
-            <Button onClick={handleSave} disabled={!comment.trim()} className="bg-purple-700 hover:bg-purple-800">
-              Guardar
+            <Button
+              onClick={handleSave}
+              disabled={!comment.trim()}
+              className="bg-purple-700 hover:bg-purple-800"
+            >
+              {t("Save")}
             </Button>
           </div>
         </div>

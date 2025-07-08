@@ -1,28 +1,25 @@
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Globe } from "lucide-react";
 import { Job } from "../../types/JobTypes";
+import { useTranslations } from "next-intl";
 
 interface Props {
   job: Job;
 }
 
 const JobValidationCriteriaCard = ({ job }: Props) => {
+  const t = useTranslations("JobId.Details.ValidationCriteria");
   return (
     <Card className="transition-shadow hover:shadow-lg">
       <CardHeader>
-        <CardTitle className="text-lg text-primary">Criterios de validación</CardTitle>
+        <CardTitle className="text-lg text-primary"> {t("title")}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-5 text-sm">
         <div>
           <p className="font-medium text-muted-foreground mb-1">
-            Tecnologías requeridas:
+            {t("requiredTechnologies")}
           </p>
           <div className="flex flex-wrap gap-2">
             {Object.entries(job.technical_requirements.technologies).map(
@@ -32,7 +29,7 @@ const JobValidationCriteriaCard = ({ job }: Props) => {
                   variant="outline"
                   className="bg-blue-50 text-blue-700 border border-blue-200"
                 >
-                  {tech.toUpperCase()} - {duration.years} años
+                  {tech.toUpperCase()} - {duration.years} {t("years")}
                 </Badge>
               )
             )}
@@ -42,7 +39,10 @@ const JobValidationCriteriaCard = ({ job }: Props) => {
         <Separator />
 
         <div className="flex justify-between items-center">
-          <span className="text-muted-foreground font-medium">Nivel de inglés:</span>
+          <span className="text-muted-foreground font-medium">
+            {" "}
+            {t("englishLevel")}
+          </span>
           <Badge className="bg-yellow-100 text-yellow-800 border border-yellow-300">
             {job.english_level}
           </Badge>
@@ -50,7 +50,7 @@ const JobValidationCriteriaCard = ({ job }: Props) => {
 
         <div className="flex justify-between items-center">
           <span className="text-muted-foreground font-medium">
-            Modalidad de trabajo:
+            {t("workModality")}
           </span>
           <div className="flex items-center gap-2">
             <Globe className="w-4 h-4 text-muted-foreground" />

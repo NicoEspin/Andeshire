@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { TableColumnsVisibility } from "./CandidatesView";
+import { useTranslations } from "next-intl";
 
 type TableConfigProps = {
   open: boolean;
@@ -25,6 +26,8 @@ export default function TableConfiguration({
   columns,
   setColumns,
 }: TableConfigProps) {
+  const t = useTranslations("JobId.Candidates.TableConfig");
+
   const toggleColumn = (key: keyof TableColumnsVisibility) => {
     setColumns((prev) => ({
       ...prev,
@@ -36,7 +39,7 @@ export default function TableConfiguration({
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Configurar columnas</DialogTitle>
+          <DialogTitle>{t("Title")}</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
@@ -55,14 +58,14 @@ export default function TableConfiguration({
 
         <DialogFooter className="flex justify-end gap-2 pt-4">
           <Button variant="secondary" onClick={() => setOpen(false)}>
-            Cancelar
+            {t("Cancel")}
           </Button>
           <Button
             variant="default"
             className="bg-purple-700 hover:bg-purple-800 text-white"
             onClick={() => setOpen(false)}
           >
-            Guardar
+            {t("Save")}
           </Button>
         </DialogFooter>
       </DialogContent>

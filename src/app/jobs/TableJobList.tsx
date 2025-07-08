@@ -9,7 +9,13 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import {
   Popover,
   PopoverTrigger,
@@ -29,6 +35,8 @@ import { JobListItem, JobListResponse } from "@/app/jobs/[id]/types/JobTypes";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import TablePagination from "./TablePagination";
+import { useTranslations } from "next-intl";
 
 type Props = {
   jobList: JobListItem[];
@@ -36,6 +44,9 @@ type Props = {
   error: string | null;
   filters: JobListResponse["filters"];
   filtersApplied: Record<string, any>;
+  currentPage: number; // ✅ NUEVO
+  totalPages: number; // ✅ NUEVO
+  onPageChange: (page: number) => void; // ✅ NUEVO
   onFilterChange: (filters: Record<string, any>) => void;
 };
 
@@ -46,9 +57,12 @@ export default function TableJobList({
   filters,
   filtersApplied,
   onFilterChange,
+  currentPage, // ✅ Añadido
+  totalPages, // ✅ Añadido
+  onPageChange, // ✅ Añadido
 }: Props) {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
-
+  const t = useTranslations("Jobs");
   const formatDate = (dateStr: string) => {
     const date = new Date(dateStr);
     return new Intl.DateTimeFormat("es-AR", {
@@ -69,16 +83,16 @@ export default function TableJobList({
     <Card>
       <CardHeader>
         <CardTitle className="text-xl font-semibold">
-          Lista de Empleos
+          {t("tableTitle")}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Título</TableHead>
+              <TableHead>{t("columns.title")}</TableHead>
               <TableHead>
-                Categoría
+                {t("columns.category")}
                 <Popover>
                   <PopoverTrigger asChild>
                     <button className="ml-2 rounded-full p-1 border hover:bg-muted transition">
@@ -96,11 +110,11 @@ export default function TableJobList({
                     >
                       <SelectTrigger>
                         <SelectValue
-                          placeholder={filtersApplied.category || "Todas"}
+                          placeholder={filtersApplied.category || t("columns.all")}
                         />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">Todas</SelectItem>
+                        <SelectItem value="all">{t("columns.all")}</SelectItem>
                         {filters.categories?.map((cat) => (
                           <SelectItem key={cat} value={cat}>
                             {cat}
@@ -112,7 +126,7 @@ export default function TableJobList({
                 </Popover>
               </TableHead>
               <TableHead>
-                Compañía
+                {t("columns.company")}
                 <Popover>
                   <PopoverTrigger asChild>
                     <button className="ml-2 rounded-full p-1 border hover:bg-muted transition">
@@ -134,7 +148,7 @@ export default function TableJobList({
                         />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">Todas</SelectItem>
+                        <SelectItem value="all">{t("columns.all")}</SelectItem>
                         {filters.companies?.map(
                           (comp) =>
                             comp && (
@@ -149,7 +163,7 @@ export default function TableJobList({
                 </Popover>
               </TableHead>
               <TableHead>
-                Última Actualización
+                {t("columns.lastUpdate")}
                 <Popover>
                   <PopoverTrigger asChild>
                     <button className="ml-2 rounded-full p-1 border hover:bg-muted transition">
@@ -166,20 +180,20 @@ export default function TableJobList({
                   </PopoverContent>
                 </Popover>
               </TableHead>
-              <TableHead>Analizado</TableHead>
-              <TableHead>Postulados</TableHead>
-              <TableHead>Candidatos</TableHead>
-              <TableHead>Prioridad</TableHead>
+              <TableHead>{t("columns.analyzed")}</TableHead>
+              <TableHead>{t("columns.applicants")}</TableHead>
+              <TableHead>{t("columns.candidates")}</TableHead>
+              <TableHead>{t("columns.priority")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell colSpan={8}>Cargando...</TableCell>
+                <TableCell colSpan={8}>{t("status.loading")}</TableCell>
               </TableRow>
             ) : jobList.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={8}>No hay puestos.</TableCell>
+                <TableCell colSpan={8}>{t("status.noJobs")}</TableCell>
               </TableRow>
             ) : (
               jobList.map((job) => (
@@ -206,7 +220,7 @@ export default function TableJobList({
                           : "bg-red-100 text-red-800"
                       }`}
                     >
-                      {job.is_job_analyzed ? "Sí" : "No"}
+                      {job.is_job_analyzed ? t("status.yes") : t("status.no")}
                     </Badge>
                   </TableCell>
                   <TableCell>{job.applicant_count}</TableCell>
@@ -230,6 +244,13 @@ export default function TableJobList({
           </TableBody>
         </Table>
       </CardContent>
+      <CardFooter className="flex justify-center">
+        <TablePagination
+          currentPage={1}
+          totalPages={5}
+          onPageChange={(page) => console.log("Page:", page)}
+        />
+      </CardFooter>
     </Card>
   );
 }

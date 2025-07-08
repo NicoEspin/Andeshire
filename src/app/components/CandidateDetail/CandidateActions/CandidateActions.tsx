@@ -20,7 +20,8 @@ import ActionLink from "./Vincular/ActionLink";
 import { fetchJobList } from "@/state/api/Jobs/fetchJobList";
 import ActionCompare from "./ActionCompare";
 import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
-import ActionEdit from "./ActionEdit";
+import ActionEdit from "./Editar/ActionEdit";
+import { useTranslations } from "next-intl";
 
 interface CandidateActionsProps {
   onClose: () => void;
@@ -32,6 +33,7 @@ export default function CandidateActions({
   candidate,
 }: CandidateActionsProps) {
   const dispatch = useAppDispatch();
+   const t = useTranslations("CandidateDetail.CandidateActions");
   const {
     list: jobList,
     loading: jobListLoading,
@@ -68,7 +70,7 @@ export default function CandidateActions({
           className="flex items-center gap-1 cursor-pointer transition-colors hover:bg-red-700"
         >
           <X className="w-4 h-4" />
-          Rechazar
+          {t("Reject")}
         </Button>
         <ActionLink
           jobList={jobList}

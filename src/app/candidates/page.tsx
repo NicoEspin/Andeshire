@@ -7,6 +7,7 @@ import { fetchCandidateList } from "@/state/api/Candidates/FetchCandidateList";
 import CandidatesTable from "./components/CandidatesTable";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
 
 export default function CandidateList() {
   const dispatch = useAppDispatch();
@@ -15,7 +16,7 @@ export default function CandidateList() {
   const { candidates, loading, error, pagination, filters } = useAppSelector(
     (state) => state.candidateList
   );
-
+  const t = useTranslations("Candidates");
   const [name, setName] = useState("");
   const [jobName, setJobName] = useState("");
 
@@ -72,18 +73,18 @@ export default function CandidateList() {
       {/* Card para filtros */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Filtrar candidatos</CardTitle>
+          <CardTitle className="text-lg">{t("FilterCardTitle")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-col sm:flex-row gap-4">
             <Input
-              placeholder="🔍 Buscar por nombre"
+              placeholder={t("NamePlaceholder")}
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="sm:w-1/2"
             />
             <Input
-              placeholder="🔍 Buscar por nombre del trabajo"
+              placeholder={t("JobNamePlaceholder")}
               value={jobName}
               onChange={(e) => setJobName(e.target.value)}
               className="sm:w-1/2"

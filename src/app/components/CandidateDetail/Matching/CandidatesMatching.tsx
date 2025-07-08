@@ -10,9 +10,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/app/redux";
 import { fetchCandidateAnalyses } from "@/state/api/Candidates/id/FetchCandidateAnalysis";
 
-// ... helpers getColorByScore, getProgressColorByScore, etc.
+import { useTranslations } from "next-intl";
 
 const CandidatesMatching = () => {
+  const t = useTranslations("CandidateDetail.Matching");
+  const tHeimdall = useTranslations("CandidateDetail.Matching.Heimdall");
+
   const dispatch = useDispatch<AppDispatch>();
   const { analyses, loading, loaded, error } = useSelector(
     (state: RootState) => state.candidateAnalysis
@@ -25,38 +28,33 @@ const CandidatesMatching = () => {
     }
   }, [dispatch, loaded]);
 
-  // Helper para determinar color
   function getColorByScore(score: number) {
     if (score >= 75) return "text-green-600";
     if (score >= 50) return "text-yellow-600";
     return "text-red-600";
   }
 
-  // Helper para Progress color
   function getProgressColorByScore(score: number) {
     if (score >= 75) return "[&>div]:bg-green-500";
     if (score >= 50) return "[&>div]:bg-yellow-500";
     return "[&>div]:bg-red-500";
   }
 
-  // Helper para chip color
   function getChipColorByScore(score: number) {
     if (score >= 75) return "bg-green-500 text-white";
     if (score >= 50) return "bg-yellow-500 text-white";
     return "bg-red-500 text-white";
   }
 
-  // Helper para heimdall chip
   function getColorByHeimdall(value: string) {
     const v = value.toUpperCase();
-
     if (v === "APLICA FUERTEMENTE") return "bg-green-500 text-white";
     if (v === "APLICA") return "bg-yellow-500 text-white";
     if (v === "NO APLICA") return "bg-red-500 text-white";
     if (v === "NO APLICA FUERTEMENTE") return "bg-red-700 text-white";
-
-    return "bg-gray-500 text-white"; // fallback
+    return "bg-gray-500 text-white";
   }
+
   const toggleExpanded = (id: string) => {
     setExpanded((prev) => ({
       ...prev,
@@ -65,28 +63,26 @@ const CandidatesMatching = () => {
   };
 
   if (loading) {
-    return <p className="text-gray-600">Cargando análisis...</p>;
+    return <p className="text-gray-600">{t("Loading")}</p>;
   }
 
   if (error) {
-    return <p className="text-red-500">Error: {error}</p>;
+    return <p className="text-red-500">{t("Error", { error })}</p>;
   }
 
   if (analyses.length === 0) {
-    return <p className="text-gray-600">No hay análisis disponibles.</p>;
+    return <p className="text-gray-600">{t("NoAnalyses")}</p>;
   }
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <div className="border-b pb-4 w-full">
-          <h1 className="text-2xl font-semibold ">Análisis de Heimdall</h1>
-          <p className="text-gray-600">Evaluación inteligente de candidatos</p>
+          <h1 className="text-2xl font-semibold ">{t("Title")}</h1>
+          <p className="text-gray-600">{t("Subtitle")}</p>
         </div>
       </div>
 
-      {/* Cards */}
       <div className="space-y-4">
         {analyses.map((analysis) => {
           const isExpanded = expanded[analysis.id] || false;
@@ -134,7 +130,7 @@ const CandidatesMatching = () => {
                 >
                   {averageGrade !== null
                     ? `${averageGrade}%`
-                    : analysis.heimdall}
+                    : tHeimdall(analysis.heimdall || "NO APLICA")}
                 </div>
               </CardHeader>
 
@@ -144,7 +140,7 @@ const CandidatesMatching = () => {
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="text-sm font-medium text-gray-700">
-                          Habilidades
+                          {t("Skills")}
                         </span>
                         <span
                           className={cn(
@@ -167,7 +163,7 @@ const CandidatesMatching = () => {
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="text-sm font-medium text-gray-700">
-                          Coincidencia
+                          {t("Match")}
                         </span>
                         <span
                           className={cn(
@@ -190,7 +186,7 @@ const CandidatesMatching = () => {
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="text-sm font-medium text-gray-700">
-                          Adaptabilidad
+                          {t("Adaptability")}
                         </span>
                         <span
                           className={cn(
@@ -219,7 +215,7 @@ const CandidatesMatching = () => {
                   className="text-blue-600 hover:text-blue-800 p-0 h-auto font-medium"
                   onClick={() => toggleExpanded(analysis.id)}
                 >
-                  {isExpanded ? "Ocultar puntos clave" : "Ver puntos clave"}
+                  {isExpanded ? t("HideKeyPoints") : t("ShowKeyPoints")}
                 </Button>
 
                 {isExpanded && (

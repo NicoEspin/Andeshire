@@ -19,6 +19,7 @@ import {
   Scoreboard,
   ScoreboardEntry,
 } from "@/app/jobs/[id]/types/ScoreboardsTypes";
+import { useTranslations } from "next-intl";
 
 interface EditJobFormProps {
   scoreboard: Scoreboard;
@@ -28,6 +29,7 @@ const EditJobForm: React.FC<EditJobFormProps> = ({ scoreboard }) => {
   const [publicChecked, setPublicChecked] = useState<boolean>(
     !!scoreboard.public
   );
+  const t = useTranslations("JobId.Details.Scoreboards.Edit");
   const [toCompleteChecked, setToCompleteChecked] = useState<boolean>(
     !!scoreboard.to_complete
   );
@@ -156,7 +158,7 @@ const EditJobForm: React.FC<EditJobFormProps> = ({ scoreboard }) => {
               onCheckedChange={(checked) => setPublicChecked(!!checked)}
             />
             <label htmlFor="public" className="text-sm font-medium">
-              Hacer público
+              {t("makePublic")}
             </label>
           </div>
 
@@ -167,11 +169,11 @@ const EditJobForm: React.FC<EditJobFormProps> = ({ scoreboard }) => {
               onCheckedChange={(checked) => setToCompleteChecked(!!checked)}
             />
             <label htmlFor="toComplete" className="text-sm font-medium">
-              Pendiente de completar
+              {t("toComplete")}
             </label>
           </div>
 
-          <h4 className="font-medium">Campos del formulario</h4>
+          <h4 className="font-medium">{t("fieldsSection")}</h4>
           {scoreboard.entries.map((entry) => (
             <div key={entry.id} className="space-y-1">
               {entry.field_type !== "checkbox" && (
@@ -185,13 +187,13 @@ const EditJobForm: React.FC<EditJobFormProps> = ({ scoreboard }) => {
         </div>
 
         <DialogFooter>
-          <Button variant="secondary">Cancelar</Button>
+          <Button variant="secondary">{t("cancel")}</Button>
           <Button
             variant="default"
             className="bg-purple-700 hover:bg-purple-800 text-white"
             onClick={handleSave}
           >
-            Guardar
+            {t("save")}
           </Button>
         </DialogFooter>
       </DialogContent>

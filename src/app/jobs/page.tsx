@@ -8,23 +8,26 @@ import TableJobList from "./TableJobList";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { setJobListFiltersApplied } from "@/store/slices/Jobs/JobListSlice";
+import { useTranslations } from "next-intl";
 
 export default function JobList() {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const searchParams = useSearchParams();
-
- const {
-  list: jobList,
-  loading: jobListLoading,
-  error: jobListError,
-  filters: jobListFilters,         
-  filters_applied: jobListFiltersApplied,  
-} = useAppSelector((state) => state.jobList);
+  const t = useTranslations("Jobs");
+  const {
+    list: jobList,
+    loading: jobListLoading,
+    error: jobListError,
+    filters: jobListFilters,
+    filters_applied: jobListFiltersApplied,
+    currentPage: jobListCurrentPage,
+    totalPages: jobListTotalPages,
+  } = useAppSelector((state) => state.jobList);
 
   const [title, setTitle] = useState("");
 
-  /** 🔍 Parsear filtros desde URL */
+  /** 🔍 Parse filters from URL */
   const parseFiltersFromURL = (params: Record<string, string>) => {
     const parsed: Record<string, any> = {};
     Object.entries(params).forEach(([key, value]) => {
@@ -33,16 +36,16 @@ export default function JobList() {
     return parsed;
   };
 
-  /** 🔍 Construir query string limpio */
+  /** 🔍 Build query string */
   const buildQueryParams = (filters: Record<string, any>) => {
-    const cleaned: Record<string, any> = {};
+    const cleaned: Record<string, string> = {};
     Object.entries(filters).forEach(([key, value]) => {
-      if (value) cleaned[key] = value;
+      if (value) cleaned[key] = String(value);
     });
     return new URLSearchParams(cleaned).toString();
   };
 
-  /** 🚀 Fetch inicial cuando cambia URL */
+  /** 🚀 Initial fetch when URL changes */
   useEffect(() => {
     const params = Object.fromEntries(searchParams.entries());
     const parsed = parseFiltersFromURL(params);
@@ -51,19 +54,28 @@ export default function JobList() {
     fetchJobList(dispatch, parsed);
   }, [dispatch, searchParams.toString()]);
 
-  /** 🚀 Handler para cambio de filtros */
-  const handleFilterChange = (updated: Record<string, any>) => {
+  /** 🚀 Handle filters & pagination */
+  const handleFilterChange = (
+    updated: Record<string, any>,
+    isPageChange = false
+  ) => {
     const current = parseFiltersFromURL(
       Object.fromEntries(searchParams.entries())
     );
     const merged = { ...current, ...updated };
+
+    // Si NO es un cambio de página, resetea a la página 1
+    if (!isPageChange) {
+      merged.page = 1;
+    }
+
     const query = buildQueryParams(merged);
     router.push(`?${query}`);
     dispatch(setJobListFiltersApplied(merged));
     fetchJobList(dispatch, merged);
   };
 
-  /** ⏱️ Debounce al escribir título */
+  /** ⏱️ Debounce para buscar por título */
   useEffect(() => {
     const debounce = setTimeout(() => {
       handleFilterChange({ title });
@@ -76,11 +88,11 @@ export default function JobList() {
     <div className="space-y-6 pr-8">
       <Card>
         <CardHeader>
-          <CardTitle className="text-lg">Filtrar trabajos</CardTitle>
+          <CardTitle className="text-lg">{t("filterTitle")}</CardTitle>
         </CardHeader>
         <CardContent>
           <Input
-            placeholder="🔍 Buscar por nombre del trabajo"
+            placeholder={t("searchPlaceholder")}
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             className="w-full sm:w-1/2"
@@ -94,10 +106,10 @@ export default function JobList() {
         error={jobListError}
         filters={jobListFilters}
         filtersApplied={jobListFiltersApplied}
-        onFilterChange={(filters) => {
-          dispatch(setJobListFiltersApplied(filters));
-          // ⚡ Y probablemente vuelves a llamar tu fetchJobList
-        }}
+        currentPage={parseInt(jobListCurrentPage || "1", 10)}
+        totalPages={jobListTotalPages}
+        onFilterChange={(filters) => handleFilterChange(filters)}
+        onPageChange={(page) => handleFilterChange({ page }, true)}
       />
     </div>
   );

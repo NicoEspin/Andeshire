@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 import { Loader2, CheckCircle2, XCircle } from "lucide-react";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
+import { useTranslations } from "next-intl";
 
 type ActionModalProps = {
   open: boolean;
@@ -22,19 +23,21 @@ export default function ActionModal({
   message,
   onClose,
 }: ActionModalProps) {
+  const t = useTranslations("ActionModal");
+
   return (
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-md rounded-2xl p-6 shadow-xl border-none">
         <DialogHeader className="items-center">
           <VisuallyHidden>
-            <DialogTitle>Estado de la acción</DialogTitle>
+            <DialogTitle>{t("Title")}</DialogTitle>
           </VisuallyHidden>
 
           <div className="flex flex-col items-center gap-3 text-center">
             {status === "loading" && (
               <>
                 <Loader2 className="w-10 h-10 animate-spin text-muted-foreground" />
-                <p className="text-sm text-muted-foreground">Procesando...</p>
+                <p className="text-sm text-muted-foreground">{t("Loading")}</p>
               </>
             )}
 

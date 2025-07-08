@@ -13,6 +13,7 @@ import {
   CalendarDays,
 } from "lucide-react";
 import { Job } from "@/app/jobs/[id]/types/JobTypes";
+import { useTranslations } from "next-intl";
 
 // Helper para formatear fechas a dd/mm/yyyy
 const formatDateAR = (dateString: string): string => {
@@ -29,6 +30,7 @@ interface JobHeaderProps {
 }
 
 export default function JobHeader({ job }: JobHeaderProps) {
+  const t = useTranslations("JobId");
   const getModalityIcon = (modality: string) => {
     switch (modality.toLowerCase()) {
       case "remoto":
@@ -92,16 +94,20 @@ export default function JobHeader({ job }: JobHeaderProps) {
             {/* Estado y fechas */}
             <div className="text-right space-y-1">
               <Badge className="bg-green-100 text-green-700 border-green-300">
-                Activo
+                {t("Header.status.active")}
               </Badge>
               <div className="text-xs text-gray-500 dark:text-gray-400 mt-2 space-y-1">
                 <div className="flex items-center justify-end gap-1">
                   <CalendarDays className="w-4 h-4" />
-                  <span>Creado: {formatDateAR(job.created_at)}</span>
+                  <span>
+                    {t("Header.dates.created")} {formatDateAR(job.created_at)}
+                  </span>
                 </div>
                 <div className="flex items-center justify-end gap-1">
                   <CalendarDays className="w-4 h-4" />
-                  <span>Actualizado: {formatDateAR(job.updated_at)}</span>
+                  <span>
+                    {t("Header.dates.updated")} {formatDateAR(job.updated_at)}
+                  </span>
                 </div>
               </div>
             </div>

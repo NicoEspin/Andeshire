@@ -9,7 +9,13 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
 import { MultiSelect } from "@/components/ui/multiselect";
 import {
   Select,
@@ -36,6 +42,8 @@ import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/app/redux";
 import { openModal } from "@/store/slices/ModalSlice";
+import TablePagination from "@/app/jobs/TablePagination";
+import { useTranslations } from "next-intl";
 
 type Props = {
   candidates: Candidate[];
@@ -56,7 +64,7 @@ const CandidatesTable: React.FC<Props> = ({
 }) => {
   const uniqueCategories = Array.from(new Set(filters.categories || []));
   const [date, setDate] = useState<Date | undefined>();
-
+  const t = useTranslations("Candidates");
   const dispatch = useAppDispatch();
   const handleCandidateClick = (candidateId: string) => {
     dispatch(
@@ -71,17 +79,17 @@ const CandidatesTable: React.FC<Props> = ({
     <Card>
       <CardHeader>
         <CardTitle className="text-xl font-semibold">
-          Lista de Candidatos
+          {t("TableTitle")}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Nombre</TableHead>
-              <TableHead>Trabajo Actual</TableHead>
+              <TableHead>{t("TableHeadName")}</TableHead>
+              <TableHead>{t("TableHeadCurrentJob")}</TableHead>
               <TableHead>
-                Reclutador
+                {t("TableHeadRecruiter")}
                 <Popover>
                   <PopoverTrigger asChild>
                     <button className="ml-2 rounded-full p-1 border hover:bg-muted transition">
@@ -100,13 +108,13 @@ const CandidatesTable: React.FC<Props> = ({
                       setSelected={(values) =>
                         onFilterChange({ recruiters: values })
                       }
-                      placeholder="Filtrar reclutador"
+                      placeholder={t("FilterRecruiterPlaceholder")}
                     />
                   </PopoverContent>
                 </Popover>
               </TableHead>
               <TableHead>
-                Categoría
+                {t("TableHeadCategory")}
                 <Popover>
                   <PopoverTrigger asChild>
                     <button className="ml-2 rounded-full p-1 border hover:bg-muted transition">
@@ -122,10 +130,10 @@ const CandidatesTable: React.FC<Props> = ({
                       }
                     >
                       <SelectTrigger>
-                        <SelectValue placeholder="Todas" />
+                        <SelectValue placeholder={t("SelectAllCategories")} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="all">Todas</SelectItem>
+                        <SelectItem value="all">{t("SelectAllCategories")}</SelectItem>
                         {uniqueCategories.map((cat) => (
                           <SelectItem key={cat} value={cat}>
                             {cat}
@@ -137,7 +145,7 @@ const CandidatesTable: React.FC<Props> = ({
                 </Popover>
               </TableHead>
               <TableHead>
-                Última actualización
+                {t("TableHeadLastUpdate")}
                 <Popover>
                   <PopoverTrigger asChild>
                     <button className="ml-2 rounded-full p-1 border hover:bg-muted transition">
@@ -161,9 +169,9 @@ const CandidatesTable: React.FC<Props> = ({
                   </PopoverContent>
                 </Popover>
               </TableHead>
-              <TableHead>Resumen Técnico</TableHead>
+              <TableHead>{t("TableHeadTechnicalResume")}</TableHead>
               <TableHead>
-                Tags
+                {t("TableHeadTags")}
                 <Popover>
                   <PopoverTrigger asChild>
                     <button className="ml-2 rounded-full p-1 border hover:bg-muted transition">
@@ -179,10 +187,8 @@ const CandidatesTable: React.FC<Props> = ({
                         })) || []
                       }
                       selected={[]}
-                      setSelected={(values) =>
-                        onFilterChange({ tags: values })
-                      }
-                      placeholder="Filtrar tags"
+                      setSelected={(values) => onFilterChange({ tags: values })}
+                      placeholder={t("FilterTagsPlaceholder")}
                     />
                   </PopoverContent>
                 </Popover>
@@ -192,11 +198,11 @@ const CandidatesTable: React.FC<Props> = ({
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell colSpan={7}>Cargando...</TableCell>
+                <TableCell colSpan={7}>{t("LoadingText")}</TableCell>
               </TableRow>
             ) : candidates.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7}>No hay candidatos.</TableCell>
+                <TableCell colSpan={7}>{t("EmptyStateText")}</TableCell>
               </TableRow>
             ) : (
               candidates.map((candidate) => (
@@ -210,9 +216,7 @@ const CandidatesTable: React.FC<Props> = ({
                       {candidate.name ?? "N/A"}
                     </Button>
                   </TableCell>
-                  <TableCell>
-                    {candidate.current_job_title ?? "N/A"}
-                  </TableCell>
+                  <TableCell>{candidate.current_job_title ?? "N/A"}</TableCell>
                   <TableCell>{candidate.recruiter_name ?? "N/A"}</TableCell>
                   <TableCell>{candidate.category ?? "N/A"}</TableCell>
                   <TableCell>
@@ -223,25 +227,21 @@ const CandidatesTable: React.FC<Props> = ({
                   <TableCell>
                     <TechnicalResume
                       candidateName={candidate.name ?? "N/A"}
-                      technicalResume={
-                        candidate.technical_resume ?? null
-                      }
+                      technicalResume={candidate.technical_resume ?? null}
                     />
                   </TableCell>
                   <TableCell className="space-x-1">
-                    {candidate.tags && candidate.tags.length > 0 ? (
-                      candidate.tags.map((tag) => (
-                        <Badge
-                          key={tag.id}
-                          variant="outline"
-                          className="bg-blue-100 text-blue-800 border-none"
-                        >
-                          {tag.name}
-                        </Badge>
-                      ))
-                    ) : (
-                      "N/A"
-                    )}
+                    {candidate.tags && candidate.tags.length > 0
+                      ? candidate.tags.map((tag) => (
+                          <Badge
+                            key={tag.id}
+                            variant="outline"
+                            className="bg-blue-100 text-blue-800 border-none"
+                          >
+                            {tag.name}
+                          </Badge>
+                        ))
+                      : "N/A"}
                   </TableCell>
                 </TableRow>
               ))
@@ -249,6 +249,13 @@ const CandidatesTable: React.FC<Props> = ({
           </TableBody>
         </Table>
       </CardContent>
+      <CardFooter className="flex justify-center">
+        <TablePagination
+          currentPage={1}
+          totalPages={5}
+          onPageChange={(page) => console.log("Page:", page)}
+        />
+      </CardFooter>
     </Card>
   );
 };

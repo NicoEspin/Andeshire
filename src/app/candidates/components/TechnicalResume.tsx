@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Eye } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type TechnicalResumeProps = {
   candidateName: string;
@@ -22,6 +23,7 @@ export default function TechnicalResume({
   technicalResume,
 }: TechnicalResumeProps) {
   // Función para limpiar el string y parsear a JSON
+  const t = useTranslations("Candidates");
   const parseTechnicalResume = (): Record<
     string,
     { years: number; months: number }
@@ -42,7 +44,6 @@ export default function TechnicalResume({
       return null;
     }
   };
-  
 
   const parsedResume = parseTechnicalResume();
   if (!technicalResume) {
@@ -57,9 +58,12 @@ export default function TechnicalResume({
       </DialogTrigger>
       <DialogContent className="max-w-lg">
         <DialogHeader>
-          <DialogTitle>Resumen Técnico - {candidateName || "N/A"}</DialogTitle>
+          <DialogTitle>
+            {t("TechnicalResume.DialogTitle")}
+            <span>{candidateName || "N/A"}</span>
+          </DialogTitle>
           <DialogDescription>
-            Experiencia detallada por tecnología
+            {t("TechnicalResume.DialogDescription")}
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-2 max-h-[400px] overflow-y-auto text-sm">
@@ -71,13 +75,15 @@ export default function TechnicalResume({
               >
                 <span className="font-medium">{tech}</span>
                 <span className="text-muted-foreground">
-                  {exp.years} años {exp.months > 0 && `${exp.months} meses`}
+                  {exp.years} {t("TechnicalResume.Years")}{" "}
+                  {exp.months > 0 &&
+                    `${exp.months} ${t("TechnicalResume.Months")}`}
                 </span>
               </div>
             ))
           ) : (
             <p className="text-muted-foreground">
-              No hay resumen técnico disponible.
+              {t("TechnicalResume.NoAvailable")}
             </p>
           )}
         </div>

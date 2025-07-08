@@ -12,6 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { ArrowLeftRight } from "lucide-react";
 import { JobListItem } from "@/app/jobs/[id]/types/JobTypes";
+import { useTranslations } from "next-intl";
 
 interface ActionCompareProps {
   jobList: JobListItem[];
@@ -21,6 +22,7 @@ interface ActionCompareProps {
 
 const ActionCompare = ({ jobList, loading, error }: ActionCompareProps) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const t = useTranslations("CandidateDetail.CandidateActions.ActionCompare");
 
   const filteredJobs = jobList.filter((job) =>
     job.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -35,17 +37,17 @@ const ActionCompare = ({ jobList, loading, error }: ActionCompareProps) => {
           className="flex items-center gap-1 cursor-pointer transition-colors hover:bg-purple-100 hover:text-purple-700"
         >
           <ArrowLeftRight className="w-4 h-4" />
-          Comparar
+          {t("button")}
         </Button>
       </DialogTrigger>
 
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Selecciona un trabajo para comparar el candidato</DialogTitle>
+          <DialogTitle>{t("dialogTitle")}</DialogTitle>
         </DialogHeader>
 
         <Input
-          placeholder="Buscar trabajos..."
+          placeholder={t("searchPlaceholder")}
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="mb-4"
@@ -64,13 +66,13 @@ const ActionCompare = ({ jobList, loading, error }: ActionCompareProps) => {
                 size="sm"
                 className="bg-purple-600 hover:bg-purple-700 text-white"
               >
-                Comparar
+                {t("compareButton")}
               </Button>
             </div>
           ))}
 
           {filteredJobs.length === 0 && (
-            <p className="text-sm text-gray-500">No se encontraron trabajos.</p>
+            <p className="text-sm text-gray-500">{t("noJobsFound")}</p>
           )}
         </div>
       </DialogContent>

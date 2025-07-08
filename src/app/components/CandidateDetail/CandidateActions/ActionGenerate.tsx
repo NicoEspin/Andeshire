@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -13,6 +14,7 @@ import { X, Plus, Settings, FileX } from "lucide-react";
 
 export default function ActionGeneratePDF() {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("CandidateDetail.CandidateActions.ActionGenerate");
 
   return (
     <>
@@ -25,7 +27,7 @@ export default function ActionGeneratePDF() {
           hover:bg-gray-100 hover:text-purple-700"
       >
         <Settings className="w-4 h-4" />
-        Generar
+        {t("GenerateButton")}
       </Button>
 
       {/* Drawer lateral derecho */}
@@ -34,7 +36,7 @@ export default function ActionGeneratePDF() {
           {/* Header */}
           <div className="bg-purple-700 text-white px-4 py-3 flex items-center justify-between">
             <DrawerTitle className="text-base font-semibold text-white">
-              PDFs Generados
+              {t("DrawerTitle")}
             </DrawerTitle>
             <DrawerClose asChild>
               <Button
@@ -50,9 +52,7 @@ export default function ActionGeneratePDF() {
           {/* Contenido vacío */}
           <div className="flex-1 flex flex-col justify-center items-center text-center px-4">
             <FileX className="w-10 h-10 text-gray-400 mb-2" />
-            <p className="text-gray-500 text-sm">
-              No hay PDFs generados para este candidato
-            </p>
+            <p className="text-gray-500 text-sm">{t("EmptyMessage")}</p>
           </div>
 
           {/* Footer con botón */}
@@ -62,7 +62,7 @@ export default function ActionGeneratePDF() {
               className="w-full bg-purple-700 hover:bg-purple-800 text-white flex items-center justify-center gap-2"
             >
               <Plus className="w-4 h-4" />
-              Crear nuevo
+              {t("CreateNew")}
             </Button>
           </div>
         </DrawerContent>

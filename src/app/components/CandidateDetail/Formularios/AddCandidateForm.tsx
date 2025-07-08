@@ -19,12 +19,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslations } from "next-intl";
 
 type AddCandidateFormProps = {
   templates: { id: string; name: string }[];
 };
 
 export default function AddCandidateForm({ templates }: AddCandidateFormProps) {
+  const t = useTranslations("CandidateDetail.Scoreboards.Add");
   const [selectedTemplate, setSelectedTemplate] = React.useState<string | null>(
     null
   );
@@ -36,20 +38,20 @@ export default function AddCandidateForm({ templates }: AddCandidateFormProps) {
       <DialogTrigger asChild>
         <Button className="bg-purple-700 text-white hover:bg-purple-800">
           <Plus className="w-4 h-4 mr-2" />
-          Crear Nuevo
+          {t("Button")}
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle>Crear Nuevo Formulario</DialogTitle>
+          <DialogTitle>{t("Title")}</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4">
           <div>
-            <Label htmlFor="template">Selecciona una plantilla</Label>
+            <Label htmlFor="template">{t("SelectLabel")}</Label>
             <Select onValueChange={setSelectedTemplate}>
               <SelectTrigger id="template" className="w-full mt-2">
-                <SelectValue placeholder="Selecciona una plantilla..." />
+                <SelectValue placeholder={t("SelectPlaceholder")} />
               </SelectTrigger>
               <SelectContent>
                 {templates.map((template) => (
@@ -67,7 +69,7 @@ export default function AddCandidateForm({ templates }: AddCandidateFormProps) {
               checked={isPublic}
               onCheckedChange={(checked) => setIsPublic(!!checked)}
             />
-            <Label htmlFor="public">Hacer público</Label>
+            <Label htmlFor="public">{t("Public")}</Label>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -76,18 +78,18 @@ export default function AddCandidateForm({ templates }: AddCandidateFormProps) {
               checked={toComplete}
               onCheckedChange={(checked) => setToComplete(!!checked)}
             />
-            <Label htmlFor="toComplete">Pendiente de completar</Label>
+            <Label htmlFor="toComplete">{t("ToComplete")}</Label>
           </div>
 
           <div>
-            <h3 className="font-semibold">Campos del formulario</h3>
+            <h3 className="font-semibold">{t("FieldsTitle")}</h3>
             {/* Aquí puedes renderizar dinámicamente campos adicionales si es necesario */}
           </div>
 
           <div className="flex justify-end space-x-2">
-            <Button variant="outline">Cancelar</Button>
+            <Button variant="outline">{t("Cancel")}</Button>
             <Button className="bg-purple-700 text-white hover:bg-purple-800">
-              Guardar
+              {t("Save")}
             </Button>
           </div>
         </div>

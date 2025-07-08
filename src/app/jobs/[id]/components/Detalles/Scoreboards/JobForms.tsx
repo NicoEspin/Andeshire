@@ -16,10 +16,11 @@ import {
 } from "@/components/ui/tooltip";
 import AddJobForm from "./AddJobForm";
 import EditJobForm from "./EditJobForm";
+import { useTranslations } from "next-intl";
 
 const JobForms: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-
+  const t = useTranslations("JobId.Details.Scoreboards");
   const { scoreboards, loading, error, loaded, availableTemplates } =
     useSelector((state: RootState) => state.jobScoreboards);
 
@@ -36,7 +37,7 @@ const JobForms: React.FC = () => {
     <Card className="p-6 space-y-4">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Formularios</h2>
+        <h2 className="text-xl font-semibold">{t("title")}</h2>
         <AddJobForm
           availableTemplates={availableTemplates}
           getTemplateFields={(templateId) => {
@@ -50,13 +51,13 @@ const JobForms: React.FC = () => {
       </div>
 
       {/* Estado de carga y error */}
-      {loading && <p className="text-gray-500">Cargando formularios...</p>}
+      {loading && <p className="text-gray-500">{t("loading")}</p>}
       {error && <p className="text-red-500">Error: {error}</p>}
 
       {/* Lista de formularios */}
       <div className="space-y-4 max-h-100 overflow-auto">
         {scoreboards.length === 0 && !loading && (
-          <p className="text-gray-500">No hay formularios disponibles.</p>
+          <p className="text-gray-500">{t("empty")}</p>
         )}
         {scoreboards.map((scoreboard) => (
           <Card key={scoreboard.id} className="p-4">
@@ -64,13 +65,22 @@ const JobForms: React.FC = () => {
               <div>
                 <h3 className="font-medium">{scoreboard.template_name}</h3>
                 <p className="text-sm text-gray-500">
-                  Actualizado: {scoreboard.updated_at}
+                  {t("updated")} {scoreboard.updated_at}
                 </p>
               </div>
               <div className="flex items-center gap-2">
                 <TooltipProvider>
-                  <EditJobForm scoreboard={scoreboard} />
+                  {/* Tooltip para EDIT */}
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <EditJobForm scoreboard={scoreboard} />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>{t("edit")}</p>
+                    </TooltipContent>
+                  </Tooltip>
 
+                  {/* Tooltip para DELETE */}
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button variant="ghost" size="icon">
@@ -78,7 +88,7 @@ const JobForms: React.FC = () => {
                       </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p>Eliminar</p>
+                      <p>{t("delete")}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>

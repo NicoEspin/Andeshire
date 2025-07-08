@@ -13,12 +13,12 @@ import {
   FileText,
   ToggleRight,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type JobCustomProps = {
   job: Job;
 };
 
-// Define los iconos por tipo de campo
 const fieldIcons: Record<string, React.ReactNode> = {
   text: <TextCursorInput className="w-5 h-5 text-purple-700" />,
   select: <List className="w-5 h-5 text-purple-700" />,
@@ -26,25 +26,23 @@ const fieldIcons: Record<string, React.ReactNode> = {
   date: <Calendar className="w-5 h-5 text-purple-700" />,
   file: <FileText className="w-5 h-5 text-purple-700" />,
   boolean: <ToggleRight className="w-5 h-5 text-purple-700" />,
-  // Añade más tipos si lo necesitas
 };
 
 export default function CustomView({ job }: JobCustomProps) {
+  const t = useTranslations("JobId.CustomFields");
   const fields = job?.custom_fields || [];
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between border-b pb-4">
-        <h2 className="text-2xl font-semibold">Campos Personalizados</h2>
+        <h2 className="text-2xl font-semibold">{t("Title")}</h2>
         <Badge variant="outline" className="text-purple-700 border-purple-700">
-          {fields.length} campos definidos
+          {t("DefinedBadge", { count: fields.length })}
         </Badge>
       </div>
 
       {fields.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">
-          No hay campos personalizados definidos.
-        </p>
+        <p className="text-gray-500 text-center py-8">{t("NoFields")}</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {fields.map((field) => (
@@ -64,14 +62,14 @@ export default function CustomView({ job }: JobCustomProps) {
                       variant="outline"
                       className="text-green-700 border-green-700"
                     >
-                      Completado
+                      {t("Completed")}
                     </Badge>
                   ) : (
                     <Badge
                       variant="outline"
                       className="text-gray-500 border-gray-300"
                     >
-                      Vacío
+                      {t("Empty")}
                     </Badge>
                   )}
                 </div>
@@ -79,7 +77,7 @@ export default function CustomView({ job }: JobCustomProps) {
 
               <CardContent>
                 <p className="text-xs uppercase text-gray-400 mb-1">
-                  {getFieldTypeLabel(field.field_type)}
+                  {getFieldTypeLabel(field.field_type, t)}
                 </p>
 
                 {field.placeholder && (
@@ -88,7 +86,7 @@ export default function CustomView({ job }: JobCustomProps) {
                   </p>
                 )}
 
-                {renderFieldValue(field)}
+                {renderFieldValue(field, t)}
 
                 {field.help_text && (
                   <div className="flex items-center mt-4">
@@ -105,33 +103,24 @@ export default function CustomView({ job }: JobCustomProps) {
   );
 }
 
-function getFieldTypeLabel(fieldType: string) {
-  switch (fieldType) {
-    case "text":
-      return "TEXTO";
-    case "select":
-      return "SELECCIÓN";
-    case "multi_select":
-      return "SELECCIÓN MÚLTIPLE";
-    case "date":
-      return "FECHA";
-    case "file":
-      return "ARCHIVO";
-    case "boolean":
-      return "BOOLEANO";
-    default:
-      return "CAMPO";
-  }
+function getFieldTypeLabel(
+  fieldType: string,
+  t: ReturnType<typeof useTranslations>
+) {
+  return t(`FieldTypes.${fieldType}`) || t("FieldTypes.default");
 }
 
-function renderFieldValue(field: {
-  field_type: string;
-  value: string | string[] | null;
-  options?: string[] | null;
-  has_value: string;
-}) {
+function renderFieldValue(
+  field: {
+    field_type: string;
+    value: string | string[] | null;
+    options?: string[] | null;
+    has_value: string;
+  },
+  t: ReturnType<typeof useTranslations>
+) {
   if (field.has_value === "false" || !field.value) {
-    return <p className="text-sm text-gray-500 italic">Sin valor asignado</p>;
+    return <p className="text-sm text-gray-500 italic">{t("NoValue")}</p>;
   }
 
   const selectedValues: string[] =
@@ -158,14 +147,14 @@ function renderFieldValue(field: {
             </div>
           ) : (
             <p className="text-sm text-gray-500 italic">
-              Sin valores seleccionados
+              {t("NoValuesSelected")}
             </p>
           )}
 
           {hasOptions && (
             <div className="mt-2">
               <p className="text-xs uppercase text-gray-400 mb-1">
-                Opciones disponibles:
+                {t("AvailableOptions")}
               </p>
               <div className="flex flex-wrap gap-2">
                 {field.options!.map((option, index) => (
@@ -199,7 +188,7 @@ function renderFieldValue(field: {
           rel="noopener noreferrer"
           className="text-sm text-purple-700 underline"
         >
-          Descargar archivo
+          {t("DownloadFile")}
         </a>
       );
 
@@ -220,7 +209,7 @@ function renderFieldValue(field: {
               : "text-red-700 border-red-700"
           }`}
         >
-          {isTrue ? "Sí" : "No"}
+          {isTrue ? t("BooleanYes") : t("BooleanNo")}
         </Badge>
       );
     }

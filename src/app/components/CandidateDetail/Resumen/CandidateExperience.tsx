@@ -1,15 +1,10 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Calendar,
-  Building2,
-  Briefcase,
-  Pencil,
-  Trash2,
-} from "lucide-react";
+import { Calendar, Building2, Briefcase, Pencil, Trash2 } from "lucide-react";
 import CandidateFiles from "./CandidateFiles";
 import AddCandidateExperience from "./AddCandidateExperience";
 
@@ -20,14 +15,16 @@ type CandidateExperienceProps = {
 export default function CandidateExperience({
   candidate,
 }: CandidateExperienceProps) {
+  const t = useTranslations("CandidateDetail.Summary.experience");
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {/* Experience */}
-      <div className="space-y-8 ">
+      <div className="space-y-8">
         {/* Header */}
         <div className="flex items-center justify-between p-2">
-          <h2 className="text-xl font-bold text-gray-900">Experiencia</h2>
-         <AddCandidateExperience />
+          <h2 className="text-xl font-bold text-gray-900">{t("title")}</h2>
+          <AddCandidateExperience />
         </div>
 
         {/* Timeline */}
@@ -67,7 +64,7 @@ export default function CandidateExperience({
                     className="flex items-center gap-1 text-purple-700 border-purple-700 hover:bg-purple-50"
                   >
                     <Pencil className="w-4 h-4" />
-                    Editar
+                    {t("edit")}
                   </Button>
                   <Button
                     variant="destructive"
@@ -75,7 +72,7 @@ export default function CandidateExperience({
                     className="flex items-center gap-1"
                   >
                     <Trash2 className="w-4 h-4" />
-                    Eliminar
+                    {t("delete")}
                   </Button>
                 </div>
               </div>

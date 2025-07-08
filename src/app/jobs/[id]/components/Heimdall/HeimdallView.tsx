@@ -25,17 +25,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
-import { Eye, EyeOff, RefreshCcw } from "lucide-react";
+import { EyeOff, RefreshCcw } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import CandidateCompare from "./CandidateCompare";
-
-// ✅ Ya NO necesitas esta interface
-// interface HeimdallViewProps {
-//   jobId: string;
-// }
+import { useTranslations } from "next-intl";
 
 const HeimdallView: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const t = useTranslations("JobId.Heimdall");
 
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<string[]>([]);
@@ -43,7 +40,6 @@ const HeimdallView: React.FC = () => {
   const {
     candidates,
     analysisProcess,
-    filters,
     pagination,
     totalCandidatesAnalyzed,
     loading,
@@ -112,11 +108,15 @@ const HeimdallView: React.FC = () => {
   };
 
   if (loading) {
-    return <div className="p-4">Cargando análisis...</div>;
+    return <div className="p-4">{t("Loading")}</div>;
   }
 
   if (error) {
-    return <div className="p-4 text-red-600">Ocurrió un error: {error}</div>;
+    return (
+      <div className="p-4 text-red-600">
+        {t("Error")}: {error}
+      </div>
+    );
   }
 
   return (
@@ -125,16 +125,16 @@ const HeimdallView: React.FC = () => {
       <Card className="bg-green-50 border-green-200">
         <CardHeader className="pb-2">
           <CardTitle className="text-green-800 text-sm font-medium flex items-center gap-2">
-            ✅ Análisis completado
+            {t("AnalysisCompleted")}
           </CardTitle>
         </CardHeader>
         <CardContent className="text-sm text-muted-foreground">
-          Se han analizado {totalCandidatesAnalyzed} candidatos.
+          {t("AnalyzedCandidates")}: {totalCandidatesAnalyzed}
           <br />
-          Procesados: {analysisProcess?.processed_candidates}
+          {t("Processed")}: {analysisProcess?.processed_candidates}
           <br />
           <span className="text-xs text-gray-500">
-            Completado:{" "}
+            {t("CompletedAt")}:{" "}
             {analysisProcess?.completed_at &&
               new Date(analysisProcess.completed_at).toLocaleString()}
           </span>
@@ -144,20 +144,24 @@ const HeimdallView: React.FC = () => {
       {/* FILTROS Y ACCIONES */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <Input
-          placeholder="Buscar candidatos sugeridos..."
+          placeholder={t("SearchPlaceholder")}
           className="w-full md:w-1/3"
         />
 
         <div className="flex items-center gap-4">
           <Select defaultValue="-match_grade">
             <SelectTrigger className="w-[150px]">
-              <SelectValue placeholder="Ordenar por" />
+              <SelectValue placeholder={t("OrderBy")} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="-match_grade">Mejor match</SelectItem>
-              <SelectItem value="-skills_grade">Mejor skills</SelectItem>
+              <SelectItem value="-match_grade">
+                {t("OrderBestMatch")}
+              </SelectItem>
+              <SelectItem value="-skills_grade">
+                {t("OrderBestSkills")}
+              </SelectItem>
               <SelectItem value="-adaptability_grade">
-                Mejor adaptabilidad
+                {t("OrderBestAdaptability")}
               </SelectItem>
             </SelectContent>
           </Select>
@@ -172,7 +176,7 @@ const HeimdallView: React.FC = () => {
             className="flex items-center gap-2"
           >
             <RefreshCcw className="h-4 w-4" />
-            Reiniciar análisis
+            {t("ResetAnalysis")}
           </Button>
         </div>
       </div>
@@ -184,15 +188,15 @@ const HeimdallView: React.FC = () => {
             <TableHead>
               <Checkbox checked={allSelected} onCheckedChange={toggleAll} />
             </TableHead>
-            <TableHead>Nombre</TableHead>
-            <TableHead>LinkedIn</TableHead>
-            <TableHead>Localización</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead>Teléfono</TableHead>
-            <TableHead>Puesto Actual</TableHead>
-            <TableHead>Heimdall</TableHead>
-            <TableHead>Comparación</TableHead>
-            <TableHead>Acciones</TableHead>
+            <TableHead>{t("Table.Name")}</TableHead>
+            <TableHead>{t("Table.LinkedIn")}</TableHead>
+            <TableHead>{t("Table.Location")}</TableHead>
+            <TableHead>{t("Table.Email")}</TableHead>
+            <TableHead>{t("Table.Phone")}</TableHead>
+            <TableHead>{t("Table.CurrentPosition")}</TableHead>
+            <TableHead>{t("Table.Heimdall")}</TableHead>
+            <TableHead>{t("Table.Comparison")}</TableHead>
+            <TableHead>{t("Table.Actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -212,35 +216,35 @@ const HeimdallView: React.FC = () => {
                     target="_blank"
                     className="text-blue-600 underline"
                   >
-                    Perfil
+                    {t("Profile")}
                   </Link>
                 ) : (
-                  "-"
+                  t("NoProfile")
                 )}
               </TableCell>
               <TableCell>
                 {candidate.city
                   ? `${candidate.city}, ${candidate.country}`
-                  : candidate.location || "-"}
+                  : candidate.location || t("NoLocation")}
               </TableCell>
-              <TableCell>{candidate.email || "-"}</TableCell>
-              <TableCell>{candidate.phone_number || "-"}</TableCell>
+              <TableCell>{candidate.email || t("NoEmail")}</TableCell>
+              <TableCell>{candidate.phone_number || t("NoPhone")}</TableCell>
               <TableCell>{candidate.current_job_title}</TableCell>
               <TableCell>
                 <Badge className={getBadgeClass(candidate.heimdall)}>
                   {candidate.heimdall}
                 </Badge>
               </TableCell>
-              <TableCell >
+              <TableCell>
                 <CandidateCompare
-                  candidateId={candidate.candidate_id} 
+                  candidateId={candidate.candidate_id}
                   candidateName={candidate.candidate_name}
                   keyPoints={candidate.key_points}
                 />
               </TableCell>
               <TableCell>
                 <Button size="sm" variant="outline">
-                  Ocultar
+                  {t("Hide")}
                 </Button>
               </TableCell>
             </TableRow>
@@ -251,7 +255,10 @@ const HeimdallView: React.FC = () => {
       {/* PAGINACIÓN */}
       <div className="flex justify-between items-center pt-4 border-t">
         <span className="text-sm text-muted-foreground">
-          Página {pagination?.current_page} de {pagination?.total_pages}
+          {t("Pagination.PageOf", {
+            current: pagination?.current_page,
+            total: pagination?.total_pages,
+          })}
         </span>
         <div className="flex items-center gap-2">
           <Button
@@ -260,7 +267,7 @@ const HeimdallView: React.FC = () => {
             disabled={(pagination?.current_page || 1) <= 1}
             onClick={() => setPage((p) => Math.max(1, p - 1))}
           >
-            Anterior
+            {t("Pagination.Previous")}
           </Button>
 
           {renderPaginationNumbers()}
@@ -275,7 +282,7 @@ const HeimdallView: React.FC = () => {
               setPage((p) => Math.min(p + 1, pagination?.total_pages || 1))
             }
           >
-            Siguiente
+            {t("Pagination.Next")}
           </Button>
         </div>
       </div>

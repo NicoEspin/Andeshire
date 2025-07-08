@@ -7,6 +7,7 @@ import { parseISO } from "date-fns";
 import AddCandidateMeet from "./AddCandidateMeet";
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { fetchCandidateMeetings } from "@/state/api/Candidates/id/FetchCandidateMeetings";
+import { useTranslations } from "next-intl";
 
 // --- ✅ Función robusta para detectar links con o sin http ---
 export function parseDescriptionWithLinks(description: string) {
@@ -58,6 +59,7 @@ export function parseDescriptionWithLinks(description: string) {
 }
 
 const CandidateMeetings = () => {
+  const t = useTranslations("CandidateDetail.Meetings");
   const dispatch = useAppDispatch();
   const { meetings, loading, error, loaded } = useAppSelector(
     (state) => state.candidateMeeting
@@ -86,19 +88,19 @@ const CandidateMeetings = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between border-b pb-4">
-        <h2 className="text-2xl font-semibold text-gray-800">Reuniones</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">{t("Title")}</h2>
         <AddCandidateMeet />
       </div>
 
       {loading && (
         <Card className="flex flex-col items-center justify-center p-8 text-center">
-          <p className="text-gray-600">Cargando reuniones...</p>
+          <p className="text-gray-600">{t("Loading")}</p>
         </Card>
       )}
 
       {error && (
         <Card className="flex flex-col items-center justify-center p-8 text-center">
-          <p className="text-red-600">Error: {error}</p>
+          <p className="text-red-600">{t("Error", { error })}</p>
         </Card>
       )}
 
@@ -133,7 +135,7 @@ const CandidateMeetings = () => {
                       rel="noopener noreferrer"
                       className="inline-block px-3 py-1 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors"
                     >
-                      Unirme al Meet
+                      {t("Join")}
                     </a>
                   </div>
 
@@ -142,7 +144,9 @@ const CandidateMeetings = () => {
                     {meeting.participants.map((p) => p.email).join(", ")}
                   </div>
                   <p className="text-xs text-gray-400">
-                    Creado: {formatDateTimeAR(meeting.created_at)}
+                    {t("CreatedAt", {
+                      date: formatDateTimeAR(meeting.created_at),
+                    })}
                   </p>
                 </CardContent>
               </Card>
@@ -150,9 +154,7 @@ const CandidateMeetings = () => {
           ) : (
             <Card className="flex flex-col items-center justify-center p-8 text-center">
               <Info className="w-10 h-10 text-purple-700 mb-4" />
-              <p className="text-gray-600">
-                No hay reuniones agendadas para este candidato.
-              </p>
+              <p className="text-gray-600">{t("NoMeetings")}</p>
             </Card>
           )}
         </div>

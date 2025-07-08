@@ -25,11 +25,12 @@ import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useAppDispatch } from "@/app/redux";
 import { openModal } from "@/store/slices/ModalSlice";
+import { useTranslations } from "next-intl";
 
 interface TableViewProps {
   stages: Stage[];
   candidatesByStage: CandidatesByStage;
-  visibleColumns: Record<string, boolean>; // 👈 NUEVO
+  visibleColumns: Record<string, boolean>;
 }
 
 const TableView = ({
@@ -37,6 +38,7 @@ const TableView = ({
   candidatesByStage,
   visibleColumns,
 }: TableViewProps) => {
+  const t = useTranslations("JobId.Candidates.TableView");
   const dispatch = useAppDispatch();
   const allCandidatesMap = new Map<string, CandidateDetail>();
   Object.values(candidatesByStage)
@@ -89,18 +91,26 @@ const TableView = ({
               />
             </TableHead>
 
-            {visibleColumns["Nombre"] && <TableHead>Nombre</TableHead>}
-            {visibleColumns["Email"] && <TableHead>Email</TableHead>}
-            {visibleColumns["Etapa"] && <TableHead>Etapa</TableHead>}
-            {visibleColumns["Fecha de aplicación"] && (
-              <TableHead>Fecha de aplicación</TableHead>
+            {visibleColumns["Nombre"] && (
+              <TableHead>{t("Columns.Name")}</TableHead>
             )}
-            {visibleColumns["Match"] && <TableHead>Match</TableHead>}
+            {visibleColumns["Email"] && (
+              <TableHead>{t("Columns.Email")}</TableHead>
+            )}
+            {visibleColumns["Etapa"] && (
+              <TableHead>{t("Columns.Stage")}</TableHead>
+            )}
+            {visibleColumns["Fecha de aplicación"] && (
+              <TableHead>{t("Columns.ApplicationDate")}</TableHead>
+            )}
+            {visibleColumns["Match"] && (
+              <TableHead>{t("Columns.Match")}</TableHead>
+            )}
             {visibleColumns["Compensación"] && (
-              <TableHead>Compensación</TableHead>
+              <TableHead>{t("Columns.Compensation")}</TableHead>
             )}
             {visibleColumns["Estado en otros procesos"] && (
-              <TableHead>Estado en otros procesos</TableHead>
+              <TableHead>{t("Columns.OtherProcesses")}</TableHead>
             )}
           </TableRow>
         </TableHeader>
@@ -142,7 +152,7 @@ const TableView = ({
                         variant="outline"
                         className="text-left w-full justify-between"
                       >
-                        {candidate.current_stage?.name || "Sin etapa"}
+                        {candidate.current_stage?.name || t("Columns.NoStage")}
                         <ChevronDown className="w-4 h-4 ml-2" />
                       </Button>
                     </DropdownMenuTrigger>

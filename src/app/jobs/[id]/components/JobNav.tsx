@@ -3,35 +3,16 @@
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { FileText, Users, Shield, UserCheck, Sliders } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface JobNavProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
 }
 
-const tabs = [
-  { label: "Detalles", value: "detalles", icon: FileText, color: "indigo" },
-  {
-    label: "Descripción",
-    value: "descripcion",
-    icon: FileText,
-    color: "purple",
-  },
-  { label: "Candidatos", value: "candidatos", icon: Users, color: "rose" },
-  { label: "Heimdall", value: "heimdall", icon: Shield, color: "cyan" },
-  {
-    label: "Aplicantes",
-    value: "aplicantes",
-    icon: UserCheck,
-    color: "emerald",
-  },
-  {
-    label: "Personalizados",
-    value: "personalizados",
-    icon: Sliders, // Usa un icono que represente custom
-    color: "amber",
-  },
-];
+
+
+
 
 const tabColors = {
   indigo: {
@@ -73,6 +54,41 @@ const tabColors = {
 };
 
 export default function JobNav({ activeTab, onTabChange }: JobNavProps) {
+  const t = useTranslations("JobId");
+  
+const tabs = [
+  {
+    label: t("tabs.detalles"),
+    value: "detalles",
+    icon: FileText,
+    color: "indigo",
+  },
+  {
+    label: t("tabs.descripcion"),
+    value: "descripcion",
+    icon: FileText,
+    color: "purple",
+  },
+  {
+    label: t("tabs.candidatos"),
+    value: "candidatos",
+    icon: Users,
+    color: "rose",
+  },
+  { label: t("tabs.heimdall"), value: "heimdall", icon: Shield, color: "cyan" },
+  {
+    label: t("tabs.aplicantes"),
+    value: "aplicantes",
+    icon: UserCheck,
+    color: "emerald",
+  },
+  {
+    label: t("tabs.personalizados"),
+    value: "personalizados",
+    icon: Sliders,
+    color: "amber",
+  },
+];
   return (
     <nav className="flex gap-4 px-4 sm:px-6 md:px-8 py-3 border-b bg-white dark:bg-gray-900 rounded-md">
       {tabs.map(({ label, value, icon: Icon, color }) => {

@@ -9,10 +9,12 @@ import {
   DrawerClose,
   DrawerTitle,
 } from "@/components/ui/drawer";
-
 import { MessageSquare, X, Send } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 export default function ActionChat() {
+  const t = useTranslations("CandidateDetail.CandidateActions.ActionChat");
+
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -24,7 +26,7 @@ export default function ActionChat() {
 
   return (
     <>
-      {/* Botón de Chat dentro del flujo */}
+      {/* Botón de Chat */}
       <Button
         variant="secondary"
         size="sm"
@@ -32,16 +34,18 @@ export default function ActionChat() {
         className="flex items-center gap-1 cursor-pointer transition-colors hover:bg-green-100 hover:text-green-700"
       >
         <MessageSquare className="w-4 h-4" />
-        Chat
+        {t("Button")}
       </Button>
 
       {/* Drawer del Chat */}
       <Drawer open={open} onOpenChange={setOpen} direction="right">
         <DrawerContent className="w-full max-w-xs p-0 rounded-t-lg shadow-lg border bg-white fixed bottom-20 right-6">
-          <div className="flex flex-col h-full rounded-lg overflow-auto ">
+          <div className="flex flex-col h-full rounded-lg overflow-auto">
             {/* Header */}
             <div className="bg-green-600 text-white p-3 flex items-center justify-between">
-              <DrawerTitle className="font-semibold text-white">Chat WhatsApp</DrawerTitle>
+              <DrawerTitle className="font-semibold text-white">
+                {t("Title")}
+              </DrawerTitle>
               <DrawerClose asChild>
                 <Button
                   variant="ghost"
@@ -55,10 +59,8 @@ export default function ActionChat() {
 
             {/* Mensajes */}
             <div className="flex-1 flex flex-col justify-center items-center text-center text-gray-500 p-4">
-              <p className="text-lg mb-2">No hay mensajes anteriores</p>
-              <p className="text-sm">
-                Envía tu primer mensaje para iniciar la conversación
-              </p>
+              <p className="text-lg mb-2">{t("NoMessagesTitle")}</p>
+              <p className="text-sm">{t("NoMessagesDescription")}</p>
             </div>
 
             {/* Input */}
@@ -68,7 +70,7 @@ export default function ActionChat() {
                   type="text"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Escribe un mensaje..."
+                  placeholder={t("Placeholder")}
                   className="flex-1 border rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-600"
                 />
                 <Button

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import {
   Table,
@@ -21,32 +22,35 @@ type CandidateJobsTableProps = {
 export default function CandidateJobsTable({
   candidate,
 }: CandidateJobsTableProps) {
+  const t = useTranslations("CandidateDetail.Jobs");
   const { jobs } = candidate;
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between border-b pb-4">
-        <h2 className="text-2xl font-semibold text-gray-800">Trabajos</h2>
+        <h2 className="text-2xl font-semibold text-gray-800">{t("Title")}</h2>
         <Button
           size="sm"
           className="bg-purple-700 text-white hover:bg-purple-800 flex items-center gap-1"
         >
           <Plus className="w-4 h-4" />
-          Añadir Trabajo
+          {t("Add")}
         </Button>
       </div>
 
       {!jobs || jobs.length === 0 ? (
         <div className="p-6 text-center text-muted-foreground">
-          No hay trabajos asociados para este candidato.
+          {t("NoJobs")}
         </div>
       ) : (
         <div className="border rounded-xl overflow-hidden shadow-sm">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="w-[200px]">Título</TableHead>
-                <TableHead className="w-[120px] text-center">Acción</TableHead>
+                <TableHead className="w-[200px]">{t("ColumnTitle")}</TableHead>
+                <TableHead className="w-[120px] text-center">
+                  {t("ColumnAction")}
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

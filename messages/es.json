@@ -1,0 +1,605 @@
+{
+  "Sidebar": {
+    "Dashboard": "Dashboard",
+    "Workflow": "Workflow",
+    "Trabajos": "Trabajos",
+    "Candidatos": "Candidatos",
+    "Compañías": "Compañías",
+    "Formularios": "Formularios",
+    "Linkedin": "Linkedin",
+    "Campañas": "Campañas"
+  },
+  "ActionModal": {
+    "Title": "Estado de la acción",
+    "Loading": "Procesando..."
+  },
+  "Notifications": {
+    "Title": "Notificaciones",
+    "ViewAll": "Ver todas"
+  },
+  "Candidates": {
+    "FilterCardTitle": "Filtrar candidatos",
+    "NamePlaceholder": "🔍 Buscar por nombre",
+    "JobNamePlaceholder": "🔍 Buscar por nombre del trabajo",
+    "TableTitle": "Lista de Candidatos",
+    "TableHeadName": "Nombre",
+    "TableHeadCurrentJob": "Trabajo Actual",
+    "TableHeadRecruiter": "Reclutador",
+    "FilterRecruiterPlaceholder": "Filtrar reclutador",
+    "TableHeadCategory": "Categoría",
+    "SelectAllCategories": "Todas",
+    "TableHeadLastUpdate": "Última actualización",
+    "TableHeadTechnicalResume": "Resumen Técnico",
+    "TableHeadTags": "Tags",
+    "FilterTagsPlaceholder": "Filtrar tags",
+    "LoadingText": "Cargando...",
+    "EmptyStateText": "No hay candidatos.",
+    "TechnicalResume": {
+      "DialogTitle": "Resumen Técnico - ",
+      "DialogDescription": "Experiencia detallada por tecnología",
+      "NoAvailable": "No hay resumen técnico disponible.",
+      "Years": "años",
+      "Months": "meses"
+    }
+  },
+  "Jobs": {
+    "filterTitle": "Filtrar trabajos",
+    "searchPlaceholder": "🔍 Buscar por nombre del trabajo",
+    "tableTitle": "Lista de Empleos",
+    "columns": {
+      "title": "Título",
+      "category": "Categoría",
+      "company": "Compañía",
+      "lastUpdate": "Última Actualización",
+      "analyzed": "Analizado",
+      "applicants": "Postulados",
+      "candidates": "Candidatos",
+      "priority": "Prioridad",
+      "all": "Todas"
+    },
+    "status": {
+      "loading": "Cargando...",
+      "noJobs": "No hay puestos.",
+      "yes": "Sí",
+      "no": "No"
+    }
+  },
+  "JobId": {
+    "tabs": {
+      "detalles": "Detalles",
+      "descripcion": "Descripción",
+      "candidatos": "Candidatos",
+      "heimdall": "Heimdall",
+      "aplicantes": "Aplicantes",
+      "personalizados": "Personalizados"
+    },
+    "Header": {
+      "status": {
+        "active": "Activo"
+      },
+      "dates": {
+        "created": "Creado:",
+        "updated": "Actualizado:"
+      }
+    },
+    "Details": {
+      "GeneralInfo": {
+        "title": "Información general",
+        "openDate": "Fecha de apertura:",
+        "applicationPeriod": "Período de aplicación:",
+        "linkedCandidates": "Candidatos vinculados:",
+        "status": "Estado:",
+        "statusOpen": "Abierta",
+        "portalPublication": "Publicación en portal:",
+        "yes": "Sí",
+        "no": "No",
+        "publicLink": "Enlace público:",
+        "view": "Ver",
+        "workflow": "Workflow:"
+      },
+      "ValidationCriteria": {
+        "title": "Criterios de validación",
+        "requiredTechnologies": "Tecnologías requeridas:",
+        "years": "años",
+        "englishLevel": "Nivel de inglés:",
+        "workModality": "Modalidad de trabajo:"
+      },
+      "DashboardChart": {
+        "title": "Dashboard de la vacante",
+        "description": "Progreso de candidatos en el workflow",
+        "noData": "No hay datos de candidatos para mostrar."
+      },
+      "Files": {
+        "title": "Archivos del Puesto",
+        "uploaded": "Subido:",
+        "download": "Descargar",
+        "noFiles": "No hay archivos disponibles",
+        "noAttachments": "Sin adjuntos",
+        "addFileButton": "Añadir Archivo",
+        "dialogTitle": "Agregar archivo",
+        "uploadHint": "Haz clic para seleccionar o arrastra y suelta un archivo",
+        "maxSize": "Tamaño máximo: 10MB",
+        "descriptionLabel": "Descripción:",
+        "descriptionPlaceholder": "Descripción del archivo",
+        "cancel": "Cancelar",
+        "upload": "Subir Archivo",
+        "modal": {
+          "noFile": "Debes seleccionar un archivo.",
+          "uploading": "Subiendo archivo...",
+          "success": "Archivo subido correctamente."
+        }
+      },
+      "Scoreboards": {
+        "title": "Formularios",
+        "loading": "Cargando formularios...",
+        "empty": "No hay formularios disponibles.",
+        "updated": "Actualizado:",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "Add": {
+          "addNewButton": "Añadir nuevo",
+          "title": "Crear Nuevo Formulario",
+          "selectLabel": "Selecciona una plantilla",
+          "selectPlaceholder": "Selecciona una plantilla",
+          "fieldsSection": "Campos del formulario",
+          "cancel": "Cancelar",
+          "save": "Guardar"
+        },
+        "Edit": {
+          "title": "Editar Formulario",
+          "makePublic": "Hacer público",
+          "toComplete": "Pendiente de completar",
+          "fieldsSection": "Campos del formulario",
+          "selectPlaceholder": "Seleccione una opción",
+          "cancel": "Cancelar",
+          "save": "Guardar"
+        }
+      }
+    },
+    "Description": {
+      "Tabs": {
+        "Summary": "Resumen",
+        "PublicNotice": "Aviso publicitario",
+        "PrivateDescription": "Descripción privada",
+        "Images": "Imágenes",
+        "ImagesBeta": "BETA"
+      },
+      "Sections": {
+        "DetailedAnalysis": "Análisis detallado",
+        "TechnicalSummary": "Resumen técnico"
+      },
+      "Placeholders": {
+        "NoInfo": "No hay información disponible.",
+        "NoTechnicalInfo": "No hay información técnica cargada.",
+        "NoNotice": "No hay aviso cargado."
+      },
+      "Images": {
+        "Title": "Imágenes",
+        "Subtitle": "Generador de imágenes para tus anuncios de trabajo.",
+        "GenerateButton": "Generar imagen",
+        "CreatedLabel": "Creado"
+      }
+    },
+    "Candidates": {
+      "Title": "Candidatos vinculados",
+      "Table": "Tabla",
+      "Kanban": "Kanban",
+      "SearchPlaceholder": "Buscar candidatos...",
+      "OnlyValidStages": "Solo etapas posibles",
+      "ConfigureColumns": "Configurar columnas",
+      "TaskHistory": "Historial de tareas",
+      "TableView": {
+        "Columns": {
+          "Name": "Nombre",
+          "Email": "Email",
+          "Stage": "Etapa",
+          "ApplicationDate": "Fecha de aplicación",
+          "Match": "Match",
+          "Compensation": "Compensación",
+          "OtherProcesses": "Estado en otros procesos",
+          "NoStage": "Sin etapa"
+        }
+      },
+      "TableConfig": {
+        "Title": "Configurar columnas",
+        "Cancel": "Cancelar",
+        "Save": "Guardar"
+      }
+    },
+    "Heimdall": {
+      "AnalysisCompleted": "✅ Análisis completado",
+      "AnalyzedCandidates": "Se han analizado",
+      "Processed": "Procesados",
+      "CompletedAt": "Completado",
+      "SearchPlaceholder": "Buscar candidatos sugeridos...",
+      "OrderBy": "Ordenar por",
+      "OrderBestMatch": "Mejor match",
+      "OrderBestSkills": "Mejor skills",
+      "OrderBestAdaptability": "Mejor adaptabilidad",
+      "ResetAnalysis": "Reiniciar análisis",
+      "Hide": "Ocultar",
+      "Table": {
+        "Name": "Nombre",
+        "LinkedIn": "LinkedIn",
+        "Location": "Localización",
+        "Email": "Email",
+        "Phone": "Teléfono",
+        "CurrentPosition": "Puesto Actual",
+        "Heimdall": "Heimdall",
+        "Comparison": "Comparación",
+        "Actions": "Acciones"
+      },
+      "Profile": "Perfil",
+      "NoProfile": "-",
+      "NoLocation": "-",
+      "NoEmail": "-",
+      "NoPhone": "-",
+      "Pagination": {
+        "PageOf": "Página {current} de {total}",
+        "Previous": "Anterior",
+        "Next": "Siguiente"
+      },
+      "Error": "Ocurrió un error",
+      "Loading": "Cargando análisis...",
+      "Compare": "Puntos clave del candidato."
+    },
+    "Applicants": {
+      "SearchPlaceholder": "Buscar aplicantes...",
+      "Loading": "Cargando aplicantes...",
+      "Error": "Ocurrió un error al cargar los aplicantes.",
+      "Table": {
+        "Applicant": "Aplicante",
+        "Scores": "Puntajes",
+        "Status": "Estado",
+        "Source": "Fuente",
+        "Actions": "Acciones"
+      },
+      "Status": {
+        "Submitted": "Enviado",
+        "NotSelected": "No Seleccionado"
+      },
+      "SourceWeb": "Web"
+    },
+    "CustomFields": {
+      "Title": "Campos Personalizados",
+      "DefinedBadge": "{count} campos definidos",
+      "NoFields": "No hay campos personalizados definidos.",
+      "Completed": "Completado",
+      "Empty": "Vacío",
+      "NoValue": "Sin valor asignado",
+      "NoValuesSelected": "Sin valores seleccionados",
+      "AvailableOptions": "Opciones disponibles:",
+      "DownloadFile": "Descargar archivo",
+      "BooleanYes": "Sí",
+      "BooleanNo": "No",
+      "FieldTypes": {
+        "text": "TEXTO",
+        "select": "SELECCIÓN",
+        "multi_select": "SELECCIÓN MÚLTIPLE",
+        "date": "FECHA",
+        "file": "ARCHIVO",
+        "boolean": "BOOLEANO",
+        "default": "CAMPO"
+      }
+    }
+  },
+  "CandidateDetail": {
+    "Header": {
+      "NoName": "Sin nombre",
+      "NoEmail": "Sin email",
+      "NoPhone": "Sin teléfono",
+      "NoTitle": "Sin puesto",
+      "NoExperience": "Sin datos",
+      "Years": "{years} años",
+      "NoRecruiter": "Sin recruiter",
+      "NoTags": "Sin tags",
+      "Email": "Email",
+      "Phone": "Teléfono",
+      "Country": "País",
+      "City": "Ciudad",
+      "LinkedIn": "LinkedIn",
+      "LinkedInProfile": "Perfil",
+      "Recruiter": "Recruiter"
+    },
+    "Tags": {
+      "addTagButton": "Añadir tag",
+      "dialogTitle": "Seleccionar Tag",
+      "searchPlaceholder": "Buscar tags...",
+      "cancelButton": "Cancelar",
+      "availableTags": {
+        "highTurnover": "ALTA ROTACIÓN",
+        "normalTurnover": "ROTACIÓN NORMAL",
+        "prospect": "PROSPECTO"
+      }
+    },
+    "Nav": {
+      "Summary": "Resumen",
+      "Jobs": "Trabajos",
+      "Matching": "Matching",
+      "Forms": "Formularios",
+      "Comments": "Comentarios",
+      "Meetings": "Reuniones",
+      "Custom": "Personalizados"
+    },
+    "Summary": {
+      "Cv": {
+        "TechnicalResumeTitle": "Resumen Técnico",
+        "SkillYearsMonths": "{years} años {months} meses",
+        "CvTitle": "CV del candidato"
+      },
+      "experience": {
+        "title": "Experiencia",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "company": "Empresa",
+        "duration": "Duración",
+        "Add": {
+          "button": "Agregar Experiencia",
+          "title": "Agregar Experiencia",
+          "company": "Empresa",
+          "companyPlaceholder": "Nombre de la empresa",
+          "role": "Cargo",
+          "rolePlaceholder": "Título del puesto",
+          "startDate": "Fecha de Inicio",
+          "endDate": "Fecha de Fin",
+          "currentJobHint": "Dejar vacío si es trabajo actual",
+          "description": "Descripción",
+          "descriptionPlaceholder": "Detalles del rol, logros, responsabilidades...",
+          "cancel": "Cancelar",
+          "save": "Guardar"
+        }
+      },
+      "Files": {
+        "title": "Archivos",
+        "add": "Agregar Archivo",
+        "empty": "No hay archivos disponibles.",
+        "Add": {
+          "title": "Agregar archivo",
+          "clickToSelect": "Haz clic para seleccionar",
+          "dragAndDrop": "o arrastra y suelta un archivo",
+          "maxSize": "Tamaño máximo: 10MB",
+          "description": "Descripción",
+          "descriptionPlaceholder": "Descripción del archivo",
+          "cancel": "Cancelar",
+          "upload": "Subir Archivo"
+        }
+      }
+    },
+    "Jobs": {
+      "Title": "Trabajos",
+      "Add": "Añadir Trabajo",
+      "NoJobs": "No hay trabajos asociados para este candidato.",
+      "ColumnTitle": "Título",
+      "ColumnAction": "Acción",
+      "JobDetailModal": {
+        "TriggerButton": "Ver detalle",
+        "DialogTitle": "Detalle: {title}",
+        "DialogCompany": "Empresa: {company}",
+        "FilterBy": "Filtrar por:",
+        "NextStages": "Próximas etapas",
+        "History": "Historial",
+        "ShowAll": "Mostrar todas",
+        "SelectStagePlaceholder": "Selecciona etapa",
+        "NoStagesAvailable": "No hay etapas disponibles",
+        "MoveCandidate": "Mover candidato",
+        "NextPossibleStages": "Próximas etapas posibles",
+        "StageHistory": "Historial de etapas",
+        "Table": {
+          "Stage": "Etapa",
+          "Recruiter": "Reclutador",
+          "Form": "Formulario",
+          "Created": "Creado",
+          "Updated": "Actualizado"
+        }
+      }
+    },
+    "Matching": {
+      "Title": "Análisis de Heimdall",
+      "Subtitle": "Evaluación inteligente de candidatos",
+      "Loading": "Cargando análisis...",
+      "Error": "Error: {error}",
+      "NoAnalyses": "No hay análisis disponibles.",
+      "Skills": "Habilidades",
+      "Match": "Coincidencia",
+      "Adaptability": "Adaptabilidad",
+      "ShowKeyPoints": "Ver puntos clave",
+      "HideKeyPoints": "Ocultar puntos clave",
+      "Heimdall": {
+        "APLICA": "Aplica",
+        "APLICA FUERTEMENTE": "Aplica fuertemente",
+        "NO APLICA": "No aplica",
+        "NO APLICA FUERTEMENTE": "No aplica fuertemente"
+      }
+    },
+    "Scoreboards": {
+      "Header": "Formularios de {name}",
+      "Loading": "Cargando formularios...",
+      "Updated": "Actualizado",
+      "Recruiter": "Recruiter",
+      "Share": "Compartir",
+      "Edit": "Editar",
+      "Delete": "Eliminar",
+      "Pending": "Pendiente de completar",
+      "Completed": "Completado",
+      "Add": {
+        "Button": "Crear Nuevo",
+        "Title": "Crear Nuevo Formulario",
+        "SelectLabel": "Selecciona una plantilla",
+        "SelectPlaceholder": "Selecciona una plantilla...",
+        "Public": "Hacer público",
+        "ToComplete": "Pendiente de completar",
+        "FieldsTitle": "Campos del formulario",
+        "Cancel": "Cancelar",
+        "Save": "Guardar"
+      }
+    },
+    "Comments": {
+      "Title": "Comentarios",
+      "Tabs": {
+        "Regular": "Personales",
+        "Technical": "Técnicos"
+      },
+      "Loading": "Cargando comentarios...",
+      "Error": "Error: {error}",
+      "Empty": {
+        "Title": "No hay comentarios en esta categoría."
+      },
+      "By": "Por",
+      "Add": {
+        "Button": {
+          "Regular": "Añadir comentario personal",
+          "Technical": "Añadir comentario técnico"
+        },
+        "DialogTitle": {
+          "Regular": "Añadir comentario personal",
+          "Technical": "Añadir comentario técnico"
+        },
+        "Label": "Comentario",
+        "Placeholder": "Escribe tu comentario aquí...",
+        "Cancel": "Cancelar",
+        "Save": "Guardar"
+      }
+    },
+    "Meetings": {
+      "Title": "Reuniones",
+      "Loading": "Cargando reuniones...",
+      "Error": "Error: {error}",
+      "Join": "Unirme al Meet",
+      "CreatedAt": "Creado: {date}",
+      "NoMeetings": "No hay reuniones agendadas para este candidato."
+    },
+    "Add": {
+      "Button": "Añadir reunión",
+      "Title": "Añadir una nueva reunión",
+      "SummaryLabel": "Título de la reunión",
+      "SummaryPlaceholder": "Título",
+      "StartLabel": "Fecha de inicio",
+      "EndLabel": "Fecha de finalización",
+      "ParticipantsLabel": "Participantes (separados por coma)",
+      "ParticipantsPlaceholder": "email1@example.com, email2@example.com",
+      "DescriptionLabel": "Descripción",
+      "DescriptionPlaceholder": "Detalles de la reunión",
+      "Cancel": "Cancelar",
+      "Submit": "Programar Reunión"
+    },
+    "CustomFields": {
+      "Title": "Campos Personalizados",
+      "Count": "{count} campos definidos",
+      "Empty": "No hay campos personalizados definidos.",
+      "Placeholder": "Marcador de posición",
+      "AvailableOptions": "Opciones disponibles:",
+      "DownloadFile": "Descargar archivo",
+      "AssignedNone": "Sin valor asignado",
+      "SelectedNone": "Sin valores seleccionados",
+      "Completed": "Completado",
+      "EmptyBadge": "Vacío",
+      "Yes": "Sí",
+      "No": "No",
+      "Types": {
+        "text": "TEXTO",
+        "select": "SELECCIÓN",
+        "multi_select": "SELECCIÓN MÚLTIPLE",
+        "date": "FECHA",
+        "file": "ARCHIVO",
+        "boolean": "BOOLEANO",
+        "default": "CAMPO"
+      }
+    },
+    "CandidateActions": {
+      "Reject": "Rechazar",
+      "ActionLink": {
+        "Button": "Vincular",
+        "Title": "Seleccionar trabajo para vincular el candidato",
+        "SearchPlaceholder": "Buscar trabajos...",
+        "NoResults": "No se encontraron trabajos.",
+        "Link": {
+          "Button": "Vincular",
+          "Title": "Seleccionar etapa para vincular",
+          "Label": "Etapa",
+          "Placeholder": "Selecciona una etapa",
+          "Back": "Atrás",
+          "Confirm": "Confirmar"
+        }
+      },
+      "ActionChat": {
+        "Button": "Chat",
+        "Title": "Chat WhatsApp",
+        "NoMessagesTitle": "No hay mensajes anteriores",
+        "NoMessagesDescription": "Envía tu primer mensaje para iniciar la conversación",
+        "Placeholder": "Escribe un mensaje...",
+        "Send": "Enviar"
+      },
+      "ActionEdit": {
+        "button": "Editar",
+        "title": "Editar Candidato",
+        "save": "Guardar cambios",
+        "cancel": "Cancelar",
+        "delete": "Eliminar candidato",
+        "confirmDelete": "¿Estás seguro de que deseas eliminar este candidato?",
+        "fileUpload": "Currículum Vitae (PDF)",
+        "viewCv": "Ver CV actual",
+        "uploadNew": "Haz clic para subir un nuevo CV",
+        "selectedFile": "Archivo seleccionado",
+        "onlyPdf": "Solo archivos PDF (máx. 10MB)",
+        "fields": {
+          "name": "Nombre",
+          "email": "Email",
+          "phone_number": "Teléfono",
+          "location": "Ubicación",
+          "age": "Edad",
+          "date_of_birth": "Fecha de nacimiento",
+          "current_job_title": "Puesto actual",
+          "previous_job_title": "Puesto anterior",
+          "years_in_last_job": "Años en último trabajo",
+          "linkedin": "LinkedIn",
+          "other_url": "Otra URL",
+          "category": "Categoría",
+          "cv": "Currículum Vitae"
+        },
+        "placeholders": {
+          "input": "Ingresa {field}"
+        },
+        "CustomFields": {
+          "title": "Editar Campos Personalizados",
+          "defined": "{count} campos definidos",
+          "none": "No hay campos personalizados definidos.",
+          "completed": "Completado",
+          "empty": "Vacío",
+          "placeholder": "Marcador de posición",
+          "help": "Ayuda",
+          "types": {
+            "text": "TEXTO",
+            "select": "SELECCIÓN",
+            "multi_select": "SELECCIÓN MÚLTIPLE",
+            "date": "FECHA",
+            "file": "ARCHIVO",
+            "boolean": "BOOLEANO",
+            "default": "CAMPO"
+          },
+          "selectPlaceholder": "Seleccionar..."
+        }
+      },
+      "ActionCompare": {
+        "button": "Comparar",
+        "dialogTitle": "Selecciona un trabajo para comparar el candidato",
+        "searchPlaceholder": "Buscar trabajos...",
+        "compareButton": "Comparar",
+        "noJobsFound": "No se encontraron trabajos."
+      },
+      "ActionGenerate": {
+        "GenerateButton": "Generar",
+        "DrawerTitle": "PDFs Generados",
+        "EmptyMessage": "No hay PDFs generados para este candidato",
+        "CreateNew": "Crear nuevo"
+      },
+      "ActionUpdate": {
+        "Button": "Actualizar",
+        "Title": "Opciones de Actualización",
+        "LinkedIn": "Actualizar por LinkedIn",
+        "CV": "Actualizar por CV",
+        "Experience": "Actualizar por Experiencia",
+        "Back": "Volver"
+      }
+    }
+  }
+}

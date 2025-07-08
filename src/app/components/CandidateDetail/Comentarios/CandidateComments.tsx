@@ -5,11 +5,13 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MessageSquare } from "lucide-react";
 import AddCandidateComment from "./AddCandidateComment";
+import { useTranslations } from "next-intl";
 
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { fetchCandidateComments } from "@/state/api/Candidates/id/FetchCandidateComments";
 
 export default function CandidateComments() {
+  const t = useTranslations("CandidateDetail.Comments");
   const dispatch = useAppDispatch();
 
   const { regularComments, technicalComments, loading, error, loaded } =
@@ -17,7 +19,6 @@ export default function CandidateComments() {
 
   const [tab, setTab] = useState<"regular" | "technical">("regular");
 
-  // Llama al fetch solo si no está cargado
   useEffect(() => {
     if (!loaded) {
       fetchCandidateComments(dispatch);
@@ -30,7 +31,7 @@ export default function CandidateComments() {
   return (
     <Card className="w-full">
       <CardHeader className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <CardTitle className="text-2xl font-semibold">Comentarios</CardTitle>
+        <CardTitle className="text-2xl font-semibold">{t("Title")}</CardTitle>
         <div className="flex flex-col md:flex-row gap-2">
           <AddCandidateComment type="regular" />
           <AddCandidateComment type="technical" />
@@ -45,28 +46,26 @@ export default function CandidateComments() {
               onClick={() => setTab("regular")}
               className={tab === "regular" ? "text-purple-700" : ""}
             >
-              Personales
+              {t("Tabs.Regular")}
             </TabsTrigger>
             <TabsTrigger
               value="technical"
               onClick={() => setTab("technical")}
               className={tab === "technical" ? "text-purple-700" : ""}
             >
-              Técnicos
+              {t("Tabs.Technical")}
             </TabsTrigger>
           </TabsList>
         </Tabs>
 
         {loading ? (
-          <p className="text-gray-500">Cargando comentarios...</p>
+          <p className="text-gray-500">{t("Loading")}</p>
         ) : error ? (
-          <p className="text-red-500">Error: {error}</p>
+          <p className="text-red-500">{t("Error", { error })}</p>
         ) : currentComments.length === 0 ? (
           <Card className="flex flex-col items-center justify-center p-8 text-center border-dashed">
             <MessageSquare className="w-10 h-10 text-gray-400 mb-2" />
-            <p className="text-gray-500">
-              No hay comentarios en esta categoría.
-            </p>
+            <p className="text-gray-500">{t("Empty.Title")}</p>
           </Card>
         ) : (
           <div className="space-y-4 max-h-[400px] overflow-y-auto pr-2">
@@ -76,7 +75,9 @@ export default function CandidateComments() {
                   {"text" in comment ? comment.text : comment.comment}
                 </p>
                 <div className="text-xs text-gray-500 flex justify-between">
-                  <span>Por: {comment.recruiter}</span>
+                  <span>
+                    {t("By")}: {comment.recruiter}
+                  </span>
                   <span>
                     {new Date(comment.created_at).toLocaleString("es-AR")}
                   </span>

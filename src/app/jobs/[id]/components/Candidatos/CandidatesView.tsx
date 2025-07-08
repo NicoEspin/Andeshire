@@ -21,11 +21,13 @@ import {
 } from "lucide-react";
 import { useAppDispatch } from "@/app/redux";
 import TableConfiguration from "./TableConfiguration";
+import { useTranslations } from "next-intl";
 
 interface CandidatesViewProps {
   stages: Stage[];
   candidateByStage: CandidatesByStage;
 }
+
 export type TableColumnsVisibility = {
   Nombre: boolean;
   Email: boolean;
@@ -36,35 +38,33 @@ export type TableColumnsVisibility = {
   "Estado en otros procesos": boolean;
 };
 
-
 const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
+  const t = useTranslations("JobId.Candidates");
   const dispatch = useAppDispatch();
   const [view, setView] = useState<"table" | "kanban">("kanban");
   const [search, setSearch] = useState("");
   const [onlyValidStages, setOnlyValidStages] = useState(true);
   const [showConfig, setShowConfig] = useState(false);
- const [columns, setColumns] = useState<TableColumnsVisibility>({
-  Nombre: true,
-  Email: true,
-  Etapa: true,
-  "Fecha de aplicación": true,
-  Match: true,
-  Compensación: true,
-  "Estado en otros procesos": true,
-});
-
+  const [columns, setColumns] = useState<TableColumnsVisibility>({
+    Nombre: true,
+    Email: true,
+    Etapa: true,
+    "Fecha de aplicación": true,
+    Match: true,
+    Compensación: true,
+    "Estado en otros procesos": true,
+  });
 
   const candidatesCount = Object.values(candidateByStage).reduce(
     (total, candidates) => total + candidates.length,
     0
   );
+
   const handleDragEnd = (result: DropResult) => {
     const { draggableId, source, destination } = result;
 
-    // No hacer nada si no hay destino
     if (!destination) return;
 
-    // Si se reordenó dentro de la misma etapa
     if (source.droppableId === destination.droppableId) {
       if (source.index === destination.index) return;
 
@@ -79,7 +79,6 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
         })
       );
     } else {
-      // Si se mueve entre etapas distintas
       dispatch(
         moveCandidate({
           candidateId: draggableId,
@@ -99,9 +98,10 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         {/* Título */}
         <h2 className="text-xl font-semibold text-gray-800">
-          Candidatos vinculados{" "}
+          {t("Title")}{" "}
           <span className="text-gray-500">({candidatesCount})</span>
         </h2>
+
         {/* Vista Toggle */}
         <div className="flex items-center gap-2">
           <Button
@@ -113,7 +113,7 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
             )}
           >
             <TableIcon className="w-4 h-4" />
-            Tabla
+            {t("Table")}
           </Button>
           <Button
             variant={view === "kanban" ? "default" : "ghost"}
@@ -124,7 +124,7 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
             )}
           >
             <Kanban className="w-4 h-4" />
-            Kanban
+            {t("Kanban")}
           </Button>
         </div>
 
@@ -133,7 +133,7 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
           <div className="relative">
             <Search className="absolute left-2.5 top-2.5 w-4 h-4 text-gray-400" />
             <Input
-              placeholder="Buscar candidatos..."
+              placeholder={t("SearchPlaceholder")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="pl-8 w-60"
@@ -146,8 +146,11 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
               onCheckedChange={setOnlyValidStages}
               className="bg-purple-600"
             />
-            <span className="text-sm text-gray-700">Solo etapas posibles</span>
+            <span className="text-sm text-gray-700">
+              {t("OnlyValidStages")}
+            </span>
           </div>
+
           {view === "table" && (
             <Button
               variant="ghost"
@@ -155,9 +158,10 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
               onClick={() => setShowConfig(true)}
             >
               <Settings className="w-4 h-4" />
-              Configurar columnas
+              {t("ConfigureColumns")}
             </Button>
           )}
+
           {view === "table" && (
             <TableConfiguration
               open={showConfig}
@@ -172,7 +176,7 @@ const CandidatesView = ({ stages, candidateByStage }: CandidatesViewProps) => {
             className="flex items-center gap-2 text-sm text-gray-600"
           >
             <History className="w-4 h-4" />
-            Historial de tareas
+            {t("TaskHistory")}
           </Button>
         </div>
       </div>

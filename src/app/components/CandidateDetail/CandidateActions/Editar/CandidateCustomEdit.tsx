@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useTranslations } from "next-intl";
 import { CandidateDetail } from "@/app/jobs/[id]/types/CandidatesByStagesTypes";
 import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -39,6 +40,9 @@ const fieldIcons: Record<string, React.ReactNode> = {
 export default function CandidateCustomEdit({
   candidate,
 }: CandidateCustomEditProps) {
+  const t = useTranslations(
+    "CandidateDetail.CandidateActions.ActionEdit.CustomFields"
+  );
   const [fields, setFields] = useState(candidate?.custom_fields || []);
 
   const handleChange = (id: string, value: any) => {
@@ -54,16 +58,14 @@ export default function CandidateCustomEdit({
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between border-b pb-4">
-        <h2 className="text-2xl font-semibold">Editar Campos Personalizados</h2>
+        <h2 className="text-2xl font-semibold">{t("title")}</h2>
         <Badge variant="outline" className="text-purple-700 border-purple-700">
-          {fields.length} campos definidos
+          {t("defined", { count: fields.length })}
         </Badge>
       </div>
 
       {fields.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">
-          No hay campos personalizados definidos.
-        </p>
+        <p className="text-gray-500 text-center py-8">{t("none")}</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {fields.map((field) => (
@@ -83,14 +85,14 @@ export default function CandidateCustomEdit({
                       variant="outline"
                       className="text-green-700 border-green-700"
                     >
-                      Completado
+                      {t("completed")}
                     </Badge>
                   ) : (
                     <Badge
                       variant="outline"
                       className="text-gray-500 border-gray-300"
                     >
-                      Vacío
+                      {t("empty")}
                     </Badge>
                   )}
                 </div>
@@ -98,7 +100,7 @@ export default function CandidateCustomEdit({
 
               <CardContent>
                 <p className="text-xs uppercase text-gray-400 mb-1">
-                  {getFieldTypeLabel(field.field_type)}
+                  {getFieldTypeLabel(field.field_type, t)}
                 </p>
 
                 {field.placeholder && (
@@ -107,7 +109,7 @@ export default function CandidateCustomEdit({
                   </p>
                 )}
 
-                {renderEditableField(field, handleChange)}
+                {renderEditableField(field, handleChange, t)}
 
                 {field.help_text && (
                   <div className="flex items-center mt-4">
@@ -124,22 +126,17 @@ export default function CandidateCustomEdit({
   );
 }
 
-function getFieldTypeLabel(fieldType: string) {
+function getFieldTypeLabel(fieldType: string, t: any) {
   switch (fieldType) {
     case "text":
-      return "TEXTO";
     case "select":
-      return "SELECCIÓN";
     case "multi_select":
-      return "SELECCIÓN MÚLTIPLE";
     case "date":
-      return "FECHA";
     case "file":
-      return "ARCHIVO";
     case "boolean":
-      return "BOOLEANO";
+      return t(`types.${fieldType}`);
     default:
-      return "CAMPO";
+      return t("types.default");
   }
 }
 
@@ -150,7 +147,8 @@ function renderEditableField(
     value: string | string[] | null;
     options?: string[] | null;
   },
-  handleChange: (id: string, value: any) => void
+  handleChange: (id: string, value: any) => void,
+  t: any
 ) {
   switch (field.field_type) {
     case "text":
@@ -170,7 +168,7 @@ function renderEditableField(
           onValueChange={(value) => handleChange(field.id, value)}
         >
           <SelectTrigger>
-            <SelectValue placeholder="Seleccionar..." />
+            <SelectValue placeholder={t("selectPlaceholder")} />
           </SelectTrigger>
           <SelectContent>
             {field.options?.map((option, index) => (

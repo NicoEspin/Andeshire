@@ -4,6 +4,7 @@ import { Bell } from "lucide-react";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export const mockNotifications = {
   count: 1049,
@@ -14,7 +15,7 @@ export const mockNotifications = {
       is_read: false,
       action_url:
         "/ats/jobs/c53c6e45-df5d-48f0-8d2e-fef426527de0/?section=applicants",
-      created_at: "2025-06-18T16:01:26.972253+00:00",
+      created_at: "2025-06-18T16:01:26.972253+00:00"
     },
     {
       id: "541e83a3-6845-468e-b65a-eb50ca81533b",
@@ -22,13 +23,13 @@ export const mockNotifications = {
       is_read: false,
       action_url:
         "/ats/jobs/c53c6e45-df5d-48f0-8d2e-fef426527de0/?section=applicants",
-      created_at: "2025-06-18T15:56:22.538794+00:00",
-    },
-    
-  ],
+      created_at: "2025-06-18T15:56:22.538794+00:00"
+    }
+  ]
 };
 
 const NotificationDropdown = () => {
+  const t = useTranslations("Notifications");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -72,7 +73,7 @@ const NotificationDropdown = () => {
             `}
           >
             <div className="p-4 border-b border-gray-300 text-sm font-semibold text-gray-800">
-              Notificaciones
+              {t("Title")}
             </div>
             <ul className="max-h-80 overflow-y-auto divide-y divide-gray-100">
               {mockNotifications.notifications.map((n) => (
@@ -92,7 +93,7 @@ const NotificationDropdown = () => {
                         hour: "2-digit",
                         minute: "2-digit",
                         day: "2-digit",
-                        month: "2-digit",
+                        month: "2-digit"
                       })}
                     </div>
                   </Link>
@@ -100,7 +101,7 @@ const NotificationDropdown = () => {
               ))}
             </ul>
             <div className="text-center py-3 text-sm text-blue-600 hover:underline cursor-pointer border-t border-gray-300">
-              Ver todas
+              {t("ViewAll")}
             </div>
           </motion.div>
         )}

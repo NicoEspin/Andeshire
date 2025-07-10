@@ -9,28 +9,47 @@ import {
   SheetDescription,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { PlusIcon, ChevronDown } from "lucide-react";
+import { PlusIcon, ChevronDown, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { MultiSelect } from "@/components/ui/multiselect"; // Ajusta a tu versión real
-import { Separator } from "@/components/ui/separator"; // Opcional para separadores
+import { MultiSelect } from "@/components/ui/multiselect";
+import { Separator } from "@/components/ui/separator";
+
+import { WhatsappAgentConfig } from "./templates/WhatsappAgentConfig";
+import { WhatsappTemplateConfig } from "./templates/WhatsappTemplateConfig";
+import { ScoreboardTemplateConfig } from "./templates/ScoreboardTemplateConfig";
+import { EmailTemplateConfig } from "./templates/EmailTemplateConfig";
+import { CallTemplateConfig } from "./templates/CallTemplateConfig";
+import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes";
+
 
 type EditWorkflowProps = {
   stage: {
     id: string;
     label: string;
     description?: string;
-    actions?: { id: string; action_type: string }[];
+    actions?: {
+      id: string;
+      action_type: string;
+      [key: string]: any;
+    }[];
     statusOptions?: string[];
     color: string;
   };
+  templateSet: TemplateSet;
 };
 
 const STATUS_OPTIONS = [
@@ -51,23 +70,89 @@ const ACTION_OPTIONS = [
   "Formulario",
 ];
 
-export function EditWorkflow({ stage }: EditWorkflowProps) {
+const ACTION_CONFIGS: Record<
+  string,
+  {
+    label: string;
+    Form?: React.FC<{
+      action: any;
+      onChange: (updatedAction: any) => void;
+      templateSet?: TemplateSet;
+    }>;
+  }
+> = {
+  "Agente de WhatsApp": {
+    label: "Agente de WhatsApp",
+    Form: WhatsappAgentConfig,
+    
+  },
+  WhatsApp: {
+    label: "WhatsApp",
+    Form: WhatsappTemplateConfig,
+  },
+  Formulario: {
+    label: "Formulario",
+    Form: ScoreboardTemplateConfig,
+  },
+  Email: {
+    label: "Email",
+    Form: EmailTemplateConfig,
+  },
+  "Agente de voz": {
+    label: "Agente de voz",
+    Form: CallTemplateConfig,
+  },
+};
+function getTemplateKey(actionType: string): string {
+  switch (actionType) {
+    case "Agente de voz":
+      return "call_template_id";
+    case "Email":
+      return "email_template_id";
+    case "WhatsApp":
+      return "whatsapp_template_id";
+    case "Agente de WhatsApp":
+      return "whatsapp_agent_template_id";
+    case "Formulario":
+      return "scoreboard_template_id";
+    default:
+      return "template_id";
+  }
+}
+
+
+export function EditWorkflow({ stage, templateSet  }: EditWorkflowProps) {
   const [label, setLabel] = React.useState(stage.label);
   const [description, setDescription] = React.useState(stage.description || "");
   const [selectedStatuses, setSelectedStatuses] = React.useState<string[]>(
     stage.statusOptions || []
   );
-  const [actions, setActions] = React.useState(stage.actions || []);
+ const [actions, setActions] = React.useState(
+  (stage.actions || []).map((action) => {
+    const templateKey = getTemplateKey(action.action_type);
+    return {
+      ...action,
+      [templateKey]: action[templateKey] || "", // Asegura clave presente
+    };
+  })
+);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
-  const addAction = (actionType: string) => {
-    setActions((prev) => [
-      ...prev,
-      {
-        id: `${Date.now()}`,
-        action_type: actionType,
-      },
-    ]);
+ const addAction = (actionType: string) => {
+  const templateKey = getTemplateKey(actionType);
+  setActions((prev) => [
+    ...prev,
+    {
+      id: `${Date.now()}`,
+      action_type: actionType,
+      [templateKey]: "", // Siempre inicializa la clave correcta
+    },
+  ]);
+};
+
+
+  const removeAction = (index: number) => {
+    setActions((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSave = () => {
@@ -77,11 +162,9 @@ export function EditWorkflow({ stage }: EditWorkflowProps) {
       statuses: selectedStatuses,
       actions,
     });
-    // 🔗 Aquí conecta con tu lógica de persistencia o API.
   };
 
   const handleCancel = () => {
-    // Si quieres cerrar el Sheet, deberías manejarlo con estado externo.
     console.log("Cancelado");
   };
 
@@ -97,22 +180,23 @@ export function EditWorkflow({ stage }: EditWorkflowProps) {
           Editar Stage
         </Button>
       </SheetTrigger>
+
       <SheetContent
         side="left"
-        className="w-[400px] p-6 flex flex-col gap-6 bg-background"
+        className="w-[420px] p-6 flex flex-col gap-6 bg-background overflow-auto"
       >
         <SheetHeader>
-          <SheetTitle className="text-lg font-bold mb-2">
+          <SheetTitle className="text-xl font-bold mb-2">
             Editar Stage
           </SheetTitle>
-          <SheetDescription className="text-xs text-muted-foreground">
+          <SheetDescription className="text-sm text-muted-foreground">
             Modifica la información de este Stage y gestiona sus acciones.
           </SheetDescription>
         </SheetHeader>
 
         <div className="space-y-4">
           <div>
-            <label className="text-xs font-medium mb-1 block">Título</label>
+            <label className="text-sm font-medium mb-1 block">Título</label>
             <Input
               value={label}
               onChange={(e) => setLabel(e.target.value)}
@@ -120,7 +204,7 @@ export function EditWorkflow({ stage }: EditWorkflowProps) {
             />
           </div>
           <div>
-            <label className="text-xs font-medium mb-1 block">
+            <label className="text-sm font-medium mb-1 block">
               Descripción
             </label>
             <Textarea
@@ -134,11 +218,11 @@ export function EditWorkflow({ stage }: EditWorkflowProps) {
         <Separator />
 
         <div className="space-y-2">
-          <h4 className="text-sm font-semibold">Estados</h4>
+          <h4 className="text-base font-semibold">Estados</h4>
           <MultiSelect
             options={STATUS_OPTIONS.map((s) => ({ label: s, value: s }))}
-            selected={selectedStatuses} 
-            setSelected={setSelectedStatuses} 
+            selected={selectedStatuses}
+            setSelected={setSelectedStatuses}
             placeholder="Selecciona estados"
           />
         </div>
@@ -146,27 +230,64 @@ export function EditWorkflow({ stage }: EditWorkflowProps) {
         <Separator />
 
         <div className="space-y-2">
-          <h4 className="text-sm font-semibold">Acciones</h4>
-          <ul className="space-y-1">
-            {actions.length > 0 ? (
-              actions.map((action) => (
-                <li key={action.id} className="text-xs flex items-center">
-                  ➤ {action.action_type}
-                </li>
-              ))
-            ) : (
-              <p className="text-xs text-muted-foreground">
-                Sin acciones registradas.
-              </p>
-            )}
-          </ul>
+          <h4 className="text-base font-semibold">Acciones</h4>
+
+          {actions.length > 0 ? (
+            <Accordion type="multiple" className="space-y-2">
+              {actions.map((action, index) => {
+                const ActionForm = ACTION_CONFIGS[action.action_type]?.Form;
+
+                return (
+                  <AccordionItem
+                    key={action.id}
+                    value={action.id}
+                    className="border rounded-lg p-3 bg-muted/50"
+                  >
+                    <AccordionTrigger className="flex justify-between items-center">
+                      <span className="text-sm font-medium">
+                        {action.action_type}
+                      </span>
+                      <span
+                        role="button"
+                        tabIndex={0}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          removeAction(index);
+                        }}
+                        className="text-red-500 hover:bg-red-100 p-1 rounded transition cursor-pointer"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      {ActionForm && (
+                        <ActionForm
+                          action={action}
+                          onChange={(updatedAction) => {
+                            const updated = [...actions];
+                            updated[index] = updatedAction;
+                            setActions(updated);
+                          }}
+                          templateSet={templateSet}
+                        />
+                      )}
+                    </AccordionContent>
+                  </AccordionItem>
+                );
+              })}
+            </Accordion>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              Sin acciones registradas.
+            </p>
+          )}
 
           <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
             <DropdownMenuTrigger asChild>
               <Button
                 size="sm"
                 variant="outline"
-                className="flex items-center gap-2 w-full justify-center"
+                className="flex items-center gap-2 w-full justify-center rounded-lg shadow-sm hover:shadow-md transition"
               >
                 <PlusIcon className="w-4 h-4" />
                 Agregar Acción
@@ -196,7 +317,7 @@ export function EditWorkflow({ stage }: EditWorkflowProps) {
             Cancelar
           </Button>
           <Button variant="default" onClick={handleSave}>
-            Guardar
+            Guardar Cambios
           </Button>
         </div>
       </SheetContent>

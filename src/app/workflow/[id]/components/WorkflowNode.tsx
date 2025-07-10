@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Handle, Position } from "@xyflow/react";
 import {
   Card,
@@ -9,31 +9,44 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils"; // Tu util para combinar clases Tailwind
+import { cn } from "@/lib/utils";
 import { EditWorkflow } from "./EditWorkflow";
 import { Trash } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+
+import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes";
+
+export type WorkflowNodeData = {
+  id: string;
+  label: string;
+  description?: string;
+  actions?: { id: string; action_type: string; template_id?: string }[];
+  statusOptions?: string[];
+  color: string;
+  onDelete: (id: string) => void;
+  templateSet: TemplateSet;
+};
 
 type WorkflowNodeProps = {
-  data: {
-    id: string;
-    label: string;
-    description?: string;
-    actions?: { id: string; action_type: string }[];
-    statusOptions?: string[];
-    color: string; // 👈 Color único del nodo
-    onDelete: (id: string) => void;
-  };
+  data: WorkflowNodeData;
 };
 
 export default function WorkflowNode({ data }: WorkflowNodeProps) {
-  // 🎨 Color de fondo por status
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
+
   const statusColor = data.statusOptions?.includes("rejected")
     ? "bg-red-100 border-red-300"
     : data.statusOptions?.includes("active")
     ? "bg-green-100 border-green-300"
     : "bg-white border-gray-200";
-  const statusOptions = data.statusOptions ?? [];
+
   return (
     <div className="relative">
       <Card
@@ -42,7 +55,7 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
           statusColor
         )}
         style={{
-          borderTop: `6px solid ${data.color}`, // 🎨 Borde superior con color único
+          borderTop: `6px solid ${data.color}`,
         }}
       >
         <CardHeader className="pb-2 flex flex-row justify-between items-start">
@@ -58,11 +71,12 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
             variant="ghost"
             size="icon"
             className="ml-auto"
-            onClick={() => data.onDelete(data.id)}
+            onClick={() => setOpenDeleteModal(true)}
           >
             <Trash className="w-4 h-4 text-red-500 hover:text-red-700" />
           </Button>
         </CardHeader>
+
         <CardContent className="pb-2">
           {data.actions?.length ? (
             <ul className="text-xs space-y-1">
@@ -76,31 +90,60 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
             <p className="text-xs text-muted-foreground">Sin acciones</p>
           )}
         </CardContent>
+
         <CardFooter>
           <EditWorkflow
             stage={{
-              id: data.label,
+              id: data.id,
               label: data.label,
               description: data.description,
               actions: data.actions,
               statusOptions: data.statusOptions,
               color: data.color,
             }}
+            templateSet={data.templateSet}
           />
         </CardFooter>
       </Card>
+
+      {/* Modal de confirmación */}
+      <Dialog open={openDeleteModal} onOpenChange={setOpenDeleteModal}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>¿Eliminar etapa?</DialogTitle>
+            <DialogDescription>
+              ¿Estás seguro que quieres eliminar esta etapa? Esta acción no se
+              puede deshacer.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setOpenDeleteModal(false)}>
+              Cancelar
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                data.onDelete(data.id);
+                setOpenDeleteModal(false);
+              }}
+            >
+              Eliminar etapa
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <Handle
         type="target"
         position={Position.Top}
         className="w-2 h-2"
-        style={{ background: data.color }} // 🎨 Handle superior
+        style={{ background: data.color }}
       />
       <Handle
         type="source"
         position={Position.Bottom}
         className="w-2 h-2"
-        style={{ background: data.color }} // 🎨 Handle inferior
+        style={{ background: data.color }}
       />
     </div>
   );

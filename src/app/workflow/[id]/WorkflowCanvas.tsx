@@ -97,6 +97,7 @@ export default function WorkflowCanvas({
         statusOptions: stage.status_options,
         color: nodeColor,
         onDelete: handleDeleteStage,
+        templateSet: templateSet,
       },
     });
 
@@ -105,8 +106,7 @@ export default function WorkflowCanvas({
       positionNode(children[0], level + 1, x);
     } else if (children.length > 1) {
       children.forEach((childId, index) => {
-        const childX =
-          x + (index - (children.length - 1) / 2) * spacingX;
+        const childX = x + (index - (children.length - 1) / 2) * spacingX;
         positionNode(childId, level + 1, childX);
       });
     }
@@ -119,18 +119,19 @@ export default function WorkflowCanvas({
 
   const initialNodes: Node[] = positionedNodes;
 
-  const initialEdges: Edge[] = initialStages.flatMap((stage) =>
-    stage.next_possible_stages?.map((targetId) => {
-      const stageIndex = initialStages.findIndex((s) => s.id === stage.id);
-      const edgeColor = nodeColors[stageIndex % nodeColors.length];
-      return {
-        id: `${stage.id}-${targetId}`,
-        source: stage.id,
-        target: targetId,
-        style: { stroke: edgeColor, strokeWidth: 2 },
-        markerEnd: { type: MarkerType.ArrowClosed as const },
-      } satisfies Edge;
-    }) || []
+  const initialEdges: Edge[] = initialStages.flatMap(
+    (stage) =>
+      stage.next_possible_stages?.map((targetId) => {
+        const stageIndex = initialStages.findIndex((s) => s.id === stage.id);
+        const edgeColor = nodeColors[stageIndex % nodeColors.length];
+        return {
+          id: `${stage.id}-${targetId}`,
+          source: stage.id,
+          target: targetId,
+          style: { stroke: edgeColor, strokeWidth: 2 },
+          markerEnd: { type: MarkerType.ArrowClosed as const },
+        } satisfies Edge;
+      }) || []
   );
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -139,9 +140,7 @@ export default function WorkflowCanvas({
   function handleDeleteStage(stageId: string) {
     setNodes((prev) => prev.filter((node) => node.id !== stageId));
     setEdges((prev) =>
-      prev.filter(
-        (edge) => edge.source !== stageId && edge.target !== stageId
-      )
+      prev.filter((edge) => edge.source !== stageId && edge.target !== stageId)
     );
     setStages((prev) => prev.filter((stage) => stage.id !== stageId));
   }
@@ -181,11 +180,28 @@ export default function WorkflowCanvas({
     setStages((prev) => [...prev, newStage]);
   };
 
-  const onConnect: OnConnect = useCallback(
-    (connection) => setEdges((eds) => addEdge(connection, eds)),
-    [setEdges]
-  );
+ const onConnect: OnConnect = useCallback(
+  (connection) => {
+    if (connection.source === connection.target) {
 
+      return; // Ignora la conexión
+    }
+
+    setEdges((eds) => {
+      const sourceNode = nodes.find((n) => n.id === connection.source);
+      const sourceColor = sourceNode?.data?.color || "#333";
+
+      const styledConnection = {
+        ...connection,
+        style: { stroke: sourceColor, strokeWidth: 2 },
+        markerEnd: { type: MarkerType.ArrowClosed as const },
+      };
+
+      return addEdge(styledConnection, eds);
+    });
+  },
+  [setEdges, nodes]
+);
   return (
     <div className="relative flex h-full w-full">
       <div className="flex-1 h-full">
@@ -214,6 +230,7 @@ export default function WorkflowCanvas({
               <AddNewStage
                 onAddStage={handleAddStage}
                 existingStages={stages}
+                templateSet={templateSet}
               />
             </CardHeader>
             <CardContent className="p-4">

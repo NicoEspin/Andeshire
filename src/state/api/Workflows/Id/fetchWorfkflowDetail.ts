@@ -1,5 +1,6 @@
 // store/api/Workflows/fetchWorkflowDetail.ts
 
+import api from "@/lib/axios";
 import { AppDispatch } from "@/app/redux";
 import {
   setWorkflow,
@@ -8,44 +9,41 @@ import {
 } from "@/store/slices/workflows/Id/WorkflowDetailSlice";
 
 /**
- * 🚀 Fetch del Workflow Detail usando `fetch` nativo.
- * Llama literalmente a:
- * https://andeshire.com/api/edit-template-set/uuid:template_set_id/
- * 
- * Pasa el `templateSetId` como parámetro.
+ * 🚀 Fetch del Workflow Detail.
+ * - Por ahora GET a /workflowDetail (sin ID)
+ * - Si en el futuro necesitas pasar un ID => descomenta workflowId y usa params
  */
 
 export const fetchWorkflowDetail = async (
   dispatch: AppDispatch,
-  templateSetId: string // Ahora sí obligatorio para construir la URL
+  workflowId?: string // ⚡ Param opcional, por ahora no usado
 ) => {
   dispatch(setLoading(true));
   dispatch(setError(null));
 
   try {
-    const response = await fetch(
-      `https://andeshire.com/api/edit-template-set/uuid:${templateSetId}/`
-    );
+    const response = await api.get("/workflowDetail", {
+      // params: workflowId ? { id: workflowId } : undefined,
+    });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+    console.log("API Response:", response.data);
 
-    const responseData = await response.json();
-    console.log("API Response:", responseData);
-
-    if (responseData.success) {
-      dispatch(setWorkflow(responseData.data));
+    if (response.data.success) {
+      dispatch(setWorkflow(response.data.data));
     } else {
       dispatch(setError("Failed to fetch workflow detail"));
     }
   } catch (error: any) {
     console.error("API Error:", error);
 
-    if (error.name === "TypeError") {
+    if (error.code === "ERR_NETWORK" || error.message.includes("CORS")) {
       dispatch(setError("Network error - please check your connection"));
     } else {
-      dispatch(setError(error.message || "Failed to load workflow detail"));
+      const errorMessage =
+        error.response?.data?.message ||
+        error.message ||
+        "Failed to load workflow detail";
+      dispatch(setError(errorMessage));
     }
   } finally {
     dispatch(setLoading(false));

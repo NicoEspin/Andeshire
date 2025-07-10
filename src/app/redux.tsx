@@ -37,6 +37,11 @@ import candidateMeetingReducer from "@/store/slices/candidates/id/CandidateMeeti
 import jobStagesReducer from "@/store/slices/Jobs/id/JobStagesSlice";
 import workflowDetailSlice from "@/store/slices/workflows/Id/WorkflowDetailSlice";
 import workflowListSlice from "@/store/slices/workflows/WorkflowListSlice";
+import whatsappAgentSlice from "@/store/slices/workflows/Id/WhatsappAgentSlice";
+import workflowWhatsappSlice from "@/store/slices/workflows/Id/WorkflowWhatsappSlice";
+import workflowScoreboardsSlice from "@/store/slices/workflows/Id/WorkflowScoreboardsSlice";
+import workflowEmailSlice from "@/store/slices/workflows/Id/WorkflowEmailSlice";
+import workflowCallSlice from "@/store/slices/workflows/Id/WorkflowCallSlice";
 
 // ⛔ Safe storage fallback para SSR
 const createNoopStorage = () => {
@@ -83,6 +88,11 @@ const rootReducer = combineReducers({
   jobStages: jobStagesReducer,
   workflowDetail: workflowDetailSlice,
   workflowList: workflowListSlice,
+  whatsappAgent: whatsappAgentSlice,
+  workflowWhatsapp: workflowWhatsappSlice,
+  workflowScoreboards: workflowScoreboardsSlice,
+  workflowEmail: workflowEmailSlice,
+  workflowCall: workflowCallSlice,
 });
 
 // 🎯 Apply persistencia

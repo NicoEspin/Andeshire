@@ -42,6 +42,141 @@
       "Months": "months"
     }
   },
+  "Workflows": {
+    "title": "Workflows",
+    "searchPlaceholder": "Search by workflow name",
+    "table": {
+      "name": "Name",
+      "recruiter": "Recruiter",
+      "createdAt": "Created At",
+      "stages": "Stages",
+      "details": "Details",
+      "actions": "Actions",
+      "noResults": "No workflows found."
+    },
+    "tooltip": {
+      "jobsUsedIn": "Jobs where it is used",
+      "delete": "Delete workflow"
+    },
+    "StageDetails": {
+      "title": "Workflow Details: {name}",
+      "nextStagesTitle": "Next Stages:",
+      "noNextStages": "No next stages available."
+    }
+  },
+  "WorkflowDetails": {
+    "Canvas": {
+      "Back": "Back",
+      "WorkflowNode": {
+        "NoActions": "No actions",
+        "DeleteStage": {
+          "Title": "Delete stage?",
+          "Description": "Are you sure you want to delete this stage? This action cannot be undone.",
+          "Cancel": "Cancel",
+          "Confirm": "Delete stage"
+        }
+      }
+    },
+    "SidebarDetails": {
+      "openDetail": "Open Detail",
+      "id": "ID",
+      "recruiterId": "Recruiter ID",
+      "consultingFirmId": "Consulting Firm ID"
+    },
+    "AddNewStage": {
+      "buttonAddStage": "Add Stage",
+      "sheetTitle": "Create New Stage",
+      "sheetDescription": "Define the information and actions of the new workflow stage.",
+      "titleLabel": "Title",
+      "titlePlaceholder": "Stage title",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Stage description",
+      "statusesTitle": "Statuses",
+      "statusesPlaceholder": "Select statuses",
+      "actionsTitle": "Actions",
+      "actionsEmpty": "No actions added.",
+      "addAction": "Add Action",
+      "createStage": "Create Stage",
+      "cancel": "Cancel",
+      "statusOptions": {
+        "Active": "Active",
+        "Inactive": "Inactive",
+        "InitialStep": "Initial Step",
+        "HeimdallAutoPilot": "🤖 Heimdall AutoPilot",
+        "AgentAutoPilot": "🚗 Agent AutoPilot",
+        "InProcess": "In Process",
+        "Rejected": "Rejected"
+      },
+      "actionOptions": {
+        "Email": "Email",
+        "VoiceAgent": "Voice Agent",
+        "WhatsApp": "WhatsApp",
+        "WhatsAppAgent": "WhatsApp Agent",
+        "Form": "Form"
+      },
+      "removeAction": "Remove Action"
+    },
+    "EditStage": {
+      "editStage": "Edit Stage",
+      "editStageDescription": "Modify this Stage's information and manage its actions.",
+      "titleLabel": "Title",
+      "titlePlaceholder": "Stage Title",
+      "descriptionLabel": "Description",
+      "descriptionPlaceholder": "Stage Description",
+      "statusesLabel": "Statuses",
+      "statusesPlaceholder": "Select statuses",
+      "actionsLabel": "Actions",
+      "noActions": "No actions registered.",
+      "addAction": "Add Action",
+      "cancel": "Cancel",
+      "saveChanges": "Save Changes",
+      "statusOptions": [
+        "Active",
+        "Inactive",
+        "Initial Step",
+        "🤖 Heimdall Autopilot",
+        "🚗 Agent Autopilot",
+        "In Progress",
+        "Rejected"
+      ],
+      "actionOptions": [
+        "Email",
+        "Voice Agent",
+        "WhatsApp",
+        "WhatsApp Agent",
+        "Form"
+      ]
+    },
+    "RemoteSelect": {
+      "loading": "Loading options...",
+      "error": "Error",
+      "placeholder": "Select..."
+    },
+    "Templates": {
+      "Call": {
+        "Label": "Call Template",
+        "Placeholder": "Select call template"
+      },
+      "Email": {
+        "Label": "Email Template",
+        "Placeholder": "Select email template"
+      },
+      "Scoreboards": {
+        "Label": "Form",
+        "Placeholder": "Select form"
+      },
+      "WhatsAppAgent": {
+        "label": "WhatsApp Agent Template",
+        "placeholder": "Select template",
+        "fallbackName": "No name"
+      },
+      "WhatsApp": {
+        "label": "WhatsApp Template",
+        "placeholder": "Select WhatsApp template",
+        "fallbackName": "No name"
+      }
+    }
+  },
   "Jobs": {
     "filterTitle": "Filter jobs",
     "searchPlaceholder": "🔍 Search by job name",

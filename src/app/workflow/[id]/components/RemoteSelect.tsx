@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type RemoteSelectProps = {
   label?: string;
@@ -42,6 +43,7 @@ export const RemoteSelect = ({
 }: RemoteSelectProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const { data, loading, error, loaded } = useSelector(sliceSelector);
+  const t = useTranslations("WorkflowDetails.RemoteSelect");
 
   useEffect(() => {
     if (!loaded || data.length === 0) {
@@ -51,13 +53,17 @@ export const RemoteSelect = ({
   if (loading) {
     return (
       <div className="flex items-center gap-2 text-sm text-muted-foreground">
-        <Loader2 className="animate-spin w-4 h-4" /> Cargando opciones...
+        <Loader2 className="animate-spin w-4 h-4" /> {t("loading")}
       </div>
     );
   }
 
   if (error) {
-    return <div className="text-red-500 text-sm">Error: {error}</div>;
+    return (
+      <div className="text-red-500 text-sm">
+        {t("error")}: {error}
+      </div>
+    );
   }
 
   return (
@@ -65,7 +71,7 @@ export const RemoteSelect = ({
       {label && <label className="text-sm mb-1 block">{label}</label>}
       <Select value={value} onValueChange={onChange}>
         <SelectTrigger>
-          <SelectValue placeholder={placeholder || "Seleccionar..."} />
+          <SelectValue placeholder={placeholder || t("placeholder")} />
         </SelectTrigger>
         <SelectContent>
           {data.map((item) => (

@@ -25,6 +25,7 @@ import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { AddNewStage } from "./components/AddNewStage";
+import { useTranslations } from "next-intl";
 
 type WorkflowCanvasProps = {
   stages: Stage[];
@@ -47,6 +48,7 @@ export default function WorkflowCanvas({
   templateSet,
 }: WorkflowCanvasProps) {
   const [stages, setStages] = useState<Stage[]>(initialStages);
+  const t = useTranslations("WorkflowDetails.Canvas");
 
   // 👉 Genera nodos iniciales solo una vez
   const childMap: Record<string, string[]> = {};
@@ -180,28 +182,27 @@ export default function WorkflowCanvas({
     setStages((prev) => [...prev, newStage]);
   };
 
- const onConnect: OnConnect = useCallback(
-  (connection) => {
-    if (connection.source === connection.target) {
+  const onConnect: OnConnect = useCallback(
+    (connection) => {
+      if (connection.source === connection.target) {
+        return; // Ignora la conexión
+      }
 
-      return; // Ignora la conexión
-    }
+      setEdges((eds) => {
+        const sourceNode = nodes.find((n) => n.id === connection.source);
+        const sourceColor = sourceNode?.data?.color || "#333";
 
-    setEdges((eds) => {
-      const sourceNode = nodes.find((n) => n.id === connection.source);
-      const sourceColor = sourceNode?.data?.color || "#333";
+        const styledConnection = {
+          ...connection,
+          style: { stroke: sourceColor, strokeWidth: 2 },
+          markerEnd: { type: MarkerType.ArrowClosed as const },
+        };
 
-      const styledConnection = {
-        ...connection,
-        style: { stroke: sourceColor, strokeWidth: 2 },
-        markerEnd: { type: MarkerType.ArrowClosed as const },
-      };
-
-      return addEdge(styledConnection, eds);
-    });
-  },
-  [setEdges, nodes]
-);
+        return addEdge(styledConnection, eds);
+      });
+    },
+    [setEdges, nodes]
+  );
   return (
     <div className="relative flex h-full w-full">
       <div className="flex-1 h-full">
@@ -217,14 +218,14 @@ export default function WorkflowCanvas({
         >
           <Card className="absolute top-4 left-4 z-50 w-[300px] shadow-xl border rounded-2xl">
             <CardHeader className="flex flex-row items-center justify-between gap-2 p-4 border-b">
-              <Link href="/workflows">
+              <Link href="/workflow">
                 <Button
                   variant="ghost"
                   size="sm"
                   className="flex items-center gap-1"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Atrás
+                  {t("Back")}
                 </Button>
               </Link>
               <AddNewStage

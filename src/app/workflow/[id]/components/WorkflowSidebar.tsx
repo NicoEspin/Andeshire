@@ -6,10 +6,10 @@ import {
   SheetContent,
   SheetTrigger,
   SheetHeader,
-  SheetTitle
+  SheetTitle,
 } from "@/components/ui/sheet";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl"; // 👈 Importa el hook
 
 type WorkflowSidebarProps = {
   templateSet: {
@@ -21,11 +21,13 @@ type WorkflowSidebarProps = {
 };
 
 export default function WorkflowSidebar({ templateSet }: WorkflowSidebarProps) {
+  const t = useTranslations("WorkflowDetails.SidebarDetails"); 
+
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="outline" className="m-4">
-          Abrir Detalle
+          {t("openDetail")}
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-[300px] p-4">
@@ -37,14 +39,14 @@ export default function WorkflowSidebar({ templateSet }: WorkflowSidebarProps) {
 
         <div className="space-y-2 text-sm">
           <p>
-            <span className="font-medium">ID:</span> {templateSet.id}
+            <span className="font-medium">{t("id")}:</span> {templateSet.id}
           </p>
           <p>
-            <span className="font-medium">Recruiter ID:</span>{" "}
+            <span className="font-medium">{t("recruiterId")}:</span>{" "}
             {templateSet.recruiter_id}
           </p>
           <p>
-            <span className="font-medium">Consulting Firm ID:</span>{" "}
+            <span className="font-medium">{t("consultingFirmId")}:</span>{" "}
             {templateSet.consulting_firm_id}
           </p>
         </div>

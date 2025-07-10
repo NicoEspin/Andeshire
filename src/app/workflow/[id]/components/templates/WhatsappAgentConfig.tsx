@@ -1,6 +1,6 @@
 "use client";
 
-
+import { useTranslations } from "next-intl";
 import { RootState } from "@/app/redux";
 import { fetchWhatsappAgents } from "@/state/api/Workflows/Id/fetchWhatsappAgent";
 import { RemoteSelect } from "../RemoteSelect";
@@ -12,9 +12,11 @@ export function WhatsappAgentConfig({
   action: any;
   onChange: (updated: any) => void;
 }) {
+  const t = useTranslations("WorkflowDetails.Templates.WhatsAppAgent");
+
   return (
     <RemoteSelect
-      label="Plantilla WhatsApp"
+      label={t("label")}
       sliceSelector={(state: RootState) => ({
         loading: state.whatsappAgent.loading,
         error: state.whatsappAgent.error,
@@ -23,10 +25,10 @@ export function WhatsappAgentConfig({
       })}
       fetchAction={fetchWhatsappAgents}
       getValue={(item) => item.id}
-      getLabel={(item) => item.name || "Sin nombre"}
+      getLabel={(item) => item.name || t("fallbackName")}
       value={action.whatsapp_agent_id}
       onChange={(val) => onChange({ ...action, whatsapp_agent_id: val })}
-      placeholder="Selecciona plantilla"
+      placeholder={t("placeholder")}
     />
   );
 }

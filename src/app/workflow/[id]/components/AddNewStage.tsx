@@ -35,6 +35,7 @@ import { ScoreboardTemplateConfig } from "./templates/ScoreboardTemplateConfig";
 import { EmailTemplateConfig } from "./templates/EmailTemplateConfig";
 import { CallTemplateConfig } from "./templates/CallTemplateConfig";
 import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes";
+import { useTranslations } from "next-intl";
 
 type AddNewStageProps = {
   onAddStage: (newStage: any) => void;
@@ -121,6 +122,7 @@ export function AddNewStage({
   const [actions, setActions] = React.useState<any[]>([]);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const t = useTranslations("WorkflowDetails.AddNewStage");
 
   const { fitView, zoomTo, getNode } = useReactFlow();
 
@@ -175,7 +177,7 @@ export function AddNewStage({
       <SheetTrigger asChild>
         <Button size="sm" className="flex items-center gap-1" variant="default">
           <PlusIcon className="w-4 h-4" />
-          Añadir etapa
+           {t("buttonAddStage")}
         </Button>
       </SheetTrigger>
 
@@ -185,28 +187,28 @@ export function AddNewStage({
       >
         <SheetHeader>
           <SheetTitle className="text-xl font-bold mb-2">
-            Crear nueva etapa
+            {t("sheetDescription")}
           </SheetTitle>
           <SheetDescription className="text-sm text-muted-foreground">
-            Define la información y acciones de la nueva etapa del Workflow.
+          {t("sheetDescription")}
           </SheetDescription>
         </SheetHeader>
 
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium mb-1 block">Título</label>
+            <label className="text-sm font-medium mb-1 block">{t("titleLabel")}</label>
             <Input
               value={label}
               onChange={(e) => setLabel(e.target.value)}
-              placeholder="Título del Stage"
+              placeholder={t("titlePlaceholder")}
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1 block">Descripción</label>
+            <label className="text-sm font-medium mb-1 block">{t("descriptionLabel")}</label>
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Descripción del Stage"
+              placeholder={t("descriptionPlaceholder")}
             />
           </div>
         </div>
@@ -214,19 +216,19 @@ export function AddNewStage({
         <Separator />
 
         <div className="space-y-2">
-          <h4 className="text-base font-semibold">Estados</h4>
+          <h4 className="text-base font-semibold">{t("statusesTitle")}</h4>
           <MultiSelect
             options={STATUS_OPTIONS.map((s) => ({ label: s, value: s }))}
             selected={selectedStatuses}
             setSelected={setSelectedStatuses}
-            placeholder="Selecciona estados"
+            placeholder={t("statusesPlaceholder")}
           />
         </div>
 
         <Separator />
 
         <div className="space-y-2">
-          <h4 className="text-base font-semibold">Acciones</h4>
+          <h4 className="text-base font-semibold">{t("actionsTitle")}</h4>
 
           {actions.length > 0 ? (
             <Accordion type="multiple" className="space-y-2">
@@ -274,7 +276,7 @@ export function AddNewStage({
             </Accordion>
           ) : (
             <p className="text-sm text-muted-foreground">
-              Sin acciones registradas.
+              {t("actionsEmpty")}
             </p>
           )}
 
@@ -286,7 +288,7 @@ export function AddNewStage({
                 className="flex items-center gap-2 w-full justify-center rounded-lg shadow-sm hover:shadow-md transition"
               >
                 <PlusIcon className="w-4 h-4" />
-                Agregar Acción
+                {t("addAction")}
                 <ChevronDown className="w-4 h-4" />
               </Button>
             </DropdownMenuTrigger>
@@ -319,10 +321,10 @@ export function AddNewStage({
               setOpen(false);
             }}
           >
-            Cancelar
+            {t("cancel")}
           </Button>
           <Button variant="default" onClick={handleSave}>
-            Crear Etapa
+            {t("createStage")}
           </Button>
         </div>
       </SheetContent>

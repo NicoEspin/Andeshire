@@ -3,25 +3,27 @@
 import { RootState } from "@/app/redux";
 import { RemoteSelect } from "../RemoteSelect";
 import { fetchWorkflowScoreboards } from "@/state/api/Workflows/Id/fetchWorkflowScoreboards";
-import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes"; // 👈 importa TemplateSet si lo usas
+import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes";
+import { useTranslations } from "next-intl";
 
 type ScoreboardTemplateConfigProps = {
   action: any;
   onChange: (updated: any) => void;
-  templateSet?: TemplateSet; // 👈 lo dejo opcional para mantener consistencia
+  templateSet?: TemplateSet;
 };
 
 export function ScoreboardTemplateConfig({
   action,
   onChange,
-  templateSet, // 👈 disponible si quieres usarlo
+  templateSet,
 }: ScoreboardTemplateConfigProps) {
-  // Puedes usar templateSet para filtrar opciones si hace falta
+  const t = useTranslations("WorkflowDetails.Templates.Scoreboards");
+
   console.log("TemplateSet:", templateSet);
 
   return (
     <RemoteSelect
-      label="Formulario"
+      label={t("Label")}
       sliceSelector={(state: RootState) => ({
         loading: state.workflowScoreboards.loading,
         error: state.workflowScoreboards.error,
@@ -38,7 +40,7 @@ export function ScoreboardTemplateConfig({
           scoreboard_template_id: val,
         })
       }
-      placeholder="Selecciona formulario"
+      placeholder={t("Placeholder")}
     />
   );
 }

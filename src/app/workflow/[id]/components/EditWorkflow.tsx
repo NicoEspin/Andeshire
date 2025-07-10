@@ -34,7 +34,7 @@ import { ScoreboardTemplateConfig } from "./templates/ScoreboardTemplateConfig";
 import { EmailTemplateConfig } from "./templates/EmailTemplateConfig";
 import { CallTemplateConfig } from "./templates/CallTemplateConfig";
 import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes";
-
+import { useTranslations } from "next-intl";
 
 type EditWorkflowProps = {
   stage: {
@@ -84,7 +84,6 @@ const ACTION_CONFIGS: Record<
   "Agente de WhatsApp": {
     label: "Agente de WhatsApp",
     Form: WhatsappAgentConfig,
-    
   },
   WhatsApp: {
     label: "WhatsApp",
@@ -120,36 +119,35 @@ function getTemplateKey(actionType: string): string {
   }
 }
 
-
-export function EditWorkflow({ stage, templateSet  }: EditWorkflowProps) {
+export function EditWorkflow({ stage, templateSet }: EditWorkflowProps) {
   const [label, setLabel] = React.useState(stage.label);
+  const t = useTranslations("WorkflowDetails.EditStage");
   const [description, setDescription] = React.useState(stage.description || "");
   const [selectedStatuses, setSelectedStatuses] = React.useState<string[]>(
     stage.statusOptions || []
   );
- const [actions, setActions] = React.useState(
-  (stage.actions || []).map((action) => {
-    const templateKey = getTemplateKey(action.action_type);
-    return {
-      ...action,
-      [templateKey]: action[templateKey] || "", // Asegura clave presente
-    };
-  })
-);
+  const [actions, setActions] = React.useState(
+    (stage.actions || []).map((action) => {
+      const templateKey = getTemplateKey(action.action_type);
+      return {
+        ...action,
+        [templateKey]: action[templateKey] || "", // Asegura clave presente
+      };
+    })
+  );
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
- const addAction = (actionType: string) => {
-  const templateKey = getTemplateKey(actionType);
-  setActions((prev) => [
-    ...prev,
-    {
-      id: `${Date.now()}`,
-      action_type: actionType,
-      [templateKey]: "", // Siempre inicializa la clave correcta
-    },
-  ]);
-};
-
+  const addAction = (actionType: string) => {
+    const templateKey = getTemplateKey(actionType);
+    setActions((prev) => [
+      ...prev,
+      {
+        id: `${Date.now()}`,
+        action_type: actionType,
+        [templateKey]: "", // Siempre inicializa la clave correcta
+      },
+    ]);
+  };
 
   const removeAction = (index: number) => {
     setActions((prev) => prev.filter((_, i) => i !== index));
@@ -177,7 +175,7 @@ export function EditWorkflow({ stage, templateSet  }: EditWorkflowProps) {
           style={{ borderColor: stage.color }}
           className="w-full border-2 hover:scale-[1.02] transition-transform cursor-pointer"
         >
-          Editar Stage
+          {t("editStage")}
         </Button>
       </SheetTrigger>
 
@@ -187,30 +185,32 @@ export function EditWorkflow({ stage, templateSet  }: EditWorkflowProps) {
       >
         <SheetHeader>
           <SheetTitle className="text-xl font-bold mb-2">
-            Editar Stage
+            {t("editStage")}
           </SheetTitle>
           <SheetDescription className="text-sm text-muted-foreground">
-            Modifica la información de este Stage y gestiona sus acciones.
+            {t("editStageDescription")}
           </SheetDescription>
         </SheetHeader>
 
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium mb-1 block">Título</label>
+            <label className="text-sm font-medium mb-1 block">
+              {t("titleLabel")}
+            </label>
             <Input
               value={label}
               onChange={(e) => setLabel(e.target.value)}
-              placeholder="Título del Stage"
+              placeholder={t("titlePlaceholder")}
             />
           </div>
           <div>
             <label className="text-sm font-medium mb-1 block">
-              Descripción
+              {t("descriptionLabel")}
             </label>
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              placeholder="Descripción del Stage"
+              placeholder={t("descriptionPlaceholder")}
             />
           </div>
         </div>
@@ -218,19 +218,19 @@ export function EditWorkflow({ stage, templateSet  }: EditWorkflowProps) {
         <Separator />
 
         <div className="space-y-2">
-          <h4 className="text-base font-semibold">Estados</h4>
+          <h4 className="text-base font-semibold">{t("statusesLabel")}</h4>
           <MultiSelect
             options={STATUS_OPTIONS.map((s) => ({ label: s, value: s }))}
             selected={selectedStatuses}
             setSelected={setSelectedStatuses}
-            placeholder="Selecciona estados"
+            placeholder={t("statusesPlaceholder")}
           />
         </div>
 
         <Separator />
 
         <div className="space-y-2">
-          <h4 className="text-base font-semibold">Acciones</h4>
+          <h4 className="text-base font-semibold">{t("actionsLabel")}</h4>
 
           {actions.length > 0 ? (
             <Accordion type="multiple" className="space-y-2">
@@ -277,9 +277,7 @@ export function EditWorkflow({ stage, templateSet  }: EditWorkflowProps) {
               })}
             </Accordion>
           ) : (
-            <p className="text-sm text-muted-foreground">
-              Sin acciones registradas.
-            </p>
+            <p className="text-sm text-muted-foreground">{t("noActions")}</p>
           )}
 
           <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
@@ -290,8 +288,7 @@ export function EditWorkflow({ stage, templateSet  }: EditWorkflowProps) {
                 className="flex items-center gap-2 w-full justify-center rounded-lg shadow-sm hover:shadow-md transition"
               >
                 <PlusIcon className="w-4 h-4" />
-                Agregar Acción
-                <ChevronDown className="w-4 h-4" />
+                {t("addAction")}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -314,10 +311,10 @@ export function EditWorkflow({ stage, templateSet  }: EditWorkflowProps) {
 
         <div className="flex justify-end gap-2 mt-auto">
           <Button variant="ghost" onClick={handleCancel}>
-            Cancelar
+            {t("cancel")}
           </Button>
           <Button variant="default" onClick={handleSave}>
-            Guardar Cambios
+            {t("saveChanges")}
           </Button>
         </div>
       </SheetContent>

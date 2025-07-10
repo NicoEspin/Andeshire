@@ -1,10 +1,9 @@
-// src/components/templates/CallTemplateConfig.tsx
-
 "use client";
 
 import { RootState } from "@/app/redux";
 import { RemoteSelect } from "../RemoteSelect";
 import { fetchWorkflowCall } from "@/state/api/Workflows/Id/fetchWorkflowCall";
+import { useTranslations } from "next-intl";
 
 export function CallTemplateConfig({
   action,
@@ -13,9 +12,11 @@ export function CallTemplateConfig({
   action: any;
   onChange: (updated: any) => void;
 }) {
+  const t = useTranslations("WorkflowDetails.Templates.Call");
+
   return (
     <RemoteSelect
-      label="Plantilla de Llamada"
+      label={t("Label")}
       sliceSelector={(state: RootState) => ({
         loading: state.workflowCall.loading,
         error: state.workflowCall.error,
@@ -32,7 +33,7 @@ export function CallTemplateConfig({
           call_template_id: val,
         })
       }
-      placeholder="Selecciona plantilla de llamada"
+      placeholder={t("Placeholder")}
     />
   );
 }

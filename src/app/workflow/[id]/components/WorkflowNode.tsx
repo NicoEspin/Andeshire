@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 
 import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes";
+import { useTranslations } from "next-intl";
 
 export type WorkflowNodeData = {
   id: string;
@@ -40,6 +41,7 @@ type WorkflowNodeProps = {
 
 export default function WorkflowNode({ data }: WorkflowNodeProps) {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+  const t = useTranslations("WorkflowDetails.Canvas.WorkflowNode");
 
   const statusColor = data.statusOptions?.includes("rejected")
     ? "bg-red-100 border-red-300"
@@ -87,7 +89,7 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
               ))}
             </ul>
           ) : (
-            <p className="text-xs text-muted-foreground">Sin acciones</p>
+            <p className="text-xs text-muted-foreground">{t("NoActions")}</p>
           )}
         </CardContent>
 
@@ -110,15 +112,14 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
       <Dialog open={openDeleteModal} onOpenChange={setOpenDeleteModal}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>¿Eliminar etapa?</DialogTitle>
+            <DialogTitle>{t("DeleteStage.Title")}</DialogTitle>
             <DialogDescription>
-              ¿Estás seguro que quieres eliminar esta etapa? Esta acción no se
-              puede deshacer.
+              {t("DeleteStage.Description")}
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setOpenDeleteModal(false)}>
-              Cancelar
+              {t("DeleteStage.Cancel")}
             </Button>
             <Button
               variant="destructive"
@@ -127,7 +128,7 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
                 setOpenDeleteModal(false);
               }}
             >
-              Eliminar etapa
+              {t("DeleteStage.Confirm")}
             </Button>
           </DialogFooter>
         </DialogContent>

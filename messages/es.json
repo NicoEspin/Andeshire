@@ -42,6 +42,141 @@
       "Months": "meses"
     }
   },
+  "Workflows": {
+    "title": "Workflows",
+    "searchPlaceholder": "Buscar por nombre de workflow",
+    "table": {
+      "name": "Nombre",
+      "recruiter": "Recruiter",
+      "createdAt": "Fecha de Creación",
+      "stages": "Etapas",
+      "details": "Detalles",
+      "actions": "Acciones",
+      "noResults": "No se encontraron workflows."
+    },
+    "tooltip": {
+      "jobsUsedIn": "Trabajos en donde se usa",
+      "delete": "Eliminar workflow"
+    },
+    "StageDetails": {
+      "title": "Detalles del Workflow: {name}",
+      "nextStagesTitle": "Próximas Etapas:",
+      "noNextStages": "No hay próximas etapas."
+    }
+  },
+  "WorkflowDetails": {
+    "Canvas": {
+      "Back": "Atrás",
+      "WorkflowNode": {
+        "NoActions": "Sin acciones",
+        "DeleteStage": {
+          "Title": "¿Eliminar etapa?",
+          "Description": "¿Estás seguro que quieres eliminar esta etapa? Esta acción no se puede deshacer.",
+          "Cancel": "Cancelar",
+          "Confirm": "Eliminar etapa"
+        }
+      }
+    },
+    "SidebarDetails": {
+      "openDetail": "Abrir Detalle",
+      "id": "ID",
+      "recruiterId": "ID de Reclutador",
+      "consultingFirmId": "ID de Consultora"
+    },
+    "AddNewStage": {
+      "buttonAddStage": "Añadir etapa",
+      "sheetTitle": "Crear nueva etapa",
+      "sheetDescription": "Define la información y acciones de la nueva etapa del Workflow.",
+      "titleLabel": "Título",
+      "titlePlaceholder": "Título del Stage",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Descripción del Stage",
+      "statusesTitle": "Estados",
+      "statusesPlaceholder": "Selecciona estados",
+      "actionsTitle": "Acciones",
+      "actionsEmpty": "Sin acciones registradas.",
+      "addAction": "Agregar Acción",
+      "createStage": "Crear Etapa",
+      "cancel": "Cancelar",
+      "statusOptions": {
+        "Active": "Activo",
+        "Inactive": "Inactivo",
+        "InitialStep": "Paso Inicial",
+        "HeimdallAutoPilot": "🤖 Piloto Automatico Heimdall",
+        "AgentAutoPilot": "🚗 Piloto Automatico Agente",
+        "InProcess": "En Proceso",
+        "Rejected": "Rechazado"
+      },
+      "actionOptions": {
+        "Email": "Email",
+        "VoiceAgent": "Agente de voz",
+        "WhatsApp": "WhatsApp",
+        "WhatsAppAgent": "Agente de WhatsApp",
+        "Form": "Formulario"
+      },
+      "removeAction": "Quitar Acción"
+    },
+    "EditStage": {
+      "editStage": "Editar Stage",
+      "editStageDescription": "Modifica la información de este Stage y gestiona sus acciones.",
+      "titleLabel": "Título",
+      "titlePlaceholder": "Título del Stage",
+      "descriptionLabel": "Descripción",
+      "descriptionPlaceholder": "Descripción del Stage",
+      "statusesLabel": "Estados",
+      "statusesPlaceholder": "Selecciona estados",
+      "actionsLabel": "Acciones",
+      "noActions": "Sin acciones registradas.",
+      "addAction": "Agregar Acción",
+      "cancel": "Cancelar",
+      "saveChanges": "Guardar Cambios",
+      "statusOptions": [
+        "Activo",
+        "Inactivo",
+        "Paso Inicial",
+        "🤖 Piloto Automático Heimdall",
+        "🚗 Piloto Automático Agente",
+        "En Proceso",
+        "Rechazado"
+      ],
+      "actionOptions": [
+        "Email",
+        "Agente de voz",
+        "WhatsApp",
+        "Agente de WhatsApp",
+        "Formulario"
+      ]
+    },
+    "RemoteSelect": {
+      "loading": "Cargando opciones...",
+      "error": "Error",
+      "placeholder": "Seleccionar..."
+    },
+    "Templates": {
+      "Call": {
+        "Label": "Plantilla de Llamada",
+        "Placeholder": "Selecciona plantilla de llamada"
+      },
+      "Email": {
+        "Label": "Plantilla de Email",
+        "Placeholder": "Selecciona plantilla de email"
+      },
+      "Scoreboards": {
+        "Label": "Formulario",
+        "Placeholder": "Selecciona formulario"
+      },
+      "WhatsAppAgent": {
+        "label": "Plantilla de Agente de WhatsApp",
+        "placeholder": "Selecciona plantilla",
+        "fallbackName": "Sin nombre"
+      },
+      "WhatsApp": {
+        "label": "Plantilla de WhatsApp",
+        "placeholder": "Selecciona plantilla WhatsApp",
+        "fallbackName": "Sin nombre"
+      }
+    }
+  },
   "Jobs": {
     "filterTitle": "Filtrar trabajos",
     "searchPlaceholder": "🔍 Buscar por nombre del trabajo",

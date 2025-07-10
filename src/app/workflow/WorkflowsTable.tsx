@@ -20,12 +20,15 @@ import {
   TooltipContent,
 } from "@/components/ui/tooltip";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 type WorkflowsTableProps = {
   workflows: WorkflowItem[];
 };
 
 export default function WorkflowsTable({ workflows }: WorkflowsTableProps) {
+  const t = useTranslations("Workflows");
+
   const [searchTerm, setSearchTerm] = React.useState("");
   const [selectedWorkflow, setSelectedWorkflow] =
     React.useState<WorkflowItem | null>(null);
@@ -38,10 +41,10 @@ export default function WorkflowsTable({ workflows }: WorkflowsTableProps) {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="text-xl font-semibold">Workflows</h2>
+        <h2 className="text-xl font-semibold">{t("title")}</h2>
         <div className="w-full mt-4">
           <Input
-            placeholder="Search by workflow name"
+            placeholder={t("searchPlaceholder")}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="w-full"
@@ -52,12 +55,12 @@ export default function WorkflowsTable({ workflows }: WorkflowsTableProps) {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Nombre</TableHead>
-              <TableHead>Recruiter</TableHead>
-              <TableHead>Fecha de Creación</TableHead>
-              <TableHead>Etapas</TableHead>
-              <TableHead>Detalles</TableHead>
-              <TableHead>Acciones</TableHead>
+              <TableHead>{t("table.name")}</TableHead>
+              <TableHead>{t("table.recruiter")}</TableHead>
+              <TableHead>{t("table.createdAt")}</TableHead>
+              <TableHead>{t("table.stages")}</TableHead>
+              <TableHead>{t("table.details")}</TableHead>
+              <TableHead>{t("table.actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -67,7 +70,7 @@ export default function WorkflowsTable({ workflows }: WorkflowsTableProps) {
                   colSpan={6}
                   className="text-center py-4 text-muted-foreground"
                 >
-                  No workflows found.
+                  {t("table.noResults")}
                 </TableCell>
               </TableRow>
             ) : (
@@ -111,7 +114,7 @@ export default function WorkflowsTable({ workflows }: WorkflowsTableProps) {
                           <ClipboardList className="w-5 h-5 text-green-500 hover:text-green-600 cursor-pointer transition-colors" />
                         </TooltipTrigger>
                         <TooltipContent side="top">
-                          Trabajos en donde se usa
+                          {t("tooltip.jobsUsedIn")}
                         </TooltipContent>
                       </Tooltip>
                       <Tooltip>
@@ -119,7 +122,7 @@ export default function WorkflowsTable({ workflows }: WorkflowsTableProps) {
                           <Trash2 className="w-5 h-5 text-red-500 hover:text-red-600 cursor-pointer transition-colors" />
                         </TooltipTrigger>
                         <TooltipContent side="top">
-                          Eliminar workflow
+                          {t("tooltip.delete")}
                         </TooltipContent>
                       </Tooltip>
                     </div>

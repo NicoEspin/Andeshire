@@ -1,6 +1,6 @@
-// src/components/templates/WhatsappTemplateConfig.tsx
 "use client";
 
+import { useTranslations } from "next-intl";
 import { RootState } from "@/app/redux";
 
 import { RemoteSelect } from "../RemoteSelect";
@@ -13,9 +13,11 @@ export function WhatsappTemplateConfig({
   action: any;
   onChange: (updated: any) => void;
 }) {
+  const t = useTranslations("WorkflowDetails.Templates.WhatsApp");
+
   return (
     <RemoteSelect
-      label="Plantilla WhatsApp"
+      label={t("label")}
       sliceSelector={(state: RootState) => ({
         loading: state.workflowWhatsapp.loading,
         error: state.workflowWhatsapp.error,
@@ -24,10 +26,10 @@ export function WhatsappTemplateConfig({
       })}
       fetchAction={fetchWorkflowWhatsapp}
       getValue={(item) => item.id}
-      getLabel={(item) => item.name || "Sin nombre"}
+      getLabel={(item) => item.name || t("fallbackName")}
       value={action.whatsapp_template_id}
       onChange={(val) => onChange({ ...action, whatsapp_template_id: val })}
-      placeholder="Selecciona plantilla WhatsApp"
+      placeholder={t("placeholder")}
     />
   );
 }

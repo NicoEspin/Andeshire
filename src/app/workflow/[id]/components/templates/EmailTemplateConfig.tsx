@@ -3,6 +3,7 @@
 import { RootState } from "@/app/redux";
 import { RemoteSelect } from "../RemoteSelect";
 import { fetchWorkflowEmail } from "@/state/api/Workflows/Id/fetchWorkflowEmail";
+import { useTranslations } from "next-intl";
 
 export function EmailTemplateConfig({
   action,
@@ -11,9 +12,11 @@ export function EmailTemplateConfig({
   action: any;
   onChange: (updated: any) => void;
 }) {
+  const t = useTranslations("WorkflowDetails.Templates.Email");
+
   return (
     <RemoteSelect
-      label="Plantilla de Email"
+      label={t("Label")}
       sliceSelector={(state: RootState) => ({
         loading: state.workflowEmail.loading,
         error: state.workflowEmail.error,
@@ -30,7 +33,7 @@ export function EmailTemplateConfig({
           email_template_id: val,
         })
       }
-      placeholder="Selecciona plantilla de email"
+      placeholder={t("Placeholder")}
     />
   );
 }

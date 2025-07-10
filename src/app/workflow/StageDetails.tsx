@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { WorkflowItem } from "@/app/Types/Workflow/WorkflowListTypes";
+import { useTranslations } from "next-intl";
 
 type StageDetailsProps = {
   workflow: WorkflowItem | null;
@@ -21,6 +22,8 @@ export default function StageDetails({
   open,
   onClose,
 }: StageDetailsProps) {
+  const t = useTranslations("Workflows.StageDetails");
+
   if (!workflow) return null;
 
   return (
@@ -28,7 +31,7 @@ export default function StageDetails({
       <DialogContent className="max-w-3xl">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold">
-            Detalles del Workflow: {workflow.name}
+            {t("title", { name: workflow.name })}
           </DialogTitle>
         </DialogHeader>
 
@@ -41,7 +44,7 @@ export default function StageDetails({
                 </h3>
                 <p className="text-muted-foreground">{stage.description}</p>
                 <div className="mt-2">
-                  <h4 className="font-medium">Próximas Etapas:</h4>
+                  <h4 className="font-medium">{t("nextStagesTitle")}</h4>
                   {stage.next_possible_stages?.length ? (
                     <ul className="list-disc pl-5">
                       {stage.next_possible_stages.map((nextStage) => (
@@ -50,7 +53,7 @@ export default function StageDetails({
                     </ul>
                   ) : (
                     <p className="text-muted-foreground">
-                      No hay próximas etapas.
+                      {t("noNextStages")}
                     </p>
                   )}
                 </div>

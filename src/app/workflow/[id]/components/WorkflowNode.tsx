@@ -20,7 +20,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-
+import { Badge } from "@/components/ui/badge"; // ✅ Usa tu Badge UI
 import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes";
 import { useTranslations } from "next-intl";
 
@@ -32,6 +32,13 @@ export type WorkflowNodeData = {
   statusOptions?: string[];
   color: string;
   onDelete: (id: string) => void;
+  onUpdate: (
+    id: string,
+    label: string,
+    description: string,
+    statusOptions: string[],
+    actions: any[]
+  ) => void;
   templateSet: TemplateSet;
 };
 
@@ -60,34 +67,54 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
           borderTop: `6px solid ${data.color}`,
         }}
       >
-        <CardHeader className="pb-2 flex flex-row justify-between items-start">
-          <div>
-            <h3 className="text-sm font-semibold">{data.label}</h3>
-            {data.description && (
-              <p className="text-xs text-muted-foreground">
-                {data.description}
-              </p>
-            )}
+        <CardHeader className="pb-2 flex flex-col gap-2">
+          {/* ✅ Badges de status */}
+          {data.statusOptions && data.statusOptions.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {data.statusOptions.map((status) => (
+                <Badge
+                  key={status}
+                  variant="outline"
+                  className="text-xs px-2 py-0.5 rounded-full"
+                >
+                  {status}
+                </Badge>
+              ))}
+            </div>
+          )}
+
+          <div className="flex flex-row justify-between items-start">
+            <div>
+              <h3 className="text-sm font-semibold">{data.label}</h3>
+              {data.description && (
+                <p className="text-xs text-muted-foreground">
+                  {data.description}
+                </p>
+              )}
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="ml-auto"
+              onClick={() => setOpenDeleteModal(true)}
+            >
+              <Trash className="w-4 h-4 text-red-500 hover:text-red-700" />
+            </Button>
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="ml-auto"
-            onClick={() => setOpenDeleteModal(true)}
-          >
-            <Trash className="w-4 h-4 text-red-500 hover:text-red-700" />
-          </Button>
         </CardHeader>
 
         <CardContent className="pb-2">
-          {data.actions?.length ? (
-            <ul className="text-xs space-y-1">
+          {data.actions && data.actions.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
               {data.actions.map((a) => (
-                <li key={a.id} className="text-gray-700">
-                  ➤ {a.action_type}
-                </li>
+                <span
+                  key={a.id}
+                  className="text-xs bg-muted px-2 py-1 rounded-full shadow-sm border"
+                >
+                  {a.action_type}
+                </span>
               ))}
-            </ul>
+            </div>
           ) : (
             <p className="text-xs text-muted-foreground">{t("NoActions")}</p>
           )}
@@ -104,6 +131,7 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
               color: data.color,
             }}
             templateSet={data.templateSet}
+            onUpdate={data.onUpdate}
           />
         </CardFooter>
       </Card>
@@ -113,9 +141,7 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>{t("DeleteStage.Title")}</DialogTitle>
-            <DialogDescription>
-              {t("DeleteStage.Description")}
-            </DialogDescription>
+            <DialogDescription>{t("DeleteStage.Description")}</DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setOpenDeleteModal(false)}>

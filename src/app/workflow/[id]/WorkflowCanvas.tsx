@@ -100,6 +100,7 @@ export default function WorkflowCanvas({
         color: nodeColor,
         onDelete: handleDeleteStage,
         templateSet: templateSet,
+        onUpdate: handleUpdateStage,
       },
     });
 
@@ -138,6 +139,48 @@ export default function WorkflowCanvas({
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  function handleUpdateStage(
+    id: string,
+    label: string,
+    description: string,
+    statusOptions: string[],
+    actions: any[]
+  ) {
+    // Actualiza nodos de React Flow
+    setNodes((prev) =>
+      prev.map((node) =>
+        node.id === id
+          ? {
+              ...node,
+              data: {
+                ...node.data,
+                label,
+                description,
+                statusOptions,
+                actions,
+                onDelete: node.data.onDelete,
+                onUpdate: node.data.onUpdate,
+              },
+            }
+          : node
+      )
+    );
+
+    // Actualiza stages locales
+    setStages((prev) =>
+      prev.map((stage) =>
+        stage.id === id
+          ? {
+              ...stage,
+              name: label,
+              description,
+              status_options: statusOptions,
+              actions,
+            }
+          : stage
+      )
+    );
+  }
 
   function handleDeleteStage(stageId: string) {
     setNodes((prev) => prev.filter((node) => node.id !== stageId));

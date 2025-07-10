@@ -69,7 +69,7 @@ export const RemoteSelect = ({
   return (
     <div className="w-full">
       {label && <label className="text-sm mb-1 block">{label}</label>}
-      <Select value={value} onValueChange={onChange}>
+      <Select value={value || ""} onValueChange={onChange}>
         <SelectTrigger>
           <SelectValue placeholder={placeholder || t("placeholder")} />
         </SelectTrigger>

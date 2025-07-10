@@ -130,6 +130,7 @@
       "addAction": "Add Action",
       "cancel": "Cancel",
       "saveChanges": "Save Changes",
+      "successMessage": "Changes saved successfully.",
       "statusOptions": [
         "Active",
         "Inactive",

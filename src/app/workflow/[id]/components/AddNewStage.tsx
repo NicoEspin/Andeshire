@@ -25,6 +25,13 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { MultiSelect } from "@/components/ui/multiselect";
 import { Separator } from "@/components/ui/separator";
 import { nodeColors } from "@/lib/nodeColors";
@@ -128,14 +135,19 @@ export function AddNewStage({
 
   const addAction = (actionType: string) => {
     const templateKey = getTemplateKey(actionType);
-    setActions((prev) => [
-      ...prev,
-      {
-        id: `${Date.now()}`,
-        action_type: actionType,
-        [templateKey]: "",
-      },
-    ]);
+    const newAction = {
+      id: `${Date.now()}`,
+      action_type: actionType,
+      [templateKey]: "",
+    };
+
+    // Add WhatsApp-specific fields
+    if (actionType === "WhatsApp") {
+      newAction.executor = "Recruiter"; // Default value
+      newAction.delay_minutes = 0; // Default value
+    }
+
+    setActions((prev) => [...prev, newAction]);
   };
 
   const removeAction = (index: number) => {
@@ -258,6 +270,52 @@ export function AddNewStage({
                       </span>
                     </AccordionTrigger>
                     <AccordionContent>
+                      {/* WhatsApp specific fields */}
+                      {action.action_type === "WhatsApp" && (
+                        <div className="space-y-4 mb-4">
+                          <div>
+                            <label className="text-sm font-medium mb-1 block">
+                              Executor
+                            </label>
+                            <Select
+                              value={action.executor || "Recruiter"}
+                              onValueChange={(value) => {
+                                const updated = [...actions];
+                                updated[index] = { ...action, executor: value };
+                                setActions(updated);
+                              }}
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select executor" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="Recruiter">Recruiter</SelectItem>
+                                <SelectItem value="Company">Company</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          <div>
+                            <label className="text-sm font-medium mb-1 block">
+                              Delay Minutes
+                            </label>
+                            <Input
+                              type="number"
+                              value={action.delay_minutes || 0}
+                              onChange={(e) => {
+                                const updated = [...actions];
+                                updated[index] = { 
+                                  ...action, 
+                                  delay_minutes: parseInt(e.target.value) || 0 
+                                };
+                                setActions(updated);
+                              }}
+                              placeholder="Enter delay in minutes"
+                              min="0"
+                            />
+                          </div>
+                        </div>
+                      )}
+                      
                       {ActionForm && (
                         <ActionForm
                           action={action}

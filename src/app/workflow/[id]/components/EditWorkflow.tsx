@@ -15,10 +15,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { PlusIcon, ChevronDown, Trash2 } from "lucide-react";
+import { PlusIcon, Trash2, CalendarCheck2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -42,12 +44,6 @@ import { EmailTemplateConfig } from "./templates/EmailTemplateConfig";
 import { CallTemplateConfig } from "./templates/CallTemplateConfig";
 import { TemplateSet } from "@/app/Types/Workflow/WorkflowDetailTypes";
 import { useTranslations } from "next-intl";
-import { clearWhatsappAgents } from "@/store/slices/workflows/Id/WhatsappAgentSlice";
-import { clearWorkflowWhatsapp } from "@/store/slices/workflows/Id/WorkflowWhatsappSlice";
-import { clearWorkflowEmail } from "@/store/slices/workflows/Id/WorkflowEmailSlice";
-import { clearWorkflowCall } from "@/store/slices/workflows/Id/WorkflowCallSlice";
-import { clearWorkflowScoreboards } from "@/store/slices/workflows/Id/WorkflowScoreboardsSlice";
-import { useAppDispatch } from "@/app/redux";
 import ActionModal from "@/app/components/ActionModal/ActionModal";
 
 type EditWorkflowProps = {
@@ -164,7 +160,7 @@ export function EditWorkflow({
   const [label, setLabel] = React.useState(stage.label);
 
   const t = useTranslations("WorkflowDetails.EditStage");
-  const [open, setOpen] = React.useState(false); 
+  const [open, setOpen] = React.useState(false);
   const [description, setDescription] = React.useState(stage.description || "");
   const [selectedStatuses, setSelectedStatuses] = React.useState<string[]>(
     stage.statusOptions || []
@@ -194,7 +190,7 @@ export function EditWorkflow({
     // Add WhatsApp-specific fields
     if (actionType === "WhatsApp") {
       newAction.executor = "Recruiter"; // Default value
-      newAction.delay_minutes = 0; // Default value
+      newAction.delay_minutes = "0"; // Default value
     }
 
     setActions((prev) => [...prev, newAction]);
@@ -219,7 +215,7 @@ export function EditWorkflow({
       statuses: selectedStatuses,
       actions,
     });
-     setOpen(false);
+    setOpen(false);
     setModalStatus("success");
     setModalMessage(t("successMessage")); // Asegúrate de tener la traducción
     setModalOpen(true);
@@ -335,7 +331,10 @@ export function EditWorkflow({
                                 value={action.executor || "Recruiter"}
                                 onValueChange={(value) => {
                                   const updated = [...actions];
-                                  updated[index] = { ...action, executor: value };
+                                  updated[index] = {
+                                    ...action,
+                                    executor: value,
+                                  };
                                   setActions(updated);
                                 }}
                               >
@@ -343,11 +342,138 @@ export function EditWorkflow({
                                   <SelectValue placeholder="Select executor" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                  <SelectItem value="Recruiter">Recruiter</SelectItem>
-                                  <SelectItem value="Company">Company</SelectItem>
+                                  <SelectItem value="Recruiter">
+                                    Recruiter
+                                  </SelectItem>
+                                  <SelectItem value="Company">
+                                    Company
+                                  </SelectItem>
                                 </SelectContent>
                               </Select>
                             </div>
+                          </div>
+                        )}
+                        {action.action_type === "Formulario" && (
+                          <div className="space-y-4 mb-4">
+                            <div>
+                              <label className="text-sm font-medium mb-1 block">
+                                Executor
+                              </label>
+                              <Select
+                                value={action.executor || "Recruiter"}
+                                onValueChange={(value) => {
+                                  const updated = [...actions];
+                                  updated[index] = {
+                                    ...action,
+                                    executor: value,
+                                  };
+                                  setActions(updated);
+                                }}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue placeholder="Select executor" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="stage">Etapa</SelectItem>
+                                  <SelectItem value="candidate">
+                                    Candidato
+                                  </SelectItem>
+                                  <SelectItem value="job">Trabajo</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
+                          </div>
+                        )}
+                        <div className="space-y-4">
+                          {ActionForm && (
+                            <ActionForm
+                              action={action}
+                              onChange={(updatedAction) => {
+                                const updated = [...actions];
+                                updated[index] = updatedAction;
+                                setActions(updated);
+                              }}
+                              templateSet={templateSet}
+                            />
+                          )}
+                          {/* Botón toggle */}
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const updated = [...actions];
+                                updated[index] = {
+                                  ...action,
+                                  use_interview_delay:
+                                    !action.use_interview_delay,
+                                };
+                                setActions(updated);
+                              }}
+                              className={`p-2 rounded-full border ${
+                                action.use_interview_delay
+                                  ? "bg-primary text-white"
+                                  : "bg-transparent"
+                              }`}
+                            >
+                              <CalendarCheck2 className="w-5 h-5" />
+                            </button>
+                            <span className="text-sm">
+                              Basado en entrevista
+                            </span>
+                          </div>
+
+                          {/* Badge y Dropdown si activo */}
+                          {action.use_interview_delay && (
+                            <>
+                              <Badge
+                                variant="outline"
+                                className="bg-primary/10 text-primary"
+                              >
+                                Delay basado en la entrevista
+                              </Badge>
+
+                              <Select
+                                value={action.interview_delay_option || ""}
+                                onValueChange={(value) => {
+                                  const updated = [...actions];
+                                  updated[index] = {
+                                    ...action,
+                                    interview_delay_option: value,
+                                  };
+                                  setActions(updated);
+                                }}
+                              >
+                                <SelectTrigger className="mt-2">
+                                  <SelectValue placeholder="Selecciona una opción" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {[
+                                    "Enviar 6 horas antes de la entrevista",
+                                    "Enviar 2 horas antes de la entrevista",
+                                    "Enviar 1 hora antes de la entrevista",
+                                    "Enviar 30 minutos antes de la entrevista",
+                                    "Enviar 20 minutos antes de la entrevista",
+                                    "Enviar al mismo tiempo de la entrevista",
+                                    "Enviar cuando se mueva al paso",
+                                    "Enviar 1 minuto despues de la entrevista",
+                                    "Enviar 2 minutos despues de la entrevista",
+                                    "Enviar 20 minutos despues de la entrevista",
+                                    "Enviar 30 minutos despues de la entrevista",
+                                    "Enviar 1 hora despues de la entrevista",
+                                    "Enviar 2 horas despues de la entrevista",
+                                    "Enviar 6 horas despues de la entrevista",
+                                  ].map((option) => (
+                                    <SelectItem key={option} value={option}>
+                                      {option}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            </>
+                          )}
+
+                          {/* Delay Minutes SOLO si no está activado */}
+                          {!action.use_interview_delay && (
                             <div>
                               <label className="text-sm font-medium mb-1 block">
                                 Delay Minutes
@@ -357,9 +483,9 @@ export function EditWorkflow({
                                 value={action.delay_minutes || 0}
                                 onChange={(e) => {
                                   const updated = [...actions];
-                                  updated[index] = { 
-                                    ...action, 
-                                    delay_minutes: parseInt(e.target.value) || 0 
+                                  updated[index] = {
+                                    ...action,
+                                    delay_minutes: parseInt(e.target.value, 10),
                                   };
                                   setActions(updated);
                                 }}
@@ -367,20 +493,8 @@ export function EditWorkflow({
                                 min="0"
                               />
                             </div>
-                          </div>
-                        )}
-                        
-                        {ActionForm && (
-                          <ActionForm
-                            action={action}
-                            onChange={(updatedAction) => {
-                              const updated = [...actions];
-                              updated[index] = updatedAction;
-                              setActions(updated);
-                            }}
-                            templateSet={templateSet}
-                          />
-                        )}
+                          )}
+                        </div>
                       </AccordionContent>
                     </AccordionItem>
                   );

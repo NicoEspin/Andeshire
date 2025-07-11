@@ -18,7 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { PlusIcon, ChevronDown, Trash2 } from "lucide-react";
+import { PlusIcon, ChevronDown, Trash2, CalendarCheck2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -34,6 +34,8 @@ import {
 } from "@/components/ui/select";
 import { MultiSelect } from "@/components/ui/multiselect";
 import { Separator } from "@/components/ui/separator";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { nodeColors } from "@/lib/nodeColors";
 import { useReactFlow } from "@xyflow/react";
 import { WhatsappAgentConfig } from "./templates/WhatsappAgentConfig";
@@ -144,7 +146,7 @@ export function AddNewStage({
     // Add WhatsApp-specific fields
     if (actionType === "WhatsApp") {
       newAction.executor = "Recruiter"; // Default value
-      newAction.delay_minutes = 0; // Default value
+      newAction.delay_minutes = "0"; // Default value
     }
 
     setActions((prev) => [...prev, newAction]);
@@ -189,7 +191,7 @@ export function AddNewStage({
       <SheetTrigger asChild>
         <Button size="sm" className="flex items-center gap-1" variant="default">
           <PlusIcon className="w-4 h-4" />
-           {t("buttonAddStage")}
+          {t("buttonAddStage")}
         </Button>
       </SheetTrigger>
 
@@ -202,13 +204,15 @@ export function AddNewStage({
             {t("sheetDescription")}
           </SheetTitle>
           <SheetDescription className="text-sm text-muted-foreground">
-          {t("sheetDescription")}
+            {t("sheetDescription")}
           </SheetDescription>
         </SheetHeader>
 
         <div className="space-y-4">
           <div>
-            <label className="text-sm font-medium mb-1 block">{t("titleLabel")}</label>
+            <label className="text-sm font-medium mb-1 block">
+              {t("titleLabel")}
+            </label>
             <Input
               value={label}
               onChange={(e) => setLabel(e.target.value)}
@@ -216,7 +220,9 @@ export function AddNewStage({
             />
           </div>
           <div>
-            <label className="text-sm font-medium mb-1 block">{t("descriptionLabel")}</label>
+            <label className="text-sm font-medium mb-1 block">
+              {t("descriptionLabel")}
+            </label>
             <Textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -289,53 +295,168 @@ export function AddNewStage({
                                 <SelectValue placeholder="Select executor" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="Recruiter">Recruiter</SelectItem>
+                                <SelectItem value="Recruiter">
+                                  Recruiter
+                                </SelectItem>
                                 <SelectItem value="Company">Company</SelectItem>
                               </SelectContent>
                             </Select>
                           </div>
+                        </div>
+                      )}
+                      {action.action_type === "Formulario" && (
+                        <div className="space-y-4 mb-4">
                           <div>
                             <label className="text-sm font-medium mb-1 block">
-                              Delay Minutes
+                              Executor
                             </label>
-                            <Input
-                              type="number"
-                              value={action.delay_minutes || 0}
-                              onChange={(e) => {
+                            <Select
+                              value={action.executor || "stage"}
+                              onValueChange={(value) => {
                                 const updated = [...actions];
-                                updated[index] = { 
-                                  ...action, 
-                                  delay_minutes: parseInt(e.target.value) || 0 
+                                updated[index] = {
+                                  ...action,
+                                  executor: value,
                                 };
                                 setActions(updated);
                               }}
-                              placeholder="Enter delay in minutes"
-                              min="0"
-                            />
+                            >
+                              <SelectTrigger>
+                                <SelectValue placeholder="Select executor" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="stage">Etapa</SelectItem>
+                                <SelectItem value="candidate">
+                                  Candidato
+                                </SelectItem>
+                                <SelectItem value="job">Trabajo</SelectItem>
+                              </SelectContent>
+                            </Select>
                           </div>
+                          
                         </div>
                       )}
-                      
-                      {ActionForm && (
-                        <ActionForm
-                          action={action}
-                          onChange={(updatedAction) => {
-                            const updated = [...actions];
-                            updated[index] = updatedAction;
-                            setActions(updated);
-                          }}
-                          templateSet={templateSet}
-                        />
-                      )}
+                      <div className="space-y-4">
+                        {ActionForm && (
+                          <ActionForm
+                            action={action}
+                            onChange={(updatedAction) => {
+                              const updated = [...actions];
+                              updated[index] = updatedAction;
+                              setActions(updated);
+                            }}
+                            templateSet={templateSet}
+                          />
+                        )}
+                         {/* Botón toggle */}
+                            <div className="flex items-center gap-2">
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const updated = [...actions];
+                                  updated[index] = {
+                                    ...action,
+                                    use_interview_delay:
+                                      !action.use_interview_delay,
+                                  };
+                                  setActions(updated);
+                                }}
+                                className={`p-2 rounded-full border ${
+                                  action.use_interview_delay
+                                    ? "bg-primary text-white"
+                                    : "bg-transparent"
+                                }`}
+                              >
+                                <CalendarCheck2 className="w-5 h-5" />
+                              </button>
+                              <span className="text-sm">
+                                Basado en entrevista
+                              </span>
+                            </div>
+
+                            {/* Badge y Dropdown si activo */}
+                            {action.use_interview_delay && (
+                              <>
+                                <Badge
+                                  variant="outline"
+                                  className="bg-primary/10 text-primary"
+                                >
+                                  Delay basado en la entrevista
+                                </Badge>
+
+                                <Select
+                                  value={action.interview_delay_option || ""}
+                                  onValueChange={(value) => {
+                                    const updated = [...actions];
+                                    updated[index] = {
+                                      ...action,
+                                      interview_delay_option: value,
+                                    };
+                                    setActions(updated);
+                                  }}
+                                >
+                                  <SelectTrigger className="mt-2">
+                                    <SelectValue placeholder="Selecciona una opción" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {[
+                                      "Enviar 6 horas antes de la entrevista",
+                                      "Enviar 2 horas antes de la entrevista",
+                                      "Enviar 1 hora antes de la entrevista",
+                                      "Enviar 30 minutos antes de la entrevista",
+                                      "Enviar 20 minutos antes de la entrevista",
+                                      "Enviar al mismo tiempo de la entrevista",
+                                      "Enviar cuando se mueva al paso",
+                                      "Enviar 1 minuto despues de la entrevista",
+                                      "Enviar 2 minutos despues de la entrevista",
+                                      "Enviar 20 minutos despues de la entrevista",
+                                      "Enviar 30 minutos despues de la entrevista",
+                                      "Enviar 1 hora despues de la entrevista",
+                                      "Enviar 2 horas despues de la entrevista",
+                                      "Enviar 6 horas despues de la entrevista",
+                                    ].map((option) => (
+                                      <SelectItem key={option} value={option}>
+                                        {option}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              </>
+                            )}
+
+                            {/* Delay Minutes SOLO si no está activado */}
+                            {!action.use_interview_delay && (
+                              <div>
+                                <label className="text-sm font-medium mb-1 block">
+                                  Delay Minutes
+                                </label>
+                                <Input
+                                  type="number"
+                                  value={action.delay_minutes || 0}
+                                  onChange={(e) => {
+                                    const updated = [...actions];
+                                    updated[index] = {
+                                      ...action,
+                                      delay_minutes: parseInt(
+                                        e.target.value,
+                                        10
+                                      ),
+                                    };
+                                    setActions(updated);
+                                  }}
+                                  placeholder="Enter delay in minutes"
+                                  min="0"
+                                />
+                              </div>
+                            )}
+                      </div>
                     </AccordionContent>
                   </AccordionItem>
                 );
               })}
             </Accordion>
           ) : (
-            <p className="text-sm text-muted-foreground">
-              {t("actionsEmpty")}
-            </p>
+            <p className="text-sm text-muted-foreground">{t("actionsEmpty")}</p>
           )}
 
           <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>

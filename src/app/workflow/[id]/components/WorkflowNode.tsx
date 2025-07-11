@@ -68,38 +68,42 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
         }}
       >
         <CardHeader className="pb-2 flex flex-col gap-2">
-          {/* ✅ Badges de status */}
-          {data.statusOptions && data.statusOptions.length > 0 && (
-            <div className="flex flex-wrap gap-1">
-              {data.statusOptions.map((status) => (
-                <Badge
-                  key={status}
-                  variant="outline"
-                  className="text-xs px-2 py-0.5 rounded-full"
-                >
-                  {status}
-                </Badge>
-              ))}
-            </div>
-          )}
+          <div className="flex items-start justify-between w-full">
+            {/* Badges o placeholder vacío para ocupar espacio */}
+            {data.statusOptions && data.statusOptions.length > 0 ? (
+              <div className="flex flex-wrap gap-1">
+                {data.statusOptions.map((status) => (
+                  <Badge
+                    key={status}
+                    variant="outline"
+                    className="text-xs px-2 py-0.5 rounded-full"
+                  >
+                    {status}
+                  </Badge>
+                ))}
+              </div>
+            ) : (
+              <div /> // 👉 Esto hace que el Trash se mantenga a la derecha
+            )}
 
-          <div className="flex flex-row justify-between items-start">
-            <div>
-              <h3 className="text-sm font-semibold">{data.label}</h3>
-              {data.description && (
-                <p className="text-xs text-muted-foreground">
-                  {data.description}
-                </p>
-              )}
-            </div>
             <Button
               variant="ghost"
               size="icon"
-              className="ml-auto"
+              className="p-1"
               onClick={() => setOpenDeleteModal(true)}
             >
               <Trash className="w-4 h-4 text-red-500 hover:text-red-700" />
             </Button>
+          </div>
+
+          {/* Título y descripción */}
+          <div>
+            <h3 className="text-sm font-semibold">{data.label}</h3>
+            {data.description && (
+              <p className="text-xs text-muted-foreground">
+                {data.description}
+              </p>
+            )}
           </div>
         </CardHeader>
 
@@ -141,7 +145,9 @@ export default function WorkflowNode({ data }: WorkflowNodeProps) {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>{t("DeleteStage.Title")}</DialogTitle>
-            <DialogDescription>{t("DeleteStage.Description")}</DialogDescription>
+            <DialogDescription>
+              {t("DeleteStage.Description")}
+            </DialogDescription>
           </DialogHeader>
           <DialogFooter>
             <Button variant="outline" onClick={() => setOpenDeleteModal(false)}>

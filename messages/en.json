@@ -9,6 +9,53 @@
     "Linkedin": "Linkedin",
     "Campañas": "Campaigns"
   },
+  "Settings": {
+    "Header": {
+      "AdminBadge": "Admin",
+      "UserBadge": "User",
+      "ProfileButton": "Profile",
+      "Logout": "Log out",
+      "Firm": "Consulting Firm"
+    },
+    "PanelTitle": "Settings Panel",
+    "ConfigItems": {
+      "WhatsApp": "WhatsApp",
+      "Calendar": "Calendar",
+      "Mail": "Mail",
+      "LinkedIn": "LinkedIn",
+      "Tags": "Tags",
+      "Recruiters": "Recruiters",
+      "Twilio": "Twilio",
+      "Import": "Import",
+      "CustomFields": "Custom Fields"
+    },
+    "AdvancedSettings": {
+      "Title": "Advanced Settings",
+      "LogoPlaceholder": "Placeholder to display the current logo",
+      "ChangeLogo": "Change logo",
+      "CareerPortalLabel": "Enable career portal",
+      "CareerPortalInfo": "This will allow candidates to have a dashboard and see detailed information about their positions and application process.",
+      "AutoSaveApplicantsLabel": "Auto-save applicants",
+      "AutoSaveApplicantsInfo": "This automatically saves applicants who register through the career portal.",
+      "PrefixLabel": "Prefix",
+      "PrefixPlaceholder": "E.g. rhvision",
+      "PrefixInfo": "This prefix will be used in your URL and emails.",
+      "PromptComparisonLabel": "Comparison prompt",
+      "PromptComparisonPlaceholder": "Describe the comparison prompt here...",
+      "PromptComparisonInfo": "This prompt will be used for data comparison.",
+      "PromptHeimdallLabel": "Heimdall prompt",
+      "PromptHeimdallPlaceholder": "Detailed instructions for the Heimdall Advanced Evaluator...",
+      "PromptHeimdallInfo": "This prompt will be used for Heimdall data comparison.",
+      "HeimdallCategorizationLabel": "Enable Heimdall categorization",
+      "HeimdallCategorizationInfo": "Enables automatic categorization of data in Heimdall.",
+      "TagsTitle": "Tags",
+      "IT": "IT",
+      "NoIT": "NO IT",
+      "SaveChanges": "Save changes",
+      "EditPublicPage": "Edit public page",
+      "ViewPublicPage": "View public page"
+    }
+  },
   "ActionModal": {
     "Title": "Action Status",
     "Loading": "Processing..."

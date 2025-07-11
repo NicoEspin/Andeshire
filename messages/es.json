@@ -9,6 +9,53 @@
     "Linkedin": "Linkedin",
     "Campañas": "Campañas"
   },
+  "Settings": {
+    "Header": {
+      "AdminBadge": "Admin",
+      "UserBadge": "Usuario",
+      "ProfileButton": "Perfil",
+      "Logout": "Cerrar sesión",
+      "Firm": "Firma consultora"
+    },
+    "PanelTitle": "Panel de Configuración",
+    "ConfigItems": {
+      "WhatsApp": "WhatsApp",
+      "Calendar": "Calendario",
+      "Mail": "Mail",
+      "LinkedIn": "LinkedIn",
+      "Tags": "Tags",
+      "Recruiters": "Reclutadores",
+      "Twilio": "Twilio",
+      "Import": "Importar",
+      "CustomFields": "Campos personalizados"
+    },
+    "AdvancedSettings": {
+      "Title": "Configuración Avanzada",
+      "LogoPlaceholder": "Placeholder para mostrar el logo actual",
+      "ChangeLogo": "Cambiar logo",
+      "CareerPortalLabel": "Activar portal de carreras",
+      "CareerPortalInfo": "Esto permitirá a los candidatos tener un panel de control y ver información detallada sobre sus posiciones y su proceso de aplicación.",
+      "AutoSaveApplicantsLabel": "Guardado automático de postulantes",
+      "AutoSaveApplicantsInfo": "Esto permite guardar automáticamente los postulantes que se registran a través del portal de carreras.",
+      "PrefixLabel": "Prefijo",
+      "PrefixPlaceholder": "Ej. rhvision",
+      "PrefixInfo": "Este prefijo se utilizará en su URL y correos electrónicos.",
+      "PromptComparisonLabel": "Prompt de comparación",
+      "PromptComparisonPlaceholder": "Describe aquí el prompt de comparación...",
+      "PromptComparisonInfo": "Este prompt se utilizará en la comparación de datos.",
+      "PromptHeimdallLabel": "Prompt de Heimdall",
+      "PromptHeimdallPlaceholder": "Instrucciones detalladas para el Evaluador Avanzado Heimdall...",
+      "PromptHeimdallInfo": "Este Promt se utilizará en la comparación de datos de Heimdall.",
+      "HeimdallCategorizationLabel": "Activar categorización de Heimdall",
+      "HeimdallCategorizationInfo": "Habilita la categorización automática de los datos en Heimdall.",
+      "TagsTitle": "Tags",
+      "IT": "IT",
+      "NoIT": "NO IT",
+      "SaveChanges": "Guardar cambios",
+      "EditPublicPage": "Editar página pública",
+      "ViewPublicPage": "Visualizar página pública"
+    }
+  },
   "ActionModal": {
     "Title": "Estado de la acción",
     "Loading": "Procesando..."

@@ -64,6 +64,89 @@
       "noNextStages": "No hay próximas etapas."
     }
   },
+  "Companies": {
+    "AddCompanyButton": "Añadir Compañía",
+    "FilterTitle": "Filtrar compañías",
+    "SearchPlaceholder": "🔍 Buscar por nombre de la compañía",
+    "TableTitle": "Lista de Compañías",
+    "TableHead": {
+      "Name": "Nombre",
+      "Email": "Email",
+      "Description": "Descripción",
+      "CreatedAt": "Fecha de creación",
+      "UpdatedAt": "Última actualización",
+      "Jobs": "Puestos"
+    }
+  },
+  "CompanyDetails": {
+    "BackButton": "Volver a Compañias",
+    "EmailLabel": "Email",
+    "AddTags": "Añadir tags",
+    "FilesTitle": "Archivos",
+    "AddFile": "Añadir archivo",
+    "NoFiles": "No hay archivos",
+    "JobsTitle": "Trabajos en {company}",
+    "JobTitle": "Título",
+    "JobUpdated": "Actualizado",
+    "JobActions": "Acciones",
+    "NoJobs": "No hay trabajos publicados",
+    "FormsTitle": "Formularios",
+    "AddForm": "Añadir formulario",
+    "NoForms": "No hay scorecards cargadas.",
+    "EditCompanyButton": "Editar compañía",
+    "EditCompany": {
+      "buttonLabel": "Editar compañía",
+      "dialogTitle": "Editar Compañía",
+      "dialogDescription": "Actualiza la información de la compañía",
+      "fields": {
+        "name": "Nombre",
+        "email": "Email",
+        "phone": "Teléfono",
+        "description": "Descripción",
+        "benefits": "Beneficios",
+        "ownerPhone": "Teléfono del Propietario",
+        "address": "Dirección"
+      },
+      "requiredIndicator": "*",
+      "cancel": "Cancelar",
+      "save": "Guardar Cambios"
+    }
+  },
+
+  "Forms": {
+    "AddFormButton": "Añadir Formulario",
+    "filterTitle": "Filtrar formularios",
+    "searchPlaceholder": "🔍 Buscar por nombre de formulario",
+    "tableTitle": "Lista de Formularios",
+    "name": "Nombre",
+    "description": "Descripción",
+    "recruiter": "Recruiter",
+    "createdAt": "Fecha de creación",
+    "updatedAt": "Última actualización",
+    "customFields": "Campos custom"
+  },
+  "FormDetails": {
+    "BackToForms": "Volver a Formularios",
+    "ByRecruiter": "Por {recruiter}",
+    "CustomFields": "Campos Personalizados",
+    "Name": "Nombre",
+    "Type": "Tipo",
+    "Visible": "Visible",
+    "Required": "Requerido",
+    "Details": "Detalles",
+    "Yes": "SI",
+    "No": "NO",
+    "EditCustomFields": "Editar campos personalizados",
+    "CustomFieldsDetails": {
+      "Type": "Tipo",
+      "Description": "Descripción",
+      "Visible": "¿Visible?",
+      "Required": "¿Requerido?",
+      "Yes": "SI",
+      "No": "NO",
+      "Options": "Opciones"
+    }
+  },
   "WorkflowDetails": {
     "Canvas": {
       "Back": "Atrás",

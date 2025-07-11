@@ -1,0 +1,797 @@
+{
+  "templates": [
+    {
+      "id": "8fddaf0f-8eb9-4d5a-9386-813d900cb27c",
+      "name": "formulario para nico",
+      "description": "ejemplo",
+      "created_at": "2025-07-03T20:18:34.892992+00:00",
+      "updated_at": "2025-07-03T20:18:34.893009+00:00",
+      "recruiter_id": "a70a7e45-b7d2-4476-a8f8-e878927b9af6",
+      "recruiter_name": "Mauricio",
+      "custom_fields": [
+        {
+          "id": "3bdec83e-11cc-4e08-b8fc-3ebb6f3094c0",
+          "name": "campo de opciones",
+          "field_type": "Choices",
+          "required": true,
+          "description": "random description",
+          "visible": true,
+          "choices": "[\"opcion 11\", \"opcion 2\", \"opcion 3\"]",
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "8335cc02-e015-4bba-ade4-594a254714e9",
+          "name": "fecha ",
+          "field_type": "Date",
+          "required": true,
+          "description": "ashei",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "e4a3aa79-96c7-4312-a0d5-e89c6ee270b7",
+          "name": "campo numero",
+          "field_type": "Number",
+          "required": true,
+          "description": "random",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "5e7e3bfa-7cb7-406c-b317-d48fc2d503c9",
+          "name": "texto random",
+          "field_type": "Text",
+          "required": true,
+          "description": "random descripcion aca",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "5d06a9b8-ae9e-4690-b7d7-affb1e617c92",
+      "name": "Formulario de fecha de entrevista",
+      "description": "Formulario para registrar la fecha y hora de entrevista",
+      "created_at": "2025-05-21T12:01:05.779326+00:00",
+      "updated_at": "2025-05-21T12:01:05.779345+00:00",
+      "recruiter_id": "a70a7e45-b7d2-4476-a8f8-e878927b9af6",
+      "recruiter_name": "Mauricio",
+      "custom_fields": [
+        {
+          "id": "97a228f7-efbd-4f31-8696-587895146c4d",
+          "name": "Fecha y hora de entrevista",
+          "field_type": "datetime",
+          "required": true,
+          "description": "Seleccione la fecha y hora de la entrevista",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "d5da9345-5cf5-4771-a072-5a4736473d30",
+          "name": "Notas adicionales",
+          "field_type": "textarea",
+          "required": false,
+          "description": "Notas adicionales sobre la entrevista",
+          "visible": true,
+          "choices": null,
+          "order": 1,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "dd77d146-b844-4414-9c2a-bb47dc640bf9",
+      "name": "Formulario de rechazo",
+      "description": "Se utiliza cuando el candidato en algun punto del workflow no avanza por que se rechaza ",
+      "created_at": "2025-05-20T14:38:03.812355+00:00",
+      "updated_at": "2025-05-20T14:38:03.812381+00:00",
+      "recruiter_id": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24",
+      "recruiter_name": "Bel\u00e9n",
+      "custom_fields": [
+        {
+          "id": "1aaf33ea-750b-4b58-91ee-763808ff9ba9",
+          "name": "Motivo del rechazo",
+          "field_type": "Choices",
+          "required": true,
+          "description": "aca se aclara el motivo por el cual se rechaza",
+          "visible": true,
+          "choices": "[\"No busca cambio laboral \", \"Tiene mayor pretensi\\u00f3n laboral\", \"Rechaza oferta\", \"Ingresa otro candidato de RH VISI\\u00d3N\", \"No cumple con los requerimientos t\\u00e9cnicos \", \"No tiene el seniority\", \"T\\u00e9cnicamente apto pero no cumple con un requisito \", \"No cumple requerimientos actitudinales\", \"No le interesa el puesto/proyecto \", \"Trabaja en un cliente de RH VISI\\u00d3N \"]",
+          "order": 0,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "4325747c-71a7-4da4-a05a-ee5adce3f8c9",
+      "name": "Screening MODELO BELEN",
+      "description": "SCREENING ADJUNTO AL CANDIDATO CON TODOS LOS DATOS REQUERIDOS",
+      "created_at": "2025-05-07T20:00:14.308999+00:00",
+      "updated_at": "2025-05-20T14:34:41.238881+00:00",
+      "recruiter_id": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24",
+      "recruiter_name": "Bel\u00e9n",
+      "custom_fields": [
+        {
+          "id": "61fd238a-8ddc-4723-83fc-ca1f9111feab",
+          "name": "Screening",
+          "field_type": "textarea",
+          "required": true,
+          "description": "Aca se escribe el screning del candidato",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "effc7c85-05f3-4880-be80-5b9dc03e8aed",
+          "name": "Remuneraci\u00f3n actual",
+          "field_type": "number",
+          "required": true,
+          "description": "Aca se aclara la remuneraci\u00f3n actual y se aclara pesos o dolar ",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "3c67ed06-bc5d-4b20-ada9-0384b393a3c2",
+          "name": "Remuneraci\u00f3n Pretendida ",
+          "field_type": "number",
+          "required": true,
+          "description": "Aca se aclara la RP y se aclara pesos o dolar ",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "20ee3334-157f-4b27-bad2-986a8c8ac7c8",
+      "name": "Condiciones acordadas entre candidato y Trabajo",
+      "description": "Aqui van las condiciones que se acuerdan entre ese candidato y esa job",
+      "created_at": "2025-04-28T20:27:16.433537+00:00",
+      "updated_at": "2025-04-28T20:31:19.127681+00:00",
+      "recruiter_id": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24",
+      "recruiter_name": "Bel\u00e9n",
+      "custom_fields": [
+        {
+          "id": "43ea7e44-98dc-43b5-a61a-46278227893c",
+          "name": "Modalidad",
+          "field_type": "text",
+          "required": true,
+          "description": "Aqui va la modalidad de la contrataci\u00f3n: Staffing o Selecci\u00f3n de Personal. Si es staffing se explica la terciarizacion",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "92f46c15-87bb-40c7-a6e5-2694d6e8b38d",
+          "name": "Compa\u00f1ia",
+          "field_type": "text",
+          "required": true,
+          "description": "Aqui va la empresa donde presentas al candidato",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "d41c9263-4352-4f97-bd11-54cfc44049b7",
+          "name": "Horario de trabajo",
+          "field_type": "text",
+          "required": true,
+          "description": "Aqui se detalla especificamente la jornada laboral",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "d3e91c61-395c-472e-993a-1bd30e33a399",
+          "name": "Rate",
+          "field_type": "text",
+          "required": true,
+          "description": "Aqui se especifica el acuerdo economico",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "17e04d35-203f-43e3-abc3-e047a3d32490",
+          "name": "Beneficios",
+          "field_type": "text",
+          "required": true,
+          "description": "Aqui van los beenficios de la propuesta como feriados, vacaciones, la asignacion de laptop",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "6bdfe2f8-112f-4735-9e7c-6900f376bc30",
+      "name": "Resultado de agente",
+      "description": "Este formulario es creado automaticamente por los agentes de Andeshire.com. No puedes eliminarlo o editarlo.",
+      "created_at": "2025-03-20T12:04:47.342079+00:00",
+      "updated_at": "2025-03-20T12:04:47.342093+00:00",
+      "recruiter_id": "18c279fb-d1c6-4b9b-8523-6810b0c760a2",
+      "recruiter_name": "Carla",
+      "custom_fields": [
+        {
+          "id": "251ea53d-6bd7-42c4-879f-9e1662dc1aac",
+          "name": "Resumen",
+          "field_type": "text",
+          "required": true,
+          "description": "Resumen de agente",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "782947cf-0799-40e2-973b-0d9c165f7c4d",
+          "name": "Fecha de creaci\u00f3n",
+          "field_type": "date",
+          "required": true,
+          "description": "Fecha de creaci\u00f3n",
+          "visible": true,
+          "choices": null,
+          "order": 1,
+          "date_default": null
+        },
+        {
+          "id": "031a2699-5f2c-4712-b8fd-8952e86edcdf",
+          "name": "Creado por",
+          "field_type": "text",
+          "required": true,
+          "description": "Creado por",
+          "visible": true,
+          "choices": null,
+          "order": 2,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "21ad3f48-e2d3-4eeb-a06e-24f3f17eb592",
+      "name": "Company DNA",
+      "description": "Formulario que se asocia a empresa con los siguientes items:\n\n- Descripci\u00f3n de la empresa\n- Beneficios\n- Etapas del proceso\n- Excluyentes\n- Recomendaciones",
+      "created_at": "2025-02-18T17:00:26.607987+00:00",
+      "updated_at": "2025-02-18T17:00:26.608000+00:00",
+      "recruiter_id": "5695f222-a9b6-418a-b78f-d290187c5575",
+      "recruiter_name": "Julian",
+      "custom_fields": [
+        {
+          "id": "481c7d82-5b67-424b-8776-a80258edbe20",
+          "name": "Nombre de la empresa",
+          "field_type": "Text",
+          "required": true,
+          "description": "",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "ce8155fa-93da-4f81-be92-8484c50f5413",
+          "name": "Descripci\u00f3n de la empresa",
+          "field_type": "Text",
+          "required": true,
+          "description": "",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "52d6df75-e9e6-4d62-912c-8757aa77585c",
+          "name": "Beneficios",
+          "field_type": "Text",
+          "required": false,
+          "description": "",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "f6e199e7-37d7-4979-a595-d63b6c4c1d12",
+          "name": "Etapas del proceso",
+          "field_type": "Text",
+          "required": false,
+          "description": "",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "dc749af1-ae8f-4f6d-bdf7-cf80a3484e39",
+          "name": "Excluyentes (Ej: Paises que toman/No toman perfiles(",
+          "field_type": "Text",
+          "required": false,
+          "description": "",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "33f6143e-7570-4984-a00e-fc4ed9825395",
+          "name": "Recomendaciones",
+          "field_type": "Text",
+          "required": false,
+          "description": "",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "4273b7b2-d15b-4da2-b9c8-d096d2590916",
+      "name": "Candidate Experience",
+      "description": "Este formulario tiene como objetivo recopilar la opini\u00f3n sobre la experiencia del candidato durante el proceso de selecci\u00f3n. Valoramos los comentarios como punto de partida para mejorar y garantizar que nuestros procesos sean lo m\u00e1s claros y efectivos posibles. ",
+      "created_at": "2025-02-10T19:13:59.074312+00:00",
+      "updated_at": "2025-02-10T19:13:59.074325+00:00",
+      "recruiter_id": "5695f222-a9b6-418a-b78f-d290187c5575",
+      "recruiter_name": "Julian",
+      "custom_fields": [
+        {
+          "id": "8aa49066-3edf-462e-9820-8742b318a64c",
+          "name": "Claridad en la descripci\u00f3n del puesto",
+          "field_type": "Choices",
+          "required": false,
+          "description": "(1: Muy insatisfecho - 5: Muy satisfecho)",
+          "visible": true,
+          "choices": "[\"1\", \"2\", \"3\", \"4\", \"5\"]",
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "21a24f20-2bcb-4147-88cd-3ac634567d54",
+          "name": "Comunicaci\u00f3n y tiempos de respuesta durante el proceso",
+          "field_type": "Choices",
+          "required": false,
+          "description": "(1: Muy insatisfecho - 5: Muy satisfecho)",
+          "visible": true,
+          "choices": "[\"1\", \"2\", \"3\", \"4\", \"5\"]",
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "b67289c3-c5d1-49af-9b89-f5bd5f0f0ddc",
+          "name": "Mail personal",
+          "field_type": "Text",
+          "required": true,
+          "description": "Mail personal del candidato para poder asociarlo a su perfil",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "1062d918-d910-4b39-8401-f35963a7a8da",
+          "name": "Recruiter que te entrevisto",
+          "field_type": "Choices",
+          "required": true,
+          "description": " ",
+          "visible": true,
+          "choices": "[\"Bel\\u00e9n Garz\\u00f3n\", \"Carla Magali Lurgo\", \"Julian Rubbiolo\"]",
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "989e77ff-96e2-4546-85ed-c8b342a7344a",
+          "name": "Si tuvieras que mejorar algun aspecto del proceso cual seria?",
+          "field_type": "Text",
+          "required": false,
+          "description": " ",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "1438d234-54c6-4d33-952c-4314b87c1eb9",
+          "name": "Si cambiarias de trabajo o empresa, que beneficios o caracteristicas deberia tener esa empresa?",
+          "field_type": "Text",
+          "required": false,
+          "description": " ",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "df989f23-99e5-4611-8674-dfc93553db9f",
+          "name": "Como evaluarias tu proceso de seleccion con RH Vision?",
+          "field_type": "Choices",
+          "required": true,
+          "description": " (1: Muy insatisfecho - 5: Muy satisfecho)",
+          "visible": true,
+          "choices": "[\"1\", \"2\", \"3\", \"4\", \"5\"]",
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "b1817148-a94b-4431-857b-73c4e69c8c81",
+          "name": "Otros comentarios:",
+          "field_type": "Text",
+          "required": false,
+          "description": "Cualquier tipo de otro comentario que no haya sido abarcado en las preguntas anteriores",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "9743b8f5-d706-4693-9e42-e40973d6344f",
+      "name": "Screening - Datos Basicos",
+      "description": "FORMULARIO DE PRUEBA 1.1 (2/10/2025)",
+      "created_at": "2025-02-10T16:13:18.248449+00:00",
+      "updated_at": "2025-02-10T18:06:20.416331+00:00",
+      "recruiter_id": "5695f222-a9b6-418a-b78f-d290187c5575",
+      "recruiter_name": "Julian",
+      "custom_fields": [
+        {
+          "id": "e078deb1-7841-4d10-8366-c5ea53246db0",
+          "name": "Fecha de Nacimiento",
+          "field_type": "date",
+          "required": true,
+          "description": "Fecha de nacimiento del candidato",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "bd0e3ad7-9a2f-4b8d-bb21-117e479a5689",
+          "name": "\u00bfCual es el estado de sus estudios?",
+          "field_type": "text",
+          "required": false,
+          "description": "Estado actual de sus estudios",
+          "visible": false,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "41a2bb8f-f34a-4c9d-bd67-68aaf3d39fdc",
+          "name": "T\u00edtulo o Carrera q estudi\u00f3:",
+          "field_type": "text",
+          "required": false,
+          "description": "Estudios del candidato",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "b299fa9e-9f9d-403c-b16e-94fbe7fffef3",
+          "name": "Seniority - A\u00f1os de experiencia en el puesto para el que aplica",
+          "field_type": "Choices",
+          "required": false,
+          "description": "Total a\u00f1os de exp relevantes a la vacante",
+          "visible": true,
+          "choices": "[\"Trainee (menos de 1 a\\u00f1o)\", \"Junior (1 a 2 a\\u00f1os)\", \"Semi Senior (2 a 5 a\\u00f1os)\", \"Senior (5 a 8 a\\u00f1os)\", \"Experto (m\\u00e1s de 8 a\\u00f1os)\"]",
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "3ba57d36-b1fa-414d-9fad-c4d6cd5f11ae",
+          "name": "Motivaci\u00f3n del Cambio / Orientaci\u00f3n de la busqueda",
+          "field_type": "textarea",
+          "required": false,
+          "description": "Porqu\u00e9 quiere cambiarse? y que esta buscando? sigue con la misma posici\u00f3n o quiere cambiarse a otras posiciones.",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "6f189817-22bf-4f6f-bb8a-a0622103a33d",
+          "name": "DNI (sin puntos, todo junto)",
+          "field_type": "text",
+          "required": false,
+          "description": "DNI/ Cedula de Identidad",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "dd81a038-f931-467d-bce7-42d866da7ed5",
+          "name": "Tiene Visa de algun tipo?",
+          "field_type": "text",
+          "required": false,
+          "description": "Si el candidato tiene vigente alguna visa de algun tipo (USA, etc)",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "86416d5d-beb1-4746-832b-11a45ee3111d",
+          "name": "Nivel de Idioma Ingles",
+          "field_type": "Choices",
+          "required": false,
+          "description": "Poner nivel de Idioma",
+          "visible": true,
+          "choices": "[\"01- No posee\", \"02- B\\u00e1sico (Puede leerlo y entender si le hablan) / A1-A2\", \"04- Intermedio (habla y Escribe pero no tan fluido) / B1-B2\", \"06- Avanzado (habla y escribe fluidamente) / C1\", \"07- Biling\\u00fce / Nativo / C2\"]",
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "627ca928-ad77-4cf1-8a6b-fbbc634f6cc9",
+          "name": "Fecha de entrevista",
+          "field_type": "Date",
+          "required": true,
+          "description": "Fecha en que se realizo la entrevista ",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "5d4229e1-4914-4adf-8ca6-d09f0f16b6ba",
+          "name": "Salario Actual Candidato",
+          "field_type": "text",
+          "required": false,
+          "description": "La remuneracion actual o ultima que tuvo el candidato",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "e9c7805a-3907-480b-92c5-26f81702773e",
+          "name": "Salario Pretendido",
+          "field_type": "text",
+          "required": true,
+          "description": "Expectativa salarial del candidato",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "aa360445-1b80-4f9c-bca4-b00a6f03320f",
+          "name": "Disponibilidad para proxima entrevista",
+          "field_type": "text",
+          "required": true,
+          "description": "Rangos de disponibilidad del candidato para la proxima instancia",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "bb9befb5-c75e-49f6-bad7-dc5a88dc294c",
+          "name": "Puesto al que Aplica",
+          "field_type": "Text",
+          "required": true,
+          "description": "Siempre poner cual es el puesto para el que aplica y el \u00faltimo. (Si aplic\u00f3 para QA en 2011 y para AF en 2012, debe estar seleccionado AF)",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "701735c8-2abd-48b7-a60f-966790ad78c3",
+          "name": "Otros idiomas",
+          "field_type": "text",
+          "required": false,
+          "description": "Si el candidato tuviera conocimiento en otro idiomas, en cuales? expresar el nivel de dicho idioma (Ej: Portugues C1)",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "38a51276-c2c9-46d9-b366-9479cdaf24bb",
+          "name": "Conocimiento de herrramientas tecnicas (Excel, Catia, SAP, etc)",
+          "field_type": "text",
+          "required": false,
+          "description": "Toda herramienta en la cual tenga conocimiento el candidato",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "56e50b86-5c31-4afd-861f-2cd1c9de57e5",
+          "name": "Lenguaje de Programaci\u00f3n ",
+          "field_type": "text",
+          "required": false,
+          "description": "Poner una lista de los lenguajes de programacion en los cuales tenga experiencia el candidato y los a\u00f1os en cada una (Ej: Java 8 a\u00f1os, React 4 a\u00f1os, etc)",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "f67366ec-02fa-41db-a871-20bfe5653cdd",
+          "name": "Bases de Datos (si fuera necesario)",
+          "field_type": "text",
+          "required": false,
+          "description": "Poner una lista de las bases de datos en los cuales tenga experiencia el candidato y los a\u00f1os en cada una (Ej: SQL 8 a\u00f1os, MongoDB 4 a\u00f1os, etc)",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "05092b98-952c-453c-be5c-6ab1bfb45bdf",
+          "name": "Pais de Residencia",
+          "field_type": "Text",
+          "required": true,
+          "description": "Pais donde reside el candidato",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "3070926d-e847-4312-ba49-900639445733",
+          "name": "Provincia de Residencia",
+          "field_type": "Text",
+          "required": true,
+          "description": "Provincia de residencia del candidato",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "bfd6204a-1fdf-4061-a9cd-5df85bee1926",
+          "name": "Screening (REVISAR)",
+          "field_type": "Text",
+          "required": false,
+          "description": "Datos Personales: Presentacion del candidato. t\u00edtulo, a\u00f1os que viene trabajando   Experiencia laboral: contar la experiencia de los ultimos 2 trabajos. Empresa, a\u00f1os, Proyectos, Rol en el proyecto y tecnolog\u00edas que utiliz\u00f3   A\u00f1os de experiencia en cada tecnolog\u00eda: (p/DISTILLERY) \u00bfQu\u00e9 es lo que mas valora de un trabajo?",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "92ce6a09-ff86-4fbe-8c20-33f93dc054c4",
+          "name": "Herramientas de Testing ",
+          "field_type": "text",
+          "required": false,
+          "description": "Poner una lista de las herramientas de testing en los cuales tenga experiencia el candidato y los a\u00f1os en cada una (Ej: Junit 8 a\u00f1os, Unitesting 4 a\u00f1os, etc)",
+          "visible": false,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "5d353a61-c2a2-4301-9e24-e1d5f45e5898",
+          "name": "Otras Tecnologias",
+          "field_type": "text",
+          "required": false,
+          "description": "Poner un listado de todas las otras Tecnologias/Herramientas que haya usado en candidato seguido de los a\u00f1os con cada una ( Ej: PowerBI 4 a\u00f1os, etc) ",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "0f707bcf-bf92-45f0-a2db-d4aa7dbcab6f",
+          "name": "ELIMINAR",
+          "field_type": "text",
+          "required": false,
+          "description": "ELIMINAR CAMPO",
+          "visible": false,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "2a6e9153-1450-471e-ae53-b58be5e50cd5",
+      "name": "Feedback T\u00e9cnico",
+      "description": "El Feedback T\u00e9cnico  refiere a una evaluaci\u00f3n detallada de las habilidades, conocimientos y desempe\u00f1o en aspectos t\u00e9cnicos espec\u00edficos del puesto. Este tipo de retroalimentaci\u00f3n busca identificar fortalezas, \u00e1reas de mejora y proporcionar recomendaciones para el desarrollo profesional del candidato, con el fin de optimizar su rendimiento en futuras oportunidades.",
+      "created_at": "2025-02-10T18:02:51.055672+00:00",
+      "updated_at": "2025-02-10T18:02:51.055687+00:00",
+      "recruiter_id": "5695f222-a9b6-418a-b78f-d290187c5575",
+      "recruiter_name": "Julian",
+      "custom_fields": [
+        {
+          "id": "8a5689b7-49ab-4e88-bc73-96490afb7310",
+          "name": "Resultado de la Prueba Tecnica",
+          "field_type": "Choices",
+          "required": true,
+          "description": "",
+          "visible": true,
+          "choices": "[\"Aprobado\", \"Desaprobado\", \"Aprobado pero con condicion\", \"Otras\"]",
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "8f237fa5-1adf-4676-b83c-e5160ad089fa",
+          "name": "OBSERVACIONES de la instancia t\u00e9cnica ",
+          "field_type": "Text",
+          "required": false,
+          "description": "Puntos de fortaleza del candidato, punto de mejora del candidato y otros puntos a observar",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        }
+      ]
+    },
+    {
+      "id": "36c1c7d5-f5dd-4ea3-9af0-2fc54d348077",
+      "name": "Agente - Default",
+      "description": "Este formulario es creado automaticamente. No puedes editarlo o agregar formularios de este tipo.",
+      "created_at": "2025-02-10T15:10:43.458004+00:00",
+      "updated_at": "2025-02-10T15:10:43.458017+00:00",
+      "recruiter_id": "56a321a8-7022-4ca7-bfde-6bf511426f24",
+      "recruiter_name": "Julian",
+      "custom_fields": [
+        {
+          "id": "5a5c015b-0e44-4f02-81e3-df652c845eec",
+          "name": "Resumen",
+          "field_type": "text",
+          "required": true,
+          "description": "Resumen de agente",
+          "visible": true,
+          "choices": null,
+          "order": 0,
+          "date_default": null
+        },
+        {
+          "id": "e2291403-e7c3-4b66-b205-8c28b8470cf7",
+          "name": "Link",
+          "field_type": "text",
+          "required": true,
+          "description": "Link de la conversaci\u00f3n",
+          "visible": true,
+          "choices": null,
+          "order": 1,
+          "date_default": null
+        },
+        {
+          "id": "4b08bafc-5104-47b9-b036-9e9a460f28a7",
+          "name": "Fecha de creaci\u00f3n",
+          "field_type": "date",
+          "required": true,
+          "description": "Fecha de creaci\u00f3n",
+          "visible": true,
+          "choices": null,
+          "order": 2,
+          "date_default": null
+        },
+        {
+          "id": "3ca02309-dded-4784-8782-b81fe2f00e85",
+          "name": "Creado por",
+          "field_type": "text",
+          "required": true,
+          "description": "Creado por",
+          "visible": true,
+          "choices": null,
+          "order": 3,
+          "date_default": null
+        }
+      ]
+    }
+  ],
+  "search_query": ""
+}

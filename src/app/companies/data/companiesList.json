@@ -1,0 +1,110 @@
+{
+    "companies": [
+        {
+            "id": "4a88ebd8-1c6f-40cc-bfdb-2849490bb54e",
+            "name": "10Pearls",
+            "email": "123@testing.com",
+            "description": "10Pearls es un socio global en transformaci\u00f3n digital que ayuda a las empresas a innovar, crear nuevos productos y escalar sus equipos. Se especializan en desarrollo de software, inteligencia artificial, soluciones en la nube y consultor\u00eda empresarial, ofreciendo resultados de alta calidad con un enfoque en metodolog\u00edas \u00e1giles. Con una profunda experiencia en industrias como salud, fintech y energ\u00eda, 10Pearls combina tecnolog\u00edas avanzadas como inteligencia artificial, aprendizaje autom\u00e1tico y la nube para resolver desaf\u00edos empresariales complejos. Ofrecen soluciones personalizadas que cubren tanto las necesidades t\u00e9cnicas como estrat\u00e9gicas de sus clientes, asegurando implementaciones r\u00e1pidas, seguras y escalables.",
+            "created_at": "2025-02-11T15:27:35.652193+00:00",
+            "updated_at": "2025-02-11T15:27:35.652206+00:00",
+            "uuid": "2ea324ee-054f-4e4e-898f-4a6957ddfb1a",
+            "jobs_count": 4
+        },
+        {
+            "id": "fb24848d-212e-4337-81b4-42dd10320a95",
+            "name": "Akurey",
+            "email": "squiros@akurey.com",
+            "description": "A technological company leader in building digital experiences through software applications, devices, innovation, digital media and high tech. \r\n\r\nOur mission is to create impact in the customer's Chain of Value through high tech solutions.\r\n\r\nWe do Web and Mobile apps. Augmented staffing,  product development. Cloud computing, Quality Assurance and Internet of things.\r\n\r\n",
+            "created_at": "2025-05-07T18:56:16.914584+00:00",
+            "updated_at": "2025-05-07T18:56:16.914744+00:00",
+            "uuid": "78035a40-5a85-4acc-97cf-f7f0887acd5c",
+            "jobs_count": 1
+        },
+        {
+            "id": "b7ea7534-30ea-45ea-8e32-64521ea019bb",
+            "name": "Archivista",
+            "email": "clurgo@rhvision.org",
+            "description": "Archivista is Digital Estate Automation.\r\nOur Technology empowers individuals and businesses to preserve, protect, and immortalize their most important moments through certified and tamperproof onchain records.",
+            "created_at": "2025-07-03T18:21:19.567625+00:00",
+            "updated_at": "2025-07-03T18:21:19.567642+00:00",
+            "uuid": "da5f0ea7-35e8-4105-b144-77598a66e335",
+            "jobs_count": 2
+        },
+        {
+            "id": "9dfa0963-3a8d-428a-9642-b7a639ef7672",
+            "name": "Cl\u00ednica Universitaria Reina Fabiola",
+            "email": "andrea.villegas@curf.ucc.edu.ar",
+            "description": "\"La Cl\u00ednica Universitaria Reina Fabiola (CURF) es una instituci\u00f3n de salud que forma parte de la Fundaci\u00f3n para el Progreso de la Universidad Cat\u00f3lica de C\u00f3rdoba y cuya existencia data del a\u00f1o 1959. ",
+            "created_at": "2025-05-28T17:08:18.505700+00:00",
+            "updated_at": "2025-05-28T17:08:18.505718+00:00",
+            "uuid": "51f83cf7-ae12-499f-b8e6-e29248fdd047",
+            "jobs_count": 1
+        },
+        {
+            "id": "36f3e1ef-533f-4fe0-ad13-ec4d2378e1fb",
+            "name": "Compa\u00f1ia de prueba",
+            "email": "123@testing.com",
+            "description": "aa",
+            "created_at": "2025-02-21T19:51:36.772318+00:00",
+            "updated_at": "2025-03-26T06:53:38.336505+00:00",
+            "uuid": "bf467c86-d416-4da0-8484-00931a2fead8",
+            "jobs_count": 12
+        },
+        {
+            "id": "5be888b9-cd66-44d4-8f1e-1793598ea194",
+            "name": "Concord",
+            "email": "valeria.brambilla@concordusa.com",
+            "description": "SF",
+            "created_at": "2025-02-26T20:14:55.368191+00:00",
+            "updated_at": "2025-02-26T20:14:55.368206+00:00",
+            "uuid": "cdb16166-9445-4c45-b44b-e0ecf3d40d2d",
+            "jobs_count": 2
+        },
+        {
+            "id": "34a165f7-69b2-4543-967b-ce0e2cea7a06",
+            "name": "Eclypsium",
+            "email": "luciano.montaruli@eclypsium.com",
+            "description": "Eclypsium establishes trust in every endpoint, server and network appliance in enterprise infrastructure (IT, cloud, data centers, network) by identifying, verifying and fortifying 3rd-party software, firmware and hardware in every device.\r\n\r\n  Eclypsium\u2019s platform continuously monitors firmware, hardware and software within each critical asset for threats, backdoors, implants and vulnerabilities, and mitigates supply chain risks throughout the asset lifecycle. Powered by world-class research team, Eclypsium was named as Gartner Cool Vendor, and a winner of Fast Company\u2019s most innovative security companies, CNBC Upstart 100, Cyber Defense Magazine\u2019s Most Innovative Supply Chain Security, and CRN\u2019s Stellar Startups awards.\r\n\r\n[1] https://www.eclypsium.com\r\n\r\n+1 (833) 347-6732\r\nReferences\r\n\r\nVisible links\r\n1. https://www.eclypsium.com/",
+            "created_at": "2025-07-10T17:38:55.923775+00:00",
+            "updated_at": "2025-07-10T17:38:55.923793+00:00",
+            "uuid": "8bdeefde-1ca3-41b5-8931-80e1db026fcc",
+            "jobs_count": 0
+        },
+        {
+            "id": "c3a4fb18-f62c-4b2a-9ee6-55efc9f5920c",
+            "name": "Factor K",
+            "email": "jimmy.quesada@factork-software.com",
+            "description": "Nos esforzamos por ser su socio tecnol\u00f3gico de software nearshore o su mejor opci\u00f3n. Apoyaremos su estrategia digital y resolveremos sus necesidades de desarrollo de software, brind\u00e1ndole el mejor talento nearshore mediante la ampliaci\u00f3n de personal, equipos dedicados y consultor\u00eda. Nuestra empresa tiene su sede en San Jos\u00e9, Costa Rica (GMT-6, hora central). Nuestro personal est\u00e1 alineado culturalmente con las pr\u00e1cticas comerciales de EE. UU. Nos comprometemos a crecer con usted y a ofrecer la mejor experiencia al cliente, atrayendo y reteniendo al mejor talento t\u00e9cnico.",
+            "created_at": "2025-06-10T13:08:14.312132+00:00",
+            "updated_at": "2025-06-10T13:08:14.312150+00:00",
+            "uuid": "1c56107d-477d-4bef-8bf5-88fc8a667cbb",
+            "jobs_count": 2
+        },
+        {
+            "id": "2c68dd65-754e-4fa1-adc5-f5c2bca571b9",
+            "name": "Gama",
+            "email": "jrubbiolo@hrvision.org",
+            "description": "En GAMA dise\u00f1amos, constru\u00edmos y comercializamos departamentos e inmuebles en la ciudad de C\u00f3rdoba. La flexibilidad es nuestro principal diferenciador a la hora de ofrecer un un buen negocio y nuestra experiencia es el respaldo de 38 a\u00f1os de trayectoria.",
+            "created_at": "2025-03-14T18:48:25.367620+00:00",
+            "updated_at": "2025-03-26T06:53:07.140952+00:00",
+            "uuid": "e9ed823d-16c9-4c43-8f4c-36415ced0db4",
+            "jobs_count": 3
+        },
+        {
+            "id": "5b10acfb-9130-4548-a390-0db595c45f12",
+            "name": "GATES CONSULTING",
+            "email": "clurgo@rhvision.org",
+            "description": "Gates Consulting es un equipo de profesionales altamente calificados con presencia en Argentina, y con proyecci\u00f3n en latinoam\u00e9rica, dedicados a fortalecer la estrategia de ciberseguridad  y la seguridad de la informaci\u00f3n de las empresas, asegurando la eficacia, competitividad y continuidad de los negocios.\r\n\r\nDesde  2008, aportamos conocimiento especializado en seguridad IT, ofreciendo servicios de consultor\u00eda, gesti\u00f3n, prevenci\u00f3n y cumplimiento, adaptables a las necesidades y presupuesto de cada Organizaci\u00f3n, integrando tecnolog\u00edas l\u00edderes en el mercado que abarcan un amplio rango de soluciones.",
+            "created_at": "2025-04-25T20:50:55.105766+00:00",
+            "updated_at": "2025-04-25T20:50:55.105788+00:00",
+            "uuid": "dabe4ecd-3728-40f6-b970-3b97972a4c0d",
+            "jobs_count": 1
+        }
+    ],
+    "total_pages": 3,
+    "current_page": 1,
+    "total_companies": 22,
+    "search_query": "",
+    "sort_by": "name",
+    "sort_order": "asc"
+}

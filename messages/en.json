@@ -64,6 +64,89 @@
       "noNextStages": "No next stages available."
     }
   },
+  "Companies": {
+    "AddCompanyButton": "Add Company",
+    "FilterTitle": "Filter companies",
+    "SearchPlaceholder": "🔍 Search by company name",
+    "TableTitle": "Companies List",
+    "TableHead": {
+      "Name": "Name",
+      "Email": "Email",
+      "Description": "Description",
+      "CreatedAt": "Created at",
+      "UpdatedAt": "Last updated",
+      "Jobs": "Jobs"
+    }
+  },
+  "CompanyDetails": {
+    "BackButton": "Return to Companies",
+    "EmailLabel": "Email",
+    "AddTags": "Add tags",
+    "FilesTitle": "Files",
+    "AddFile": "Add file",
+    "NoFiles": "No files available",
+    "JobsTitle": "Jobs at {company}",
+    "JobTitle": "Title",
+    "JobUpdated": "Updated",
+    "JobActions": "Actions",
+    "NoJobs": "No jobs published",
+    "FormsTitle": "Forms",
+    "AddForm": "Add form",
+    "NoForms": "No scorecards available.",
+    "EditCompanyButton": "Edit company",
+    "EditCompany": {
+      "buttonLabel": "Edit Company",
+      "dialogTitle": "Edit Company",
+      "dialogDescription": "Update the company's information",
+      "fields": {
+        "name": "Name",
+        "email": "Email",
+        "phone": "Phone",
+        "description": "Description",
+        "benefits": "Benefits",
+        "ownerPhone": "Owner Phone",
+        "address": "Address"
+      },
+      "requiredIndicator": "*",
+      "cancel": "Cancel",
+      "save": "Save Changes"
+    }
+  },
+
+  "Forms": {
+    "AddFormButton": "Add Form",
+    "filterTitle": "Filter forms",
+    "searchPlaceholder": "🔍 Search by form name",
+    "tableTitle": "Form List",
+    "name": "Name",
+    "description": "Description",
+    "recruiter": "Recruiter",
+    "createdAt": "Created at",
+    "updatedAt": "Last updated",
+    "customFields": "Custom fields"
+  },
+  "FormDetails": {
+    "BackToForms": "Back to Forms",
+    "ByRecruiter": "By {recruiter}",
+    "CustomFields": "Custom Fields",
+    "Name": "Name",
+    "Type": "Type",
+    "Visible": "Visible",
+    "Required": "Required",
+    "Details": "Details",
+    "Yes": "YES",
+    "No": "NO",
+    "EditCustomFields": "Edit custom fields",
+    "CustomFieldsDetails": {
+      "Type": "Type",
+      "Description": "Description",
+      "Visible": "Visible?",
+      "Required": "Required?",
+      "Yes": "YES",
+      "No": "NO",
+      "Options": "Options"
+    }
+  },
   "WorkflowDetails": {
     "Canvas": {
       "Back": "Back",

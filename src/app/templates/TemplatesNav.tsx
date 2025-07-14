@@ -1,0 +1,37 @@
+"use client";
+
+import * as React from "react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+interface TemplatesNavProps {
+  activeTab: string;
+  setActiveTab: (value: string) => void;
+}
+
+export default function TemplatesNav({
+  activeTab,
+  setActiveTab,
+}: TemplatesNavProps) {
+  const tabs = [
+    { value: "templates", label: "Templates" },
+    { value: "call-agents", label: "Call Agents" },
+    { value: "text-agents", label: "Text Agents" },
+  ];
+
+  return (
+    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+      <TabsList className="bg-muted p-1 ">
+        {tabs.map((tab) => (
+          <TabsTrigger
+            key={tab.value}
+            value={tab.value}
+            className={`data-[state=active]:bg-purple-600 data-[state=active]:text-white 
+              transition-colors px-4 py-2 rounded-md cursor-pointer`}
+          >
+            {tab.label}
+          </TabsTrigger>
+        ))}
+      </TabsList>
+    </Tabs>
+  );
+}

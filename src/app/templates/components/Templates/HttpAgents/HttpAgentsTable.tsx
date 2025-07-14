@@ -1,0 +1,158 @@
+"use client";
+
+import React from "react";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import {
+  Table,
+  TableHeader,
+  TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
+} from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
+import { Eye, Pencil, Trash } from "lucide-react";
+import httpAgentsMock from "./data/httpagentsmock.json";
+import EmptyState from "@/app/components/EmptyState";
+import {
+  Tooltip,
+  TooltipProvider,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+
+type Props = {};
+
+const HttpAgentsTable = (props: Props) => {
+  const agents = httpAgentsMock.templates;
+
+  return (
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle className="text-xl font-semibold">HTTP Agents</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {agents.length === 0 ? (
+          <EmptyState />
+        ) : (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Nombre</TableHead>
+                <TableHead>Método</TableHead>
+                <TableHead>URL</TableHead>
+                <TableHead>Timeout</TableHead>
+                <TableHead>Retries</TableHead>
+                <TableHead>Body</TableHead>
+                <TableHead>Creado</TableHead>
+                <TableHead>Actualizado</TableHead>
+                <TableHead>Acciones</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {agents.map((agent) => (
+                <TableRow key={agent.id}>
+                  <TableCell>
+                    {agent.name ? (
+                      <Badge
+                        variant="outline"
+                        className="text-purple-600 border-purple-600"
+                      >
+                        {agent.name}
+                      </Badge>
+                    ) : (
+                      <span className="italic text-muted-foreground">
+                        Sin nombre
+                      </span>
+                    )}
+                  </TableCell>
+
+                  <TableCell>
+                    <Badge variant="outline" className="uppercase">
+                      {agent.method}
+                    </Badge>
+                  </TableCell>
+
+                  <TableCell className="max-w-xs truncate">
+                    {agent.url}
+                  </TableCell>
+
+                  <TableCell>{agent.timeout}s</TableCell>
+
+                  <TableCell>{agent.retries}</TableCell>
+
+                  <TableCell className="max-w-xs truncate">
+                    {agent.request_body.slice(0, 50)}...
+                  </TableCell>
+
+                  <TableCell>
+                    {new Date(agent.created_at).toLocaleDateString()}
+                  </TableCell>
+
+                  <TableCell>
+                    {new Date(agent.updated_at).toLocaleDateString()}
+                  </TableCell>
+
+                  <TableCell className="flex items-center gap-2">
+                    <TooltipProvider>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            className="p-2 cursor-pointer"
+                            variant="outline"
+                            size="icon"
+                          >
+                            <Eye className="w-4 h-4" />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Ver Detalles</TooltipContent>
+                      </Tooltip>
+
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            className="p-2 text-green-500 hover:text-green-600 cursor-pointer"
+                            variant="outline"
+                            size="icon"
+                          >
+                            <Pencil className="w-4 h-4" />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Editar</TooltipContent>
+                      </Tooltip>
+
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Button
+                            className="p-2 text-red-500 hover:text-red-600 cursor-pointer"
+                            variant="outline"
+                            size="icon"
+                          >
+                            <Trash className="w-4 h-4" />
+                          </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>Eliminar</TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        )}
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        {/* Espacio para futura paginación */}
+      </CardFooter>
+    </Card>
+  );
+};
+
+export default HttpAgentsTable;

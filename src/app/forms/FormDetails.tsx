@@ -22,7 +22,7 @@ export const FormDetails = ({ name, description }: FormDetailsProps) => {
     <Dialog>
       <DialogTrigger asChild>
          <Button size={"icon"} variant={"outline"} className="cursor-pointer">
-          <Eye className="w-4 h-4 cursor-pointer hover:text-primary transition-colors" />
+          <Eye className="w-4 h-4 hover:text-primary transition-colors" />
         </Button>
       </DialogTrigger>
       <DialogContent className="max-w-md">

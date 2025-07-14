@@ -1,0 +1,237 @@
+{
+  "success": true,
+  "templates": [
+    {
+      "id": "ce37b505-773e-454c-a00b-ead9398b8bb0",
+      "name": "Final Client Interview - Entrevista Final con el Cliente",
+      "content": "\"Hola {{candidate_name}}, cómo estás?, te comento que la entrevista final con el cliente está programada para el [Día] a las [Hora] (Horario XXXX ). Cualquier duda o consulta quedo a disposición ¡Ya falta poco !",
+      "created_at": "2025-02-20T19:37:36.821713+00:00",
+      "updated_at": "2025-02-20T19:37:36.821727+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "327c13e1-b7df-4009-ade2-13f6920b779c",
+      "name": "Offer Discussion - Negociación de Oferta",
+      "content": "Tengo excelentes novedades {{candidate_name}} El cliente nos confirmó y estamos listo para coordinar los detalles de tu ingreso ! Cuando podrás recibir una llamada?",
+      "created_at": "2025-02-20T19:39:53.520160+00:00",
+      "updated_at": "2025-02-20T19:39:53.520172+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "cd8dedcf-eed0-4c15-a0f9-17ab80854142",
+      "name": "Hire (Ingreso a la Empresa)",
+      "content": "¡Bienvenido/a al equipo, {{candidate_name}}! Estamos felices de que te sumes !. En breve recibirás toda la información sobre tu incorporación. ¡Gracias por confiar en en nosotros !",
+      "created_at": "2025-02-20T19:41:20.277015+00:00",
+      "updated_at": "2025-02-20T19:41:20.277028+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "99be65a8-23ca-4aec-91c5-c3eaa87166c3",
+      "name": "Rejected by Partner / Final Client",
+      "content": "Hola {{candidate_name}}, queremos agradecerte por tu participación en el proceso. En esta ocasión, el cliente ha decidido avanzar con otros perfiles, pero si te parece nos mantenemos en contacto para las proximas oportunidades que tengamos !",
+      "created_at": "2025-02-20T19:48:15.796052+00:00",
+      "updated_at": "2025-02-20T19:48:15.796066+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "9b09844e-1a68-484d-bcdd-6537bf96a505",
+      "name": "2.1 Interested in your profile / Match with one of our opening",
+      "content": "Buenas {{candidate_name}} ! Actualmente tenenemos una vacante para {{parameter}} que se ajusta a tu perfil y quería consultarte si estarás interesado en charlar sobre nueva oportunidades !",
+      "created_at": "2025-02-25T20:03:33.717714+00:00",
+      "updated_at": "2025-02-27T13:15:15.955286+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "33d6f17d-b399-470b-97db-cc33940dc26e",
+      "name": "Mensajes de Cierre (Si No Continúa en el Proceso)",
+      "content": "Hola {{candidate_name}} queremos agradecerte por tu participación en el proceso. En ésta ocasión, el cliente ha decidido avanzar con otros perfiles que tienen mayor pertinencia en las tecnologias solicitadas, pero queria agraecerte por tu tiempo y predisposición, si te parece nos mantenemos en contacto para otras oportunidades !",
+      "created_at": "2025-02-20T19:43:26.108464+00:00",
+      "updated_at": "2025-02-24T19:14:17.934867+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "2313f7af-7750-4bd8-bcc0-35ef3559b016",
+      "name": "ENVIO AL CLIENTE FINAL",
+      "content": "Hola {{candidate_name}} quería avisarte que te fue muy bien en las entrevistas técnicas con lo cual vamos a estar enviando tu perfil al cliente final. \r\nPara esto requerimos avanzar en un proceso de solicitud de referencias, en donde necesitamos nos compartas al menos 3 contactos de personas que hayan trabajado con vos, a las cuales le podamos consultar sobre la experiencia de trabajar contigo. \r\n\r\nEste momento es muy importante ya que tu nombre y el nuestro quedan expuestos en el cliente con lo cual el nivel de compromiso en esta instancia es crucial, cualquier cambio te pido me lo avises lo antes posible. \r\nCon el envio de tu cv al cliente final vamos a buscar conseguir la entrevista con ellos, y este es el último step. \r\nEn el caso de que el cliente te quiera conocer y apruebes esta instancia, la propuesta que se te hará es la pre-acordada que puedes revisar en este chat. \r\n\r\nCualquier consulta, consúltame!",
+      "created_at": "2025-04-22T01:19:21.580976+00:00",
+      "updated_at": "2025-04-22T01:19:21.581064+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "ad4e50e1-fac9-4e2e-81b0-a783bc44ffb4",
+      "name": "Pending for Screening (Preseleccionado) / Julian Rubbiolo Calendly",
+      "content": "Buenas ! {{candidate_name}}, queremos avanzar con tu perfil ! si te parece pautá desde éste link la entrevista para cuando mejor te quede !\r\nhttps://calendly.com/jrubbiolo-rhvision/30min",
+      "created_at": "2025-02-24T19:02:24.754801+00:00",
+      "updated_at": "2025-02-25T20:00:40.155126+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "86da574f-e744-4402-9be6-d53b6e8d0333",
+      "name": "2.2 Responde a: Interested un your profile",
+      "content": "Buenísimo ! te parece si coordinamos una call? en la misma te cuento un poco más sobre la posición, beneficios, proyecto y demás detalles?",
+      "created_at": "2025-02-27T13:14:57.580383+00:00",
+      "updated_at": "2025-02-27T13:15:22.060811+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "550e0985-4bff-41ca-b93b-5df2c5679a3a",
+      "name": "2.3 Setting interview with HR (Calendly)",
+      "content": "Te paso mi Calendly para que pautes la call para cuando mejor te quede !\r\nhttps://calendly.com/jrubbiolo-rhvision/30min\r\nDuda o consulta quedo a disposición !",
+      "created_at": "2025-02-27T13:18:59.669492+00:00",
+      "updated_at": "2025-02-27T13:18:59.669506+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "739f9ba6-9fa5-47d6-9726-e18f894dfa0d",
+      "name": "2.002 soy XXX de RH",
+      "content": "Soy {{recruiter_name}} de RH Visión estuviste en contacto con nosotros anteriormente, no se si nos recordás?",
+      "created_at": "2025-03-12T18:53:08.507946+00:00",
+      "updated_at": "2025-03-12T18:53:08.513608+00:00",
+      "recruiter": "270421fd-f9a5-42b1-bc69-43b09192ff89"
+    },
+    {
+      "id": "e1461cca-fab8-4f5f-a982-b192d08d8973",
+      "name": "2.001 Hola {{candidate_name}}, cómo estas?",
+      "content": "Hola {{candidate_first_name}}, cómo estas?",
+      "created_at": "2025-03-12T18:51:35.679733+00:00",
+      "updated_at": "2025-03-12T19:08:16.718164+00:00",
+      "recruiter": "270421fd-f9a5-42b1-bc69-43b09192ff89"
+    },
+    {
+      "id": "34afe53a-059d-40eb-bfd1-181826823705",
+      "name": "Mensaje primer contacto",
+      "content": "Hola {{candidate_first_name}} ! cómo estás? te escribo desde RH Vision, estuviste en proceso con nosotros hace un tiempo y me interesó tu perfil para una nueva vacante que tenemos {{job_title}}, te consulto si estarás abierto a escuchar nuevas oportunidades?",
+      "created_at": "2025-03-20T19:45:05.869669+00:00",
+      "updated_at": "2025-03-20T19:45:05.869687+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "26e53a8f-e28d-4d06-863b-2957145643d4",
+      "name": "action test demo wp",
+      "content": "Hola {{candidate_first_name}}!, soy {{recruiter_name}} te contacto porque vimos que podrias aplicar al puesto de {{job_title}}",
+      "created_at": "2025-03-26T03:49:51.880325+00:00",
+      "updated_at": "2025-03-26T03:58:27.554819+00:00",
+      "recruiter": "a70a7e45-b7d2-4476-a8f8-e878927b9af6"
+    },
+    {
+      "id": "f3bb4c5b-8aa0-489b-b15b-42cf4c08f0f6",
+      "name": "Candidato desde el Portal (Postulación Inicial)",
+      "content": "¡Hola {{candidate_name}} Hemos recibido tu cv! muchas gracias por tu postulación. En el caso de avanzar con tu perfil, nos estaremos comunicando.",
+      "created_at": "2025-02-20T19:30:45.289625+00:00",
+      "updated_at": "2025-04-21T20:46:36.677171+00:00",
+      "recruiter": "5695f222-a9b6-418a-b78f-d290187c5575"
+    },
+    {
+      "id": "4ea9172b-6bb6-4f38-8997-a2bb8db93aa8",
+      "name": "1er contacto",
+      "content": "Hola {{candidate_first_name}}, soy {{recruiter_name}} de RH Vision, te escribo porque tenemos una posición activa de: {{job_title}} y creemos que puede interesarte mucho! Te parece si te cuento más?",
+      "created_at": "2025-04-22T01:03:54.602195+00:00",
+      "updated_at": "2025-04-30T16:13:59.348721+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "10f8c314-8305-4790-9ee3-db26926f4591",
+      "name": "Entrevista Cliente final",
+      "content": "Hola {{candidate_name}} tal como hablamos quedo agendada la entrevista con el cliente final para {{job_title}} , en el transcurso del día te va a llegar el invite y en el mismo más información importante para esta entrevista, apenas te llegue avisame!",
+      "created_at": "2025-04-22T01:21:28.134198+00:00",
+      "updated_at": "2025-05-21T12:06:30.889816+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "211f0e66-16cf-41c5-9322-0a7fe2096c27",
+      "name": "Tech Interview: Feedback Post Entrevista",
+      "content": "Como te fue?!! Contame cómo te sentiste, si te dieron feedback y de que se trato!?",
+      "created_at": "2025-04-22T01:10:38.694604+00:00",
+      "updated_at": "2025-05-19T20:45:09.027847+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "055570fc-caa0-48c5-99c3-6390a31bfb52",
+      "name": "Tech Interview: Recordatorio 20min antes",
+      "content": "{{candidate_first_name}} te deseo muchos éxitos en la entrevista que arranca en 20'! Te escribo luego para preguntarte como te fué 🚀",
+      "created_at": "2025-04-21T21:04:37.016453+00:00",
+      "updated_at": "2025-05-19T20:36:03.995993+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "a621e833-cbb4-4750-b45a-02d479a42d73",
+      "name": "Tech Interview: 1 Mensaje",
+      "content": "Como quedamos, ya agendamos la entrevista técnica para {{job_title}}, para el día {{interview_day}} {{interview_day_number}} a las {{interview_hour}}:{{interview_minutes}}. En el transcurso del día te va a llegar un invite directamente de nuestro partner, por favor cuando te llegue avísame.",
+      "created_at": "2025-04-21T20:51:37.872408+00:00",
+      "updated_at": "2025-05-27T15:18:06.614133+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "86f1a515-78ca-4c68-ab42-7c8a5cec1294",
+      "name": "Client Interview: 1er Mensaje",
+      "content": "Como quedamos, ya agendamos la entrevista con el cliente final para {{job_title}}, para el día {{interview_day}} {{interview_day_number}}  a las {{interview_hour}}:{{interview_minutes}}. En el transcurso del día te va a llegar un invite directamente de nuestro partner, por favor cuando te llegue avísame. \r\nESTAMOS MUY CERCA!",
+      "created_at": "2025-05-20T14:42:23.590104+00:00",
+      "updated_at": "2025-05-27T15:15:46.115547+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "7d015e20-5a13-4edf-aeac-0d05adec64f5",
+      "name": "Client Interview: Post entrevista",
+      "content": "Como te fue? Estamos muuuy cerca! Apenas me den el feedback te lo compartiré. Recorda que en el caso que te haya ido bien,  las condiciones de la contratación ya las preacordamos!",
+      "created_at": "2025-05-20T14:45:28.074909+00:00",
+      "updated_at": "2025-05-20T14:45:28.074956+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "e41ed45b-0298-4bbe-9af4-2eac11da16e4",
+      "name": "Client INterview: 3er mensaje",
+      "content": "{{candidate_first_name}} te deseo muchos éxitos en la entrevista que arranca en 20'! Te escribo luego para preguntarte como te fué 🚀",
+      "created_at": "2025-05-20T14:46:33.975722+00:00",
+      "updated_at": "2025-05-20T14:46:33.975742+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "7464f290-9137-48bd-91aa-cc58e6b5357a",
+      "name": "Client INterview: 2do Mensaje",
+      "content": "Hola {{candidate_name}}, ¿Cómo estás? te recuerdo la entrevista con el cliente final para {{job_title}}, hoy a las {{interview_hour}}:{{interview_minutes}}, porfa fijate que tengas el link de la meet y avisame caulquier cosa. \r\nExitos!!!!",
+      "created_at": "2025-05-20T14:43:59.218406+00:00",
+      "updated_at": "2025-05-21T12:04:42.064279+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "950f7f6c-c332-4d1c-9f11-2c294d8c4f72",
+      "name": "Tech Interview: Recordatorio mismo dia",
+      "content": "Hola {{candidate_name}}, ¿Cómo estás? te recuerdo la entrevista para {{job_title}} de hoy a las {{interview_hour}}:{{interview_minutes}}, porfa fijate que tengas el link de la meet y avisame caulquier cosa.\r\n\r\nTe dejo por acá algunos tips para que tengas en cuenta para la entrevista:\r\n📷 Es muy importante que tengas la cámara encendida, para conocerte mejor y poder Te dejo por acá algunos tips para que tengas en cuenta para la entrevista:\r\n📷 Es muy importante que tengas la cámara encendida, para conocerte mejor y poder mantener la conversación. \r\n💧Te sugerimos tener a mano un vaso de agua por si necesitas aclarar la garganta.\r\n⏰ Es importante que entres a horario a la reu! Prepárate unos min antes.\r\n🇺🇸 Si hay alguna pregunta que no entendés: no respondas. Es mejor pedir que te repitan o si te lo pueden preguntar de otra forma para que puedas responder lo que te están preguntando.\r\n🗣 Te recomendamos respuestas concisas a la pregunta que te están haciendo. Si quieres ampliar esta bueno responder 1ero la pregunta.\r\n🗣 Por favor, utiliza un vocabulario adecuado a una instancia de entrevista y te pedimos por favor que NO FUMES 🚭 durante la interview (no está bien visto)\r\n💻 A la hora de codear te recomendamos no suponer ni adivinar sino tomarse unos segs para pensar.\r\n🚀 ESTA MUY MAL VISTO que busques las respuestas que te hagan en una computadora o celular. Si bien en la diaria laboral es común y habitual y normal en una entrevista da sensación de falta de transparencia🚀\r\n\r\n💰💰💰 Todos sabemos que es muy importante el cambio por lo economico pero a las areas de HR o clientes suelen no recibir bien si solo es ese el motivo, recomendamos complementar a la respuesta con otra razón. \r\n\r\n🆘 IMPORTANTISIMO: Es requerido que si o si te sumes desde una computadora. NO HAY NINGUNA POSIBILIDAD de hacerlo desde un celular🆘 Sino te podes conectar de una compu, avisame!  \r\n\r\nY el mejor tip: Buena energía para esta interview. Éxitos 💪\r\nLuego contame cómo te fue",
+      "created_at": "2025-04-21T21:01:55.712289+00:00",
+      "updated_at": "2025-05-21T12:07:42.986503+00:00",
+      "recruiter": "3bffc30d-0fec-488b-aaeb-ce98d75e6f24"
+    },
+    {
+      "id": "363b1063-a948-49ca-bab9-70d78d066007",
+      "name": "sweguiiento comercial",
+      "content": "Hola {{candidate_first_name}}, como estas? queria saber cocmo venian con los proyectos?",
+      "created_at": "2025-06-11T12:08:03.996466+00:00",
+      "updated_at": "2025-06-11T12:08:03.996479+00:00",
+      "recruiter": "56a321a8-7022-4ca7-bfde-6bf511426f24"
+    },
+    {
+      "id": "6df05eea-e585-4776-ae10-f509e1fb302c",
+      "name": "pendiente de entrevista",
+      "content": "Hola {{candidate_first_name}}, gracias por querer participar. Te esperamos en la reunion ",
+      "created_at": "2025-06-11T21:21:29.376465+00:00",
+      "updated_at": "2025-06-11T21:21:29.376482+00:00",
+      "recruiter": "56a321a8-7022-4ca7-bfde-6bf511426f24"
+    },
+    {
+      "id": "c735fb6d-b673-41f0-818d-2c9f64695ce1",
+      "name": "Comercial Whatsapp",
+      "content": "Hola {{candidate_first_name}} \nSoy Nicolás de la Consultora RH Visión.",
+      "created_at": "2025-06-18T20:57:33.996059+00:00",
+      "updated_at": "2025-06-18T20:57:33.996080+00:00",
+      "recruiter": "270421fd-f9a5-42b1-bc69-43b09192ff89"
+    },
+    {
+      "id": "fc46e444-d85a-4fc3-a427-48d32b3eb8cf",
+      "name": "Comercial Whatsapp 1",
+      "content": "Vi que tienes busquedas activas y me interesa conversar con ustedes",
+      "created_at": "2025-06-18T21:09:51.071278+00:00",
+      "updated_at": "2025-06-18T21:09:51.071297+00:00",
+      "recruiter": "270421fd-f9a5-42b1-bc69-43b09192ff89"
+    }
+  ]
+}

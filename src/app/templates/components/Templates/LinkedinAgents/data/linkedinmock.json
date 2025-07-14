@@ -1,0 +1,18 @@
+{
+    "success": true,
+    "templates": [
+        {
+            "id": "1",
+            "name": "dsa",
+            "description": "dasdsa",
+            "task": "dasdas",
+            "prompt": "dasdasd",
+            "first_message": "sadasdsa",
+            "direction": "outbound",
+            "status": "active",
+            "created_at": "2025-07-11T13:12:59.710911+00:00",
+            "updated_at": "2025-07-11T13:12:59.710940+00:00",
+            "recruiter": "93218c18-49fa-4724-b190-19b5fc825434"
+        }
+    ]
+}

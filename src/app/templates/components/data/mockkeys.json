@@ -1,0 +1,1238 @@
+{
+  "success": true,
+  "data": {
+    "candidate": [
+      {
+        "name": "category",
+        "key": "candidate_category",
+        "type": "CharField",
+        "verbose_name": "category",
+        "help_text": "",
+        "null": true,
+        "blank": true,
+        "choices": [
+          ["devops", "DevOps"],
+          ["data", "Data"],
+          ["backend", "Backend"],
+          ["frontend", "Frontend"],
+          ["qa", "QA"],
+          ["management", "Management"]
+        ]
+      },
+      {
+        "name": "id",
+        "key": "candidate_id",
+        "type": "UUIDField",
+        "verbose_name": "id",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "name",
+        "key": "candidate_name",
+        "type": "CharField",
+        "verbose_name": "name",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "email",
+        "key": "candidate_email",
+        "type": "CharField",
+        "verbose_name": "email",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "cv",
+        "key": "candidate_cv",
+        "type": "FileField",
+        "verbose_name": "cv",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "technical_resume",
+        "key": "candidate_technical_resume",
+        "type": "TextField",
+        "verbose_name": "technical resume",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "show_technical_resume",
+        "key": "candidate_show_technical_resume",
+        "type": "TextField",
+        "verbose_name": "show technical resume",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "phone_number",
+        "key": "candidate_phone_number",
+        "type": "CharField",
+        "verbose_name": "phone number",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "recruiter",
+        "key": "candidate_recruiter",
+        "type": "ForeignKey",
+        "verbose_name": "recruiter",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "created_at",
+        "key": "candidate_created_at",
+        "type": "DateTimeField",
+        "verbose_name": "created at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "updated_at",
+        "key": "candidate_updated_at",
+        "type": "DateTimeField",
+        "verbose_name": "updated at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "uuid",
+        "key": "candidate_uuid",
+        "type": "UUIDField",
+        "verbose_name": "uuid",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "current_job_title",
+        "key": "candidate_current_job_title",
+        "type": "CharField",
+        "verbose_name": "current job title",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "previous_job_title",
+        "key": "candidate_previous_job_title",
+        "type": "CharField",
+        "verbose_name": "previous job title",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "years_in_last_job",
+        "key": "candidate_years_in_last_job",
+        "type": "FloatField",
+        "verbose_name": "years in last job",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "linkedin",
+        "key": "candidate_linkedin",
+        "type": "CharField",
+        "verbose_name": "linkedin",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "other_url",
+        "key": "candidate_other_url",
+        "type": "CharField",
+        "verbose_name": "other url",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "phone_extract",
+        "key": "candidate_phone_extract",
+        "type": "CharField",
+        "verbose_name": "phone extract",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "location",
+        "key": "candidate_location",
+        "type": "CharField",
+        "verbose_name": "location",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "age",
+        "key": "candidate_age",
+        "type": "IntegerField",
+        "verbose_name": "age",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "date_of_birth",
+        "key": "candidate_date_of_birth",
+        "type": "CharField",
+        "verbose_name": "date of birth",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "country",
+        "key": "candidate_country",
+        "type": "CharField",
+        "verbose_name": "country",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "state_province",
+        "key": "candidate_state_province",
+        "type": "CharField",
+        "verbose_name": "state province",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "city",
+        "key": "candidate_city",
+        "type": "CharField",
+        "verbose_name": "city",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "avature_id",
+        "key": "candidate_avature_id",
+        "type": "IntegerField",
+        "verbose_name": "avature id",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "second_email",
+        "key": "candidate_second_email",
+        "type": "CharField",
+        "verbose_name": "second email",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "tech",
+        "key": "candidate_tech",
+        "type": "BooleanField",
+        "verbose_name": "tech",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "latest_update_linkedin",
+        "key": "candidate_latest_update_linkedin",
+        "type": "DateTimeField",
+        "verbose_name": "latest update linkedin",
+        "help_text": "Timestamp of the last LinkedIn data update",
+        "null": true,
+        "blank": true
+      }
+    ],
+    "job": [
+      {
+        "name": "id",
+        "key": "job_id",
+        "type": "UUIDField",
+        "verbose_name": "id",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "title",
+        "key": "job_title",
+        "type": "CharField",
+        "verbose_name": "title",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "description",
+        "key": "job_description",
+        "type": "TextField",
+        "verbose_name": "description",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "location",
+        "key": "job_location",
+        "type": "CharField",
+        "verbose_name": "location",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "modality",
+        "key": "job_modality",
+        "type": "CharField",
+        "verbose_name": "modality",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "technical_requirements",
+        "key": "job_technical_requirements",
+        "type": "JSONField",
+        "verbose_name": "technical requirements",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "place_id",
+        "key": "job_place_id",
+        "type": "TextField",
+        "verbose_name": "place id",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "technical_info",
+        "key": "job_technical_info",
+        "type": "TextField",
+        "verbose_name": "technical info",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "questions",
+        "key": "job_questions",
+        "type": "TextField",
+        "verbose_name": "questions",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "english_level",
+        "key": "job_english_level",
+        "type": "TextField",
+        "verbose_name": "english level",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "salary_min",
+        "key": "job_salary_min",
+        "type": "CharField",
+        "verbose_name": "salary min",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "salary_max",
+        "key": "job_salary_max",
+        "type": "CharField",
+        "verbose_name": "salary max",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "salary_expected",
+        "key": "job_salary_expected",
+        "type": "CharField",
+        "verbose_name": "salary expected",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "currency",
+        "key": "job_currency",
+        "type": "CharField",
+        "verbose_name": "currency",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "place_of_work",
+        "key": "job_place_of_work",
+        "type": "CharField",
+        "verbose_name": "place of work",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "job_perks",
+        "key": "job_job_perks",
+        "type": "TextField",
+        "verbose_name": "job perks",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "timezone",
+        "key": "job_timezone",
+        "type": "TextField",
+        "verbose_name": "timezone",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "exclusive",
+        "key": "job_exclusive",
+        "type": "TextField",
+        "verbose_name": "exclusive",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "category",
+        "key": "job_category",
+        "type": "CharField",
+        "verbose_name": "category",
+        "help_text": "",
+        "null": true,
+        "blank": true,
+        "choices": [
+          ["devops", "DevOps"],
+          ["data", "Data"],
+          ["backend", "Backend"],
+          ["frontend", "Frontend"],
+          ["qa", "QA"],
+          ["management", "Management"]
+        ]
+      },
+      {
+        "name": "company",
+        "key": "job_company",
+        "type": "ForeignKey",
+        "verbose_name": "company",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "created_at",
+        "key": "job_created_at",
+        "type": "DateTimeField",
+        "verbose_name": "created at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "updated_at",
+        "key": "job_updated_at",
+        "type": "DateTimeField",
+        "verbose_name": "updated at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "tech",
+        "key": "job_tech",
+        "type": "BooleanField",
+        "verbose_name": "tech",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "priority",
+        "key": "job_priority",
+        "type": "CharField",
+        "verbose_name": "priority",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "public_title",
+        "key": "job_public_title",
+        "type": "CharField",
+        "verbose_name": "public title",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "public_description",
+        "key": "job_public_description",
+        "type": "TextField",
+        "verbose_name": "public description",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "public_scoreboard_template",
+        "key": "job_public_scoreboard_template",
+        "type": "ForeignKey",
+        "verbose_name": "public scoreboard template",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "is_public",
+        "key": "job_is_public",
+        "type": "BooleanField",
+        "verbose_name": "is public",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "is_open",
+        "key": "job_is_open",
+        "type": "BooleanField",
+        "verbose_name": "is open",
+        "help_text": "",
+        "null": true,
+        "blank": false
+      },
+      {
+        "name": "visible_id",
+        "key": "job_visible_id",
+        "type": "CharField",
+        "verbose_name": "visible id",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "positions",
+        "key": "job_positions",
+        "type": "IntegerField",
+        "verbose_name": "positions",
+        "help_text": "",
+        "null": true,
+        "blank": false
+      },
+      {
+        "name": "stage_template_set",
+        "key": "job_stage_template_set",
+        "type": "ForeignKey",
+        "verbose_name": "stage template set",
+        "help_text": "The stage template set used to create stages for this job.",
+        "null": true,
+        "blank": true
+      }
+    ],
+    "recruiter": [
+      {
+        "name": "id",
+        "key": "recruiter_id",
+        "type": "UUIDField",
+        "verbose_name": "id",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "name",
+        "key": "recruiter_name",
+        "type": "CharField",
+        "verbose_name": "name",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "last_name",
+        "key": "recruiter_last_name",
+        "type": "CharField",
+        "verbose_name": "last name",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "email",
+        "key": "recruiter_email",
+        "type": "CharField",
+        "verbose_name": "email",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "consulting_firm",
+        "key": "recruiter_consulting_firm",
+        "type": "ForeignKey",
+        "verbose_name": "consulting firm",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "created_at",
+        "key": "recruiter_created_at",
+        "type": "DateTimeField",
+        "verbose_name": "created at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "is_admin",
+        "key": "recruiter_is_admin",
+        "type": "BooleanField",
+        "verbose_name": "is admin",
+        "help_text": "",
+        "null": true,
+        "blank": false
+      },
+      {
+        "name": "is_external",
+        "key": "recruiter_is_external",
+        "type": "BooleanField",
+        "verbose_name": "is external",
+        "help_text": "",
+        "null": true,
+        "blank": false
+      },
+      {
+        "name": "is_active",
+        "key": "recruiter_is_active",
+        "type": "BooleanField",
+        "verbose_name": "is active",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "cookie",
+        "key": "recruiter_cookie",
+        "type": "TextField",
+        "verbose_name": "cookie",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "linkedin",
+        "key": "recruiter_linkedin",
+        "type": "TextField",
+        "verbose_name": "linkedin",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "updated_at",
+        "key": "recruiter_updated_at",
+        "type": "DateTimeField",
+        "verbose_name": "updated at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      }
+    ],
+    "company": [
+      {
+        "name": "id",
+        "key": "company_id",
+        "type": "UUIDField",
+        "verbose_name": "id",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "name",
+        "key": "company_name",
+        "type": "CharField",
+        "verbose_name": "name",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "email",
+        "key": "company_email",
+        "type": "CharField",
+        "verbose_name": "email",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "description",
+        "key": "company_description",
+        "type": "TextField",
+        "verbose_name": "description",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "created_at",
+        "key": "company_created_at",
+        "type": "DateTimeField",
+        "verbose_name": "created at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "updated_at",
+        "key": "company_updated_at",
+        "type": "DateTimeField",
+        "verbose_name": "updated at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "perks",
+        "key": "company_perks",
+        "type": "TextField",
+        "verbose_name": "perks",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "uuid",
+        "key": "company_uuid",
+        "type": "UUIDField",
+        "verbose_name": "uuid",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "phone_number",
+        "key": "company_phone_number",
+        "type": "CharField",
+        "verbose_name": "phone number",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "owner_phone",
+        "key": "company_owner_phone",
+        "type": "CharField",
+        "verbose_name": "owner phone",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "direction",
+        "key": "company_direction",
+        "type": "CharField",
+        "verbose_name": "direction",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      }
+    ],
+    "stage": [
+      {
+        "name": "id",
+        "key": "stage_id",
+        "type": "UUIDField",
+        "verbose_name": "id",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "job",
+        "key": "stage_job",
+        "type": "ForeignKey",
+        "verbose_name": "job",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "name",
+        "key": "stage_name",
+        "type": "CharField",
+        "verbose_name": "name",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "order",
+        "key": "stage_order",
+        "type": "PositiveIntegerField",
+        "verbose_name": "order",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "created_at",
+        "key": "stage_created_at",
+        "type": "DateTimeField",
+        "verbose_name": "created at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "updated_at",
+        "key": "stage_updated_at",
+        "type": "DateTimeField",
+        "verbose_name": "updated at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "template",
+        "key": "stage_template",
+        "type": "ForeignKey",
+        "verbose_name": "template",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "status_options",
+        "key": "stage_status_options",
+        "type": "JSONField",
+        "verbose_name": "status options",
+        "help_text": "List of status options for this stage",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "description",
+        "key": "stage_description",
+        "type": "TextField",
+        "verbose_name": "description",
+        "help_text": "Optional description for this stage template",
+        "null": true,
+        "blank": true
+      }
+    ],
+    "candidate_job_stage": [
+      {
+        "name": "id",
+        "key": "candidate_job_stage_id",
+        "type": "UUIDField",
+        "verbose_name": "id",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "candidate",
+        "key": "candidate_job_stage_candidate",
+        "type": "ForeignKey",
+        "verbose_name": "candidate",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "job",
+        "key": "candidate_job_stage_job",
+        "type": "ForeignKey",
+        "verbose_name": "job",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "current_stage",
+        "key": "candidate_job_stage_current_stage",
+        "type": "ForeignKey",
+        "verbose_name": "current stage",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "updated_at",
+        "key": "candidate_job_stage_updated_at",
+        "type": "DateTimeField",
+        "verbose_name": "updated at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "created_at",
+        "key": "candidate_job_stage_created_at",
+        "type": "DateTimeField",
+        "verbose_name": "created at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "recruiter",
+        "key": "candidate_job_stage_recruiter",
+        "type": "ForeignKey",
+        "verbose_name": "recruiter",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      }
+    ],
+    "candidate_stage": [
+      {
+        "name": "id",
+        "key": "candidate_stage_id",
+        "type": "UUIDField",
+        "verbose_name": "id",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "candidate",
+        "key": "candidate_stage_candidate",
+        "type": "ForeignKey",
+        "verbose_name": "candidate",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "job",
+        "key": "candidate_stage_job",
+        "type": "ForeignKey",
+        "verbose_name": "job",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "stage",
+        "key": "candidate_stage_stage",
+        "type": "ForeignKey",
+        "verbose_name": "stage",
+        "help_text": "",
+        "null": false,
+        "blank": false
+      },
+      {
+        "name": "created_at",
+        "key": "candidate_stage_created_at",
+        "type": "DateTimeField",
+        "verbose_name": "created at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "updated_at",
+        "key": "candidate_stage_updated_at",
+        "type": "DateTimeField",
+        "verbose_name": "updated at",
+        "help_text": "",
+        "null": false,
+        "blank": true
+      },
+      {
+        "name": "recruiter",
+        "key": "candidate_stage_recruiter",
+        "type": "ForeignKey",
+        "verbose_name": "recruiter",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      },
+      {
+        "name": "scoreboard",
+        "key": "candidate_stage_scoreboard",
+        "type": "TextField",
+        "verbose_name": "scoreboard",
+        "help_text": "",
+        "null": true,
+        "blank": true
+      }
+    ],
+    "custom_fields": [
+      {
+        "id": "7762513d-1c4d-446b-83af-c4f497aea189",
+        "name": "DNI",
+        "key": "candidatecustom_dni",
+        "type": "text",
+        "is_required": false,
+        "placeholder": "DNI de la persona",
+        "help_text": "El DNI de la persona lo usamos para X",
+        "default_value": "",
+        "order": 0
+      },
+      {
+        "id": "97b27fca-0250-4819-b035-d8b821a11f63",
+        "name": "Opciones desplegables",
+        "key": "candidatecustom_opciones_desplegables",
+        "type": "select",
+        "is_required": false,
+        "placeholder": "Opciones",
+        "help_text": "Test",
+        "default_value": "",
+        "order": 0,
+        "options": ["1", "2", "3", "4"]
+      },
+      {
+        "id": "0c4bc9dc-0b36-44a5-a032-ea68f7ef0a92",
+        "name": "Opciones simples",
+        "key": "candidatecustom_opciones_simples",
+        "type": "multi_select",
+        "is_required": false,
+        "placeholder": "Opciones",
+        "help_text": "Random",
+        "default_value": "",
+        "order": 0,
+        "options": ["Primera opción", "Segunda opción", "Tercera opción"]
+      }
+    ],
+    "job_custom_fields": [
+      {
+        "id": "b92cfef4-af71-4ed5-858a-d643166b9a08",
+        "name": "Campo requerido prueba fecha",
+        "key": "jobcustom_campo_requerido_prueba_fecha",
+        "type": "date",
+        "is_required": false,
+        "placeholder": "texto de ayudap",
+        "help_text": "Descripcion random",
+        "default_value": "",
+        "order": 0
+      },
+      {
+        "id": "b3e7331e-33ee-4a75-9502-16bfc74d3262",
+        "name": "Dato requerido de prueba",
+        "key": "jobcustom_dato_requerido_de_prueba",
+        "type": "text",
+        "is_required": true,
+        "placeholder": "Ayuda text",
+        "help_text": "Descripcion again",
+        "default_value": "",
+        "order": 0
+      }
+    ],
+    "system": [
+      {
+        "name": "current_stage_name",
+        "key": "current_stage_name",
+        "type": "CharField",
+        "verbose_name": "Current Stage Name",
+        "help_text": "Name of the current stage in the recruitment process"
+      },
+      {
+        "name": "stage_name",
+        "key": "stage_name",
+        "type": "CharField",
+        "verbose_name": "Stage Name",
+        "help_text": "Name of the recruitment stage"
+      },
+      {
+        "name": "interview_day",
+        "key": "interview_day",
+        "type": "CharField",
+        "verbose_name": "Interview Day",
+        "help_text": "Day of the scheduled interview"
+      },
+      {
+        "name": "interview_day_number",
+        "key": "interview_day_number",
+        "type": "IntegerField",
+        "verbose_name": "Interview Day Number",
+        "help_text": "Numeric day of the interview"
+      },
+      {
+        "name": "interview_hour",
+        "key": "interview_hour",
+        "type": "IntegerField",
+        "verbose_name": "Interview Hour",
+        "help_text": "Hour of the scheduled interview"
+      },
+      {
+        "name": "interview_minutes",
+        "key": "interview_minutes",
+        "type": "IntegerField",
+        "verbose_name": "Interview Minutes",
+        "help_text": "Minutes of the scheduled interview"
+      },
+      {
+        "name": "candidate_first_name",
+        "key": "candidate_first_name",
+        "type": "CharField",
+        "verbose_name": "Candidate First Name",
+        "help_text": "First name extracted from candidate full name"
+      },
+      {
+        "name": "candidate_last_name",
+        "key": "candidate_last_name",
+        "type": "CharField",
+        "verbose_name": "Candidate Last Name",
+        "help_text": "Last name extracted from candidate full name"
+      }
+    ],
+    "all_keys": [
+      "candidate_age",
+      "candidate_avature_id",
+      "candidate_category",
+      "candidate_city",
+      "candidate_country",
+      "candidate_created_at",
+      "candidate_current_job_title",
+      "candidate_cv",
+      "candidate_date_of_birth",
+      "candidate_email",
+      "candidate_first_name",
+      "candidate_id",
+      "candidate_job_stage_candidate",
+      "candidate_job_stage_created_at",
+      "candidate_job_stage_current_stage",
+      "candidate_job_stage_id",
+      "candidate_job_stage_job",
+      "candidate_job_stage_recruiter",
+      "candidate_job_stage_updated_at",
+      "candidate_last_name",
+      "candidate_latest_update_linkedin",
+      "candidate_linkedin",
+      "candidate_location",
+      "candidate_name",
+      "candidate_other_url",
+      "candidate_phone_extract",
+      "candidate_phone_number",
+      "candidate_previous_job_title",
+      "candidate_recruiter",
+      "candidate_second_email",
+      "candidate_show_technical_resume",
+      "candidate_stage_candidate",
+      "candidate_stage_created_at",
+      "candidate_stage_id",
+      "candidate_stage_job",
+      "candidate_stage_recruiter",
+      "candidate_stage_scoreboard",
+      "candidate_stage_stage",
+      "candidate_stage_updated_at",
+      "candidate_state_province",
+      "candidate_tech",
+      "candidate_technical_resume",
+      "candidate_updated_at",
+      "candidate_uuid",
+      "candidate_years_in_last_job",
+      "candidatecustom_dni",
+      "candidatecustom_opciones_desplegables",
+      "candidatecustom_opciones_simples",
+      "company_created_at",
+      "company_description",
+      "company_direction",
+      "company_email",
+      "company_id",
+      "company_name",
+      "company_owner_phone",
+      "company_perks",
+      "company_phone_number",
+      "company_updated_at",
+      "company_uuid",
+      "current_stage_name",
+      "interview_day",
+      "interview_day_number",
+      "interview_hour",
+      "interview_minutes",
+      "job_category",
+      "job_company",
+      "job_created_at",
+      "job_currency",
+      "job_description",
+      "job_english_level",
+      "job_exclusive",
+      "job_id",
+      "job_is_open",
+      "job_is_public",
+      "job_job_perks",
+      "job_location",
+      "job_modality",
+      "job_place_id",
+      "job_place_of_work",
+      "job_positions",
+      "job_priority",
+      "job_public_description",
+      "job_public_scoreboard_template",
+      "job_public_title",
+      "job_questions",
+      "job_salary_expected",
+      "job_salary_max",
+      "job_salary_min",
+      "job_stage_template_set",
+      "job_tech",
+      "job_technical_info",
+      "job_technical_requirements",
+      "job_timezone",
+      "job_title",
+      "job_updated_at",
+      "job_visible_id",
+      "jobcustom_campo_requerido_prueba_fecha",
+      "jobcustom_dato_requerido_de_prueba",
+      "recruiter_consulting_firm",
+      "recruiter_cookie",
+      "recruiter_created_at",
+      "recruiter_email",
+      "recruiter_id",
+      "recruiter_is_active",
+      "recruiter_is_admin",
+      "recruiter_is_external",
+      "recruiter_last_name",
+      "recruiter_linkedin",
+      "recruiter_name",
+      "recruiter_updated_at",
+      "stage_created_at",
+      "stage_description",
+      "stage_id",
+      "stage_job",
+      "stage_name",
+      "stage_order",
+      "stage_status_options",
+      "stage_template",
+      "stage_updated_at"
+    ]
+  }
+}

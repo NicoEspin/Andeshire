@@ -12,6 +12,7 @@ import {
   Linkedin,
   Megaphone,
   Menu,
+  LayoutTemplate,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -130,6 +131,12 @@ const Sidebar = () => {
           href="/forms"
           icon={ClipboardList}
           label={t("Formularios")}
+          isCollapsed={isSideBarCollapsed}
+        />
+        <SidebarLink
+          href="/templates"
+          icon={LayoutTemplate}
+          label={t("Templates")}
           isCollapsed={isSideBarCollapsed}
         />
         <SidebarLink

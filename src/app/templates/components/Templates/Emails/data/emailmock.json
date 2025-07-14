@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "templates": [
+    {
+      "id": "d142bfff-9592-4f8a-b9ae-0cb39c7e9b34",
+      "name": "test",
+      "subject": "test",
+      "content": "test",
+      "created_at": "2025-03-27T22:54:23.078602+00:00",
+      "updated_at": "2025-03-27T22:54:23.078615+00:00",
+      "recruiter": "a70a7e45-b7d2-4476-a8f8-e878927b9af6"
+    },
+    {
+      "id": "ed664271-87d1-4a2d-9a66-da36309d243b",
+      "name": "comercial - Primer contacto",
+      "subject": "Hola {{candidate_first_name}}",
+      "content": "Hola {{candidate_first_name}}\nTomo contacto ya que veo que suelen tener posiciones IT a cubrir y me gustaria reunirme para mostrarles nuestros servicios y soluciones.\nSi quieres podemos agendar una meet y te comento las soluciones que tenemos.\nNicol\u00e1s Gordillo",
+      "created_at": "2025-06-18T20:41:39.000089+00:00",
+      "updated_at": "2025-06-18T20:42:23.457255+00:00",
+      "recruiter": "270421fd-f9a5-42b1-bc69-43b09192ff89"
+    }
+  ]
+}

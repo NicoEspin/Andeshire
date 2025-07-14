@@ -1,0 +1,30 @@
+{
+  "success": true,
+  "templates": [
+    {
+      "id": "1",
+      "name": "dasdasd",
+      "method": "POST",
+      "url": "https://webhook.site/fd683fff-6e4e-40ef-853a-e49c26afe911",
+      "timeout": 30,
+      "retries": 0,
+      "request_body": "asddddddddddddddddddddddddddd {{candidate_age}}{{candidate_created_at}}{{candidate_current_job_title}}{{candidate_cv}}{{candidate_avature_id}}{{candidate_country}}",
+      "save_output": [
+        "candidate_age",
+        "candidate_avature_id",
+        "candidate_category",
+        "candidate_city"
+      ],
+      "query_params": {
+        "as": "as"
+      },
+      "headers": {
+        "as": "asdasda",
+        "adsasd": "asdasd"
+      },
+      "created_at": "2025-07-10T13:48:21.860890+00:00",
+      "updated_at": "2025-07-11T22:24:35.894261+00:00",
+      "recruiter": "93218c18-49fa-4724-b190-19b5fc825434"
+    }
+  ]
+}

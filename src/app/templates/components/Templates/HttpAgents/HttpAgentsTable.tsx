@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useTranslations } from "next-intl";
+import React, { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -28,132 +27,170 @@ import {
   TooltipContent,
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
+import HttpAgentsSidebar from "./HttpAgentsSidebar";
+import { useTranslations } from "next-intl";
+
+type HttpAgent = {
+  id: string;
+  name: string;
+  method: string;
+  url: string;
+  timeout: number;
+  retries: number;
+  request_body: string;
+  created_at: string;
+  updated_at: string;
+};
 
 type Props = {};
 
 const HttpAgentsTable = (props: Props) => {
   const t = useTranslations("Templates.TemplatesView.HTTPAgents");
-  const agents = httpAgentsMock.templates;
+  const agents: HttpAgent[] = httpAgentsMock.templates;
+
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const [selectedAgent, setSelectedAgent] = useState<HttpAgent | null>(null);
+
+  const handleRowClick = (agent: HttpAgent) => {
+    setSelectedAgent(agent);
+    setOpenSidebar(true);
+  };
 
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        {agents.length === 0 ? (
-          <EmptyState />
-        ) : (
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>{t("Name")}</TableHead>
-                <TableHead>{t("Method")}</TableHead>
-                <TableHead>{t("URL")}</TableHead>
-                <TableHead>{t("Timeout")}</TableHead>
-                <TableHead>{t("Retries")}</TableHead>
-                <TableHead>{t("Body")}</TableHead>
-                <TableHead>{t("CreatedAt")}</TableHead>
-                <TableHead>{t("UpdatedAt")}</TableHead>
-                <TableHead>{t("Actions")}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {agents.map((agent) => (
-                <TableRow key={agent.id}>
-                  <TableCell>
-                    {agent.name ? (
-                      <Badge
-                        variant="outline"
-                        className="text-purple-600 border-purple-600"
-                      >
-                        {agent.name}
-                      </Badge>
-                    ) : (
-                      <span className="italic text-muted-foreground">
-                        {t("Unnamed")}
-                      </span>
-                    )}
-                  </TableCell>
-
-                  <TableCell>
-                    <Badge variant="outline" className="uppercase">
-                      {agent.method}
-                    </Badge>
-                  </TableCell>
-
-                  <TableCell className="max-w-xs truncate">
-                    {agent.url}
-                  </TableCell>
-
-                  <TableCell>{agent.timeout}s</TableCell>
-
-                  <TableCell>{agent.retries}</TableCell>
-
-                  <TableCell className="max-w-xs truncate">
-                    {agent.request_body.slice(0, 50)}...
-                  </TableCell>
-
-                  <TableCell>
-                    {new Date(agent.created_at).toLocaleDateString()}
-                  </TableCell>
-
-                  <TableCell>
-                    {new Date(agent.updated_at).toLocaleDateString()}
-                  </TableCell>
-
-                  <TableCell className="flex items-center gap-2">
-                    <TooltipProvider>
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            className="p-2 cursor-pointer"
-                            variant="outline"
-                            size="icon"
-                          >
-                            <Eye className="w-4 h-4" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>{t("View")}</TooltipContent>
-                      </Tooltip>
-
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            className="p-2 text-green-500 hover:text-green-600 cursor-pointer"
-                            variant="outline"
-                            size="icon"
-                          >
-                            <Pencil className="w-4 h-4" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>{t("Edit")}</TooltipContent>
-                      </Tooltip>
-
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <Button
-                            className="p-2 text-red-500 hover:text-red-600 cursor-pointer"
-                            variant="outline"
-                            size="icon"
-                          >
-                            <Trash className="w-4 h-4" />
-                          </Button>
-                        </TooltipTrigger>
-                        <TooltipContent>{t("Delete")}</TooltipContent>
-                      </Tooltip>
-                    </TooltipProvider>
-                  </TableCell>
+    <>
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {agents.length === 0 ? (
+            <EmptyState />
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>{t("Name")}</TableHead>
+                  <TableHead>{t("Method")}</TableHead>
+                  <TableHead>{t("URL")}</TableHead>
+                  <TableHead>{t("Timeout")}</TableHead>
+                  <TableHead>{t("Retries")}</TableHead>
+                  <TableHead>{t("Body")}</TableHead>
+                  <TableHead>{t("CreatedAt")}</TableHead>
+                  <TableHead>{t("UpdatedAt")}</TableHead>
+                  <TableHead>{t("Actions")}</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        )}
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        {/* Espacio para futura paginación */}
-      </CardFooter>
-    </Card>
+              </TableHeader>
+              <TableBody>
+                {agents.map((agent) => (
+                  <TableRow
+                    key={agent.id}
+                    onClick={() => handleRowClick(agent)}
+                    className="cursor-pointer hover:bg-muted"
+                  >
+                    <TableCell>
+                      {agent.name ? (
+                        <Badge
+                          variant="outline"
+                          className="text-purple-600 border-purple-600"
+                        >
+                          {agent.name}
+                        </Badge>
+                      ) : (
+                        <span className="italic text-muted-foreground">
+                          {t("Unnamed")}
+                        </span>
+                      )}
+                    </TableCell>
+
+                    <TableCell>
+                      <Badge variant="outline" className="uppercase">
+                        {agent.method}
+                      </Badge>
+                    </TableCell>
+
+                    <TableCell className="max-w-xs truncate">
+                      {agent.url}
+                    </TableCell>
+
+                    <TableCell>{agent.timeout}s</TableCell>
+                    <TableCell>{agent.retries}</TableCell>
+
+                    <TableCell className="max-w-xs truncate">
+                      {agent.request_body.slice(0, 50)}...
+                    </TableCell>
+
+                    <TableCell>
+                      {new Date(agent.created_at).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell>
+                      {new Date(agent.updated_at).toLocaleDateString()}
+                    </TableCell>
+
+                    <TableCell
+                      className="flex items-center gap-2"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <TooltipProvider>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              className="p-2 cursor-pointer"
+                              variant="outline"
+                              size="icon"
+                              onClick={() => handleRowClick(agent)}
+                            >
+                              <Eye className="w-4 h-4" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>{t("View")}</TooltipContent>
+                        </Tooltip>
+
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              className="p-2 text-green-500 hover:text-green-600 cursor-pointer"
+                              variant="outline"
+                              size="icon"
+                              onClick={() => console.log("Edit clicked")}
+                            >
+                              <Pencil className="w-4 h-4" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>{t("Edit")}</TooltipContent>
+                        </Tooltip>
+
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <Button
+                              className="p-2 text-red-500 hover:text-red-600 cursor-pointer"
+                              variant="outline"
+                              size="icon"
+                              onClick={() => console.log("Delete clicked")}
+                            >
+                              <Trash className="w-4 h-4" />
+                            </Button>
+                          </TooltipTrigger>
+                          <TooltipContent>{t("Delete")}</TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </CardContent>
+        <CardFooter className="flex justify-between">
+          {/* Espacio para paginación futura */}
+        </CardFooter>
+      </Card>
+
+      <HttpAgentsSidebar
+        open={openSidebar}
+        onOpenChange={setOpenSidebar}
+        agent={selectedAgent}
+      />
+    </>
   );
 };
 

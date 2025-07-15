@@ -11,25 +11,25 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { extractKeysFromContent } from "@/lib/keys/extractKeysFromContent";
 import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
+import { LinkedinAgent } from "./LinkedinAgentsSidebar";
 import { useTranslations } from "next-intl";
 
-import { CallAgent } from "./CallAgentsSidebar";
-
-interface ViewProps {
-  agent: CallAgent;
+interface ViewLinkedinAgentsSidebarProps {
+  agent: LinkedinAgent;
   onEdit: () => void;
   onClose: () => void;
 }
 
-export default function ViewCallAgentsSidebar({
+export default function ViewLinkedinAgentsSidebar({
   agent,
   onEdit,
   onClose,
-}: ViewProps) {
-  const t = useTranslations("Templates.TemplatesView.CallAgents.SidebarView");
+}: ViewLinkedinAgentsSidebarProps) {
+  const t = useTranslations("Templates.TemplatesView.LinkedinAgents.SidebarView");
 
   const keys = [
     ...extractKeysFromContent(agent.prompt),
+    ...extractKeysFromContent(agent.task),
     ...extractKeysFromContent(agent.first_message),
   ].map((key) => ({ key }));
 
@@ -40,14 +40,10 @@ export default function ViewCallAgentsSidebar({
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
     let match;
-    let i = 0;
 
     while ((match = regex.exec(text)) !== null) {
       const before = text.substring(lastIndex, match.index);
-      if (before) {
-        parts.push(<span key={`text-${i}`}>{before}</span>);
-        i++;
-      }
+      if (before) parts.push(<span key={`before-${lastIndex}`}>{before}</span>);
 
       const keyName = match[1].trim();
       const meta = keyMetaMap[keyName];
@@ -55,7 +51,7 @@ export default function ViewCallAgentsSidebar({
       if (meta) {
         parts.push(
           <Badge
-            key={`badge-${keyName}-${match.index}-${i}`}
+            key={keyName}
             style={{
               backgroundColor: meta.color,
               color: "#fff",
@@ -67,20 +63,15 @@ export default function ViewCallAgentsSidebar({
         );
       } else {
         parts.push(
-          <span key={`unknown-${keyName}-${match.index}-${i}`}>
-            {`{{${keyName}}}`}
-          </span>
+          <span key={`missing-${keyName}`}>{`{{${keyName}}}`}</span>
         );
       }
 
       lastIndex = regex.lastIndex;
-      i++;
     }
 
     const after = text.substring(lastIndex);
-    if (after) {
-      parts.push(<span key={`text-after-${i}`}>{after}</span>);
-    }
+    if (after) parts.push(<span key={`after-${lastIndex}`}>{after}</span>);
 
     return parts;
   };
@@ -88,59 +79,38 @@ export default function ViewCallAgentsSidebar({
   return (
     <SheetContent
       side="right"
-      className="flex flex-col gap-6 sm:min-w-[300px] md:min-w-[600px] px-6 py-6 overflow-auto"
+      className="flex flex-col gap-6 sm:min-w-[300px] md:min-w-[600px] px-6 py-6"
     >
       <SheetHeader>
-        <SheetTitle className="text-xl font-semibold">{agent.name}</SheetTitle>
-        <SheetDescription>{t("Title")}</SheetDescription>
+        <SheetTitle className="text-xl">{agent.name}</SheetTitle>
+        <SheetDescription>{t("Description")}</SheetDescription>
       </SheetHeader>
 
       <div className="space-y-4">
         <div>
-          <strong>{t("PromptLabel")}</strong>
-          <p className="whitespace-pre-wrap border p-4 rounded-md">
-            {renderWithBadges(agent.prompt)}
-          </p>
+          <strong>{t("Prompt")}:</strong>
+          <p>{renderWithBadges(agent.prompt)}</p>
         </div>
-
         <div>
-          <strong>{t("FirstMessageLabel")}</strong>
-          <p className="whitespace-pre-wrap border p-4 rounded-md">
-            {renderWithBadges(agent.first_message)}
-          </p>
+          <strong>{t("Task")}:</strong>
+          <p>{renderWithBadges(agent.task)}</p>
         </div>
-
         <div>
-          <strong>{t("MaxAttemptsLabel")}</strong> {agent.max_attempts}
+          <strong>{t("FirstMessage")}:</strong>
+          <p>{renderWithBadges(agent.first_message)}</p>
         </div>
-
         <div>
-          <strong>{t("IntervalLabel")}</strong> {agent.interval_minutes}
+          <strong>{t("Direction")}:</strong> {agent.direction}
         </div>
-
         <div>
-          <strong>{t("AskPermissionLabel")}</strong>{" "}
-          {agent.ask_permission ? (
-            <Badge
-              variant="outline"
-              className="text-green-600 border-green-600"
-            >
-              {t("AskPermissionYes")}
-            </Badge>
-          ) : (
-            <Badge variant="outline" className="text-muted-foreground">
-              {t("AskPermissionNo")}
-            </Badge>
-          )}
+          <strong>{t("Status")}:</strong> {agent.status}
         </div>
-
         <div>
-          <strong>{t("CreatedAtLabel")}</strong>{" "}
+          <strong>{t("CreatedAt")}:</strong>{" "}
           {new Date(agent.created_at).toLocaleDateString()}
         </div>
-
         <div>
-          <strong>{t("UpdatedAtLabel")}</strong>{" "}
+          <strong>{t("UpdatedAt")}:</strong>{" "}
           {new Date(agent.updated_at).toLocaleDateString()}
         </div>
       </div>

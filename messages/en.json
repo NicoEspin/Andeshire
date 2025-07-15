@@ -299,7 +299,41 @@
         "Unnamed": "Unnamed",
         "View": "View Details",
         "Edit": "Edit",
-        "Delete": "Delete"
+        "Delete": "Delete",
+        "SidebarView": {
+          "Description": "View WhatsApp Agent Details",
+          "PromptLabel": "Prompt:",
+          "TaskLabel": "Task:",
+          "FirstMessageLabel": "First Message:",
+          "DirectionLabel": "Direction:",
+          "StatusLabel": "Status:",
+          "CreatedAtLabel": "Created At:",
+          "UpdatedAtLabel": "Updated At:",
+          "CloseButton": "Close",
+          "EditButton": "Edit",
+          "StatusActive": "Active",
+          "StatusInactive": "Inactive"
+        },
+        "SidebarEdit": {
+          "Title": "Edit WhatsApp Agent",
+          "Description": "Update the agent details below.",
+          "Fields": {
+            "Name": "Name",
+            "Prompt": "Prompt",
+            "Task": "Task",
+            "FirstMessage": "First Message"
+          },
+          "Placeholders": {
+            "Name": "Agent Name",
+            "Prompt": "Enter the prompt with variables...",
+            "Task": "Describe the task...",
+            "FirstMessage": "Write the first message..."
+          },
+          "Actions": {
+            "Cancel": "Cancel",
+            "Save": "Save"
+          }
+        }
       },
       "CallAgents": {
         "Title": "Call Agents",
@@ -317,7 +351,32 @@
         "NoName": "No name",
         "View": "View Details",
         "Edit": "Edit",
-        "Delete": "Delete"
+        "Delete": "Delete",
+        "SidebarView": {
+          "Title": "Call Agent Details",
+          "PromptLabel": "Prompt:",
+          "FirstMessageLabel": "First Message:",
+          "MaxAttemptsLabel": "Max Attempts:",
+          "IntervalLabel": "Interval (min):",
+          "AskPermissionLabel": "Ask Permission:",
+          "AskPermissionYes": "Yes",
+          "AskPermissionNo": "No",
+          "CreatedAtLabel": "Created At:",
+          "UpdatedAtLabel": "Updated At:",
+          "Close": "Close",
+          "Edit": "Edit"
+        },
+        "SidebarEdit": {
+          "Title": "Edit Call Agent",
+          "Name": "Name",
+          "Prompt": "Prompt",
+          "FirstMessage": "First Message",
+          "MaxAttempts": "Max Attempts",
+          "IntervalMinutes": "Interval (minutes)",
+          "AskPermission": "Ask Permission",
+          "Save": "Save",
+          "Cancel": "Cancel"
+        }
       },
       "EmailAgents": {
         "Title": "Email Agents",
@@ -333,7 +392,28 @@
         "NoName": "No name",
         "View": "View Details",
         "Edit": "Edit",
-        "Delete": "Delete"
+        "Delete": "Delete",
+        "SidebarEdit": {
+          "Title": "Edit Email Agent",
+          "PromptLabel": "Prompt",
+          "TaskLabel": "Task",
+          "FirstMessageLabel": "First Message",
+          "AddVariable": "Add Variable",
+          "Save": "Save",
+          "Cancel": "Cancel"
+        },
+        "SidebarView": {
+          "ViewDescription": "View details of this email agent",
+          "Prompt": "Prompt",
+          "Task": "Task",
+          "FirstMessage": "First Message",
+          "Direction": "Direction",
+          "Status": "Status",
+          "CreatedAt": "Created At",
+          "UpdatedAt": "Updated At",
+          "Close": "Close",
+          "Edit": "Edit"
+        }
       },
       "LinkedinAgents": {
         "Title": "LinkedIn Agents",
@@ -349,7 +429,35 @@
         "ViewDetails": "View Details",
         "Edit": "Edit",
         "Delete": "Delete",
-        "NoName": "No name"
+        "NoName": "No name",
+        "SidebarView": {
+          "Description": "View Linkedin Agent details",
+          "Prompt": "Prompt",
+          "Task": "Task",
+          "FirstMessage": "First Message",
+          "Direction": "Direction",
+          "Status": "Status",
+          "CreatedAt": "Created At",
+          "UpdatedAt": "Updated At",
+          "Close": "Close",
+          "Edit": "Edit"
+        },
+        "SidebarEdit": {
+          "Title": "Edit Linkedin Agent",
+          "Fields": {
+            "Prompt": "Prompt",
+            "Task": "Task",
+            "FirstMessage": "First Message",
+            "AddVariable": "Add Variable",
+            "PreviewPrompt": "Preview Prompt",
+            "PreviewTask": "Preview Task",
+            "PreviewFirstMessage": "Preview First Message"
+          },
+          "Actions": {
+            "Save": "Save",
+            "Cancel": "Cancel"
+          }
+        }
       },
       "HTTPAgents": {
         "Title": "HTTP Agents",
@@ -365,7 +473,34 @@
         "Unnamed": "Unnamed",
         "View": "View Details",
         "Edit": "Edit",
-        "Delete": "Delete"
+        "Delete": "Delete",
+        "SidebarEdit": {
+          "Title": "Edit HTTP Agent",
+          "Fields": {
+            "Name": "Name",
+            "Method": "Method",
+            "URL": "URL",
+            "Timeout": "Timeout (seconds)",
+            "Retries": "Retries",
+            "RequestBody": "Request Body"
+          },
+          "Actions": {
+            "Save": "Save",
+            "Cancel": "Cancel"
+          }
+        },
+        "SidebarView": {
+          "Title": "HTTP Agent Details",
+          "Method": "Method",
+          "URL": "URL",
+          "Timeout": "Timeout",
+          "Retries": "Retries",
+          "Body": "Body",
+          "CreatedAt": "Created At",
+          "UpdatedAt": "Updated At",
+          "Close": "Close",
+          "Edit": "Edit"
+        }
       }
     }
   },

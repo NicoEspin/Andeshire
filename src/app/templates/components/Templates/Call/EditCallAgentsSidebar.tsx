@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +20,8 @@ export default function EditCallAgentsSidebar({
   onCancel,
   onSave,
 }: EditProps) {
+  const t = useTranslations("Templates.TemplatesView.CallAgents.SidebarEdit");
+
   const [name, setName] = React.useState(agent.name);
   const [prompt, setPrompt] = React.useState(agent.prompt);
   const [firstMessage, setFirstMessage] = React.useState(agent.first_message);
@@ -36,17 +39,17 @@ export default function EditCallAgentsSidebar({
       className="flex flex-col w-full sm:min-w-[300px] md:min-w-[600px] px-6 py-6 gap-4 overflow-auto"
     >
       <SheetHeader>
-        <SheetTitle className="text-xl">Editar Call Agent</SheetTitle>
+        <SheetTitle className="text-xl">{t("Title")}</SheetTitle>
       </SheetHeader>
 
       <div className="flex flex-col gap-4 flex-grow">
         <div>
-          <Label>Nombre</Label>
+          <Label>{t("Name")}</Label>
           <Input value={name} onChange={(e) => setName(e.target.value)} />
         </div>
 
         <div>
-          <Label>Prompt</Label>
+          <Label>{t("Prompt")}</Label>
           <textarea
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
@@ -56,7 +59,7 @@ export default function EditCallAgentsSidebar({
         </div>
 
         <div>
-          <Label>First Message</Label>
+          <Label>{t("FirstMessage")}</Label>
           <textarea
             value={firstMessage}
             onChange={(e) => setFirstMessage(e.target.value)}
@@ -66,7 +69,7 @@ export default function EditCallAgentsSidebar({
         </div>
 
         <div>
-          <Label>Max Attempts</Label>
+          <Label>{t("MaxAttempts")}</Label>
           <Input
             type="number"
             value={maxAttempts}
@@ -75,7 +78,7 @@ export default function EditCallAgentsSidebar({
         </div>
 
         <div>
-          <Label>Interval (minutes)</Label>
+          <Label>{t("IntervalMinutes")}</Label>
           <Input
             type="number"
             value={intervalMinutes}
@@ -91,17 +94,17 @@ export default function EditCallAgentsSidebar({
               onChange={(e) => setAskPermission(e.target.checked)}
               className="mr-2"
             />
-            Ask Permission
+            {t("AskPermission")}
           </Label>
         </div>
       </div>
 
       <div className="flex justify-end gap-2 border-t pt-4">
         <Button variant="secondary" onClick={onSave}>
-          Save
+          {t("Save")}
         </Button>
         <Button variant="outline" onClick={onCancel}>
-          Cancel
+          {t("Cancel")}
         </Button>
       </div>
     </SheetContent>

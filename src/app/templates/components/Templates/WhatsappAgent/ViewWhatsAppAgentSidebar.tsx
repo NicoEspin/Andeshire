@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
 import { extractKeysFromContent } from "@/lib/keys/extractKeysFromContent";
+import { useTranslations } from "next-intl";
 
 interface WhatsAppAgent {
   id: string;
@@ -35,7 +36,10 @@ export default function ViewWhatsAppAgentSidebar({
   onEdit,
   onClose,
 }: ViewWhatsAppAgentSidebarProps) {
-  // Extrae todas las variables del prompt y first_message
+  const t = useTranslations(
+    "Templates.TemplatesView.WhatsAppAgents.SidebarView"
+  );
+
   const keys = [
     ...extractKeysFromContent(agent.prompt),
     ...extractKeysFromContent(agent.first_message),
@@ -101,14 +105,14 @@ export default function ViewWhatsAppAgentSidebar({
       <SheetHeader>
         <SheetTitle className="text-xl font-semibold">{agent.name}</SheetTitle>
         <SheetDescription className="text-muted-foreground">
-          View WhatsApp Agent Details
+          {t("Description")}
         </SheetDescription>
       </SheetHeader>
 
       <div className="space-y-5">
         <div>
           <h4 className="font-semibold text-sm text-muted-foreground mb-1">
-            Prompt:
+            {t("PromptLabel")}
           </h4>
           <p className="border rounded-md p-4 whitespace-pre-wrap">
             {renderWithBadges(agent.prompt)}
@@ -117,14 +121,14 @@ export default function ViewWhatsAppAgentSidebar({
 
         <div>
           <h4 className="font-semibold text-sm text-muted-foreground mb-1">
-            Task:
+            {t("TaskLabel")}
           </h4>
           <p className="border rounded-md p-4 bg-muted">{agent.task}</p>
         </div>
 
         <div>
           <h4 className="font-semibold text-sm text-muted-foreground mb-1">
-            First Message:
+            {t("FirstMessageLabel")}
           </h4>
           <p className="border rounded-md p-4 whitespace-pre-wrap">
             {renderWithBadges(agent.first_message)}
@@ -132,14 +136,18 @@ export default function ViewWhatsAppAgentSidebar({
         </div>
 
         <div className="flex items-center gap-2">
-          <h4 className="font-semibold text-sm text-muted-foreground">Direction:</h4>
+          <h4 className="font-semibold text-sm text-muted-foreground">
+            {t("DirectionLabel")}
+          </h4>
           <Badge variant="outline" className="capitalize">
             {agent.direction}
           </Badge>
         </div>
 
         <div className="flex items-center gap-2">
-          <h4 className="font-semibold text-sm text-muted-foreground">Status:</h4>
+          <h4 className="font-semibold text-sm text-muted-foreground">
+            {t("StatusLabel")}
+          </h4>
           <Badge
             variant="outline"
             className={`capitalize ${
@@ -148,26 +156,32 @@ export default function ViewWhatsAppAgentSidebar({
                 : "text-muted-foreground"
             }`}
           >
-            {agent.status}
+            {agent.status === "active"
+              ? t("StatusActive")
+              : t("StatusInactive")}
           </Badge>
         </div>
 
         <div>
-          <h4 className="font-semibold text-sm text-muted-foreground">Created At:</h4>
+          <h4 className="font-semibold text-sm text-muted-foreground">
+            {t("CreatedAtLabel")}
+          </h4>
           <p>{new Date(agent.created_at).toLocaleDateString()}</p>
         </div>
 
         <div>
-          <h4 className="font-semibold text-sm text-muted-foreground">Updated At:</h4>
+          <h4 className="font-semibold text-sm text-muted-foreground">
+            {t("UpdatedAtLabel")}
+          </h4>
           <p>{new Date(agent.updated_at).toLocaleDateString()}</p>
         </div>
       </div>
 
       <div className="flex justify-end gap-2 mt-auto">
         <Button variant="outline" onClick={onClose}>
-          Close
+          {t("CloseButton")}
         </Button>
-        <Button onClick={onEdit}>Edit</Button>
+        <Button onClick={onEdit}>{t("EditButton")}</Button>
       </div>
     </SheetContent>
   );

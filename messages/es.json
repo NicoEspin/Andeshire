@@ -296,10 +296,44 @@
         "CreatedAt": "Creado",
         "UpdatedAt": "Actualizado",
         "Actions": "Acciones",
-        "NoName": "Sin nombre",
+        "Unnamed": "Sin nombre",
         "View": "Ver Detalles",
         "Edit": "Editar",
-        "Delete": "Eliminar"
+        "Delete": "Eliminar",
+        "SidebarView": {
+          "Description": "Ver detalles del agente de WhatsApp",
+          "PromptLabel": "Prompt:",
+          "TaskLabel": "Tarea:",
+          "FirstMessageLabel": "Primer mensaje:",
+          "DirectionLabel": "Dirección:",
+          "StatusLabel": "Estado:",
+          "CreatedAtLabel": "Creado el:",
+          "UpdatedAtLabel": "Actualizado el:",
+          "CloseButton": "Cerrar",
+          "EditButton": "Editar",
+          "StatusActive": "Activo",
+          "StatusInactive": "Inactivo"
+        },
+        "SidebarEdit": {
+          "Title": "Editar Agente de WhatsApp",
+          "Description": "Actualiza los detalles del agente a continuación.",
+          "Fields": {
+            "Name": "Nombre",
+            "Prompt": "Prompt",
+            "Task": "Tarea",
+            "FirstMessage": "Primer Mensaje"
+          },
+          "Placeholders": {
+            "Name": "Nombre del Agente",
+            "Prompt": "Introduce el prompt con variables...",
+            "Task": "Describe la tarea...",
+            "FirstMessage": "Escribe el primer mensaje..."
+          },
+          "Actions": {
+            "Cancel": "Cancelar",
+            "Save": "Guardar"
+          }
+        }
       },
       "CallAgents": {
         "Title": "Agentes de llamada",
@@ -317,7 +351,32 @@
         "NoName": "Sin nombre",
         "View": "Ver Detalles",
         "Edit": "Editar",
-        "Delete": "Eliminar"
+        "Delete": "Eliminar",
+        "SidebarView": {
+          "Title": "Detalles del Call Agent",
+          "PromptLabel": "Prompt:",
+          "FirstMessageLabel": "Primer Mensaje:",
+          "MaxAttemptsLabel": "Intentos Máximos:",
+          "IntervalLabel": "Intervalo (min):",
+          "AskPermissionLabel": "Pedir Permiso:",
+          "AskPermissionYes": "Sí",
+          "AskPermissionNo": "No",
+          "CreatedAtLabel": "Creado el:",
+          "UpdatedAtLabel": "Actualizado el:",
+          "Close": "Cerrar",
+          "Edit": "Editar"
+        },
+        "SidebarEdit": {
+          "Title": "Editar Call Agent",
+          "Name": "Nombre",
+          "Prompt": "Prompt",
+          "FirstMessage": "Primer Mensaje",
+          "MaxAttempts": "Intentos Máximos",
+          "IntervalMinutes": "Intervalo (minutos)",
+          "AskPermission": "Pedir Permiso",
+          "Save": "Guardar",
+          "Cancel": "Cancelar"
+        }
       },
       "EmailAgents": {
         "Title": "Agentes de Email",
@@ -333,7 +392,28 @@
         "NoName": "Sin nombre",
         "View": "Ver Detalles",
         "Edit": "Editar",
-        "Delete": "Eliminar"
+        "Delete": "Eliminar",
+        "SidebarEdit": {
+          "Title": "Editar Agente de Email",
+          "PromptLabel": "Prompt",
+          "TaskLabel": "Tarea",
+          "FirstMessageLabel": "Primer Mensaje",
+          "AddVariable": "Agregar Variable",
+          "Save": "Guardar",
+          "Cancel": "Cancelar"
+        },
+        "SidebarView": {
+          "ViewDescription": "Ver detalles de este agente de correo",
+          "Prompt": "Prompt",
+          "Task": "Tarea",
+          "FirstMessage": "Primer Mensaje",
+          "Direction": "Dirección",
+          "Status": "Estado",
+          "CreatedAt": "Creado El",
+          "UpdatedAt": "Actualizado El",
+          "Close": "Cerrar",
+          "Edit": "Editar"
+        }
       },
       "LinkedinAgents": {
         "Title": "Agentes de LinkedIn",
@@ -349,7 +429,35 @@
         "ViewDetails": "Ver Detalles",
         "Edit": "Editar",
         "Delete": "Eliminar",
-        "NoName": "Sin nombre"
+        "NoName": "Sin nombre",
+        "SidebarView": {
+          "Description": "Ver detalles del agente de Linkedin",
+          "Prompt": "Prompt",
+          "Task": "Tarea",
+          "FirstMessage": "Primer mensaje",
+          "Direction": "Dirección",
+          "Status": "Estado",
+          "CreatedAt": "Creado el",
+          "UpdatedAt": "Actualizado el",
+          "Close": "Cerrar",
+          "Edit": "Editar"
+        },
+        "SidebarEdit": {
+          "Title": "Editar Agente de Linkedin",
+          "Fields": {
+            "Prompt": "Prompt",
+            "Task": "Tarea",
+            "FirstMessage": "Primer Mensaje",
+            "AddVariable": "Agregar Variable",
+            "PreviewPrompt": "Vista Previa Prompt",
+            "PreviewTask": "Vista Previa Tarea",
+            "PreviewFirstMessage": "Vista Previa Primer Mensaje"
+          },
+          "Actions": {
+            "Save": "Guardar",
+            "Cancel": "Cancelar"
+          }
+        }
       },
       "HTTPAgents": {
         "Title": "Agentes HTTP",
@@ -365,7 +473,34 @@
         "Unnamed": "Sin nombre",
         "View": "Ver Detalles",
         "Edit": "Editar",
-        "Delete": "Eliminar"
+        "Delete": "Eliminar",
+        "SidebarEdit": {
+          "Title": "Editar Agente HTTP",
+          "Fields": {
+            "Name": "Nombre",
+            "Method": "Método",
+            "URL": "URL",
+            "Timeout": "Tiempo de espera (segundos)",
+            "Retries": "Reintentos",
+            "RequestBody": "Cuerpo de la solicitud"
+          },
+          "Actions": {
+            "Save": "Guardar",
+            "Cancel": "Cancelar"
+          }
+        },
+        "SidebarView": {
+          "Title": "Detalles del Agente HTTP",
+          "Method": "Método",
+          "URL": "URL",
+          "Timeout": "Tiempo de espera",
+          "Retries": "Reintentos",
+          "Body": "Cuerpo",
+          "CreatedAt": "Creado el",
+          "UpdatedAt": "Actualizado el",
+          "Close": "Cerrar",
+          "Edit": "Editar"
+        }
       }
     }
   },

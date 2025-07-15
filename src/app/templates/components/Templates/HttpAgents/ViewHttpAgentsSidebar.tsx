@@ -1,38 +1,31 @@
 "use client";
 
 import * as React from "react";
-import {
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetDescription,
-} from "@/components/ui/sheet";
+import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { extractKeysFromContent } from "@/lib/keys/extractKeysFromContent";
 import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
 import { useTranslations } from "next-intl";
+import type { HttpAgent } from "./HttpAgentsSidebar";
 
-import { CallAgent } from "./CallAgentsSidebar";
-
-interface ViewProps {
-  agent: CallAgent;
+interface ViewHttpAgentsSidebarProps {
+  agent: HttpAgent;
   onEdit: () => void;
   onClose: () => void;
 }
 
-export default function ViewCallAgentsSidebar({
+export default function ViewHttpAgentsSidebar({
   agent,
   onEdit,
   onClose,
-}: ViewProps) {
-  const t = useTranslations("Templates.TemplatesView.CallAgents.SidebarView");
+}: ViewHttpAgentsSidebarProps) {
+  const t = useTranslations("Templates.TemplatesView.HTTPAgents.SidebarView");
 
-  const keys = [
-    ...extractKeysFromContent(agent.prompt),
-    ...extractKeysFromContent(agent.first_message),
-  ].map((key) => ({ key }));
-
+  // Extrae las variables del request_body
+  const keys = extractKeysFromContent(agent.request_body).map((key) => ({
+    key,
+  }));
   const keyMetaMap = useKeyMetaMap(keys);
 
   const renderWithBadges = (text: string) => {
@@ -88,59 +81,38 @@ export default function ViewCallAgentsSidebar({
   return (
     <SheetContent
       side="right"
-      className="flex flex-col gap-6 sm:min-w-[300px] md:min-w-[600px] px-6 py-6 overflow-auto"
+      className="flex flex-col gap-6 sm:min-w-[300px] md:min-w-[600px] px-6 py-6"
     >
       <SheetHeader>
-        <SheetTitle className="text-xl font-semibold">{agent.name}</SheetTitle>
-        <SheetDescription>{t("Title")}</SheetDescription>
+        <SheetTitle className="text-xl">{agent.name}</SheetTitle>
+        <p className="text-sm text-muted-foreground">{t("Title")}</p>
       </SheetHeader>
 
       <div className="space-y-4">
         <div>
-          <strong>{t("PromptLabel")}</strong>
+          <strong>{t("Method")}:</strong> {agent.method}
+        </div>
+        <div>
+          <strong>{t("URL")}:</strong> {agent.url}
+        </div>
+        <div>
+          <strong>{t("Timeout")}:</strong> {agent.timeout}s
+        </div>
+        <div>
+          <strong>{t("Retries")}:</strong> {agent.retries}
+        </div>
+        <div>
+          <strong>{t("Body")}:</strong>
           <p className="whitespace-pre-wrap border p-4 rounded-md">
-            {renderWithBadges(agent.prompt)}
+            {renderWithBadges(agent.request_body)}
           </p>
         </div>
-
         <div>
-          <strong>{t("FirstMessageLabel")}</strong>
-          <p className="whitespace-pre-wrap border p-4 rounded-md">
-            {renderWithBadges(agent.first_message)}
-          </p>
-        </div>
-
-        <div>
-          <strong>{t("MaxAttemptsLabel")}</strong> {agent.max_attempts}
-        </div>
-
-        <div>
-          <strong>{t("IntervalLabel")}</strong> {agent.interval_minutes}
-        </div>
-
-        <div>
-          <strong>{t("AskPermissionLabel")}</strong>{" "}
-          {agent.ask_permission ? (
-            <Badge
-              variant="outline"
-              className="text-green-600 border-green-600"
-            >
-              {t("AskPermissionYes")}
-            </Badge>
-          ) : (
-            <Badge variant="outline" className="text-muted-foreground">
-              {t("AskPermissionNo")}
-            </Badge>
-          )}
-        </div>
-
-        <div>
-          <strong>{t("CreatedAtLabel")}</strong>{" "}
+          <strong>{t("CreatedAt")}:</strong>{" "}
           {new Date(agent.created_at).toLocaleDateString()}
         </div>
-
         <div>
-          <strong>{t("UpdatedAtLabel")}</strong>{" "}
+          <strong>{t("UpdatedAt")}:</strong>{" "}
           {new Date(agent.updated_at).toLocaleDateString()}
         </div>
       </div>

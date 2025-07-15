@@ -13,23 +13,34 @@ import { extractKeysFromContent } from "@/lib/keys/extractKeysFromContent";
 import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
 import { useTranslations } from "next-intl";
 
-import { CallAgent } from "./CallAgentsSidebar";
+interface EmailAgent {
+  id: string;
+  name: string;
+  prompt: string;
+  task: string;
+  first_message: string;
+  direction: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
 
-interface ViewProps {
-  agent: CallAgent;
+interface ViewEmailAgentsSidebarProps {
+  agent: EmailAgent;
   onEdit: () => void;
   onClose: () => void;
 }
 
-export default function ViewCallAgentsSidebar({
+export default function ViewEmailAgentsSidebar({
   agent,
   onEdit,
   onClose,
-}: ViewProps) {
-  const t = useTranslations("Templates.TemplatesView.CallAgents.SidebarView");
+}: ViewEmailAgentsSidebarProps) {
+  const t = useTranslations("Templates.TemplatesView.EmailAgents.SidebarView");
 
   const keys = [
     ...extractKeysFromContent(agent.prompt),
+    ...extractKeysFromContent(agent.task),
     ...extractKeysFromContent(agent.first_message),
   ].map((key) => ({ key }));
 
@@ -92,56 +103,46 @@ export default function ViewCallAgentsSidebar({
     >
       <SheetHeader>
         <SheetTitle className="text-xl font-semibold">{agent.name}</SheetTitle>
-        <SheetDescription>{t("Title")}</SheetDescription>
+        <SheetDescription>{t("ViewDescription")}</SheetDescription>
       </SheetHeader>
 
       <div className="space-y-4">
         <div>
-          <strong>{t("PromptLabel")}</strong>
-          <p className="whitespace-pre-wrap border p-4 rounded-md">
+          <strong>{t("Prompt")}:</strong>
+          <p className="whitespace-pre-wrap border p-4 rounded-md mt-1">
             {renderWithBadges(agent.prompt)}
           </p>
         </div>
 
         <div>
-          <strong>{t("FirstMessageLabel")}</strong>
-          <p className="whitespace-pre-wrap border p-4 rounded-md">
-            {renderWithBadges(agent.first_message)}
+          <strong>{t("Task")}:</strong>
+          <p className="whitespace-pre-wrap border p-4 rounded-md mt-1">
+            {renderWithBadges(agent.task)}
           </p>
         </div>
 
         <div>
-          <strong>{t("MaxAttemptsLabel")}</strong> {agent.max_attempts}
+          <strong>{t("FirstMessage")}:</strong>
+          <p className="whitespace-pre-wrap border p-4 rounded-md mt-1">
+            {renderWithBadges(agent.first_message)}
+          </p>
         </div>
 
-        <div>
-          <strong>{t("IntervalLabel")}</strong> {agent.interval_minutes}
-        </div>
-
-        <div>
-          <strong>{t("AskPermissionLabel")}</strong>{" "}
-          {agent.ask_permission ? (
-            <Badge
-              variant="outline"
-              className="text-green-600 border-green-600"
-            >
-              {t("AskPermissionYes")}
-            </Badge>
-          ) : (
-            <Badge variant="outline" className="text-muted-foreground">
-              {t("AskPermissionNo")}
-            </Badge>
-          )}
-        </div>
-
-        <div>
-          <strong>{t("CreatedAtLabel")}</strong>{" "}
-          {new Date(agent.created_at).toLocaleDateString()}
-        </div>
-
-        <div>
-          <strong>{t("UpdatedAtLabel")}</strong>{" "}
-          {new Date(agent.updated_at).toLocaleDateString()}
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <strong>{t("Direction")}:</strong> {agent.direction}
+          </div>
+          <div>
+            <strong>{t("Status")}:</strong> {agent.status}
+          </div>
+          <div>
+            <strong>{t("CreatedAt")}:</strong>{" "}
+            {new Date(agent.created_at).toLocaleDateString()}
+          </div>
+          <div>
+            <strong>{t("UpdatedAt")}:</strong>{" "}
+            {new Date(agent.updated_at).toLocaleDateString()}
+          </div>
         </div>
       </div>
 

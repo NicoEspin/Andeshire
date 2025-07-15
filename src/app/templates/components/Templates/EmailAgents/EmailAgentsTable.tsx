@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardHeader,
@@ -31,12 +32,15 @@ import { Button } from "@/components/ui/button";
 type Props = {};
 
 const EmailAgentsTable = (props: Props) => {
+  const t = useTranslations("Templates.TemplatesView.EmailAgents");
   const agents = emailAgentsMock.templates;
 
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">Email Agents</CardTitle>
+        <CardTitle className="text-xl font-semibold">
+          {t("Title")}
+        </CardTitle>
       </CardHeader>
       <CardContent>
         {agents.length === 0 ? (
@@ -45,15 +49,15 @@ const EmailAgentsTable = (props: Props) => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Nombre</TableHead>
-                <TableHead>Prompt</TableHead>
-                <TableHead>Tarea</TableHead>
-                <TableHead>Mensaje Inicial</TableHead>
-                <TableHead>Dirección</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Creado</TableHead>
-                <TableHead>Actualizado</TableHead>
-                <TableHead>Acciones</TableHead>
+                <TableHead>{t("Name")}</TableHead>
+                <TableHead>{t("Prompt")}</TableHead>
+                <TableHead>{t("Task")}</TableHead>
+                <TableHead>{t("FirstMessage")}</TableHead>
+                <TableHead>{t("Direction")}</TableHead>
+                <TableHead>{t("Status")}</TableHead>
+                <TableHead>{t("CreatedAt")}</TableHead>
+                <TableHead>{t("UpdatedAt")}</TableHead>
+                <TableHead>{t("Actions")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -69,7 +73,7 @@ const EmailAgentsTable = (props: Props) => {
                       </Badge>
                     ) : (
                       <span className="italic text-muted-foreground">
-                        Sin nombre
+                        {t("NoName")}
                       </span>
                     )}
                   </TableCell>
@@ -117,7 +121,7 @@ const EmailAgentsTable = (props: Props) => {
                             <Eye className="w-4 h-4" />
                           </Button>
                         </TooltipTrigger>
-                        <TooltipContent>Ver Detalles</TooltipContent>
+                        <TooltipContent>{t("View")}</TooltipContent>
                       </Tooltip>
 
                       <Tooltip>
@@ -130,7 +134,7 @@ const EmailAgentsTable = (props: Props) => {
                             <Pencil className="w-4 h-4" />
                           </Button>
                         </TooltipTrigger>
-                        <TooltipContent>Editar</TooltipContent>
+                        <TooltipContent>{t("Edit")}</TooltipContent>
                       </Tooltip>
 
                       <Tooltip>
@@ -143,7 +147,7 @@ const EmailAgentsTable = (props: Props) => {
                             <Trash className="w-4 h-4" />
                           </Button>
                         </TooltipTrigger>
-                        <TooltipContent>Eliminar</TooltipContent>
+                        <TooltipContent>{t("Delete")}</TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
                   </TableCell>

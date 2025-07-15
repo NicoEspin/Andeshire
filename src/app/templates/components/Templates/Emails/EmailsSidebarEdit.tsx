@@ -17,73 +17,96 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTranslations } from "next-intl";
 
-interface WhatsappSidebarEditProps {
-  template: { name: string; content: string };
+interface EmailSidebarEditProps {
+  template: { name: string; subject: string; content: string };
   onCancel: () => void;
   onSave: () => void;
 }
 
-export default function WhatsappSidebarEdit({
+export default function EmailSidebarEdit({
   template,
   onCancel,
   onSave,
-}: WhatsappSidebarEditProps) {
+}: EmailSidebarEditProps) {
   const t = useTranslations(
-    "Templates.TemplatesView.WhatsApp.WhatsAppSidebar.Edit"
+    "Templates.TemplatesView.Email.SidebarEdit"
   );
 
   const [name, setName] = React.useState<string>(template.name);
+  const [subject, setSubject] = React.useState<string>(template.subject);
   const [content, setContent] = React.useState<string>(template.content);
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
-  // 🗂️ Todas las variables del mock
+  const subjectRef = React.useRef<HTMLInputElement>(null);
+  const contentRef = React.useRef<HTMLTextAreaElement>(null);
+
+  const [activeField, setActiveField] = React.useState<"subject" | "content" | null>(null);
+
   const allVariables: string[] = mockKeys.data.all_keys;
-
-  // 🗂️ Mapa para todas las variables (para dropdown)
   const allKeysMap = useKeyMetaMap(allVariables.map((key) => ({ key })));
 
-  // 🗂️ Mapa solo para las variables actuales del contenido (para vista previa)
+  const subjectKeys = extractKeysFromContent(subject).map((key) => ({ key }));
   const contentKeys = extractKeysFromContent(content).map((key) => ({ key }));
+
+  const subjectKeyMetaMap = useKeyMetaMap(subjectKeys);
   const contentKeyMetaMap = useKeyMetaMap(contentKeys);
 
   const handleInsertVariable = (variable: string) => {
-    const textarea = textareaRef.current;
-    if (!textarea) return;
+    if (activeField === "subject" && subjectRef.current) {
+      const input = subjectRef.current;
+      const start = input.selectionStart ?? 0;
+      const end = input.selectionEnd ?? 0;
 
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
+      const before = subject.substring(0, start);
+      const after = subject.substring(end);
 
-    const before = content.substring(0, start);
-    const after = content.substring(end);
+      const insertText = `{{${variable}}}`;
+      const newSubject = before + insertText + after;
+      setSubject(newSubject);
 
-    const insertText = `{{${variable}}}`;
+      requestAnimationFrame(() => {
+        input.focus();
+        const newCursorPos = start + insertText.length;
+        input.setSelectionRange(newCursorPos, newCursorPos);
+      });
+    } else if (activeField === "content" && contentRef.current) {
+      const textarea = contentRef.current;
+      const start = textarea.selectionStart ?? 0;
+      const end = textarea.selectionEnd ?? 0;
 
-    const newContent = before + insertText + after;
-    setContent(newContent);
+      const before = content.substring(0, start);
+      const after = content.substring(end);
 
-    requestAnimationFrame(() => {
-      textarea.focus();
-      const newCursorPos = start + insertText.length;
-      textarea.setSelectionRange(newCursorPos, newCursorPos);
-    });
+      const insertText = `{{${variable}}}`;
+      const newContent = before + insertText + after;
+      setContent(newContent);
+
+      requestAnimationFrame(() => {
+        textarea.focus();
+        const newCursorPos = start + insertText.length;
+        textarea.setSelectionRange(newCursorPos, newCursorPos);
+      });
+    }
   };
 
-  const renderContentWithBadges = (content: string) => {
+  const renderContentWithBadges = (
+    value: string,
+    keyMetaMap: Record<string, any>
+  ) => {
     const regex = /{{(.*?)}}/g;
     const parts: React.ReactNode[] = [];
     let lastIndex = 0;
     let match;
     let i = 0;
 
-    while ((match = regex.exec(content)) !== null) {
-      const before = content.substring(lastIndex, match.index);
+    while ((match = regex.exec(value)) !== null) {
+      const before = value.substring(lastIndex, match.index);
       if (before) {
         parts.push(<span key={`text-${i}`}>{before}</span>);
         i++;
       }
 
       const key = match[1].trim();
-      const meta = contentKeyMetaMap[key];
+      const meta = keyMetaMap[key];
 
       if (meta) {
         parts.push(
@@ -106,7 +129,7 @@ export default function WhatsappSidebarEdit({
       i++;
     }
 
-    const after = content.substring(lastIndex);
+    const after = value.substring(lastIndex);
     if (after) {
       parts.push(<span key={`text-after-${i}`}>{after}</span>);
     }
@@ -130,11 +153,56 @@ export default function WhatsappSidebarEdit({
         </div>
 
         <div>
+          <Label>{t("Subject")}</Label>
+          <Input
+            ref={subjectRef}
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            onFocus={() => setActiveField("subject")}
+          />
+          <div className="mt-2">
+            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="w-full justify-between">
+                  {t("SelectVariable")}
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-full">
+                {allVariables.map((v) => {
+                  const meta = allKeysMap[v];
+                  if (!meta) return null;
+
+                  return (
+                    <DropdownMenuItem
+                      key={v}
+                      onSelect={() => handleInsertVariable(v)}
+                      className="flex items-center"
+                    >
+                      <Badge
+                        style={{
+                          backgroundColor: meta.color,
+                          color: "#fff",
+                          margin: "0",
+                        }}
+                      >
+                        {meta.label}
+                      </Badge>
+                    </DropdownMenuItem>
+                  );
+                })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
+
+        <div>
           <Label>{t("Content")}</Label>
           <textarea
-            ref={textareaRef}
+            ref={contentRef}
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            onFocus={() => setActiveField("content")}
             rows={6}
             className="w-full border rounded-md p-2"
           />
@@ -175,9 +243,16 @@ export default function WhatsappSidebarEdit({
         </div>
 
         <div>
-          <Label>{t("Preview")}</Label>
+          <Label>{t("PreviewSubject")}</Label>
           <div className="border rounded-md p-4 text-sm whitespace-pre-wrap">
-            {renderContentWithBadges(content)}
+            {renderContentWithBadges(subject, subjectKeyMetaMap)}
+          </div>
+        </div>
+
+        <div>
+          <Label>{t("PreviewContent")}</Label>
+          <div className="border rounded-md p-4 text-sm whitespace-pre-wrap">
+            {renderContentWithBadges(content, contentKeyMetaMap)}
           </div>
         </div>
       </div>

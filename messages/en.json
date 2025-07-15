@@ -10,6 +10,9 @@
     "Campañas": "Campaigns",
     "Templates": "Templates"
   },
+  "EmptyState": {
+    "NoRecords": "There are no records to display at the moment."
+  },
   "Settings": {
     "Header": {
       "AdminBadge": "Admin",
@@ -158,6 +161,212 @@
       "requiredIndicator": "*",
       "cancel": "Cancel",
       "save": "Save Changes"
+    }
+  },
+  "Templates": {
+    "Nav": {
+      "templates": "Templates",
+      "callAgents": "Call Agents",
+      "textAgents": "Text Agents"
+    },
+    "Header": {
+      "title": "Templates",
+      "description": "Manage your templates and agents efficiently."
+    },
+    "TextAgents": {
+      "Title": "Text Agents",
+      "Description": "Manage your automated messaging agents",
+      "ID": "ID",
+      "ChatID": "Chat ID",
+      "ClientID": "Client ID",
+      "Status": "Status",
+      "Direction": "Direction",
+      "FirstMessage": "First Message",
+      "Prompt": "Prompt",
+      "Details": "Details",
+      "CreatedAt": "Created At",
+      "UpdatedAt": "Updated At",
+      "ShowingResults": "Showing {count} results",
+      "PromtDetails": {
+        "Title": "Prompt Details",
+        "AgentID": "Agent ID:",
+        "ChatID": "Chat ID:",
+        "FirstMessage": "First Message:",
+        "Task": "Task:",
+        "Prompt": "Prompt:"
+      },
+      "TextAgentsSidebar": {
+        "Title": "Agent #{id}",
+        "ChatID": "Chat: {chatId}",
+        "StatusInProgress": "In progress",
+        "StatusDefault": "Status",
+        "CreatedAt": "Created at: {date}"
+      }
+    },
+    "TemplatesView": {
+      "Header": {
+        "SelectPlaceholder": "Select type",
+        "SearchPlaceholder": "Search templates...",
+        "CreateButton": "Create Template",
+        "Options": {
+          "WhatsApp": "WhatsApp",
+          "Email": "Email",
+          "WhatsappAgents": "WhatsApp Agents",
+          "CallAgents": "Call Agents",
+          "EmailAgents": "Email Agents",
+          "LinkedinAgents": "LinkedIn Agents",
+          "HTTP": "HTTP Request"
+        }
+      },
+      "WhatsApp": {
+        "Title": "WhatsApp Templates",
+        "Name": "Name",
+        "Content": "Content",
+        "CreatedAt": "Creation Date",
+        "UpdatedAt": "Update Date",
+        "Actions": "Actions",
+        "View": "View Details",
+        "Edit": "Edit",
+        "Delete": "Delete",
+        "WhatsAppSidebar": {
+          "CreatedAt": "Created",
+          "UpdatedAt": "Updated",
+          "ID": "ID",
+          "ContentLabel": "Content",
+          "EditButton": "Edit",
+          "Close": "Close",
+          "Edit": {
+            "Title": "Edit Template",
+            "TemplateName": "Template Name",
+            "Content": "Content",
+            "AddVariable": "Add Variable",
+            "SelectVariable": "Select a variable...",
+            "Preview": "Preview",
+            "Save": "Save",
+            "Cancel": "Cancel"
+          }
+        }
+      },
+      "Email": {
+        "Title": "Email Templates",
+        "Name": "Name",
+        "Subject": "Subject",
+        "Content": "Content",
+        "CreatedAt": "Created At",
+        "UpdatedAt": "Updated At",
+        "Actions": "Actions",
+        "View": "View Details",
+        "Edit": "Edit",
+        "Delete": "Delete",
+        "SidebarView": {
+          "View": "View Email Template",
+          "ViewDescription": "Detailed information about the selected email template.",
+          "Name": "Name",
+          "Subject": "Subject",
+          "Content": "Content",
+          "CreatedAt": "Created at",
+          "UpdatedAt": "Updated at",
+          "Close": "Close",
+          "Edit": "Edit"
+        },
+        "SidebarEdit": {
+          "Title": "Edit Email Template",
+          "Edit": "Edit Email Template",
+          "EditDescription": "Modify the details of your email template below.",
+          "Name": "Name",
+          "TemplateName": "Template Name",
+          "Subject": "Subject",
+          "Content": "Content",
+          "AddVariable": "Add variable",
+          "SelectVariable": "Select variable",
+          "PreviewSubject": "Preview Subject",
+          "PreviewContent": "Preview Content",
+          "Cancel": "Cancel",
+          "Save": "Save"
+        }
+      },
+      "WhatsAppAgents": {
+        "Title": "WhatsApp Agents",
+        "Name": "Name",
+        "Prompt": "Prompt",
+        "Task": "Task",
+        "FirstMessage": "Initial Message",
+        "Direction": "Direction",
+        "Status": "Status",
+        "CreatedAt": "Created",
+        "UpdatedAt": "Updated",
+        "Actions": "Actions",
+        "Unnamed": "Unnamed",
+        "View": "View Details",
+        "Edit": "Edit",
+        "Delete": "Delete"
+      },
+      "CallAgents": {
+        "Title": "Call Agents",
+        "Name": "Name",
+        "Prompt": "Prompt",
+        "FirstMessage": "Initial Message",
+        "MaxAttempts": "Max Attempts",
+        "Interval": "Interval (min)",
+        "AskPermission": "Permission",
+        "CreatedAt": "Created",
+        "UpdatedAt": "Updated",
+        "Actions": "Actions",
+        "Yes": "Yes",
+        "No": "No",
+        "NoName": "No name",
+        "View": "View Details",
+        "Edit": "Edit",
+        "Delete": "Delete"
+      },
+      "EmailAgents": {
+        "Title": "Email Agents",
+        "Name": "Name",
+        "Prompt": "Prompt",
+        "Task": "Task",
+        "FirstMessage": "First Message",
+        "Direction": "Direction",
+        "Status": "Status",
+        "CreatedAt": "Created",
+        "UpdatedAt": "Updated",
+        "Actions": "Actions",
+        "NoName": "No name",
+        "View": "View Details",
+        "Edit": "Edit",
+        "Delete": "Delete"
+      },
+      "LinkedinAgents": {
+        "Title": "LinkedIn Agents",
+        "Name": "Name",
+        "Prompt": "Prompt",
+        "Task": "Task",
+        "FirstMessage": "First Message",
+        "Direction": "Direction",
+        "Status": "Status",
+        "CreatedAt": "Created",
+        "UpdatedAt": "Updated",
+        "Actions": "Actions",
+        "ViewDetails": "View Details",
+        "Edit": "Edit",
+        "Delete": "Delete",
+        "NoName": "No name"
+      },
+      "HTTPAgents": {
+        "Title": "HTTP Agents",
+        "Name": "Name",
+        "Method": "Method",
+        "URL": "URL",
+        "Timeout": "Timeout",
+        "Retries": "Retries",
+        "Body": "Body",
+        "CreatedAt": "Created At",
+        "UpdatedAt": "Updated At",
+        "Actions": "Actions",
+        "Unnamed": "Unnamed",
+        "View": "View Details",
+        "Edit": "Edit",
+        "Delete": "Delete"
+      }
     }
   },
 

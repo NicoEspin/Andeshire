@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import EmptyState from "@/app/components/EmptyState";
 import {
   Card,
@@ -41,6 +42,8 @@ const truncate = (text: string, maxLength: number) =>
   text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
 
 const TextAgentsTable = () => {
+  const t = useTranslations("Templates.TextAgents");
+
   const [openSidebar, setOpenSidebar] = useState(false);
   const agents: Agent[] = agentsData.agents || [];
 
@@ -49,9 +52,9 @@ const TextAgentsTable = () => {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-xl">Text Agents</CardTitle>
+        <CardTitle className="text-xl">{t("Title")}</CardTitle>
         <CardDescription className="text-muted-foreground">
-          Manage your automated messaging agents
+          {t("Description")}
         </CardDescription>
       </CardHeader>
 
@@ -60,21 +63,25 @@ const TextAgentsTable = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>ID</TableHead>
-                <TableHead>Chat ID</TableHead>
-                <TableHead>Client ID</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Direction</TableHead>
-                <TableHead>First Message</TableHead>
-                <TableHead>Prompt</TableHead>
-                <TableHead>Detalles</TableHead>
-                <TableHead>Created At</TableHead>
-                <TableHead>Updated At</TableHead>
+                <TableHead>{t("ID")}</TableHead>
+                <TableHead>{t("ChatID")}</TableHead>
+                <TableHead>{t("ClientID")}</TableHead>
+                <TableHead>{t("Status")}</TableHead>
+                <TableHead>{t("Direction")}</TableHead>
+                <TableHead>{t("FirstMessage")}</TableHead>
+                <TableHead>{t("Prompt")}</TableHead>
+                <TableHead>{t("Details")}</TableHead>
+                <TableHead>{t("CreatedAt")}</TableHead>
+                <TableHead>{t("UpdatedAt")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {agents.map((agent) => (
-                <TableRow key={agent.id} onClick={() => setOpenSidebar(true)} className="cursor-pointer">
+                <TableRow
+                  key={agent.id}
+                  onClick={() => setOpenSidebar(true)}
+                  className="cursor-pointer"
+                >
                   <TableCell>{agent.id}</TableCell>
                   <TableCell>{agent.chat_id}</TableCell>
                   <TableCell>{agent.client_id}</TableCell>
@@ -144,7 +151,7 @@ const TextAgentsTable = () => {
       <CardFooter>
         {hasData && (
           <div className="w-full flex justify-between items-center text-sm text-muted-foreground">
-            Showing {agents.length} results
+            {t("ShowingResults", { count: agents.length })}
             {/* 👉 Aquí va el paginador */}
           </div>
         )}

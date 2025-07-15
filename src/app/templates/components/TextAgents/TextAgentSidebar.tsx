@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/sheet";
 import { MessageSquare } from "lucide-react";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
 
 interface TextAgentSidebarProps {
   open: boolean;
@@ -21,8 +22,20 @@ export default function TextAgentSidebar({
   open,
   onOpenChange,
 }: TextAgentSidebarProps) {
+  const t = useTranslations("Templates.TextAgents.TextAgentsSidebar");
+
   const agent = mockChat.agent;
   const messages = mockChat.messages.messages;
+
+  const statusLabel =
+    agent.status === "in_progress" ? t("StatusInProgress") : t("StatusDefault");
+
+  const createdAtLabel = t("CreatedAt", {
+    date: new Date(agent.created_at).toLocaleString(undefined, {
+      dateStyle: "medium",
+      timeStyle: "short",
+    }),
+  });
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -36,35 +49,30 @@ export default function TextAgentSidebar({
           </div>
           <div className="flex flex-col">
             <SheetTitle className="text-lg font-semibold">
-              Agent #{agent.id}
+              {t("Title", { id: agent.id })}
             </SheetTitle>
             <SheetDescription className="text-sm text-muted-foreground">
-              Chat: {agent.chat_id}
+              {t("ChatID", { chatId: agent.chat_id })}
             </SheetDescription>
             <span
               className={clsx(
-                "inline-block px-3 py-1 rounded-full text-xs font-medium mt-1",
+                "inline-block px-3 py-1 rounded-full text-xs font-medium mt-1 w-fit",
                 agent.status === "in_progress"
                   ? "bg-purple-100 text-purple-800"
                   : "bg-muted text-muted-foreground"
               )}
             >
-              {agent.status.replace("_", " ")}
+              {statusLabel}
             </span>
           </div>
         </SheetHeader>
 
         <div className="text-xs text-muted-foreground mb-4">
-          Created at:{" "}
-          {new Date(agent.created_at).toLocaleString(undefined, {
-            dateStyle: "medium",
-            timeStyle: "short",
-          })}
+          {createdAtLabel}
         </div>
 
         <div className="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar">
           {messages.map((msg, idx) => {
-            // Si body está vacío o solo espacios, no renderiza nada
             if (!msg.body?.trim()) return null;
 
             return (

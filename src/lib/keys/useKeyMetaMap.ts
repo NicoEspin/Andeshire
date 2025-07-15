@@ -1,8 +1,6 @@
-// src/lib/keys/useKeyMetaMap.ts
 import { useMemo } from "react";
 import { nodeColors } from "@/lib/nodeColors";
 import { KEY_LABEL_MAP } from "./KEY_LABEL_MAP";
-
 
 export interface KeyMeta {
   key: string;
@@ -14,24 +12,26 @@ interface ApiField {
   key: string;
 }
 
+function hashStringToIndex(str: string, length: number): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return Math.abs(hash) % length;
+}
+
 export function useKeyMetaMap(apiFields: ApiField[]) {
   return useMemo(() => {
-    // Extrae todas las keys
     const keys = apiFields.map((field) => field.key);
 
-    // Ordena para consistencia de color
-    keys.sort();
-
-    // Genera el map
     const map: Record<string, KeyMeta> = {};
-    keys.forEach((key, index) => {
+    keys.forEach((key) => {
       const label =
         KEY_LABEL_MAP[key] ||
-        key
-          .replace(/_/g, " ")
-          .replace(/\b\w/g, (l) => l.toUpperCase()); // fallback
+        key.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
 
-      const color = nodeColors[index % nodeColors.length];
+      const index = hashStringToIndex(key, nodeColors.length);
+      const color = nodeColors[index];
 
       map[key] = { key, label, color };
     });

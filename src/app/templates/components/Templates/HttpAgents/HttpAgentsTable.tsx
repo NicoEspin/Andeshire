@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 import {
   Card,
   CardHeader,
@@ -31,12 +32,13 @@ import { Button } from "@/components/ui/button";
 type Props = {};
 
 const HttpAgentsTable = (props: Props) => {
+  const t = useTranslations("Templates.TemplatesView.HTTPAgents");
   const agents = httpAgentsMock.templates;
 
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">HTTP Agents</CardTitle>
+        <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
       </CardHeader>
       <CardContent>
         {agents.length === 0 ? (
@@ -45,15 +47,15 @@ const HttpAgentsTable = (props: Props) => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Nombre</TableHead>
-                <TableHead>Método</TableHead>
-                <TableHead>URL</TableHead>
-                <TableHead>Timeout</TableHead>
-                <TableHead>Retries</TableHead>
-                <TableHead>Body</TableHead>
-                <TableHead>Creado</TableHead>
-                <TableHead>Actualizado</TableHead>
-                <TableHead>Acciones</TableHead>
+                <TableHead>{t("Name")}</TableHead>
+                <TableHead>{t("Method")}</TableHead>
+                <TableHead>{t("URL")}</TableHead>
+                <TableHead>{t("Timeout")}</TableHead>
+                <TableHead>{t("Retries")}</TableHead>
+                <TableHead>{t("Body")}</TableHead>
+                <TableHead>{t("CreatedAt")}</TableHead>
+                <TableHead>{t("UpdatedAt")}</TableHead>
+                <TableHead>{t("Actions")}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -69,7 +71,7 @@ const HttpAgentsTable = (props: Props) => {
                       </Badge>
                     ) : (
                       <span className="italic text-muted-foreground">
-                        Sin nombre
+                        {t("Unnamed")}
                       </span>
                     )}
                   </TableCell>
@@ -112,7 +114,7 @@ const HttpAgentsTable = (props: Props) => {
                             <Eye className="w-4 h-4" />
                           </Button>
                         </TooltipTrigger>
-                        <TooltipContent>Ver Detalles</TooltipContent>
+                        <TooltipContent>{t("View")}</TooltipContent>
                       </Tooltip>
 
                       <Tooltip>
@@ -125,7 +127,7 @@ const HttpAgentsTable = (props: Props) => {
                             <Pencil className="w-4 h-4" />
                           </Button>
                         </TooltipTrigger>
-                        <TooltipContent>Editar</TooltipContent>
+                        <TooltipContent>{t("Edit")}</TooltipContent>
                       </Tooltip>
 
                       <Tooltip>
@@ -138,7 +140,7 @@ const HttpAgentsTable = (props: Props) => {
                             <Trash className="w-4 h-4" />
                           </Button>
                         </TooltipTrigger>
-                        <TooltipContent>Eliminar</TooltipContent>
+                        <TooltipContent>{t("Delete")}</TooltipContent>
                       </Tooltip>
                     </TooltipProvider>
                   </TableCell>

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTranslations } from "next-intl";
 
 interface TemplatesNavProps {
   activeTab: string;
@@ -12,15 +13,17 @@ export default function TemplatesNav({
   activeTab,
   setActiveTab,
 }: TemplatesNavProps) {
+  const t = useTranslations("Templates.Nav");
+
   const tabs = [
-    { value: "templates", label: "Templates" },
-    { value: "call-agents", label: "Call Agents" },
-    { value: "text-agents", label: "Text Agents" },
+    { value: "templates", label: t("templates") },
+    { value: "call-agents", label: t("callAgents") },
+    { value: "text-agents", label: t("textAgents") },
   ];
 
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-      <TabsList className="bg-muted p-1 ">
+      <TabsList className="bg-muted p-1">
         {tabs.map((tab) => (
           <TabsTrigger
             key={tab.value}

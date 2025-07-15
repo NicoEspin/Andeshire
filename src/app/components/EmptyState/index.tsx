@@ -1,8 +1,11 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from "next-intl";
 
 export default function EmptyState() {
+  const t = useTranslations("EmptyState");
+
   return (
     <div className="flex flex-col items-center justify-center py-12">
       <svg
@@ -113,9 +116,7 @@ export default function EmptyState() {
         />
       </svg>
 
-      <p className="mt-6 text-gray-500 text-center text-lg">
-        There are no records to display at the moment.
-      </p>
+      <p className="mt-6 text-gray-500 text-center text-lg">{t("NoRecords")}</p>
 
       <style jsx>{`
         .animate-bounce-slow {

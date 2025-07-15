@@ -28,6 +28,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import WhatsappSidebar from "./WhatsappSidebar";
+import { useTranslations } from "next-intl";
 
 type Template = {
   id: string;
@@ -46,6 +47,8 @@ const WhatsappTable = () => {
     null
   );
 
+  const t = useTranslations("Templates.TemplatesView.WhatsApp");
+
   const handleRowClick = (template: Template) => {
     setSelectedTemplate(template);
     setOpenSidebar(true);
@@ -55,9 +58,7 @@ const WhatsappTable = () => {
     <>
       <Card className="w-full">
         <CardHeader>
-          <CardTitle className="text-xl font-semibold">
-            WhatsApp Templates
-          </CardTitle>
+          <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
         </CardHeader>
         <CardContent>
           {templates.length === 0 ? (
@@ -66,11 +67,11 @@ const WhatsappTable = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Nombre</TableHead>
-                  <TableHead>Contenido</TableHead>
-                  <TableHead>Fecha Creación</TableHead>
-                  <TableHead>Fecha Actualización</TableHead>
-                  <TableHead>Acciones</TableHead>
+                  <TableHead>{t("Name")}</TableHead>
+                  <TableHead>{t("Content")}</TableHead>
+                  <TableHead>{t("CreatedAt")}</TableHead>
+                  <TableHead>{t("UpdatedAt")}</TableHead>
+                  <TableHead>{t("Actions")}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -113,7 +114,7 @@ const WhatsappTable = () => {
                               <Eye className="w-4 h-4" />
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>Ver Detalles</TooltipContent>
+                          <TooltipContent>{t("View")}</TooltipContent>
                         </Tooltip>
 
                         <Tooltip>
@@ -127,7 +128,7 @@ const WhatsappTable = () => {
                               <Pencil className="w-4 h-4" />
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>Editar</TooltipContent>
+                          <TooltipContent>{t("Edit")}</TooltipContent>
                         </Tooltip>
 
                         <Tooltip>
@@ -141,7 +142,7 @@ const WhatsappTable = () => {
                               <Trash className="w-4 h-4" />
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>Eliminar</TooltipContent>
+                          <TooltipContent>{t("Delete")}</TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
                     </TableCell>

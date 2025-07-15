@@ -10,6 +10,9 @@
     "Campañas": "Campañas",
     "Templates": "Plantillas"
   },
+  "EmptyState": {
+    "NoRecords": "No hay registros para mostrar en este momento."
+  },
   "Settings": {
     "Header": {
       "AdminBadge": "Admin",
@@ -158,6 +161,212 @@
       "requiredIndicator": "*",
       "cancel": "Cancelar",
       "save": "Guardar Cambios"
+    }
+  },
+  "Templates": {
+    "Nav": {
+      "templates": "Plantillas",
+      "callAgents": "Agentes de Llamadas",
+      "textAgents": "Agentes de Texto"
+    },
+    "Header": {
+      "title": "Plantillas",
+      "description": "Gestiona tus plantillas y agentes de forma eficiente."
+    },
+    "TextAgents": {
+      "Title": "Agentes de Texto",
+      "Description": "Administra tus agentes de mensajería automática",
+      "ID": "ID",
+      "ChatID": "ID de Chat",
+      "ClientID": "ID de Cliente",
+      "Status": "Estado",
+      "Direction": "Dirección",
+      "FirstMessage": "Primer Mensaje",
+      "Prompt": "Prompt",
+      "Details": "Detalles",
+      "CreatedAt": "Creado el",
+      "UpdatedAt": "Actualizado el",
+      "ShowingResults": "Mostrando {count} resultados",
+      "PromtDetails": {
+        "Title": "Detalles del Prompt",
+        "AgentID": "ID de Agente:",
+        "ChatID": "ID de Chat:",
+        "FirstMessage": "Primer Mensaje:",
+        "Task": "Tarea:",
+        "Prompt": "Prompt:"
+      },
+      "TextAgentsSidebar": {
+        "Title": "Agente #{id}",
+        "ChatID": "Chat: {chatId}",
+        "StatusInProgress": "En progreso",
+        "StatusDefault": "Estado",
+        "CreatedAt": "Creado el: {date}"
+      }
+    },
+    "TemplatesView": {
+      "Header": {
+        "SelectPlaceholder": "Seleccionar tipo",
+        "SearchPlaceholder": "Buscar plantillas...",
+        "CreateButton": "Crear Plantilla",
+        "Options": {
+          "WhatsApp": "WhatsApp",
+          "Email": "Email",
+          "WhatsappAgents": "Agentes de whatsapp",
+          "CallAgents": "Agentes de llamada",
+          "EmailAgents": "Agentes de email",
+          "LinkedinAgents": "Agentes de Linkedin",
+          "HTTP": "Solicitud HTTP"
+        }
+      },
+      "WhatsApp": {
+        "Title": "Plantillas de WhatsApp",
+        "Name": "Nombre",
+        "Content": "Contenido",
+        "CreatedAt": "Fecha de Creación",
+        "UpdatedAt": "Fecha de Actualización",
+        "Actions": "Acciones",
+        "View": "Ver Detalles",
+        "Edit": "Editar",
+        "Delete": "Eliminar",
+        "WhatsAppSidebar": {
+          "CreatedAt": "Creado",
+          "UpdatedAt": "Actualizado",
+          "ID": "ID",
+          "ContentLabel": "Contenido",
+          "EditButton": "Editar",
+          "Close": "Cerrar",
+          "Edit": {
+            "Title": "Editar Plantilla",
+            "TemplateName": "Nombre del Template",
+            "Content": "Contenido",
+            "AddVariable": "Agregar Variable",
+            "SelectVariable": "Selecciona una variable...",
+            "Preview": "Vista previa",
+            "Save": "Guardar",
+            "Cancel": "Cancelar"
+          }
+        }
+      },
+      "Email": {
+        "Title": "Plantillas de Email",
+        "Name": "Nombre",
+        "Subject": "Asunto",
+        "Content": "Contenido",
+        "CreatedAt": "Fecha de Creación",
+        "UpdatedAt": "Fecha de Actualización",
+        "Actions": "Acciones",
+        "View": "Ver Detalles",
+        "Edit": "Editar",
+        "Delete": "Eliminar",
+        "SidebarView": {
+          "View": "Ver plantilla de correo",
+          "ViewDescription": "Información detallada sobre la plantilla de correo seleccionada.",
+          "Name": "Nombre",
+          "Subject": "Asunto",
+          "Content": "Contenido",
+          "CreatedAt": "Creado el",
+          "UpdatedAt": "Actualizado el",
+          "Close": "Cerrar",
+          "Edit": "Editar"
+        },
+        "SidebarEdit": {
+          "Title": "Editar plantilla de correo",
+          "Edit": "Editar plantilla de correo",
+          "EditDescription": "Modifica los detalles de tu plantilla de correo a continuación.",
+          "Name": "Nombre",
+          "TemplateName": "Nombre de la plantilla",
+          "Subject": "Asunto",
+          "Content": "Contenido",
+          "AddVariable": "Agregar variable",
+          "SelectVariable": "Seleccionar variable",
+          "PreviewSubject": "Vista previa del asunto",
+          "PreviewContent": "Vista previa del contenido",
+          "Cancel": "Cancelar",
+          "Save": "Guardar"
+        }
+      },
+      "WhatsAppAgents": {
+        "Title": "Agentes de WhatsApp",
+        "Name": "Nombre",
+        "Prompt": "Prompt",
+        "Task": "Tarea",
+        "FirstMessage": "Mensaje Inicial",
+        "Direction": "Dirección",
+        "Status": "Estado",
+        "CreatedAt": "Creado",
+        "UpdatedAt": "Actualizado",
+        "Actions": "Acciones",
+        "NoName": "Sin nombre",
+        "View": "Ver Detalles",
+        "Edit": "Editar",
+        "Delete": "Eliminar"
+      },
+      "CallAgents": {
+        "Title": "Agentes de llamada",
+        "Name": "Nombre",
+        "Prompt": "Prompt",
+        "FirstMessage": "Mensaje Inicial",
+        "MaxAttempts": "Intentos Máx.",
+        "Interval": "Intervalo (min)",
+        "AskPermission": "Permiso",
+        "CreatedAt": "Creado",
+        "UpdatedAt": "Actualizado",
+        "Actions": "Acciones",
+        "Yes": "Sí",
+        "No": "No",
+        "NoName": "Sin nombre",
+        "View": "Ver Detalles",
+        "Edit": "Editar",
+        "Delete": "Eliminar"
+      },
+      "EmailAgents": {
+        "Title": "Agentes de Email",
+        "Name": "Nombre",
+        "Prompt": "Prompt",
+        "Task": "Tarea",
+        "FirstMessage": "Mensaje Inicial",
+        "Direction": "Dirección",
+        "Status": "Estado",
+        "CreatedAt": "Creado",
+        "UpdatedAt": "Actualizado",
+        "Actions": "Acciones",
+        "NoName": "Sin nombre",
+        "View": "Ver Detalles",
+        "Edit": "Editar",
+        "Delete": "Eliminar"
+      },
+      "LinkedinAgents": {
+        "Title": "Agentes de LinkedIn",
+        "Name": "Nombre",
+        "Prompt": "Prompt",
+        "Task": "Tarea",
+        "FirstMessage": "Mensaje Inicial",
+        "Direction": "Dirección",
+        "Status": "Estado",
+        "CreatedAt": "Creado",
+        "UpdatedAt": "Actualizado",
+        "Actions": "Acciones",
+        "ViewDetails": "Ver Detalles",
+        "Edit": "Editar",
+        "Delete": "Eliminar",
+        "NoName": "Sin nombre"
+      },
+      "HTTPAgents": {
+        "Title": "Agentes HTTP",
+        "Name": "Nombre",
+        "Method": "Método",
+        "URL": "URL",
+        "Timeout": "Tiempo de espera",
+        "Retries": "Reintentos",
+        "Body": "Body",
+        "CreatedAt": "Creado",
+        "UpdatedAt": "Actualizado",
+        "Actions": "Acciones",
+        "Unnamed": "Sin nombre",
+        "View": "Ver Detalles",
+        "Edit": "Editar",
+        "Delete": "Eliminar"
+      }
     }
   },
 

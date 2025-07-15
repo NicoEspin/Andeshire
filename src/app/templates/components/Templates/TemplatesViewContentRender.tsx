@@ -13,11 +13,11 @@ import HttpAgentsTable from "./HttpAgents/HttpAgentsTable";
 const TABS: { [key: string]: React.ReactNode } = {
   WhatsApp: <WhatsappTable />,
   Email: <EmailsTable />,
-  "Agentes de whatsapp": <WhatsappAgentTable />,
-  "Agentes de llamada": <CallAgentsTable />,
-  "Agentes de email": <EmailAgentsTable />,
-  "Agentes de Linkedin": <LinkedinAgentsTable />,
-  "solicitud HTTP": <HttpAgentsTable />,
+  WhatsappAgents: <WhatsappAgentTable />,
+  CallAgents: <CallAgentsTable />,
+  EmailAgents: <EmailAgentsTable />,
+  LinkedinAgents: <LinkedinAgentsTable />,
+  HTTP: <HttpAgentsTable />,
 };
 
 const TemplatesViewContentRender = () => {

@@ -9,6 +9,7 @@ export interface CallAgent {
   id: string;
   name: string;
   prompt: string;
+  description: string;
   first_message: string;
   max_attempts: number;
   interval_minutes: number;

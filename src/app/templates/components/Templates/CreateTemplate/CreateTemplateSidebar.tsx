@@ -6,6 +6,9 @@ import { useSearchParams } from "next/navigation";
 import WhatsappTemplateCreate from "./WhatsappTemplateCreate";
 import EmailTemplateCreate from "./EmailTemplateCreate";
 import EmailAgentsTemplateCreate from "./EmailAgentsTemplateCreate";
+import WhatsAppAgentTemplateCreate from "./WhatsAppAgentTemplateCreate";
+import CallAgentsTemplateCreate from "./CallAgentsTemplateCreate";
+import LinkedinAgentsTemplateCreate from "./LinkedinAgentsTemplateCreate";
 
 // ...otros imports según tu estructura
 
@@ -14,6 +17,9 @@ const CREATE_COMPONENTS: { [key: string]: React.FC<{ onCancel: () => void }> } =
     WhatsApp: WhatsappTemplateCreate,
     Email: EmailTemplateCreate,
     EmailAgents: EmailAgentsTemplateCreate,
+    WhatsappAgents: WhatsAppAgentTemplateCreate,
+    CallAgents: CallAgentsTemplateCreate,
+    LinkedinAgents: LinkedinAgentsTemplateCreate
     // agrega tus otros tipos aquí
   };
 

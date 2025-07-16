@@ -82,7 +82,7 @@ export default function WhatsappTemplateCreate({
         <Button variant="outline" onClick={onCancel}>
           Cancelar
         </Button>
-        <Button className="bg-purple-600 text-white" onClick={handleSave}>
+        <Button className="bg-purple-600 hover:bg-purple-700 text-white" onClick={handleSave}>
           Guardar
         </Button>
       </div>

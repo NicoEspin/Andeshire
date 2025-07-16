@@ -2,25 +2,35 @@
 
 import * as React from "react";
 import { useTranslations } from "next-intl";
-import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { Label } from "@radix-ui/react-label";
-import { Badge } from "@/components/ui/badge";
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
-import { extractKeysFromContent } from "@/lib/keys/extractKeysFromContent";
-import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@radix-ui/react-label";
+
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+
+import VariableRichTextEditor, {
+  VariableRichTextEditorHandle,
+} from "../VariableRichTextEditor";
+import VariableDropdown from "../VariableDropdown";
 import mockKeys from "../../data/mockkeys.json";
 import { LinkedinAgent } from "./LinkedinAgentsSidebar";
 
 interface EditLinkedinAgentsSidebarProps {
   agent: LinkedinAgent;
   onCancel: () => void;
-  onSave: () => void;
+  onSave: (updated: LinkedinAgent) => void;
 }
 
 export default function EditLinkedinAgentsSidebar({
@@ -28,188 +38,173 @@ export default function EditLinkedinAgentsSidebar({
   onCancel,
   onSave,
 }: EditLinkedinAgentsSidebarProps) {
-  const t = useTranslations("Templates.TemplatesView.LinkedinAgents.SidebarEdit");
+  const t = useTranslations(
+    "Templates.TemplatesView.LinkedinAgents.SidebarEdit"
+  );
 
+  const [name, setName] = React.useState(agent.name);
+  const [description, setDescription] = React.useState(agent.description ?? "");
   const [prompt, setPrompt] = React.useState(agent.prompt);
   const [task, setTask] = React.useState(agent.task);
   const [firstMessage, setFirstMessage] = React.useState(agent.first_message);
+  const [status, setStatus] = React.useState(agent.status || "Active");
+  const [direction, setDirection] = React.useState(
+    agent.direction || "Outbound"
+  );
 
-  const [activeField, setActiveField] = React.useState<
-    "prompt" | "task" | "firstMessage" | null
-  >(null);
+  const allVariables = mockKeys.data.all_keys;
 
-  const promptRef = React.useRef<HTMLTextAreaElement>(null);
-  const taskRef = React.useRef<HTMLTextAreaElement>(null);
-  const firstMessageRef = React.useRef<HTMLTextAreaElement>(null);
+  const promptEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
+  const taskEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
+  const firstMessageEditorRef =
+    React.useRef<VariableRichTextEditorHandle>(null);
 
-  const allVariables: string[] = mockKeys.data.all_keys;
-  const allKeysMap = useKeyMetaMap(allVariables.map((key) => ({ key })));
-
-  const handleInsertVariable = (variable: string) => {
-    const insertText = `{{${variable}}}`;
-    const insertIntoField = (
-      value: string,
-      ref: React.RefObject<HTMLTextAreaElement>,
-      setter: (v: string) => void
-    ) => {
-      if (ref.current) {
-        const start = ref.current.selectionStart ?? 0;
-        const end = ref.current.selectionEnd ?? 0;
-        const before = value.substring(0, start);
-        const after = value.substring(end);
-        setter(before + insertText + after);
-
-        requestAnimationFrame(() => {
-          ref.current?.focus();
-          const newCursorPos = start + insertText.length;
-          ref.current?.setSelectionRange(newCursorPos, newCursorPos);
-        });
-      }
-    };
-
-    if (activeField === "prompt") {
-      insertIntoField(prompt, promptRef, setPrompt);
-    } else if (activeField === "task") {
-      insertIntoField(task, taskRef, setTask);
-    } else if (activeField === "firstMessage") {
-      insertIntoField(firstMessage, firstMessageRef, setFirstMessage);
-    }
-  };
-
-  const renderWithBadges = (text: string) => {
-    const keys = extractKeysFromContent(text).map((key) => ({ key }));
-    const keyMetaMap = useKeyMetaMap(keys);
-
-    const regex = /{{(.*?)}}/g;
-    const parts: React.ReactNode[] = [];
-    let lastIndex = 0;
-    let match;
-
-    while ((match = regex.exec(text)) !== null) {
-      const before = text.substring(lastIndex, match.index);
-      if (before) parts.push(<span key={`before-${lastIndex}`}>{before}</span>);
-
-      const keyName = match[1].trim();
-      const meta = keyMetaMap[keyName];
-
-      if (meta) {
-        parts.push(
-          <Badge
-            key={keyName}
-            style={{
-              backgroundColor: meta.color,
-              color: "#fff",
-              margin: "0 2px",
-            }}
-          >
-            {meta.label}
-          </Badge>
-        );
-      } else {
-        parts.push(
-          <span key={`missing-${keyName}`}>{`{{${keyName}}}`}</span>
-        );
-      }
-
-      lastIndex = regex.lastIndex;
-    }
-
-    const after = text.substring(lastIndex);
-    if (after) parts.push(<span key={`after-${lastIndex}`}>{after}</span>);
-
-    return parts;
+  const handleSave = () => {
+    onSave({
+      ...agent,
+      name,
+      description,
+      prompt,
+      task,
+      first_message: firstMessage,
+      direction,
+      status,
+    });
   };
 
   return (
     <SheetContent
       side="right"
-      className="flex flex-col w-full sm:min-w-[300px] md:min-w-[600px] px-6 py-6 gap-4"
+      className="flex flex-col gap-6 sm:min-w-[300px] md:min-w-[600px] px-6 py-6 overflow-auto"
     >
       <SheetHeader>
-        <SheetTitle className="text-xl">{t("Title")}</SheetTitle>
+        <SheetTitle className="text-xl font-semibold">{t("Title")}</SheetTitle>
+        <SheetDescription className="text-muted-foreground">
+          {t("Description")}
+        </SheetDescription>
       </SheetHeader>
 
-      <div className="flex flex-col gap-4 flex-grow">
+      <div className="flex flex-col gap-5 flex-grow">
+        {/* Name */}
         <div>
-          <Label>{t("Fields.Prompt")}</Label>
-          <textarea
-            ref={promptRef}
+          <Label className="text-sm font-medium mb-1 block">
+            {t("Fields.Name")}
+          </Label>
+          <Input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder={t("Placeholders.Name")}
+          />
+        </div>
+
+        {/* Description */}
+        <div>
+          <Label className="text-sm font-medium mb-1 block">
+            {t("Fields.Description")}
+          </Label>
+          <Input
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder={t("Placeholders.Description")}
+          />
+        </div>
+
+        {/* Direction and Status */}
+        <div className="flex gap-6">
+          <div>
+            <Label className="text-sm font-medium mb-1 block">Direction</Label>
+            <Select value={direction} onValueChange={setDirection}>
+              <SelectTrigger>
+                <SelectValue placeholder="Selecciona dirección" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Outbound">Outbound</SelectItem>
+                <SelectItem value="Inbound">Inbound</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div>
+            <Label className="text-sm font-medium mb-1 block">Status</Label>
+            <Select value={status} onValueChange={setStatus}>
+              <SelectTrigger>
+                <SelectValue placeholder="Selecciona estado" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Active">Active</SelectItem>
+                <SelectItem value="Inactive">Inactive</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        {/* Prompt */}
+        <div>
+          <Label className="text-sm font-medium mb-1 block">
+            {t("Fields.Prompt")}
+          </Label>
+          <VariableRichTextEditor
+            ref={promptEditorRef}
             value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            onFocus={() => setActiveField("prompt")}
-            rows={4}
-            className="w-full border rounded-md p-2"
+            allVariables={allVariables}
+            onChange={setPrompt}
           />
+          <div className="mt-2">
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={promptEditorRef}
+            />
+          </div>
         </div>
 
+        {/* Task */}
         <div>
-          <Label>{t("Fields.Task")}</Label>
-          <textarea
-            ref={taskRef}
+          <Label className="text-sm font-medium mb-1 block">
+            {t("Fields.Task")}
+          </Label>
+          <VariableRichTextEditor
+            ref={taskEditorRef}
             value={task}
-            onChange={(e) => setTask(e.target.value)}
-            onFocus={() => setActiveField("task")}
-            rows={4}
-            className="w-full border rounded-md p-2"
+            allVariables={allVariables}
+            onChange={setTask}
           />
+          <div className="mt-2">
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={taskEditorRef}
+            />
+          </div>
         </div>
 
+        {/* First Message */}
         <div>
-          <Label>{t("Fields.FirstMessage")}</Label>
-          <textarea
-            ref={firstMessageRef}
+          <Label className="text-sm font-medium mb-1 block">
+            {t("Fields.FirstMessage")}
+          </Label>
+          <VariableRichTextEditor
+            ref={firstMessageEditorRef}
             value={firstMessage}
-            onChange={(e) => setFirstMessage(e.target.value)}
-            onFocus={() => setActiveField("firstMessage")}
-            rows={4}
-            className="w-full border rounded-md p-2"
+            allVariables={allVariables}
+            onChange={setFirstMessage}
           />
-        </div>
-
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline">{t("Fields.AddVariable")}</Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            {allVariables.map((v) => (
-              <DropdownMenuItem
-                key={v}
-                onSelect={() => handleInsertVariable(v)}
-              >
-                {v}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
-
-        <div>
-          <Label>{t("Fields.PreviewPrompt")}</Label>
-          <div className="border rounded-md p-4 text-sm whitespace-pre-wrap">
-            {renderWithBadges(prompt)}
-          </div>
-        </div>
-
-        <div>
-          <Label>{t("Fields.PreviewTask")}</Label>
-          <div className="border rounded-md p-4 text-sm whitespace-pre-wrap">
-            {renderWithBadges(task)}
-          </div>
-        </div>
-
-        <div>
-          <Label>{t("Fields.PreviewFirstMessage")}</Label>
-          <div className="border rounded-md p-4 text-sm whitespace-pre-wrap">
-            {renderWithBadges(firstMessage)}
+          <div className="mt-2">
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={firstMessageEditorRef}
+            />
           </div>
         </div>
       </div>
 
-      <div className="flex justify-end gap-2 border-t pt-4">
-        <Button variant="secondary" onClick={onSave}>
-          {t("Actions.Save")}
-        </Button>
+      <div className="flex justify-end gap-2 mt-auto border-t pt-4">
         <Button variant="outline" onClick={onCancel}>
           {t("Actions.Cancel")}
+        </Button>
+        <Button
+          className="bg-purple-600 hover:bg-purple-700 text-white"
+          onClick={handleSave}
+        >
+          {t("Actions.Save")}
         </Button>
       </div>
     </SheetContent>

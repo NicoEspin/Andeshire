@@ -18,6 +18,13 @@ import VariableRichTextEditor, {
   VariableRichTextEditorHandle,
 } from "../VariableRichTextEditor";
 import VariableDropdown from "../VariableDropdown";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface WhatsAppAgent {
   id: string;
@@ -42,18 +49,23 @@ export default function EditWhatsAppAgentSidebar({
   onCancel,
   onSave,
 }: EditWhatsAppAgentSidebarProps) {
-  const t = useTranslations("Templates.TemplatesView.WhatsAppAgents.SidebarEdit");
+  const t = useTranslations(
+    "Templates.TemplatesView.WhatsAppAgents.SidebarEdit"
+  );
 
   const [name, setName] = React.useState(agent.name);
   const [prompt, setPrompt] = React.useState(agent.prompt);
   const [task, setTask] = React.useState(agent.task);
   const [firstMessage, setFirstMessage] = React.useState(agent.first_message);
+  const [direction, setDirection] = React.useState(agent.direction);
+  const [status, setStatus] = React.useState(agent.status);
 
   const allVariables = mockKeys.data.all_keys;
 
   const promptEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
   const taskEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
-  const firstMessageEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
+  const firstMessageEditorRef =
+    React.useRef<VariableRichTextEditorHandle>(null);
 
   const handleSave = () => {
     onSave({
@@ -90,6 +102,35 @@ export default function EditWhatsAppAgentSidebar({
           />
         </div>
 
+        <div className="flex gap-6">
+          {/* Direction */}
+          <div>
+            <Label className="text-sm font-medium mb-1 block">Direction</Label>
+            <Select value={direction} onValueChange={setDirection}>
+              <SelectTrigger>
+                <SelectValue placeholder="Selecciona dirección" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Outbound">Outbound</SelectItem>
+                <SelectItem value="Inbound">Inbound</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Status */}
+          <div>
+            <Label className="text-sm font-medium mb-1 block">Status</Label>
+            <Select value={status} onValueChange={setStatus}>
+              <SelectTrigger>
+                <SelectValue placeholder="Selecciona estado" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Active">Active</SelectItem>
+                <SelectItem value="Inactive">Inactive</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
         {/* Prompt */}
         <div>
           <Label className="text-sm font-medium mb-1 block">
@@ -155,7 +196,12 @@ export default function EditWhatsAppAgentSidebar({
         <Button variant="outline" onClick={onCancel}>
           {t("Actions.Cancel")}
         </Button>
-        <Button onClick={handleSave}>{t("Actions.Save")}</Button>
+        <Button
+          className="bg-purple-600 hover:bg-purple-700 text-white"
+          onClick={handleSave}
+        >
+          {t("Actions.Save")}
+        </Button>
       </div>
     </SheetContent>
   );

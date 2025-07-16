@@ -8,6 +8,7 @@ import EditLinkedinAgentsSidebar from "./EditLinkedinAgentsSidebar";
 export interface LinkedinAgent {
   id: string;
   name: string;
+  description: string;
   prompt: string;
   task: string;
   first_message: string;

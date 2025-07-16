@@ -1,8 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { useTranslations } from "next-intl";
-import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
@@ -14,61 +18,57 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 
-import mockKeys from "../../data/mockkeys.json";
-import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
 import VariableRichTextEditor, {
   VariableRichTextEditorHandle,
 } from "../VariableRichTextEditor";
 import VariableDropdown from "../VariableDropdown";
+import mockKeys from "../../data/mockkeys.json";
 
-interface EmailAgent {
-  id: string;
-  name: string;
-  prompt: string;
-  task: string;
-  first_message: string;
-  direction: string;
-  status: string;
-  created_at: string;
-  updated_at: string;
-}
-
-interface EditEmailAgentsSidebarProps {
-  agent: EmailAgent;
+interface LinkedinAgentsTemplateCreateProps {
   onCancel: () => void;
-  onSave: (updated: EmailAgent) => void;
+  onSave?: (data: {
+    name: string;
+    description: string;
+    prompt: string;
+    task: string;
+    first_message: string;
+    direction: string;
+    status: string;
+  }) => void;
 }
 
-export default function EditEmailAgentsSidebar({
-  agent,
+export default function LinkedinAgentsTemplateCreate({
   onCancel,
   onSave,
-}: EditEmailAgentsSidebarProps) {
-  const t = useTranslations("Templates.TemplatesView.EmailAgents.SidebarEdit");
-
-  const [name, setName] = React.useState(agent.name);
-  const [direction, setDirection] = React.useState(agent.direction);
-  const [status, setStatus] = React.useState(agent.status);
-  const [prompt, setPrompt] = React.useState(agent.prompt);
-  const [task, setTask] = React.useState(agent.task);
-  const [firstMessage, setFirstMessage] = React.useState(agent.first_message);
+}: LinkedinAgentsTemplateCreateProps) {
+  const [name, setName] = React.useState("");
+  const [description, setDescription] = React.useState("");
+  const [prompt, setPrompt] = React.useState("");
+  const [task, setTask] = React.useState("");
+  const [firstMessage, setFirstMessage] = React.useState("");
+  const [direction, setDirection] = React.useState("Outbound");
+  const [status, setStatus] = React.useState("Active");
 
   const allVariables = mockKeys.data.all_keys;
 
   const promptEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
   const taskEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
-  const firstMessageEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
+  const firstMessageEditorRef =
+    React.useRef<VariableRichTextEditorHandle>(null);
 
   const handleSave = () => {
-    onSave({
-      ...agent,
-      name,
-      direction,
-      status,
-      prompt,
-      task,
-      first_message: firstMessage,
-    });
+    if (onSave) {
+      onSave({
+        name,
+        description,
+        prompt,
+        task,
+        first_message: firstMessage,
+        direction,
+        status,
+      });
+    }
+    onCancel();
   };
 
   return (
@@ -77,23 +77,38 @@ export default function EditEmailAgentsSidebar({
       className="flex flex-col gap-6 sm:min-w-[300px] md:min-w-[600px] px-6 py-6 overflow-auto"
     >
       <SheetHeader>
-        <SheetTitle className="text-xl font-semibold">{t("Title")}</SheetTitle>
+        <SheetTitle className="text-xl font-semibold">
+          Crear plantilla de LinkedIn
+        </SheetTitle>
+        <SheetDescription className="text-muted-foreground">
+          Define el comportamiento del agente de mensajes de LinkedIn.
+        </SheetDescription>
       </SheetHeader>
 
       <div className="flex flex-col gap-5 flex-grow">
         {/* Nombre */}
         <div>
-          <Label className="text-sm font-medium mb-1 block">{t("NameLabel")}</Label>
+          <Label className="text-sm font-medium mb-1 block">Nombre</Label>
           <Input
+            placeholder="Ej: Seguimiento post entrevista"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Nombre de la plantilla"
           />
         </div>
 
-        {/* Direction y Status */}
+        {/* Descripción */}
+        <div>
+          <Label className="text-sm font-medium mb-1 block">Descripción</Label>
+          <Input
+            placeholder="Breve descripción de la plantilla"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+
+        {/* Dropdowns */}
         <div className="flex gap-6">
-          <div className="flex-1">
+          <div>
             <Label className="text-sm font-medium mb-1 block">Direction</Label>
             <Select value={direction} onValueChange={setDirection}>
               <SelectTrigger>
@@ -105,7 +120,8 @@ export default function EditEmailAgentsSidebar({
               </SelectContent>
             </Select>
           </div>
-          <div className="flex-1">
+
+          <div>
             <Label className="text-sm font-medium mb-1 block">Status</Label>
             <Select value={status} onValueChange={setStatus}>
               <SelectTrigger>
@@ -121,7 +137,7 @@ export default function EditEmailAgentsSidebar({
 
         {/* Prompt */}
         <div>
-          <Label className="text-sm font-medium mb-1 block">{t("PromptLabel")}</Label>
+          <Label className="text-sm font-medium mb-1 block">Prompt</Label>
           <VariableRichTextEditor
             ref={promptEditorRef}
             value={prompt}
@@ -129,7 +145,6 @@ export default function EditEmailAgentsSidebar({
             onChange={setPrompt}
           />
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={promptEditorRef}
@@ -137,9 +152,9 @@ export default function EditEmailAgentsSidebar({
           </div>
         </div>
 
-        {/* Task */}
+        {/* Tarea */}
         <div>
-          <Label className="text-sm font-medium mb-1 block">{t("TaskLabel")}</Label>
+          <Label className="text-sm font-medium mb-1 block">Tarea</Label>
           <VariableRichTextEditor
             ref={taskEditorRef}
             value={task}
@@ -147,7 +162,6 @@ export default function EditEmailAgentsSidebar({
             onChange={setTask}
           />
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={taskEditorRef}
@@ -155,9 +169,11 @@ export default function EditEmailAgentsSidebar({
           </div>
         </div>
 
-        {/* First Message */}
+        {/* Primer mensaje */}
         <div>
-          <Label className="text-sm font-medium mb-1 block">{t("FirstMessageLabel")}</Label>
+          <Label className="text-sm font-medium mb-1 block">
+            Primer mensaje
+          </Label>
           <VariableRichTextEditor
             ref={firstMessageEditorRef}
             value={firstMessage}
@@ -165,7 +181,6 @@ export default function EditEmailAgentsSidebar({
             onChange={setFirstMessage}
           />
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={firstMessageEditorRef}
@@ -174,11 +189,16 @@ export default function EditEmailAgentsSidebar({
         </div>
       </div>
 
-      <div className="flex justify-end gap-2 mt-auto border-t pt-4">
+      <div className="flex justify-end gap-2 border-t pt-4">
         <Button variant="outline" onClick={onCancel}>
-          {t("Cancel")}
+          Cancelar
         </Button>
-        <Button onClick={handleSave}>{t("Save")}</Button>
+        <Button
+          className="bg-purple-600 hover:bg-purple-700 text-white"
+          onClick={handleSave}
+        >
+          Guardar
+        </Button>
       </div>
     </SheetContent>
   );

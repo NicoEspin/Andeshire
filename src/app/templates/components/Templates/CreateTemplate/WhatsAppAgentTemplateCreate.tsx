@@ -1,74 +1,76 @@
 "use client";
 
 import * as React from "react";
-import { useTranslations } from "next-intl";
-import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import {
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import {
   Select,
-  SelectTrigger,
-  SelectValue,
   SelectContent,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
+import { useTranslations } from "next-intl";
 
 import mockKeys from "../../data/mockkeys.json";
-import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
 import VariableRichTextEditor, {
   VariableRichTextEditorHandle,
 } from "../VariableRichTextEditor";
 import VariableDropdown from "../VariableDropdown";
 
-interface EmailAgent {
-  id: string;
-  name: string;
-  prompt: string;
-  task: string;
-  first_message: string;
-  direction: string;
-  status: string;
-  created_at: string;
-  updated_at: string;
-}
-
-interface EditEmailAgentsSidebarProps {
-  agent: EmailAgent;
+interface WhatsAppAgentTemplateCreateProps {
   onCancel: () => void;
-  onSave: (updated: EmailAgent) => void;
+  onSave?: (data: {
+    name: string;
+    prompt: string;
+    task: string;
+    first_message: string;
+    direction: string;
+    status: string;
+  }) => void;
 }
 
-export default function EditEmailAgentsSidebar({
-  agent,
+export default function WhatsAppAgentTemplateCreate({
   onCancel,
   onSave,
-}: EditEmailAgentsSidebarProps) {
-  const t = useTranslations("Templates.TemplatesView.EmailAgents.SidebarEdit");
+}: WhatsAppAgentTemplateCreateProps) {
+  const t = useTranslations(
+    "Templates.TemplatesView.WhatsAppAgents.SidebarCreate"
+  );
 
-  const [name, setName] = React.useState(agent.name);
-  const [direction, setDirection] = React.useState(agent.direction);
-  const [status, setStatus] = React.useState(agent.status);
-  const [prompt, setPrompt] = React.useState(agent.prompt);
-  const [task, setTask] = React.useState(agent.task);
-  const [firstMessage, setFirstMessage] = React.useState(agent.first_message);
+  const [name, setName] = React.useState("");
+  const [prompt, setPrompt] = React.useState("");
+  const [task, setTask] = React.useState("");
+  const [firstMessage, setFirstMessage] = React.useState("");
+  const [direction, setDirection] = React.useState("Outbound");
+  const [status, setStatus] = React.useState("Active");
 
   const allVariables = mockKeys.data.all_keys;
 
   const promptEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
   const taskEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
-  const firstMessageEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
+  const firstMessageEditorRef =
+    React.useRef<VariableRichTextEditorHandle>(null);
 
   const handleSave = () => {
-    onSave({
-      ...agent,
-      name,
-      direction,
-      status,
-      prompt,
-      task,
-      first_message: firstMessage,
-    });
+    if (onSave) {
+      onSave({
+        name,
+        prompt,
+        task,
+        first_message: firstMessage,
+        direction,
+        status,
+      });
+    }
+    onCancel(); // cerrar siempre
   };
 
   return (
@@ -78,22 +80,26 @@ export default function EditEmailAgentsSidebar({
     >
       <SheetHeader>
         <SheetTitle className="text-xl font-semibold">{t("Title")}</SheetTitle>
+        <SheetDescription className="text-muted-foreground">
+          {t("Description")}
+        </SheetDescription>
       </SheetHeader>
 
       <div className="flex flex-col gap-5 flex-grow">
         {/* Nombre */}
         <div>
-          <Label className="text-sm font-medium mb-1 block">{t("NameLabel")}</Label>
+          <Label className="text-sm font-medium mb-1 block">
+            {t("Fields.Name")}
+          </Label>
           <Input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Nombre de la plantilla"
+            placeholder={t("Placeholders.Name")}
           />
         </div>
-
-        {/* Direction y Status */}
         <div className="flex gap-6">
-          <div className="flex-1">
+          {/* Direction */}
+          <div>
             <Label className="text-sm font-medium mb-1 block">Direction</Label>
             <Select value={direction} onValueChange={setDirection}>
               <SelectTrigger>
@@ -105,7 +111,9 @@ export default function EditEmailAgentsSidebar({
               </SelectContent>
             </Select>
           </div>
-          <div className="flex-1">
+
+          {/* Status */}
+          <div>
             <Label className="text-sm font-medium mb-1 block">Status</Label>
             <Select value={status} onValueChange={setStatus}>
               <SelectTrigger>
@@ -121,7 +129,9 @@ export default function EditEmailAgentsSidebar({
 
         {/* Prompt */}
         <div>
-          <Label className="text-sm font-medium mb-1 block">{t("PromptLabel")}</Label>
+          <Label className="text-sm font-medium mb-1 block">
+            {t("Fields.Prompt")}
+          </Label>
           <VariableRichTextEditor
             ref={promptEditorRef}
             value={prompt}
@@ -139,7 +149,9 @@ export default function EditEmailAgentsSidebar({
 
         {/* Task */}
         <div>
-          <Label className="text-sm font-medium mb-1 block">{t("TaskLabel")}</Label>
+          <Label className="text-sm font-medium mb-1 block">
+            {t("Fields.Task")}
+          </Label>
           <VariableRichTextEditor
             ref={taskEditorRef}
             value={task}
@@ -157,7 +169,9 @@ export default function EditEmailAgentsSidebar({
 
         {/* First Message */}
         <div>
-          <Label className="text-sm font-medium mb-1 block">{t("FirstMessageLabel")}</Label>
+          <Label className="text-sm font-medium mb-1 block">
+            {t("Fields.FirstMessage")}
+          </Label>
           <VariableRichTextEditor
             ref={firstMessageEditorRef}
             value={firstMessage}
@@ -176,9 +190,9 @@ export default function EditEmailAgentsSidebar({
 
       <div className="flex justify-end gap-2 mt-auto border-t pt-4">
         <Button variant="outline" onClick={onCancel}>
-          {t("Cancel")}
+          {t("Actions.Cancel")}
         </Button>
-        <Button onClick={handleSave}>{t("Save")}</Button>
+        <Button className="bg-purple-600 hover:bg-purple-700" onClick={handleSave}>{t("Actions.Save")}</Button>
       </div>
     </SheetContent>
   );

@@ -16,20 +16,24 @@ interface WhatsappSidebarProps {
     updated_at: string;
     recruiter: string;
   } | null;
+  mode: "view" | "edit";
 }
 
 export default function WhatsappSidebar({
   open,
   onOpenChange,
   template,
+  mode,
 }: WhatsappSidebarProps) {
   const [isEditing, setIsEditing] = React.useState(false);
 
-  React.useEffect(() => {
-    if (!open) {
-      setIsEditing(false); // 🧹 Limpiar estado al cerrar
+   React.useEffect(() => {
+    if (open) {
+      setIsEditing(mode === "edit");
+    } else {
+      setIsEditing(false);
     }
-  }, [open]);
+  }, [open, mode]);
 
   if (!template) return null;
 

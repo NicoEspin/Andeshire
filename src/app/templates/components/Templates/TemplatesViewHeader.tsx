@@ -17,9 +17,11 @@ import { useTranslations } from "next-intl";
 const TemplatesViewHeader = ({
   searchQuery,
   setSearchQuery,
+  onCreate,
 }: {
   searchQuery: string;
   setSearchQuery: (value: string) => void;
+  onCreate: () => void;
 }) => {
   const t = useTranslations("Templates.TemplatesView.Header");
   const router = useRouter();
@@ -67,7 +69,7 @@ const TemplatesViewHeader = ({
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+        <Button onClick={() => onCreate()} className="bg-purple-600 hover:bg-purple-700 text-white">
           <Plus className="w-4 h-4 mr-2" />
           {t("CreateButton")}
         </Button>

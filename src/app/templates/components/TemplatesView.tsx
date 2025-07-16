@@ -5,10 +5,12 @@ import TemplatesViewHeader from "./Templates/TemplatesViewHeader";
 import TemplatesViewContentRender from "./Templates/TemplatesViewContentRender";
 import { Card } from "@/components/ui/card";
 import { useSearchParams } from "next/navigation";
+import CreateTemplateSidebar from "./Templates/CreateTemplate/CreateTemplateSidebar";
 
 const TemplatesView = () => {
   // 🔑 Estado global de búsqueda
   const [searchQuery, setSearchQuery] = useState("");
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
 
   // 🚩 Hook para leer el subtab actual de la URL
   const searchParams = useSearchParams();
@@ -24,9 +26,14 @@ const TemplatesView = () => {
       <TemplatesViewHeader
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
+        onCreate={() => setIsCreateOpen(true)}
       />
 
       <TemplatesViewContentRender searchQuery={searchQuery} />
+      <CreateTemplateSidebar
+        open={isCreateOpen}
+        onOpenChange={setIsCreateOpen}
+      />
     </Card>
   );
 };

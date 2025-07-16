@@ -43,6 +43,8 @@ const WhatsappTable = ({ searchQuery }: { searchQuery: string }) => {
   const templates: Template[] = WhatsappData.templates;
 
   const [openSidebar, setOpenSidebar] = useState(false);
+  const [sidebarMode, setSidebarMode] = useState<"view" | "edit">("view");
+
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
     null
   );
@@ -54,6 +56,12 @@ const WhatsappTable = ({ searchQuery }: { searchQuery: string }) => {
 
   const handleRowClick = (template: Template) => {
     setSelectedTemplate(template);
+    setSidebarMode("view");
+    setOpenSidebar(true);
+  };
+  const handleEditClick = (template: Template) => {
+    setSelectedTemplate(template);
+    setSidebarMode("edit");
     setOpenSidebar(true);
   };
 
@@ -101,7 +109,7 @@ const WhatsappTable = ({ searchQuery }: { searchQuery: string }) => {
                     <TableCell>
                       {new Date(template.updated_at).toLocaleDateString()}
                     </TableCell>
-                    <TableCell className="flex items-center gap-2">
+                    <TableCell onClick={(e) => e.stopPropagation()} className="flex items-center gap-2">
                       <TooltipProvider>
                         <Tooltip>
                           <TooltipTrigger asChild>
@@ -126,7 +134,10 @@ const WhatsappTable = ({ searchQuery }: { searchQuery: string }) => {
                               className="p-2 text-green-500 hover:text-green-600 cursor-pointer"
                               variant="outline"
                               size="icon"
-                              onClick={(e) => e.stopPropagation()}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleEditClick(template);
+                              }}
                             >
                               <Pencil className="w-4 h-4" />
                             </Button>
@@ -164,6 +175,7 @@ const WhatsappTable = ({ searchQuery }: { searchQuery: string }) => {
         open={openSidebar}
         onOpenChange={setOpenSidebar}
         template={selectedTemplate}
+        mode={sidebarMode}
       />
     </>
   );

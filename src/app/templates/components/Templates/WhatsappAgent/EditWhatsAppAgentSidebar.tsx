@@ -9,9 +9,15 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@radix-ui/react-label";
 import { useTranslations } from "next-intl";
+import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
+import mockKeys from "../../data/mockkeys.json";
+
+import VariableRichTextEditor, {
+  VariableRichTextEditorHandle,
+} from "../VariableRichTextEditor";
+import VariableDropdown from "../VariableDropdown";
 
 interface WhatsAppAgent {
   id: string;
@@ -36,14 +42,18 @@ export default function EditWhatsAppAgentSidebar({
   onCancel,
   onSave,
 }: EditWhatsAppAgentSidebarProps) {
-  const t = useTranslations(
-    "Templates.TemplatesView.WhatsAppAgents.SidebarEdit"
-  );
+  const t = useTranslations("Templates.TemplatesView.WhatsAppAgents.SidebarEdit");
 
   const [name, setName] = React.useState(agent.name);
   const [prompt, setPrompt] = React.useState(agent.prompt);
   const [task, setTask] = React.useState(agent.task);
   const [firstMessage, setFirstMessage] = React.useState(agent.first_message);
+
+  const allVariables = mockKeys.data.all_keys;
+
+  const promptEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
+  const taskEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
+  const firstMessageEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
 
   const handleSave = () => {
     onSave({
@@ -68,6 +78,7 @@ export default function EditWhatsAppAgentSidebar({
       </SheetHeader>
 
       <div className="flex flex-col gap-5 flex-grow">
+        {/* Nombre */}
         <div>
           <Label className="text-sm font-medium mb-1 block">
             {t("Fields.Name")}
@@ -79,47 +90,68 @@ export default function EditWhatsAppAgentSidebar({
           />
         </div>
 
+        {/* Prompt */}
         <div>
           <Label className="text-sm font-medium mb-1 block">
             {t("Fields.Prompt")}
           </Label>
-          <Textarea
+          <VariableRichTextEditor
+            ref={promptEditorRef}
             value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
-            rows={4}
-            placeholder={t("Placeholders.Prompt")}
-            className="whitespace-pre-wrap"
+            allVariables={allVariables}
+            onChange={setPrompt}
           />
+          <div className="mt-2">
+            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={promptEditorRef}
+            />
+          </div>
         </div>
 
+        {/* Task */}
         <div>
           <Label className="text-sm font-medium mb-1 block">
             {t("Fields.Task")}
           </Label>
-          <Textarea
+          <VariableRichTextEditor
+            ref={taskEditorRef}
             value={task}
-            onChange={(e) => setTask(e.target.value)}
-            rows={4}
-            placeholder={t("Placeholders.Task")}
-            className="whitespace-pre-wrap"
+            allVariables={allVariables}
+            onChange={setTask}
           />
+          <div className="mt-2">
+            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={taskEditorRef}
+            />
+          </div>
         </div>
 
+        {/* First Message */}
         <div>
           <Label className="text-sm font-medium mb-1 block">
             {t("Fields.FirstMessage")}
           </Label>
-          <Textarea
+          <VariableRichTextEditor
+            ref={firstMessageEditorRef}
             value={firstMessage}
-            onChange={(e) => setFirstMessage(e.target.value)}
-            rows={4}
-            placeholder={t("Placeholders.FirstMessage")}
-            className="whitespace-pre-wrap"
+            allVariables={allVariables}
+            onChange={setFirstMessage}
           />
+          <div className="mt-2">
+            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={firstMessageEditorRef}
+            />
+          </div>
         </div>
       </div>
 
-      <div className="flex justify-end gap-2 mt-auto">
+      <div className="flex justify-end gap-2 mt-auto border-t pt-4">
         <Button variant="outline" onClick={onCancel}>
           {t("Actions.Cancel")}
         </Button>

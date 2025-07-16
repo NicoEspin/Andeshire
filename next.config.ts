@@ -3,6 +3,7 @@ import createNextIntlPlugin from 'next-intl/plugin';
  
 const nextConfig: NextConfig = {
   basePath: '/ats', 
+  assetPrefix: '/ats',
 };
  
 const withNextIntl = createNextIntlPlugin();

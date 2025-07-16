@@ -5,6 +5,7 @@ import { Sheet } from "@/components/ui/sheet";
 import { useSearchParams } from "next/navigation";
 import WhatsappTemplateCreate from "./WhatsappTemplateCreate";
 import EmailTemplateCreate from "./EmailTemplateCreate";
+import EmailAgentsTemplateCreate from "./EmailAgentsTemplateCreate";
 
 // ...otros imports según tu estructura
 
@@ -12,6 +13,7 @@ const CREATE_COMPONENTS: { [key: string]: React.FC<{ onCancel: () => void }> } =
   {
     WhatsApp: WhatsappTemplateCreate,
     Email: EmailTemplateCreate,
+    EmailAgents: EmailAgentsTemplateCreate,
     // agrega tus otros tipos aquí
   };
 

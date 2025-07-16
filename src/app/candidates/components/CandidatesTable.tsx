@@ -44,6 +44,7 @@ import { useAppDispatch } from "@/app/redux";
 import { openModal } from "@/store/slices/ModalSlice";
 import TablePagination from "@/app/jobs/TablePagination";
 import { useTranslations } from "next-intl";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = {
   candidates: Candidate[];
@@ -197,9 +198,36 @@ const CandidatesTable: React.FC<Props> = ({
           </TableHeader>
           <TableBody>
             {loading ? (
-              <TableRow>
-                <TableCell colSpan={7}>{t("LoadingText")}</TableCell>
-              </TableRow>
+              Array.from({ length: 6 }).map((_, index) => (
+                <TableRow key={index}>
+                  {Array.from({ length: 7 }).map((_, colIndex) => (
+                    <TableCell key={colIndex}>
+                      <div className="flex items-center space-x-2">
+                        {colIndex === 0 && (
+                          <Skeleton variant="circular" className="w-8 h-8" />
+                        )}
+                        {colIndex === 6 ? (
+                          <div className="flex space-x-1">
+                            <Skeleton className="h-5 w-12 rounded-full" />
+                            <Skeleton className="h-5 w-16 rounded-full" />
+                          </div>
+                        ) : (
+                          <Skeleton 
+                            className="h-4 rounded" 
+                            style={{ 
+                              width: colIndex === 0 ? "100px" : 
+                                     colIndex === 1 ? "140px" :
+                                     colIndex === 2 ? "90px" :
+                                     colIndex === 3 ? "80px" :
+                                     colIndex === 4 ? "85px" : "120px"
+                            }}
+                          />
+                        )}
+                      </div>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
             ) : candidates.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={7}>{t("EmptyStateText")}</TableCell>

@@ -26,17 +26,28 @@ import { useTranslations } from "next-intl"; // 👈 Importa useTranslations
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useEffect } from "react";
 
 type Props = {};
 
 const CompaniesTable = (props: Props) => {
   const t = useTranslations("Companies");
   const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(true);
   const companies = companiesList.companies;
 
   const filteredCompanies = companies.filter((company) =>
     company.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  // Simulate loading for demonstration (remove when connecting to real API)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -81,35 +92,62 @@ const CompaniesTable = (props: Props) => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {filteredCompanies.map((company) => (
-                <TableRow key={company.id}>
-                  <TableCell className="font-medium">
-                    {" "}
-                    <Link
-                      href={`/companies/${company.id}`}
-                      className="hover:underline text-primary"
-                    >
-                      {company.name}
-                    </Link>
-                  </TableCell>
-                  <TableCell>{company.email}</TableCell>
-                  <TableCell className="line-clamp-2">
-                    <CompanyDetail
-                      name={company.name}
-                      description={company.description}
-                    />
-                  </TableCell>
-                  <TableCell>
-                    {format(new Date(company.created_at), "dd/MM/yyyy")}
-                  </TableCell>
-                  <TableCell>
-                    {format(new Date(company.updated_at), "dd/MM/yyyy")}
-                  </TableCell>
-                  <TableCell className="text-center">
-                    <Badge>{company.jobs_count}</Badge>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {loading ? (
+                Array.from({ length: 7 }).map((_, index) => (
+                  <TableRow key={index}>
+                    {Array.from({ length: 6 }).map((_, colIndex) => (
+                      <TableCell key={colIndex}>
+                        {colIndex === 0 ? (
+                          <Skeleton className="h-4 w-32" />
+                        ) : colIndex === 1 ? (
+                          <Skeleton className="h-4 w-36" />
+                        ) : colIndex === 2 ? (
+                          <div className="space-y-1">
+                            <Skeleton className="h-3 w-full" />
+                            <Skeleton className="h-3 w-3/4" />
+                          </div>
+                        ) : colIndex === 5 ? (
+                          <div className="flex justify-center">
+                            <Skeleton className="h-5 w-8 rounded-full" />
+                          </div>
+                        ) : (
+                          <Skeleton className="h-4 w-20" />
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                filteredCompanies.map((company) => (
+                  <TableRow key={company.id}>
+                    <TableCell className="font-medium">
+                      {" "}
+                      <Link
+                        href={`/companies/${company.id}`}
+                        className="hover:underline text-primary"
+                      >
+                        {company.name}
+                      </Link>
+                    </TableCell>
+                    <TableCell>{company.email}</TableCell>
+                    <TableCell className="line-clamp-2">
+                      <CompanyDetail
+                        name={company.name}
+                        description={company.description}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      {format(new Date(company.created_at), "dd/MM/yyyy")}
+                    </TableCell>
+                    <TableCell>
+                      {format(new Date(company.updated_at), "dd/MM/yyyy")}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Badge>{company.jobs_count}</Badge>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         </CardContent>

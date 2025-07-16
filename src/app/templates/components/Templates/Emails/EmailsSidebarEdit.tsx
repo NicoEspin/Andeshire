@@ -3,19 +3,16 @@
 import * as React from "react";
 import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
 import mockKeys from "../../data/mockkeys.json";
 import { useTranslations } from "next-intl";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
+
 import VariableRichTextEditor, {
   VariableRichTextEditorHandle,
 } from "../VariableRichTextEditor";
+import VariableDropdown from "../VariableDropdown";
 
 interface EmailSidebarEditProps {
   template: { name: string; subject: string; content: string };
@@ -35,7 +32,6 @@ export default function EmailSidebarEdit({
   const [content, setContent] = React.useState(template.content);
 
   const allVariables = mockKeys.data.all_keys;
-  const allKeysMap = useKeyMetaMap(allVariables.map((key) => ({ key })));
 
   const subjectEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
   const contentEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
@@ -53,10 +49,10 @@ export default function EmailSidebarEdit({
         {/* Nombre de plantilla */}
         <div>
           <Label>{t("TemplateName")}</Label>
-          <input
-            className="w-full border rounded-md p-2"
+          <Input
             value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder={t("TemplateNamePlaceholder")}
           />
         </div>
 
@@ -70,39 +66,12 @@ export default function EmailSidebarEdit({
             onChange={setSubject}
           />
 
-          {/* Dropdown de variables para asunto */}
           <div className="mt-2">
             <Label className="block mb-1">{t("AddVariable")}</Label>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-full justify-between">
-                  {t("SelectVariable")}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-full">
-                {allVariables.map((v) => {
-                  const meta = allKeysMap[v];
-                  if (!meta) return null;
-                  return (
-                    <DropdownMenuItem
-                      key={v}
-                      onSelect={() => subjectEditorRef.current?.insertVariable(v)}
-                      className="flex items-center gap-2"
-                    >
-                      <span
-                        className="inline-block px-1 rounded"
-                        style={{
-                          backgroundColor: meta.color,
-                          color: "#fff",
-                        }}
-                      >
-                        {meta.label}
-                      </span>
-                    </DropdownMenuItem>
-                  );
-                })}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={subjectEditorRef}
+            />
           </div>
         </div>
 
@@ -116,49 +85,19 @@ export default function EmailSidebarEdit({
             onChange={setContent}
           />
 
-          {/* Dropdown de variables para contenido */}
           <div className="mt-2">
             <Label className="block mb-1">{t("AddVariable")}</Label>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-full justify-between">
-                  {t("SelectVariable")}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-full">
-                {allVariables.map((v) => {
-                  const meta = allKeysMap[v];
-                  if (!meta) return null;
-                  return (
-                    <DropdownMenuItem
-                      key={v}
-                      onSelect={() => contentEditorRef.current?.insertVariable(v)}
-                      className="flex items-center gap-2"
-                    >
-                      <span
-                        className="inline-block px-1 rounded"
-                        style={{
-                          backgroundColor: meta.color,
-                          color: "#fff",
-                        }}
-                      >
-                        {meta.label}
-                      </span>
-                    </DropdownMenuItem>
-                  );
-                })}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={contentEditorRef}
+            />
           </div>
         </div>
       </div>
 
       {/* Footer */}
       <div className="flex justify-end gap-2 border-t pt-4">
-        <Button
-          variant="secondary"
-          onClick={() => onSave({ name, subject, content })}
-        >
+        <Button variant="secondary" onClick={() => onSave({ name, subject, content })}>
           {t("Save")}
         </Button>
         <Button variant="outline" onClick={onCancel}>

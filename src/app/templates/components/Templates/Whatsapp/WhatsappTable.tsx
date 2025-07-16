@@ -39,12 +39,15 @@ type Template = {
   recruiter: string;
 };
 
-const WhatsappTable = () => {
+const WhatsappTable = ({ searchQuery }: { searchQuery: string }) => {
   const templates: Template[] = WhatsappData.templates;
 
   const [openSidebar, setOpenSidebar] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
     null
+  );
+  const filteredTemplates = templates.filter((template) =>
+    template.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const t = useTranslations("Templates.TemplatesView.WhatsApp");
@@ -61,7 +64,7 @@ const WhatsappTable = () => {
           <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          {templates.length === 0 ? (
+          {filteredTemplates.length === 0 ? (
             <EmptyState />
           ) : (
             <Table>
@@ -75,7 +78,7 @@ const WhatsappTable = () => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {templates.map((template) => (
+                {filteredTemplates.map((template) => (
                   <TableRow
                     key={template.id}
                     onClick={() => handleRowClick(template)}

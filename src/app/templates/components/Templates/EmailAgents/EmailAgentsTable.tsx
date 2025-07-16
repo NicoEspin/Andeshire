@@ -44,7 +44,7 @@ interface EmailAgent {
 
 type Props = {};
 
-const EmailAgentsTable = (props: Props) => {
+const EmailAgentsTable = ({ searchQuery }: { searchQuery: string }) => {
   const t = useTranslations("Templates.TemplatesView.EmailAgents");
   const agents: EmailAgent[] = emailAgentsMock.templates;
 
@@ -52,6 +52,9 @@ const EmailAgentsTable = (props: Props) => {
   const [openSidebar, setOpenSidebar] = useState(false);
   const [selectedAgent, setSelectedAgent] = useState<EmailAgent | null>(null);
 
+  const filteredAgents = agents.filter((agent) =>
+    agent.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   const handleOpenSidebar = (agent: EmailAgent) => {
     setSelectedAgent(agent);
     setOpenSidebar(true);
@@ -64,7 +67,7 @@ const EmailAgentsTable = (props: Props) => {
           <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          {agents.length === 0 ? (
+          {filteredAgents.length === 0 ? (
             <EmptyState />
           ) : (
             <Table>
@@ -82,7 +85,7 @@ const EmailAgentsTable = (props: Props) => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {agents.map((agent) => (
+                {filteredAgents.map((agent) => (
                   <TableRow
                     key={agent.id}
                     onClick={() => handleOpenSidebar(agent)}

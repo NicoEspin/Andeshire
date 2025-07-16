@@ -41,13 +41,18 @@ interface EmailTemplate {
 
 type Props = {};
 
-const EmailsTable = (props: Props) => {
+const EmailsTable = ({ searchQuery }: { searchQuery: string }) => {
   const templates: EmailTemplate[] = emailMock.templates;
   const t = useTranslations("Templates.TemplatesView.Email");
 
   // ✅ Estado para abrir/cerrar sidebar y template seleccionado
   const [openSidebar, setOpenSidebar] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState<EmailTemplate | null>(null);
+
+    const filteredTemplates = templates.filter((template) =>
+    template.name.toLowerCase().includes(searchQuery.toLowerCase()) 
+   
+  );
 
   const handleRowClick = (template: EmailTemplate) => {
     setSelectedTemplate(template);
@@ -61,7 +66,7 @@ const EmailsTable = (props: Props) => {
           <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          {templates.length === 0 ? (
+          {filteredTemplates.length === 0 ? (
             <EmptyState />
           ) : (
             <Table>
@@ -76,7 +81,7 @@ const EmailsTable = (props: Props) => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {templates.map((template) => (
+                {filteredTemplates.map((template) => (
                   <TableRow
                     key={template.id}
                     onClick={() => handleRowClick(template)}

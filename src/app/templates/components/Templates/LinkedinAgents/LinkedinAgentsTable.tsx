@@ -33,12 +33,18 @@ import { LinkedinAgent } from "./LinkedinAgentsSidebar";
 
 type Props = {};
 
-const LinkedinAgentsTable = (props: Props) => {
+const LinkedinAgentsTable = ({ searchQuery }: { searchQuery: string }) => {
   const t = useTranslations("Templates.TemplatesView.LinkedinAgents");
   const agents: LinkedinAgent[] = linkedinMock.templates;
 
   const [openSidebar, setOpenSidebar] = useState(false);
-  const [selectedAgent, setSelectedAgent] = useState<LinkedinAgent | null>(null);
+  const [selectedAgent, setSelectedAgent] = useState<LinkedinAgent | null>(
+    null
+  );
+
+  const filteredAgents = agents.filter((agent) =>
+    agent.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleRowClick = (agent: LinkedinAgent) => {
     setSelectedAgent(agent);
@@ -52,7 +58,7 @@ const LinkedinAgentsTable = (props: Props) => {
           <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          {agents.length === 0 ? (
+          {filteredAgents.length === 0 ? (
             <EmptyState />
           ) : (
             <Table>
@@ -70,7 +76,7 @@ const LinkedinAgentsTable = (props: Props) => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {agents.map((agent) => (
+                {filteredAgents.map((agent) => (
                   <TableRow
                     key={agent.id}
                     onClick={() => handleRowClick(agent)}

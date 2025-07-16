@@ -32,13 +32,17 @@ import CallAgentsSidebar, { CallAgent } from "./CallAgentsSidebar";
 
 type Props = {};
 
-const CallAgentsTable = (props: Props) => {
+const CallAgentsTable = ({ searchQuery }: { searchQuery: string }) => {
   const t = useTranslations("Templates.TemplatesView.CallAgents");
   const agents: CallAgent[] = callMock.templates;
 
   // Estado para sidebar
   const [openSidebar, setOpenSidebar] = useState(false);
   const [selectedAgent, setSelectedAgent] = useState<CallAgent | null>(null);
+
+  const filteredAgents = agents.filter((agent) =>
+    agent.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleRowClick = (agent: CallAgent) => {
     setSelectedAgent(agent);
@@ -52,7 +56,7 @@ const CallAgentsTable = (props: Props) => {
           <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          {agents.length === 0 ? (
+          {filteredAgents.length === 0 ? (
             <EmptyState />
           ) : (
             <Table>
@@ -70,7 +74,7 @@ const CallAgentsTable = (props: Props) => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {agents.map((agent) => (
+                {filteredAgents.map((agent) => (
                   <TableRow
                     key={agent.id}
                     onClick={() => handleRowClick(agent)}

@@ -44,13 +44,19 @@ interface WhatsAppAgent {
 
 type Props = {};
 
-const WhatsappAgentTable = (props: Props) => {
+const WhatsappAgentTable = ({ searchQuery }: { searchQuery: string }) => {
   const agents: WhatsAppAgent[] = whatsappAgentMock.templates;
   const t = useTranslations("Templates.TemplatesView.WhatsAppAgents");
 
   // ✅ Estado para abrir/cerrar sidebar y agente seleccionado
   const [openSidebar, setOpenSidebar] = useState(false);
-  const [selectedAgent, setSelectedAgent] = useState<WhatsAppAgent | null>(null);
+  const [selectedAgent, setSelectedAgent] = useState<WhatsAppAgent | null>(
+    null
+  );
+
+  const filteredAgents = agents.filter((agent) =>
+    agent.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleRowClick = (agent: WhatsAppAgent) => {
     setSelectedAgent(agent);
@@ -64,7 +70,7 @@ const WhatsappAgentTable = (props: Props) => {
           <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          {agents.length === 0 ? (
+          {filteredAgents.length === 0 ? (
             <EmptyState />
           ) : (
             <Table>
@@ -82,7 +88,7 @@ const WhatsappAgentTable = (props: Props) => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {agents.map((agent) => (
+                {filteredAgents.map((agent) => (
                   <TableRow
                     key={agent.id}
                     onClick={() => handleRowClick(agent)}

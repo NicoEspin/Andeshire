@@ -44,7 +44,7 @@ type HttpAgent = {
 
 type Props = {};
 
-const HttpAgentsTable = (props: Props) => {
+const HttpAgentsTable = ({ searchQuery }: { searchQuery: string }) => {
   const t = useTranslations("Templates.TemplatesView.HTTPAgents");
   const agents: HttpAgent[] = httpAgentsMock.templates;
 
@@ -56,6 +56,10 @@ const HttpAgentsTable = (props: Props) => {
     setOpenSidebar(true);
   };
 
+  const filteredAgents = agents.filter((agent) =>
+    agent.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
       <Card className="w-full">
@@ -63,7 +67,7 @@ const HttpAgentsTable = (props: Props) => {
           <CardTitle className="text-xl font-semibold">{t("Title")}</CardTitle>
         </CardHeader>
         <CardContent>
-          {agents.length === 0 ? (
+          {filteredAgents.length === 0 ? (
             <EmptyState />
           ) : (
             <Table>
@@ -81,7 +85,7 @@ const HttpAgentsTable = (props: Props) => {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {agents.map((agent) => (
+                {filteredAgents.map((agent) => (
                   <TableRow
                     key={agent.id}
                     onClick={() => handleRowClick(agent)}

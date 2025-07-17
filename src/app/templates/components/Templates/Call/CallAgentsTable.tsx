@@ -29,6 +29,8 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import CallAgentsSidebar, { CallAgent } from "./CallAgentsSidebar";
+import { sliceContentWithoutBreakingKeys } from "../hooks/sliceContentWithoutBreakingKeys";
+import { useContentWithBadges } from "../hooks/useContentWithBadges";
 
 type Props = {};
 
@@ -95,10 +97,10 @@ const CallAgentsTable = ({ searchQuery }: { searchQuery: string }) => {
                       )}
                     </TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {agent.prompt.slice(0, 50)}...
+                      {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.prompt, 50))}
                     </TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {agent.first_message.slice(0, 50)}...
+                      {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.first_message, 50))}
                     </TableCell>
                     <TableCell>{agent.max_attempts}</TableCell>
                     <TableCell>{agent.interval_minutes}</TableCell>

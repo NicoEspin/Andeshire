@@ -218,6 +218,11 @@
           "HTTP": "Solicitud HTTP"
         }
       },
+      "VariableDropdown": {
+        "SelectVariable": "Seleccionar variable",
+        "SearchPlaceholder": "Buscar variable...",
+        "NoResults": "No se encontraron variables."
+      },
       "WhatsApp": {
         "Title": "Plantillas de WhatsApp",
         "Name": "Nombre",
@@ -372,7 +377,7 @@
             "Direction": "Selecciona dirección",
             "Status": "Selecciona estado"
           },
-          "AddVariablePrompt": "Agregar variable al prompt",
+          "AddVariablePromt": "Agregar variable al prompt",
           "AddVariableTask": "Agregar variable a la tarea",
           "AddVariableFirstMessage": "Agregar variable al primer mensaje",
           "Actions": {

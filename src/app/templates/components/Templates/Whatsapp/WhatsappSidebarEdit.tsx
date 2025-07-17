@@ -5,19 +5,14 @@ import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
-import { Badge } from "@/components/ui/badge";
 import { useKeyMetaMap } from "@/lib/keys/useKeyMetaMap";
 import mockKeys from "../../data/mockkeys.json";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
 import { useTranslations } from "next-intl";
+
 import VariableRichTextEditor, {
   VariableRichTextEditorHandle,
 } from "../VariableRichTextEditor";
+import VariableDropdown from "../VariableDropdown";
 
 interface WhatsappSidebarEditProps {
   template: { name: string; content: string };
@@ -37,13 +32,7 @@ export default function WhatsappSidebarEdit({
   const [name, setName] = React.useState<string>(template.name);
   const [content, setContent] = React.useState<string>(template.content);
 
-  // 🗂️ Todas las variables del mock
   const allVariables: string[] = mockKeys.data.all_keys;
-
-  // 🗂️ Mapa para todas las variables (para dropdown)
-  const allKeysMap = useKeyMetaMap(allVariables.map((key) => ({ key })));
-
-  // Ref para invocar inserción de variable
   const editorRef = React.useRef<VariableRichTextEditorHandle>(null);
 
   return (
@@ -56,11 +45,13 @@ export default function WhatsappSidebarEdit({
       </SheetHeader>
 
       <div className="flex flex-col gap-4 flex-grow">
+        {/* Nombre */}
         <div>
           <Label>{t("TemplateName")}</Label>
           <Input value={name} onChange={(e) => setName(e.target.value)} />
         </div>
 
+        {/* Contenido */}
         <div>
           <Label>{t("Content")}</Label>
           <VariableRichTextEditor
@@ -72,37 +63,10 @@ export default function WhatsappSidebarEdit({
 
           <div className="mt-2">
             <Label className="block mb-1">{t("AddVariable")}</Label>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="w-full justify-between">
-                  {t("SelectVariable")}
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-full">
-                {allVariables.map((v) => {
-                  const meta = allKeysMap[v];
-                  if (!meta) return null;
-
-                  return (
-                    <DropdownMenuItem
-                      key={v}
-                      onSelect={() => editorRef.current?.insertVariable(v)}
-                      className="flex items-center"
-                    >
-                      <Badge
-                        style={{
-                          backgroundColor: meta.color,
-                          color: "#fff",
-                          margin: "0",
-                        }}
-                      >
-                        {meta.label}
-                      </Badge>
-                    </DropdownMenuItem>
-                  );
-                })}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={editorRef}
+            />
           </div>
         </div>
       </div>

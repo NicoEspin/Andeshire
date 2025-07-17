@@ -29,6 +29,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import EmailAgentsSidebar from "./EmailAgentsSidebar"; // 👉 importa tu Sidebar
+import { sliceContentWithoutBreakingKeys } from "../hooks/sliceContentWithoutBreakingKeys";
+import { useContentWithBadges } from "../hooks/useContentWithBadges";
 
 interface EmailAgent {
   id: string;
@@ -106,13 +108,13 @@ const EmailAgentsTable = ({ searchQuery }: { searchQuery: string }) => {
                       )}
                     </TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {agent.prompt.slice(0, 50)}...
+                     {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.prompt, 50))}
                     </TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {agent.task.slice(0, 50)}...
+                    {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.task, 50))}
                     </TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {agent.first_message.slice(0, 50)}...
+                     {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.first_message, 50))}
                     </TableCell>
                     <TableCell>
                       <Badge variant="outline" className="capitalize">

@@ -29,6 +29,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import EmailsSidebar from "./EmailsSidebar";
+import { sliceContentWithoutBreakingKeys } from "../hooks/sliceContentWithoutBreakingKeys";
+import { useContentWithBadges } from "../hooks/useContentWithBadges";
 
 interface EmailTemplate {
   id: string;
@@ -97,7 +99,7 @@ const EmailsTable = ({ searchQuery }: { searchQuery: string }) => {
                     </TableCell>
                     <TableCell>{template.subject}</TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {template.content.slice(0, 100)}...
+                   {useContentWithBadges(sliceContentWithoutBreakingKeys(template.content, 100))}
                     </TableCell>
                     <TableCell>
                       {new Date(template.created_at).toLocaleDateString()}

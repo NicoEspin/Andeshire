@@ -6,7 +6,7 @@
             "name": "sad",
             "description": "asdas",
             "task": "dasdsa",
-            "prompt": "sadsad",
+            "prompt": "sadsad  {{candidate_name}}",
             "first_message": "asdasdasd",
             "direction": "outbound",
             "status": "active",

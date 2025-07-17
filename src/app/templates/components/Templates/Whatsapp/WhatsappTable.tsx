@@ -29,6 +29,8 @@ import {
 import { Button } from "@/components/ui/button";
 import WhatsappSidebar from "./WhatsappSidebar";
 import { useTranslations } from "next-intl";
+import { useContentWithBadges } from "../hooks/useContentWithBadges";
+import { sliceContentWithoutBreakingKeys } from "../hooks/sliceContentWithoutBreakingKeys";
 
 type Template = {
   id: string;
@@ -53,6 +55,7 @@ const WhatsappTable = ({ searchQuery }: { searchQuery: string }) => {
   );
 
   const t = useTranslations("Templates.TemplatesView.WhatsApp");
+    
 
   const handleRowClick = (template: Template) => {
     setSelectedTemplate(template);
@@ -101,7 +104,7 @@ const WhatsappTable = ({ searchQuery }: { searchQuery: string }) => {
                       </Badge>
                     </TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {template.content.slice(0, 100)}...
+                    {useContentWithBadges(sliceContentWithoutBreakingKeys(template.content, 100))}
                     </TableCell>
                     <TableCell>
                       {new Date(template.created_at).toLocaleDateString()}

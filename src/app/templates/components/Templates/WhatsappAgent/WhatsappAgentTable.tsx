@@ -29,6 +29,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import WhatsAppAgentSidebar from "./WhatsAppAgentSidebar";
+import { sliceContentWithoutBreakingKeys } from "../hooks/sliceContentWithoutBreakingKeys";
+import { useContentWithBadges } from "../hooks/useContentWithBadges";
 
 interface WhatsAppAgent {
   id: string;
@@ -109,13 +111,13 @@ const WhatsappAgentTable = ({ searchQuery }: { searchQuery: string }) => {
                       )}
                     </TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {agent.prompt.slice(0, 50)}...
+                     {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.prompt, 50))}
                     </TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {agent.task.slice(0, 50)}...
+                      {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.task, 50))}
                     </TableCell>
                     <TableCell className="max-w-xs truncate">
-                      {agent.first_message.slice(0, 50)}...
+                     {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.first_message, 50))}
                     </TableCell>
                     <TableCell>
                       <Badge variant="outline" className="capitalize">

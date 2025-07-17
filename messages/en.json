@@ -218,6 +218,11 @@
           "HTTP": "HTTP Request"
         }
       },
+      "VariableDropdown": {
+        "SelectVariable": "Select variable",
+        "SearchPlaceholder": "Search variable...",
+        "NoResults": "No variables found."
+      },
       "WhatsApp": {
         "Title": "WhatsApp Templates",
         "Name": "Name",
@@ -372,7 +377,7 @@
             "Direction": "Select direction",
             "Status": "Select status"
           },
-          "AddVariablePrompt": "Add variable to prompt",
+          "AddVariablePromt": "Add variable to prompt",
           "AddVariableTask": "Add variable to task",
           "AddVariableFirstMessage": "Add variable to first message",
           "Actions": {

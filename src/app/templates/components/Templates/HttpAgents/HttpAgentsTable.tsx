@@ -29,6 +29,8 @@ import {
 import { Button } from "@/components/ui/button";
 import HttpAgentsSidebar from "./HttpAgentsSidebar";
 import { useTranslations } from "next-intl";
+import { sliceContentWithoutBreakingKeys } from "../hooks/sliceContentWithoutBreakingKeys";
+import { useContentWithBadges } from "../hooks/useContentWithBadges";
 
 type HttpAgent = {
   id: string;
@@ -40,6 +42,9 @@ type HttpAgent = {
   request_body: string;
   created_at: string;
   updated_at: string;
+  save_output: string[];
+  query_params: Record<string, string>;
+  headers: Record<string, string>;
 };
 
 type Props = {};
@@ -113,14 +118,14 @@ const HttpAgentsTable = ({ searchQuery }: { searchQuery: string }) => {
                     </TableCell>
 
                     <TableCell className="max-w-xs truncate">
-                      {agent.url}
+                      {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.url, 50))}
                     </TableCell>
 
                     <TableCell>{agent.timeout}s</TableCell>
                     <TableCell>{agent.retries}</TableCell>
 
                     <TableCell className="max-w-xs truncate">
-                      {agent.request_body.slice(0, 50)}...
+                     {useContentWithBadges(sliceContentWithoutBreakingKeys(agent.request_body, 50))}
                     </TableCell>
 
                     <TableCell>

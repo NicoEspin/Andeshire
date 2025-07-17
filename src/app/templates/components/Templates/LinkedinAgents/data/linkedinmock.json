@@ -7,7 +7,7 @@
             "description": "dasdsa",
             "task": "dasdas",
             "prompt": "dasdasd",
-            "first_message": "sadasdsa",
+            "first_message": "sadasdsa {{company_name}}",
             "direction": "outbound",
             "status": "active",
             "created_at": "2025-07-11T13:12:59.710911+00:00",

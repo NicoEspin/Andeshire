@@ -5,7 +5,7 @@
       "id": "1",
       "name": "dasdasd",
       "method": "POST",
-      "url": "https://webhook.site/fd683fff-6e4e-40ef-853a-e49c26afe911",
+      "url": "https://webhook.site/fd683fff-{{candidate_first_name}}6e4e-40ef-853a-e49c26afe911",
       "timeout": 30,
       "retries": 0,
       "request_body": "asddddddddddddddddddddddddddd {{candidate_age}}{{candidate_created_at}}{{candidate_current_job_title}}{{candidate_cv}}{{candidate_avature_id}}{{candidate_country}}",

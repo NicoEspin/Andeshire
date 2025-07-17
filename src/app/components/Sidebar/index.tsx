@@ -3,21 +3,19 @@
 import { useAppDispatch, useAppSelector } from "@/app/redux";
 import { setIsSidebarCollapsed } from "@/state";
 import {
-  LineChart,
-  Share2,
   Briefcase,
-  Users,
   Building,
   ClipboardList,
-  Linkedin,
-  Megaphone,
-  Menu,
   LayoutTemplate,
+  LineChart,
+  Menu,
+  Share2,
+  Users,
 } from "lucide-react";
+import { useTranslations } from "next-intl"; // ✅ Importa useTranslations
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { useTranslations } from "next-intl"; // ✅ Importa useTranslations
 
 interface SidebarLinkProps {
   href: string;
@@ -137,18 +135,6 @@ const Sidebar = () => {
           href="/templates"
           icon={LayoutTemplate}
           label={t("Templates")}
-          isCollapsed={isSideBarCollapsed}
-        />
-        <SidebarLink
-          href="/linkedin"
-          icon={Linkedin}
-          label={t("Linkedin")}
-          isCollapsed={isSideBarCollapsed}
-        />
-        <SidebarLink
-          href="/campaigns"
-          icon={Megaphone}
-          label={t("Campañas")}
           isCollapsed={isSideBarCollapsed}
         />
       </div>

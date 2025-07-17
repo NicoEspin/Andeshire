@@ -86,79 +86,456 @@ The application uses Next.js 15's App Router with the following key pages:
 - `/forms/[id]` - Individual form details
 - `/settings` - Application settings
 
-### Component Organization
+### Component Architecture
+
+#### Component Classification
+
+The application follows a three-tier component architecture:
+
+1. **UI Components** (`src/components/ui/`) - Base reusable components
+2. **Feature Components** (`src/app/components/`) - Business logic components
+3. **Page Components** (`src/app/[page]/components/`) - Page-specific components
 
 #### Core Application Components (`src/app/components/`)
 
-**Navigation & Layout**
-- `Navbar/` - Top navigation bar with notifications
-- `Sidebar/` - Main navigation sidebar
-- `ModalManager.tsx` - Global modal state management
-- `EmptyState/` - Empty state component for lists
+**Navigation & Layout Components**
 
-**Candidate Management (`CandidateDetail/`)**
-- `CandidateDetail.tsx` - Main candidate detail container
-- `CandidateHeader.tsx` - Candidate profile header
-- `CandidateNav.tsx` - Candidate detail navigation
-- `CandidateActions/` - Action buttons and forms
-- `Comentarios/` - Comment system
-- `Formularios/` - Form management
-- `Matching/` - Candidate matching system
-- `Resumen/` - Resume and experience management
-- `Reuniones/` - Meeting scheduling
-- `Trabajos/` - Job applications
+**Navbar** (`src/app/components/Navbar/`)
+- **Purpose**: Top navigation bar with user actions and notifications
+- **Key Files**:
+  - `index.tsx` - Main navigation container
+  - `NotificationDropdown.tsx` - Real-time notification system
+- **Dependencies**: Redux state, internationalization
+- **Usage**: Automatically rendered in layout, no manual imports needed
 
-**Job Management (`jobs/[id]/components/`)**
-- `JobHeader.tsx` - Job posting header
-- `JobNav.tsx` - Job detail navigation
-- `JobContentRenderer.tsx` - Content rendering logic
-- `Aplicantes/` - Applicant management
-- `Candidatos/` - Candidate views (Table, Kanban)
-- `Descripcion/` - Job description management
-- `Detalles/` - Job details and files
-- `Heimdall/` - AI-powered candidate analysis
-- `Personalizados/` - Custom fields
+**Sidebar** (`src/app/components/Sidebar/`)
+- **Purpose**: Main navigation sidebar with collapsible functionality
+- **Props**:
+  ```typescript
+  interface SidebarLinkProps {
+    href: string;           // Navigation URL
+    icon: React.ElementType; // Lucide React icon component
+    label: string;          // Display text (supports i18n)
+    isCollapsed: boolean;   // Sidebar state
+  }
+  ```
+- **Features**:
+  - Responsive design (mobile hamburger menu)
+  - Internationalization support
+  - Redux state management for collapse state
+  - Active link highlighting
+- **Usage Example**:
+  ```typescript
+  // Sidebar automatically renders, but for custom links:
+  <SidebarLink
+    href="/custom-page"
+    icon={CustomIcon}
+    label={t("CustomPage")}
+    isCollapsed={isSideBarCollapsed}
+  />
+  ```
 
-**Template Management (`templates/components/`)**
-- `Templates/` - Various template types:
-  - `Call/` - Call agent templates
-  - `Emails/` - Email templates
-  - `Whatsapp/` - WhatsApp templates
-  - `EmailAgents/` - Email automation agents
-  - `WhatsappAgent/` - WhatsApp automation agents
-  - `LinkedinAgents/` - LinkedIn automation agents
-  - `HttpAgents/` - HTTP integration agents
-- `CreateTemplate/` - Template creation forms
-- `TextAgents/` - Text-based AI agents
-- `VariableDropdown.tsx` - Dynamic variable insertion
-- `VariableRichTextEditor.tsx` - Rich text editor with variables
+**ModalManager** (`src/app/components/ModalManager.tsx`)
+- **Purpose**: Global modal state management system
+- **Features**: Centralized modal rendering, Redux integration
+- **Usage**: Handles all application modals through Redux actions
 
-**Workflow Management (`workflow/[id]/components/`)**
-- `WorkflowCanvas.tsx` - Visual workflow editor
-- `WorkflowNode.tsx` - Individual workflow nodes
-- `WorkflowSidebar.tsx` - Workflow configuration panel
-- `AddNewStage.tsx` - Stage creation
-- `EditWorkflow.tsx` - Workflow editing
-- `templates/` - Workflow template configurations
+**EmptyState** (`src/app/components/EmptyState/`)
+- **Purpose**: Consistent empty state messaging across the application
+- **Props**:
+  ```typescript
+  interface EmptyStateProps {
+    title: string;
+    description?: string;
+    icon?: React.ElementType;
+    action?: React.ReactNode;
+  }
+  ```
+
+**Candidate Management Components**
+
+**CandidateDetail** (`src/app/components/CandidateDetail/`)
+- **Main Container**: `CandidateDetail.tsx`
+  - **Purpose**: Orchestrates candidate detail view with tabbed navigation
+  - **Features**: Tab management, data fetching, state coordination
+  
+- **Header Components**:
+  - `CandidateHeader.tsx` - Profile information display
+  - `CandidateNav.tsx` - Tab navigation for candidate sections
+  - `AddCandidateTags.tsx` - Tag management interface
+
+- **Content Sections**:
+  - `Resumen/` - Resume and experience management
+    - `CandidateCv.tsx` - CV display and parsing
+    - `CandidateExperience.tsx` - Work experience timeline
+    - `CandidateFiles.tsx` - File attachment management
+    - `AddCandidateExperience.tsx` - Experience creation form
+    - `AddCandidateFiles.tsx` - File upload interface
+  
+  - `Comentarios/` - Comment system
+    - `CandidateComments.tsx` - Comment thread display
+    - `AddCandidateComment.tsx` - Comment creation form
+  
+  - `Reuniones/` - Meeting management
+    - `CandidateMeetings.tsx` - Meeting list and calendar
+    - `AddCandidateMeet.tsx` - Meeting scheduling form
+  
+  - `Formularios/` - Form management
+    - `CandidateScoreboard.tsx` - Evaluation form display
+    - `AddCandidateForm.tsx` - Form assignment interface
+  
+  - `Trabajos/` - Job applications
+    - `CandidateJobsTable.tsx` - Job application history
+    - `JobDetailModal.tsx` - Job detail popup
+  
+  - `Matching/` - AI-powered matching
+    - `CandidatesMatching.tsx` - Candidate-job matching interface
+  
+  - `Personalizados/` - Custom fields
+    - `CandidateCustom.tsx` - Custom field management
+  
+  - `CandidateActions/` - Action buttons and workflows
+    - `CandidateActions.tsx` - Action button container
+    - `ActionChat.tsx` - Chat interface
+    - `ActionCompare.tsx` - Candidate comparison
+    - `ActionGenerate.tsx` - AI content generation
+    - `ActionUpdate.tsx` - Data update actions
+    - `Vincular/` - Linking actions
+      - `ActionLink.tsx` - Link candidate to job
+      - `LinkCandidateStage.tsx` - Stage assignment
+    - `Editar/` - Edit actions
+      - `ActionEdit.tsx` - Edit candidate data
+      - `CandidateCustomEdit.tsx` - Edit custom fields
+
+**Job Management Components**
+
+Located in `src/app/jobs/[id]/components/`, these components handle job-specific functionality:
+
+- **JobHeader.tsx** - Job posting header with actions
+- **JobNav.tsx** - Job detail navigation tabs
+- **JobContentRenderer.tsx** - Dynamic content rendering based on active tab
+- **Aplicantes/** - Applicant management and tracking
+- **Candidatos/** - Candidate views (Table and Kanban layouts)
+- **Descripcion/** - Job description editing and management
+- **Detalles/** - Job details, requirements, and file attachments
+- **Heimdall/** - AI-powered candidate analysis and recommendations
+- **Personalizados/** - Custom field management for jobs
+
+**Template Management Components**
+
+**Template Types** (`src/app/templates/components/Templates/`)
+- **Call/** - Call agent script templates
+- **Emails/** - Email template management
+- **Whatsapp/** - WhatsApp message templates
+- **EmailAgents/** - Email automation configuration
+- **WhatsappAgent/** - WhatsApp automation setup
+- **LinkedinAgents/** - LinkedIn outreach automation
+- **HttpAgents/** - HTTP integration templates
+
+**Template Creation** (`src/app/templates/components/CreateTemplate/`)
+- Dynamic template creation forms based on template type
+- Validation and preview functionality
+
+**Specialized Components**:
+- **VariableDropdown.tsx** - Dynamic variable insertion for templates
+  - **Purpose**: Provides contextual variable suggestions
+  - **Features**: Autocomplete, categorized variables, insertion helpers
+- **VariableRichTextEditor.tsx** - Rich text editor with variable support
+  - **Purpose**: Advanced text editing with dynamic content
+  - **Features**: Slate.js integration, variable highlighting, preview mode
+
+**Workflow Management Components**
+
+Located in `src/app/workflow/[id]/components/`:
+
+- **WorkflowCanvas.tsx** - Visual workflow editor
+  - **Purpose**: Drag-and-drop workflow design interface
+  - **Features**: Node connections, validation, real-time updates
+- **WorkflowNode.tsx** - Individual workflow step components
+- **WorkflowSidebar.tsx** - Configuration panel for workflow properties
+- **AddNewStage.tsx** - Stage creation interface
+- **EditWorkflow.tsx** - Workflow editing and versioning
+- **templates/** - Pre-built workflow templates
 
 #### Reusable UI Components (`src/components/ui/`)
 
-Based on shadcn/ui pattern, includes:
-- `accordion.tsx` - Collapsible content sections
-- `avatar.tsx` - User profile images
-- `badge.tsx` - Status indicators
-- `button.tsx` - Interactive buttons
-- `calendar.tsx` - Date selection
-- `card.tsx` - Content containers
-- `checkbox.tsx` - Selection inputs
-- `dialog.tsx` - Modal dialogs
-- `dropdown-menu.tsx` - Contextual menus
-- `input.tsx` - Form inputs
-- `select.tsx` - Selection dropdowns
-- `table.tsx` - Data tables
-- `tabs.tsx` - Tabbed interfaces
-- `textarea.tsx` - Multi-line text inputs
-- `tooltip.tsx` - Contextual help
+Built on shadcn/ui patterns with custom enhancements:
+
+**Form Components**
+- **button.tsx** - Interactive buttons with variants
+  - **Props**:
+    ```typescript
+    interface ButtonProps {
+      variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
+      size?: 'default' | 'sm' | 'lg' | 'icon';
+      asChild?: boolean;
+    }
+    ```
+  - **Usage Example**:
+    ```typescript
+    <Button variant="outline" size="sm" onClick={handleClick}>
+      Save Changes
+    </Button>
+    ```
+
+- **input.tsx** - Form input fields with validation support
+- **textarea.tsx** - Multi-line text inputs
+- **checkbox.tsx** - Selection inputs with indeterminate state
+- **select.tsx** - Dropdown selection components
+- **multiselect.tsx** - Multi-option selection component
+
+**Layout Components**
+- **card.tsx** - Content containers with header/footer support
+- **accordion.tsx** - Collapsible content sections
+- **tabs.tsx** - Tabbed interfaces with keyboard navigation
+- **sheet.tsx** - Slide-out panels
+- **dialog.tsx** - Modal dialogs with backdrop
+- **drawer.tsx** - Mobile-friendly bottom sheets
+
+**Display Components**
+- **avatar.tsx** - User profile images with fallbacks
+- **badge.tsx** - Status indicators and labels
+- **progress.tsx** - Progress bars and loading indicators
+- **skeleton.tsx** - Loading placeholders
+- **skeleton-variants.tsx** - Specialized skeleton components
+- **loading-announcer.tsx** - Accessibility-focused loading states
+
+**Navigation Components**
+- **dropdown-menu.tsx** - Contextual menus with keyboard support
+- **tooltip.tsx** - Contextual help and information
+- **popover.tsx** - Floating content containers
+
+**Data Components**
+- **table.tsx** - Data tables with sorting and filtering
+- **calendar.tsx** - Date selection with range support
+- **scroll-area.tsx** - Custom scrollbars and scroll containers
+
+**Utility Components**
+- **separator.tsx** - Visual dividers
+- **switch.tsx** - Toggle switches
+- **label.tsx** - Form labels with proper association
+
+#### Component Dependencies and Relationships
+
+**Dependency Graph**
+
+```
+Layout Components
+├── Navbar
+│   ├── NotificationDropdown
+│   └── UI Components (button, dropdown-menu, avatar)
+├── Sidebar
+│   ├── SidebarLink (internal)
+│   └── UI Components (button, tooltip)
+└── ModalManager
+    ├── Redux Store (modalSlice)
+    └── UI Components (dialog, sheet)
+
+Feature Components
+├── CandidateDetail
+│   ├── CandidateHeader
+│   │   ├── AddCandidateTags
+│   │   └── UI Components (avatar, badge, button)
+│   ├── CandidateNav
+│   │   └── UI Components (tabs, button)
+│   ├── Content Sections
+│   │   ├── Resumen/*
+│   │   ├── Comentarios/*
+│   │   ├── Reuniones/*
+│   │   ├── Formularios/*
+│   │   ├── Trabajos/*
+│   │   ├── Matching/*
+│   │   └── Personalizados/*
+│   └── CandidateActions
+│       ├── All Action Components
+│       └── UI Components (button, dialog, form)
+├── Job Management
+│   ├── JobHeader
+│   ├── JobNav
+│   └── Content Components (follows similar pattern)
+├── Template Management
+│   ├── Template Types
+│   ├── CreateTemplate
+│   ├── VariableDropdown
+│   └── VariableRichTextEditor
+└── Workflow Management
+    ├── WorkflowCanvas
+    ├── WorkflowNode
+    └── WorkflowSidebar
+```
+
+**Cross-Component Communication**
+
+1. **Redux State Management**
+   - Global state shared across components
+   - Modal state management
+   - Sidebar collapse state
+   - Feature-specific state slices
+
+2. **Component Composition Patterns**
+   - **Container-Presenter Pattern**: Feature components wrap UI components
+   - **Render Props Pattern**: Content renderers for dynamic layouts
+   - **Compound Components**: Tab systems, accordions, form groups
+
+3. **Internationalization Integration**
+   - All user-facing text components integrate with `next-intl`
+   - Translation keys organized by feature/component
+   - RTL support considerations
+
+4. **Form Component Relationships**
+   ```typescript
+   // Common pattern for form components
+   <Form>
+     <FormField>
+       <FormLabel />
+       <FormControl>
+         <Input /> // or Select, Textarea, etc.
+       </FormControl>
+       <FormMessage />
+     </FormField>
+   </Form>
+   ```
+
+**Data Flow Patterns**
+
+1. **Top-Down Data Flow**
+   - Page components fetch data and pass to feature components
+   - Feature components manage local state and pass to UI components
+   - UI components are primarily presentational
+
+2. **Event Bubbling**
+   - User interactions bubble up through component hierarchy
+   - Redux actions dispatched at appropriate levels
+   - API calls typically initiated by feature components
+
+3. **State Synchronization**
+   - Redux for global state (user preferences, modal state)
+   - Local state for component-specific data
+   - URL state for navigation and filters
+
+#### Component Best Practices
+
+**Development Guidelines**
+
+1. **File Organization**
+   ```
+   ComponentName/
+   ├── index.tsx          # Main component export
+   ├── types.ts           # TypeScript interfaces
+   ├── hooks.ts           # Custom hooks (if any)
+   ├── utils.ts           # Component-specific utilities
+   └── subcomponents/     # Related child components
+   ```
+
+2. **Component Structure**
+   ```typescript
+   // Standard component template
+   interface ComponentProps {
+     // Props interface
+   }
+   
+   const Component: React.FC<ComponentProps> = ({ 
+     prop1, 
+     prop2,
+     ...props 
+   }) => {
+     // Hooks
+     // Event handlers
+     // Render logic
+     
+     return (
+       <div className="component-class" {...props}>
+         {/* JSX */}
+       </div>
+     );
+   };
+   
+   export default Component;
+   ```
+
+3. **Styling Conventions**
+   - Use Tailwind CSS classes for styling
+   - Implement dark mode support with CSS variables
+   - Use `cn()` utility for conditional classes
+   - Follow mobile-first responsive design
+
+4. **Accessibility Standards**
+   - Semantic HTML structure
+   - ARIA attributes for complex interactions
+   - Keyboard navigation support
+   - Screen reader compatibility
+   - Focus management
+
+5. **Performance Optimization**
+   - Use React.memo for expensive renders
+   - Implement proper dependency arrays in useEffect
+   - Lazy load heavy components
+   - Optimize Redux selectors
+
+**Testing Patterns**
+
+1. **Unit Testing**
+   - Test component props and state
+   - Mock external dependencies
+   - Test user interactions
+
+2. **Integration Testing**
+   - Test component interactions
+   - Test Redux state updates
+   - Test API integration
+
+3. **Accessibility Testing**
+   - Automated accessibility testing
+   - Screen reader testing
+   - Keyboard navigation testing
+
+**Common Patterns**
+
+1. **Loading States**
+   ```typescript
+   const Component = () => {
+     const { data, isLoading, error } = useQuery();
+     
+     if (isLoading) return <Skeleton />;
+     if (error) return <ErrorState />;
+     if (!data) return <EmptyState />;
+     
+     return <DataDisplay data={data} />;
+   };
+   ```
+
+2. **Form Handling**
+   ```typescript
+   const FormComponent = () => {
+     const { handleSubmit, formState, control } = useForm();
+     
+     return (
+       <form onSubmit={handleSubmit(onSubmit)}>
+         <Controller
+           name="fieldName"
+           control={control}
+           render={({ field }) => <Input {...field} />}
+         />
+       </form>
+     );
+   };
+   ```
+
+3. **Modal Management**
+   ```typescript
+   const ComponentWithModal = () => {
+     const dispatch = useAppDispatch();
+     
+     const openModal = () => {
+       dispatch(setModalContent({
+         type: 'CUSTOM_MODAL',
+         props: { /* modal props */ }
+       }));
+     };
+     
+     return <Button onClick={openModal}>Open Modal</Button>;
+   };
+   ```
 
 ## State Management
 

@@ -67,7 +67,7 @@ const storage =
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["global", "modal", "candidateDetail"],
+  whitelist: ["global", "modal",],
 };
 
 // 🎯 Combine reducers

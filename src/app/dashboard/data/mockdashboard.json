@@ -1,0 +1,1677 @@
+{
+  "metrics": {
+    "total_companies": 24,
+    "total_jobs": 126,
+    "total_candidates": 5459,
+    "total_recruiters": 8,
+    "trends": {
+      "companies_trend": 100,
+      "jobs_trend": -12.5,
+      "candidates_trend": -66.7394468704512,
+      "recruiters_trend": 100
+    }
+  },
+  "recent_data": {
+    "jobs": [
+      {
+        "id": "11eca3b2-9fc2-42d8-8b6a-64f747c36641",
+        "title": "Senior Software Python Engineer",
+        "company_name": "Nearsure",
+        "created_at": "2025-07-17T12:34:49.910919+00:00"
+      },
+      {
+        "id": "d8abfaa4-bb51-45ec-8542-a33df44977e8",
+        "title": "Senior Backend Software Engineer",
+        "company_name": "Marsie",
+        "created_at": "2025-07-17T12:02:17.172829+00:00"
+      },
+      {
+        "id": "57e3e055-b160-43b8-9ad8-c88f68b8d13d",
+        "title": "Analista Funcional",
+        "company_name": "Grupo Dinosaurio",
+        "created_at": "2025-07-16T12:51:30.739004+00:00"
+      },
+      {
+        "id": "ea8323db-14fa-4033-a374-319643b3df66",
+        "title": "Senior Full-Stack Developer (React.Js + Java / Stronger in FE)",
+        "company_name": "Santex",
+        "created_at": "2025-07-07T20:48:35.156899+00:00"
+      },
+      {
+        "id": "dfd79022-5144-4bda-a41d-289e75502033",
+        "title": "Senior Data Engineer (Java + Spark)",
+        "company_name": "Santex",
+        "created_at": "2025-07-07T20:46:15.050576+00:00"
+      }
+    ],
+    "candidates": [
+      {
+        "id": "6c2e5379-e07c-4c04-a0e1-17a1116392eb",
+        "name": "Kevin Arce Kessler",
+        "created_at": "2025-07-17T18:06:58.620608+00:00"
+      },
+      {
+        "id": "26c8e615-93c2-4c84-9830-99b8602dca41",
+        "name": "Gonzalo Ariel Torres",
+        "created_at": "2025-07-17T18:06:13.844653+00:00"
+      },
+      {
+        "id": "f221e41d-bc31-4c8f-a685-d44449d6c9f4",
+        "name": "Rodrigo Farias",
+        "created_at": "2025-07-17T17:57:20.194477+00:00"
+      },
+      {
+        "id": "7ff00201-2b77-4336-9820-f1a40a3f97e5",
+        "name": "Rodrigo Ferreyra",
+        "created_at": "2025-07-17T17:23:52.341959+00:00"
+      },
+      {
+        "id": "eabe2a13-200a-484f-9b3c-1be233e355e6",
+        "name": "Walter Alberto Sosa",
+        "created_at": "2025-07-17T16:53:54.116804+00:00"
+      }
+    ]
+  },
+  "analytics": {
+    "candidates_per_job": [
+      {
+        "id": "c53c6e45-df5d-48f0-8d2e-fef426527de0",
+        "title": " Fullstack Developer Trainee",
+        "company_name": "RH Vision",
+        "candidate_count": 805
+      },
+      {
+        "id": "bc8963a0-2a12-4faa-9046-17269f93e8d4",
+        "title": "Secretaria Médica Recepcionista con perfil comercial - Nueva Córdoba",
+        "company_name": "HAIR RECOVERY NUEVA CORDOBA",
+        "candidate_count": 260
+      },
+      {
+        "id": "2aef4c21-7a5a-47b8-87f6-0bd3ad4c1712",
+        "title": "QA Engineer",
+        "company_name": "ValueLabs",
+        "candidate_count": 102
+      },
+      {
+        "id": "c5b0e80e-fbc0-468b-a943-30cfedc90076",
+        "title": "Java Software Engineer",
+        "company_name": "ValueLabs",
+        "candidate_count": 93
+      },
+      {
+        "id": "c2252bd9-f780-4229-ab93-e2e301921fcb",
+        "title": "Site Reliability Engineer",
+        "company_name": "Unosquare",
+        "candidate_count": 57
+      }
+    ],
+    "jobs_per_company": [
+      {
+        "id": "e2545b88-f30a-42e8-94ca-9c3617b8f959",
+        "name": "ValueLabs",
+        "job_count": 30
+      },
+      {
+        "id": "96482fd8-3955-492a-bd3f-0747991fb226",
+        "name": "Unosquare",
+        "job_count": 17
+      },
+      {
+        "id": "59367fef-2e0f-4f7e-86ec-fd68678c99aa",
+        "name": "RH Vision",
+        "job_count": 17
+      },
+      {
+        "id": "552f0939-f92b-47e0-a202-9e8e9ad20c6c",
+        "name": "Santex",
+        "job_count": 12
+      },
+      {
+        "id": "36f3e1ef-533f-4fe0-ad13-ec4d2378e1fb",
+        "name": "Compañia de prueba",
+        "job_count": 12
+      }
+    ],
+    "stages": [
+      {
+        "name": "Candidato desde el Portal",
+        "candidate_count": 909
+      },
+      {
+        "name": "Rejected by recruiter",
+        "candidate_count": 342
+      },
+      {
+        "name": "Vinculado Manualmente sin acciones",
+        "candidate_count": 157
+      },
+      {
+        "name": "Disparador de Agente generador entrevista",
+        "candidate_count": 75
+      },
+      {
+        "name": "Pending for Screening ",
+        "candidate_count": 74
+      },
+      {
+        "name": "1.01 People that may apply",
+        "candidate_count": 28
+      },
+      {
+        "name": "Presentado al Partner",
+        "candidate_count": 23
+      },
+      {
+        "name": "2.01 Vinculados sin acciones",
+        "candidate_count": 19
+      },
+      {
+        "name": "Vinculado sin accion",
+        "candidate_count": 17
+      },
+      {
+        "name": "Screened",
+        "candidate_count": 16
+      },
+      {
+        "name": "Tech - Interview Scheduled",
+        "candidate_count": 12
+      },
+      {
+        "name": "Disparador Mensaje Whatsapp",
+        "candidate_count": 11
+      },
+      {
+        "name": "Final Client interview",
+        "candidate_count": 6
+      },
+      {
+        "name": "2.02 Disparador agente Coordinador entrevista  (Puestos locales en pesos).",
+        "candidate_count": 6
+      },
+      {
+        "name": "Agente precalificador",
+        "candidate_count": 5
+      },
+      {
+        "name": "1.02  First contact",
+        "candidate_count": 4
+      },
+      {
+        "name": "Preselección agente de preselección",
+        "candidate_count": 3
+      },
+      {
+        "name": "Aprobado Tech (Partner) Waiting for final client interview",
+        "candidate_count": 3
+      },
+      {
+        "name": "1.04 Setting Interview with HR",
+        "candidate_count": 2
+      },
+      {
+        "name": "Carlia Prompt Limpio",
+        "candidate_count": 2
+      },
+      {
+        "name": "1.03 Schedule Interview with HR",
+        "candidate_count": 2
+      },
+      {
+        "name": "Postulados desde el portal",
+        "candidate_count": 1
+      },
+      {
+        "name": "Agendado",
+        "candidate_count": 1
+      },
+      {
+        "name": "Rejected by Partner",
+        "candidate_count": 1
+      },
+      {
+        "name": "Meeting confirmada",
+        "candidate_count": 1
+      },
+      {
+        "name": "Candidate Dropout",
+        "candidate_count": 1
+      },
+      {
+        "name": "2) c) Primer contacto realizado: Por telefono ",
+        "candidate_count": 1
+      },
+      {
+        "name": "Rechazado por el agente",
+        "candidate_count": 1
+      },
+      {
+        "name": "2) b)Primer contacto enviado: por Whatsapp -  Automatico",
+        "candidate_count": 1
+      },
+      {
+        "name": "On Hold",
+        "candidate_count": 0
+      },
+      {
+        "name": "Perfiles Pertinentes",
+        "candidate_count": 0
+      },
+      {
+        "name": "Primera etapa",
+        "candidate_count": 0
+      },
+      {
+        "name": "Rechazado ingles",
+        "candidate_count": 0
+      },
+      {
+        "name": "Rechazado tecnico",
+        "candidate_count": 0
+      },
+      {
+        "name": "Rechazado X motivo",
+        "candidate_count": 0
+      },
+      {
+        "name": "Rechazado Z motivo",
+        "candidate_count": 0
+      },
+      {
+        "name": "Rejected by Final Client",
+        "candidate_count": 0
+      },
+      {
+        "name": "Screening",
+        "candidate_count": 0
+      },
+      {
+        "name": "SCREENING",
+        "candidate_count": 0
+      },
+      {
+        "name": "Second stage",
+        "candidate_count": 0
+      },
+      {
+        "name": "Segunda etapa",
+        "candidate_count": 0
+      },
+      {
+        "name": "With echo",
+        "candidate_count": 0
+      },
+      {
+        "name": "without echo",
+        "candidate_count": 0
+      },
+      {
+        "name": "00. Postulados portal",
+        "candidate_count": 0
+      },
+      {
+        "name": "Withouth echo",
+        "candidate_count": 0
+      },
+      {
+        "name": "01. Identificado",
+        "candidate_count": 0
+      },
+      {
+        "name": "02. Preseleccionado",
+        "candidate_count": 0
+      },
+      {
+        "name": "03.  Screenado ",
+        "candidate_count": 0
+      },
+      {
+        "name": "04. Presentacion al partner",
+        "candidate_count": 0
+      },
+      {
+        "name": "05. Entrevista con el Partner",
+        "candidate_count": 0
+      },
+      {
+        "name": "06. Prueba Tecnica",
+        "candidate_count": 0
+      },
+      {
+        "name": "07. Entrevista Cliente Final",
+        "candidate_count": 0
+      },
+      {
+        "name": "08. En oferta económica",
+        "candidate_count": 0
+      },
+      {
+        "name": "10. Cierre ",
+        "candidate_count": 0
+      },
+      {
+        "name": "11. Rechazado Recruiter",
+        "candidate_count": 0
+      },
+      {
+        "name": "12. Rechazado Cliente",
+        "candidate_count": 0
+      },
+      {
+        "name": "14. Baja Candidato",
+        "candidate_count": 0
+      },
+      {
+        "name": "15. Rechazo by Partner",
+        "candidate_count": 0
+      },
+      {
+        "name": "1) Prospectando y Generando Leads",
+        "candidate_count": 0
+      },
+      {
+        "name": "2) a) Primer contacto enviado : por mail -  Automatico",
+        "candidate_count": 0
+      },
+      {
+        "name": "2) d) Primer contacto enviado: Por Linkedin",
+        "candidate_count": 0
+      },
+      {
+        "name": "3) Clasificando el Lead por call discovery",
+        "candidate_count": 0
+      },
+      {
+        "name": "4) Elaborando Propuesta",
+        "candidate_count": 0
+      },
+      {
+        "name": "5) Haciendo Seguimiento y Negociando",
+        "candidate_count": 0
+      },
+      {
+        "name": "6) Firmando Documentacion contactual + Cierre",
+        "candidate_count": 0
+      },
+      {
+        "name": "7) Onboarding de Operaciones- Kick Off de trabajo. ",
+        "candidate_count": 0
+      },
+      {
+        "name": "Agente de meetings",
+        "candidate_count": 0
+      },
+      {
+        "name": "CLIENT",
+        "candidate_count": 0
+      },
+      {
+        "name": "Disparador de asistente Gaston",
+        "candidate_count": 0
+      },
+      {
+        "name": "First stage",
+        "candidate_count": 0
+      },
+      {
+        "name": "Hire (Ingreso)",
+        "candidate_count": 0
+      },
+      {
+        "name": "Mensaje de interés en su perfil",
+        "candidate_count": 0
+      },
+      {
+        "name": "Offer Discusion",
+        "candidate_count": 0
+      }
+    ],
+    "jobs_by_category": [
+      {
+        "category": "tecnologia",
+        "count": 42
+      },
+      {
+        "category": "backend",
+        "count": 28
+      },
+      {
+        "category": "comercio",
+        "count": 10
+      },
+      {
+        "category": "frontend",
+        "count": 7
+      },
+      {
+        "category": "data",
+        "count": 7
+      }
+    ]
+  },
+  "categories_data": {
+    "categories": [
+      "Operaciones",
+      "Deporte",
+      "Business Analyst",
+      "Diseño",
+      "Psicopedagogia",
+      "Enfermeria",
+      "Periodismo",
+      "Telecomunicaciones",
+      "Produccion",
+      "Audiovisual",
+      "Comunicacion",
+      "Transporte",
+      "Mantenimiento",
+      "Publicidad",
+      "Textil",
+      "Gastronomia",
+      "Economia",
+      "Criminalistica",
+      "Traducción",
+      "Management",
+      "QA",
+      "Embedded",
+      "Ingenieria",
+      "Network Engineer",
+      "Cybersecurity",
+      "Atencion",
+      "Fullstack",
+      "Marketing",
+      "Comercio",
+      "Enterprise Architect",
+      "Construccion",
+      "Odontologia",
+      "RRHH",
+      "Security Specialist",
+      "Limpieza",
+      "Derecho",
+      "Refrigeracion",
+      "Mecanica",
+      "Administracion",
+      "Backend",
+      "Devops",
+      "Mobile",
+      "Soldadura",
+      "Musica",
+      "Security",
+      "Turismo",
+      "Seguridad",
+      "Finanzas",
+      "Software Engineer",
+      "Project Management",
+      "Metalurgia",
+      "Functional Analyst",
+      "Embedded Systems",
+      "Comunicaciones",
+      "AI Engineer",
+      "Electricidad",
+      "Security Analyst",
+      "Arquitectura",
+      "Full Stack",
+      "System Engineer",
+      "Embedded Software Developer",
+      "Medicina",
+      "Bioquimica",
+      "Farmacia",
+      "Embedded Systems Engineer",
+      "Contabilidad",
+      "Atención",
+      "Ventas",
+      "Psicologia",
+      "Salesforce",
+      "Cibersecurity Specialist",
+      "Servicios",
+      "Atención al cliente",
+      "Networking and Security Engineer",
+      "Educacion",
+      "Agronomia",
+      "Embedded Software Engineer",
+      "Sociologia",
+      "Logistica",
+      "Frontend",
+      "Comunicación",
+      "Tecnologia",
+      "Arte",
+      "Data",
+      "Quimica",
+      "HR",
+      "Instalacion",
+      "Peluqueria",
+      "Embedded Software",
+      "Full-Stack"
+    ],
+    "candidates_by_category": [
+      {
+        "category": "Operaciones",
+        "count": 1
+      },
+      {
+        "category": "Deporte",
+        "count": 1
+      },
+      {
+        "category": "Business Analyst",
+        "count": 73
+      },
+      {
+        "category": "Diseño",
+        "count": 34
+      },
+      {
+        "category": "Psicopedagogia",
+        "count": 1
+      },
+      {
+        "category": "Enfermeria",
+        "count": 1
+      },
+      {
+        "category": "Periodismo",
+        "count": 1
+      },
+      {
+        "category": "Telecomunicaciones",
+        "count": 76
+      },
+      {
+        "category": "Produccion",
+        "count": 2
+      },
+      {
+        "category": "Audiovisual",
+        "count": 4
+      },
+      {
+        "category": "Comunicacion",
+        "count": 1
+      },
+      {
+        "category": "Transporte",
+        "count": 3
+      },
+      {
+        "category": "Mantenimiento",
+        "count": 7
+      },
+      {
+        "category": "Publicidad",
+        "count": 1
+      },
+      {
+        "category": "Textil",
+        "count": 2
+      },
+      {
+        "category": "Gastronomia",
+        "count": 13
+      },
+      {
+        "category": "Economia",
+        "count": 2
+      },
+      {
+        "category": "Criminalistica",
+        "count": 3
+      },
+      {
+        "category": "Traducción",
+        "count": 6
+      },
+      {
+        "category": "Management",
+        "count": 28
+      },
+      {
+        "category": "QA",
+        "count": 557
+      },
+      {
+        "category": "Embedded",
+        "count": 5
+      },
+      {
+        "category": "Ingenieria",
+        "count": 44
+      },
+      {
+        "category": "Network Engineer",
+        "count": 2
+      },
+      {
+        "category": "Cybersecurity",
+        "count": 2
+      },
+      {
+        "category": "Atencion",
+        "count": 5
+      },
+      {
+        "category": "Fullstack",
+        "count": 847
+      },
+      {
+        "category": "Marketing",
+        "count": 217
+      },
+      {
+        "category": "Comercio",
+        "count": 66
+      },
+      {
+        "category": "Enterprise Architect",
+        "count": 1
+      },
+      {
+        "category": "Construccion",
+        "count": 7
+      },
+      {
+        "category": "Odontologia",
+        "count": 5
+      },
+      {
+        "category": "RRHH",
+        "count": 65
+      },
+      {
+        "category": "Security Specialist",
+        "count": 1
+      },
+      {
+        "category": "Limpieza",
+        "count": 4
+      },
+      {
+        "category": "Derecho",
+        "count": 9
+      },
+      {
+        "category": "Refrigeracion",
+        "count": 1
+      },
+      {
+        "category": "Mecanica",
+        "count": 5
+      },
+      {
+        "category": "Administracion",
+        "count": 163
+      },
+      {
+        "category": "Backend",
+        "count": 1026
+      },
+      {
+        "category": "Devops",
+        "count": 299
+      },
+      {
+        "category": "Mobile",
+        "count": 1
+      },
+      {
+        "category": "Soldadura",
+        "count": 1
+      },
+      {
+        "category": "Musica",
+        "count": 2
+      },
+      {
+        "category": "Security",
+        "count": 9
+      },
+      {
+        "category": "Turismo",
+        "count": 3
+      },
+      {
+        "category": "Seguridad",
+        "count": 29
+      },
+      {
+        "category": "Finanzas",
+        "count": 2
+      },
+      {
+        "category": "Software Engineer",
+        "count": 2
+      },
+      {
+        "category": "Project Management",
+        "count": 2
+      },
+      {
+        "category": "Metalurgia",
+        "count": 3
+      },
+      {
+        "category": "Functional Analyst",
+        "count": 97
+      },
+      {
+        "category": "Embedded Systems",
+        "count": 10
+      },
+      {
+        "category": "Comunicaciones",
+        "count": 1
+      },
+      {
+        "category": "AI Engineer",
+        "count": 2
+      },
+      {
+        "category": "Electricidad",
+        "count": 5
+      },
+      {
+        "category": "Security Analyst",
+        "count": 1
+      },
+      {
+        "category": "Arquitectura",
+        "count": 6
+      },
+      {
+        "category": "Full Stack",
+        "count": 10
+      },
+      {
+        "category": "System Engineer",
+        "count": 2
+      },
+      {
+        "category": "Embedded Software Developer",
+        "count": 1
+      },
+      {
+        "category": "Medicina",
+        "count": 7
+      },
+      {
+        "category": "Bioquimica",
+        "count": 1
+      },
+      {
+        "category": "Farmacia",
+        "count": 11
+      },
+      {
+        "category": "Embedded Systems Engineer",
+        "count": 2
+      },
+      {
+        "category": "Contabilidad",
+        "count": 11
+      },
+      {
+        "category": "Atención",
+        "count": 1
+      },
+      {
+        "category": "Ventas",
+        "count": 14
+      },
+      {
+        "category": "Psicologia",
+        "count": 9
+      },
+      {
+        "category": "Salesforce",
+        "count": 56
+      },
+      {
+        "category": "Cibersecurity Specialist",
+        "count": 1
+      },
+      {
+        "category": "Servicios",
+        "count": 2
+      },
+      {
+        "category": "Atención al cliente",
+        "count": 1
+      },
+      {
+        "category": "Networking and Security Engineer",
+        "count": 1
+      },
+      {
+        "category": "Educacion",
+        "count": 20
+      },
+      {
+        "category": "Agronomia",
+        "count": 1
+      },
+      {
+        "category": "Embedded Software Engineer",
+        "count": 5
+      },
+      {
+        "category": "Sociologia",
+        "count": 3
+      },
+      {
+        "category": "Logistica",
+        "count": 13
+      },
+      {
+        "category": "Frontend",
+        "count": 690
+      },
+      {
+        "category": "Comunicación",
+        "count": 1
+      },
+      {
+        "category": "Tecnologia",
+        "count": 245
+      },
+      {
+        "category": "Arte",
+        "count": 2
+      },
+      {
+        "category": "Data",
+        "count": 463
+      },
+      {
+        "category": "Quimica",
+        "count": 2
+      },
+      {
+        "category": "HR",
+        "count": 1
+      },
+      {
+        "category": "Instalacion",
+        "count": 1
+      },
+      {
+        "category": "Peluqueria",
+        "count": 1
+      },
+      {
+        "category": "Embedded Software",
+        "count": 3
+      },
+      {
+        "category": "Full-Stack",
+        "count": 1
+      }
+    ],
+    "categories_timeline": {
+      "Operaciones": [],
+      "Deporte": [],
+      "Business Analyst": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 4
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 10
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 5
+        }
+      ],
+      "Diseño": [
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 1
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Psicopedagogia": [],
+      "Enfermeria": [],
+      "Periodismo": [],
+      "Telecomunicaciones": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 4
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 6
+        }
+      ],
+      "Produccion": [],
+      "Audiovisual": [],
+      "Comunicacion": [],
+      "Transporte": [],
+      "Mantenimiento": [],
+      "Publicidad": [],
+      "Textil": [],
+      "Gastronomia": [],
+      "Economia": [],
+      "Criminalistica": [],
+      "Traducción": [],
+      "Management": [
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 3
+        }
+      ],
+      "QA": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 5
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 259
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Embedded": [],
+      "Ingenieria": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 2
+        }
+      ],
+      "Network Engineer": [],
+      "Cybersecurity": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Atencion": [],
+      "Fullstack": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 49
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 632
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 36
+        }
+      ],
+      "Marketing": [
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 7
+        }
+      ],
+      "Comercio": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 6
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 4
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Enterprise Architect": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Construccion": [],
+      "Odontologia": [],
+      "RRHH": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 5
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 3
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 9
+        }
+      ],
+      "Security Specialist": [],
+      "Limpieza": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Derecho": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Refrigeracion": [],
+      "Mecanica": [],
+      "Administracion": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 7
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 18
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Backend": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 34
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 146
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 12
+        }
+      ],
+      "Devops": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 19
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 56
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Mobile": [],
+      "Soldadura": [],
+      "Musica": [],
+      "Security": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 4
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 2
+        }
+      ],
+      "Turismo": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Seguridad": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 5
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 2
+        }
+      ],
+      "Finanzas": [],
+      "Software Engineer": [],
+      "Project Management": [],
+      "Metalurgia": [],
+      "Functional Analyst": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 10
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 34
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 12
+        }
+      ],
+      "Embedded Systems": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Comunicaciones": [],
+      "AI Engineer": [
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 2
+        }
+      ],
+      "Electricidad": [],
+      "Security Analyst": [
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Arquitectura": [],
+      "Full Stack": [],
+      "System Engineer": [],
+      "Embedded Software Developer": [],
+      "Medicina": [],
+      "Bioquimica": [],
+      "Farmacia": [
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 2
+        }
+      ],
+      "Embedded Systems Engineer": [],
+      "Contabilidad": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Atención": [],
+      "Ventas": [
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Psicologia": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Salesforce": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 6
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "Cibersecurity Specialist": [],
+      "Servicios": [],
+      "Atención al cliente": [],
+      "Networking and Security Engineer": [],
+      "Educacion": [
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 3
+        }
+      ],
+      "Agronomia": [],
+      "Embedded Software Engineer": [],
+      "Sociologia": [],
+      "Logistica": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 2
+        }
+      ],
+      "Frontend": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 8
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 81
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 19
+        }
+      ],
+      "Comunicación": [],
+      "Tecnologia": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 35
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 31
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 2
+        }
+      ],
+      "Arte": [],
+      "Data": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 12
+        },
+        {
+          "month": "2025-06-01T00:00:00-03:00",
+          "count": 85
+        },
+        {
+          "month": "2025-07-01T00:00:00-03:00",
+          "count": 39
+        }
+      ],
+      "Quimica": [
+        {
+          "month": "2025-05-01T00:00:00-03:00",
+          "count": 1
+        }
+      ],
+      "HR": [],
+      "Instalacion": [],
+      "Peluqueria": [],
+      "Embedded Software": [],
+      "Full-Stack": []
+    },
+    "total_timeline": [
+      {
+        "date": "2025-04-19",
+        "count": 1
+      },
+      {
+        "date": "2025-04-20",
+        "count": 0
+      },
+      {
+        "date": "2025-04-21",
+        "count": 4
+      },
+      {
+        "date": "2025-04-22",
+        "count": 3
+      },
+      {
+        "date": "2025-04-23",
+        "count": 174
+      },
+      {
+        "date": "2025-04-24",
+        "count": 61
+      },
+      {
+        "date": "2025-04-25",
+        "count": 143
+      },
+      {
+        "date": "2025-04-26",
+        "count": 0
+      },
+      {
+        "date": "2025-04-27",
+        "count": 0
+      },
+      {
+        "date": "2025-04-28",
+        "count": 327
+      },
+      {
+        "date": "2025-04-29",
+        "count": 13
+      },
+      {
+        "date": "2025-04-30",
+        "count": 6
+      },
+      {
+        "date": "2025-05-01",
+        "count": 0
+      },
+      {
+        "date": "2025-05-02",
+        "count": 0
+      },
+      {
+        "date": "2025-05-03",
+        "count": 0
+      },
+      {
+        "date": "2025-05-04",
+        "count": 0
+      },
+      {
+        "date": "2025-05-05",
+        "count": 80
+      },
+      {
+        "date": "2025-05-06",
+        "count": 2
+      },
+      {
+        "date": "2025-05-07",
+        "count": 181
+      },
+      {
+        "date": "2025-05-08",
+        "count": 37
+      },
+      {
+        "date": "2025-05-09",
+        "count": 3
+      },
+      {
+        "date": "2025-05-10",
+        "count": 0
+      },
+      {
+        "date": "2025-05-11",
+        "count": 0
+      },
+      {
+        "date": "2025-05-12",
+        "count": 26
+      },
+      {
+        "date": "2025-05-13",
+        "count": 12
+      },
+      {
+        "date": "2025-05-14",
+        "count": 8
+      },
+      {
+        "date": "2025-05-15",
+        "count": 11
+      },
+      {
+        "date": "2025-05-16",
+        "count": 5
+      },
+      {
+        "date": "2025-05-17",
+        "count": 1
+      },
+      {
+        "date": "2025-05-18",
+        "count": 1
+      },
+      {
+        "date": "2025-05-19",
+        "count": 6
+      },
+      {
+        "date": "2025-05-20",
+        "count": 36
+      },
+      {
+        "date": "2025-05-21",
+        "count": 21
+      },
+      {
+        "date": "2025-05-22",
+        "count": 116
+      },
+      {
+        "date": "2025-05-23",
+        "count": 7
+      },
+      {
+        "date": "2025-05-24",
+        "count": 1
+      },
+      {
+        "date": "2025-05-25",
+        "count": 1
+      },
+      {
+        "date": "2025-05-26",
+        "count": 19
+      },
+      {
+        "date": "2025-05-27",
+        "count": 4
+      },
+      {
+        "date": "2025-05-28",
+        "count": 5
+      },
+      {
+        "date": "2025-05-29",
+        "count": 2
+      },
+      {
+        "date": "2025-05-30",
+        "count": 1
+      },
+      {
+        "date": "2025-05-31",
+        "count": 0
+      },
+      {
+        "date": "2025-06-01",
+        "count": 1
+      },
+      {
+        "date": "2025-06-02",
+        "count": 39
+      },
+      {
+        "date": "2025-06-03",
+        "count": 3
+      },
+      {
+        "date": "2025-06-04",
+        "count": 183
+      },
+      {
+        "date": "2025-06-05",
+        "count": 127
+      },
+      {
+        "date": "2025-06-06",
+        "count": 76
+      },
+      {
+        "date": "2025-06-07",
+        "count": 32
+      },
+      {
+        "date": "2025-06-08",
+        "count": 18
+      },
+      {
+        "date": "2025-06-09",
+        "count": 170
+      },
+      {
+        "date": "2025-06-10",
+        "count": 191
+      },
+      {
+        "date": "2025-06-11",
+        "count": 146
+      },
+      {
+        "date": "2025-06-12",
+        "count": 40
+      },
+      {
+        "date": "2025-06-13",
+        "count": 92
+      },
+      {
+        "date": "2025-06-14",
+        "count": 11
+      },
+      {
+        "date": "2025-06-15",
+        "count": 4
+      },
+      {
+        "date": "2025-06-16",
+        "count": 11
+      },
+      {
+        "date": "2025-06-17",
+        "count": 16
+      },
+      {
+        "date": "2025-06-18",
+        "count": 73
+      },
+      {
+        "date": "2025-06-19",
+        "count": 24
+      },
+      {
+        "date": "2025-06-20",
+        "count": 13
+      },
+      {
+        "date": "2025-06-21",
+        "count": 4
+      },
+      {
+        "date": "2025-06-22",
+        "count": 7
+      },
+      {
+        "date": "2025-06-23",
+        "count": 19
+      },
+      {
+        "date": "2025-06-24",
+        "count": 32
+      },
+      {
+        "date": "2025-06-25",
+        "count": 17
+      },
+      {
+        "date": "2025-06-26",
+        "count": 43
+      },
+      {
+        "date": "2025-06-27",
+        "count": 54
+      },
+      {
+        "date": "2025-06-28",
+        "count": 5
+      },
+      {
+        "date": "2025-06-29",
+        "count": 3
+      },
+      {
+        "date": "2025-06-30",
+        "count": 12
+      },
+      {
+        "date": "2025-07-01",
+        "count": 6
+      },
+      {
+        "date": "2025-07-02",
+        "count": 3
+      },
+      {
+        "date": "2025-07-03",
+        "count": 14
+      },
+      {
+        "date": "2025-07-04",
+        "count": 10
+      },
+      {
+        "date": "2025-07-05",
+        "count": 1
+      },
+      {
+        "date": "2025-07-06",
+        "count": 0
+      },
+      {
+        "date": "2025-07-07",
+        "count": 3
+      },
+      {
+        "date": "2025-07-08",
+        "count": 18
+      },
+      {
+        "date": "2025-07-09",
+        "count": 2
+      },
+      {
+        "date": "2025-07-10",
+        "count": 3
+      },
+      {
+        "date": "2025-07-11",
+        "count": 32
+      },
+      {
+        "date": "2025-07-12",
+        "count": 0
+      },
+      {
+        "date": "2025-07-13",
+        "count": 0
+      },
+      {
+        "date": "2025-07-14",
+        "count": 2
+      },
+      {
+        "date": "2025-07-15",
+        "count": 32
+      },
+      {
+        "date": "2025-07-16",
+        "count": 2
+      },
+      {
+        "date": "2025-07-17",
+        "count": 17
+      }
+    ]
+  }
+}

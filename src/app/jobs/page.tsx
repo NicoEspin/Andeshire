@@ -119,7 +119,7 @@ export default function JobList() {
           error={jobListError}
           filters={jobListFilters}
           filtersApplied={jobListFiltersApplied}
-          currentPage={parseInt(jobListCurrentPage || "1", 10)}
+          currentPage={(jobListCurrentPage || 1)}
           totalPages={jobListTotalPages}
           onFilterChange={(filters) => handleFilterChange(filters)}
           onPageChange={(page) => handleFilterChange({ page }, true)}

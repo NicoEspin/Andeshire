@@ -1,15 +1,18 @@
 "use client";
 
 import * as React from "react";
-import {
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+import { useTranslations } from "next-intl";
 import VariableRichTextEditor, {
   VariableRichTextEditorHandle,
 } from "../VariableRichTextEditor";
@@ -35,35 +38,35 @@ export default function CallAgentsTemplateCreate({
   onCancel,
   onSave,
 }: CallAgentsTemplateCreateProps) {
+  const t = useTranslations("Templates.TemplatesView.CallAgents.Create");
+
   const [name, setName] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [prompt, setPrompt] = React.useState("");
   const [firstMessage, setFirstMessage] = React.useState("");
-  const [maxAttempts, setMaxAttempts] = React.useState(3);
-  const [intervalMinutes, setIntervalMinutes] = React.useState(10);
+  const [maxAttempts, setMaxAttempts] = React.useState(0);
+  const [intervalMinutes, setIntervalMinutes] = React.useState(0);
   const [askPermission, setAskPermission] = React.useState(true);
   const [direction, setDirection] = React.useState("Outbound");
   const [status, setStatus] = React.useState("Active");
 
   const allVariables = mockKeys.data.all_keys;
-
   const promptEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
-  const firstMessageEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
+  const firstMessageEditorRef =
+    React.useRef<VariableRichTextEditorHandle>(null);
 
   const handleSave = () => {
-    if (onSave) {
-      onSave({
-        name,
-        description,
-        prompt,
-        first_message: firstMessage,
-        max_attempts: maxAttempts,
-        interval_minutes: intervalMinutes,
-        ask_permission: askPermission,
-        direction,
-        status,
-      });
-    }
+    onSave?.({
+      name,
+      description,
+      prompt,
+      first_message: firstMessage,
+      max_attempts: maxAttempts,
+      interval_minutes: intervalMinutes,
+      ask_permission: askPermission,
+      direction,
+      status,
+    });
     onCancel();
   };
 
@@ -73,25 +76,21 @@ export default function CallAgentsTemplateCreate({
       className="flex flex-col w-full sm:min-w-[300px] md:min-w-[600px] px-6 py-6 gap-5 overflow-auto"
     >
       <SheetHeader>
-        <SheetTitle className="text-xl font-semibold">
-          Crear plantilla de Llamada
-        </SheetTitle>
+        <SheetTitle className="text-xl font-semibold">{t("Title")}</SheetTitle>
       </SheetHeader>
 
       <div className="flex flex-col gap-5 flex-grow">
-        {/* Nombre */}
         <div>
-          <Label className="block mb-1">Nombre de la plantilla</Label>
+          <Label className="block mb-1">{t("Name")}</Label>
           <Input
-            placeholder="Ej: Validación Inglés"
+            placeholder={t("NamePlaceholder")}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
 
-        {/* Descripción */}
         <div>
-          <Label className="block mb-1">Descripción</Label>
+          <Label className="block mb-1">{t("Description")}</Label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -99,38 +98,48 @@ export default function CallAgentsTemplateCreate({
           />
         </div>
 
-        {/* Dropdowns */}
         <div className="flex gap-6">
           <div>
-            <Label className="text-sm font-medium mb-1 block">Direction</Label>
+            <Label className="text-sm font-medium mb-1 block">
+              {t("Direction")}
+            </Label>
             <Select value={direction} onValueChange={setDirection}>
               <SelectTrigger>
-                <SelectValue placeholder="Selecciona dirección" />
+                <SelectValue placeholder={t("Direction")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Outbound">Outbound</SelectItem>
-                <SelectItem value="Inbound">Inbound</SelectItem>
+                <SelectItem value="Outbound">
+                  {t("DirectionOptions.Outbound")}
+                </SelectItem>
+                <SelectItem value="Inbound">
+                  {t("DirectionOptions.Inbound")}
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
 
           <div>
-            <Label className="text-sm font-medium mb-1 block">Status</Label>
+            <Label className="text-sm font-medium mb-1 block">
+              {t("Status")}
+            </Label>
             <Select value={status} onValueChange={setStatus}>
               <SelectTrigger>
-                <SelectValue placeholder="Selecciona estado" />
+                <SelectValue placeholder={t("Status")} />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="Active">Active</SelectItem>
-                <SelectItem value="Inactive">Inactive</SelectItem>
+                <SelectItem value="Active">
+                  {t("StatusOptions.Active")}
+                </SelectItem>
+                <SelectItem value="Inactive">
+                  {t("StatusOptions.Inactive")}
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
         </div>
 
-        {/* Prompt */}
         <div>
-          <Label className="block mb-1">Prompt</Label>
+          <Label className="block mb-1">{t("Prompt")}</Label>
           <VariableRichTextEditor
             ref={promptEditorRef}
             value={prompt}
@@ -138,7 +147,7 @@ export default function CallAgentsTemplateCreate({
             onChange={setPrompt}
           />
           <div className="mt-2">
-            <Label className="block mb-1">Agregar variable</Label>
+            <Label className="block mb-1">{t("AddVariable")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={promptEditorRef}
@@ -146,9 +155,8 @@ export default function CallAgentsTemplateCreate({
           </div>
         </div>
 
-        {/* Primer mensaje */}
         <div>
-          <Label className="block mb-1">Primer mensaje</Label>
+          <Label className="block mb-1">{t("FirstMessage")}</Label>
           <VariableRichTextEditor
             ref={firstMessageEditorRef}
             value={firstMessage}
@@ -156,7 +164,7 @@ export default function CallAgentsTemplateCreate({
             onChange={setFirstMessage}
           />
           <div className="mt-2">
-            <Label className="block mb-1">Agregar variable</Label>
+            <Label className="block mb-1">{t("AddVariable")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={firstMessageEditorRef}
@@ -164,9 +172,8 @@ export default function CallAgentsTemplateCreate({
           </div>
         </div>
 
-        {/* Intentos máximos */}
         <div>
-          <Label className="block mb-1">Intentos máximos</Label>
+          <Label className="block mb-1">{t("MaxAttempts")}</Label>
           <Input
             type="number"
             value={maxAttempts}
@@ -174,9 +181,8 @@ export default function CallAgentsTemplateCreate({
           />
         </div>
 
-        {/* Intervalo entre intentos */}
         <div>
-          <Label className="block mb-1">Intervalo (minutos)</Label>
+          <Label className="block mb-1">{t("IntervalMinutes")}</Label>
           <Input
             type="number"
             value={intervalMinutes}
@@ -184,7 +190,6 @@ export default function CallAgentsTemplateCreate({
           />
         </div>
 
-        {/* Permiso */}
         <div>
           <Label className="inline-flex items-center gap-2 cursor-pointer">
             <input
@@ -193,17 +198,20 @@ export default function CallAgentsTemplateCreate({
               onChange={(e) => setAskPermission(e.target.checked)}
               className="mr-2"
             />
-            ¿Pedir permiso antes de llamar?
+            {t("AskPermission")}
           </Label>
         </div>
       </div>
 
       <div className="flex justify-end gap-2 border-t pt-4">
         <Button variant="outline" onClick={onCancel}>
-          Cancelar
+          {t("Cancel")}
         </Button>
-        <Button className="bg-purple-600 hover:bg-purple-700 text-white" onClick={handleSave}>
-          Guardar
+        <Button
+          className="bg-purple-600 hover:bg-purple-700 text-white"
+          onClick={handleSave}
+        >
+          {t("Save")}
         </Button>
       </div>
     </SheetContent>

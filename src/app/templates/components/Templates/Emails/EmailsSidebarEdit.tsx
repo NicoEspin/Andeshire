@@ -67,7 +67,7 @@ export default function EmailSidebarEdit({
           />
 
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <Label className="block mb-1">{t("AddVariableSubject")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={subjectEditorRef}
@@ -86,7 +86,7 @@ export default function EmailSidebarEdit({
           />
 
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <Label className="block mb-1">{t("AddVariableContent")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={contentEditorRef}

@@ -88,7 +88,7 @@ export default function EditCallAgentsSidebar({
             onChange={setPrompt}
           />
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <Label className="block mb-1">{t("AddVariablePrompt")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={promptEditorRef}
@@ -106,7 +106,7 @@ export default function EditCallAgentsSidebar({
             onChange={setFirstMessage}
           />
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <Label className="block mb-1">{t("AddVariableFirstMessage")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={firstMessageEditorRef}

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useTranslations } from "next-intl";
 import { SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,6 +36,8 @@ export default function EmailAgentsTemplateCreate({
   onCancel,
   onSave,
 }: EmailAgentsTemplateCreateProps) {
+  const t = useTranslations("Templates.TemplatesView.EmailAgents.Create");
+
   const [name, setName] = React.useState("");
   const [prompt, setPrompt] = React.useState("");
   const [task, setTask] = React.useState("");
@@ -60,7 +63,7 @@ export default function EmailAgentsTemplateCreate({
         status,
       });
     }
-    onCancel(); // siempre cerrar
+    onCancel();
   };
 
   return (
@@ -69,29 +72,27 @@ export default function EmailAgentsTemplateCreate({
       className="flex flex-col w-full sm:min-w-[300px] md:min-w-[600px] px-6 py-6 gap-5 overflow-auto"
     >
       <SheetHeader>
-        <SheetTitle className="text-xl font-semibold">
-          Crear plantilla de Email
-        </SheetTitle>
+        <SheetTitle className="text-xl font-semibold">{t("Title")}</SheetTitle>
       </SheetHeader>
 
       <div className="flex flex-col gap-5 flex-grow">
-        {/* Nombre */}
         <div>
-          <Label className="block mb-1">Nombre de la plantilla</Label>
+          <Label className="block mb-1">{t("Name")}</Label>
           <Input
-            placeholder="Ej: Email seguimiento técnico"
+            placeholder={t("NamePlaceholder")}
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
 
-        {/* Dropdowns */}
         <div className="flex gap-6">
           <div>
-            <Label className="text-sm font-medium mb-1 block">Direction</Label>
+            <Label className="text-sm font-medium mb-1 block">
+              {t("Direction")}
+            </Label>
             <Select value={direction} onValueChange={setDirection}>
               <SelectTrigger>
-                <SelectValue placeholder="Selecciona dirección" />
+                <SelectValue placeholder={t("DirectionPlaceholder")} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Outbound">Outbound</SelectItem>
@@ -101,10 +102,12 @@ export default function EmailAgentsTemplateCreate({
           </div>
 
           <div>
-            <Label className="text-sm font-medium mb-1 block">Status</Label>
+            <Label className="text-sm font-medium mb-1 block">
+              {t("Status")}
+            </Label>
             <Select value={status} onValueChange={setStatus}>
               <SelectTrigger>
-                <SelectValue placeholder="Selecciona estado" />
+                <SelectValue placeholder={t("StatusPlaceholder")} />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="Active">Active</SelectItem>
@@ -114,9 +117,8 @@ export default function EmailAgentsTemplateCreate({
           </div>
         </div>
 
-        {/* Prompt */}
         <div>
-          <Label className="block mb-1">Prompt</Label>
+          <Label className="block mb-1">{t("Prompt")}</Label>
           <VariableRichTextEditor
             ref={promptEditorRef}
             value={prompt}
@@ -124,7 +126,7 @@ export default function EmailAgentsTemplateCreate({
             onChange={setPrompt}
           />
           <div className="mt-2">
-            <Label className="block mb-1">Agregar variable</Label>
+            <Label className="block mb-1">{t("AddVariablePrompt")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={promptEditorRef}
@@ -132,9 +134,8 @@ export default function EmailAgentsTemplateCreate({
           </div>
         </div>
 
-        {/* Tarea */}
         <div>
-          <Label className="block mb-1">Tarea</Label>
+          <Label className="block mb-1">{t("Task")}</Label>
           <VariableRichTextEditor
             ref={taskEditorRef}
             value={task}
@@ -142,7 +143,7 @@ export default function EmailAgentsTemplateCreate({
             onChange={setTask}
           />
           <div className="mt-2">
-            <Label className="block mb-1">Agregar variable</Label>
+            <Label className="block mb-1">{t("AddVariableTask")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={taskEditorRef}
@@ -150,9 +151,8 @@ export default function EmailAgentsTemplateCreate({
           </div>
         </div>
 
-        {/* Primer mensaje */}
         <div>
-          <Label className="block mb-1">Primer mensaje</Label>
+          <Label className="block mb-1">{t("FirstMessage")}</Label>
           <VariableRichTextEditor
             ref={firstMessageEditorRef}
             value={firstMessage}
@@ -160,7 +160,7 @@ export default function EmailAgentsTemplateCreate({
             onChange={setFirstMessage}
           />
           <div className="mt-2">
-            <Label className="block mb-1">Agregar variable</Label>
+            <Label className="block mb-1">{t("AddVariableFirstMessage")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={firstMessageEditorRef}
@@ -171,13 +171,13 @@ export default function EmailAgentsTemplateCreate({
 
       <div className="flex justify-end gap-2 border-t pt-4">
         <Button variant="outline" onClick={onCancel}>
-          Cancelar
+          {t("Cancel")}
         </Button>
         <Button
           className="bg-purple-600 hover:bg-purple-700 text-white"
           onClick={handleSave}
         >
-          Guardar
+          {t("Save")}
         </Button>
       </div>
     </SheetContent>

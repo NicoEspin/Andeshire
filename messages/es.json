@@ -228,6 +228,15 @@
         "View": "Ver Detalles",
         "Edit": "Editar",
         "Delete": "Eliminar",
+        "Create": {
+          "Title": "Crear una plantilla de WhatsApp",
+          "NameLabel": "Nombre de la Plantilla",
+          "NamePlaceholder": "Nombre de la Plantilla",
+          "ContentLabel": "Contenido",
+          "AddVariable": "Agregar Variable",
+          "Cancel": "Cancelar",
+          "Save": "Guardar"
+        },
         "WhatsAppSidebar": {
           "CreatedAt": "Creado",
           "UpdatedAt": "Actualizado",
@@ -258,6 +267,15 @@
         "View": "Ver Detalles",
         "Edit": "Editar",
         "Delete": "Eliminar",
+        "Create": {
+          "Title": "Crear una plantilla de Email",
+          "TemplateName": "Nombre de la Plantilla",
+          "Subject": "Asunto",
+          "Content": "Contenido",
+          "AddVariable": "Agregar Variable",
+          "Save": "Guardar",
+          "Cancel": "Cancelar"
+        },
         "SidebarView": {
           "View": "Ver plantilla de correo",
           "ViewDescription": "Información detallada sobre la plantilla de correo seleccionada.",
@@ -275,9 +293,12 @@
           "EditDescription": "Modifica los detalles de tu plantilla de correo a continuación.",
           "Name": "Nombre",
           "TemplateName": "Nombre de la plantilla",
+          "TemplateNamePlaceholder": "Introduce un nombre para la plantilla",
           "Subject": "Asunto",
           "Content": "Contenido",
           "AddVariable": "Agregar variable",
+          "AddVariableSubject": "Agregar variable al asunto",
+          "AddVariableContent": "Agregar variable al contenido",
           "SelectVariable": "Seleccionar variable",
           "PreviewSubject": "Vista previa del asunto",
           "PreviewContent": "Vista previa del contenido",
@@ -300,6 +321,24 @@
         "View": "Ver Detalles",
         "Edit": "Editar",
         "Delete": "Eliminar",
+        "Create": {
+          "Title": "Crear Agente de WhatsApp",
+          "Description": "Completa los datos a continuación para crear un nuevo agente de WhatsApp.",
+          "Fields": {
+            "Name": "Nombre",
+            "Prompt": "Prompt",
+            "Task": "Tarea",
+            "FirstMessage": "Primer Mensaje"
+          },
+          "Placeholders": {
+            "Name": "Introduce el nombre del agente"
+          },
+          "AddVariable": "Agregar variable",
+          "Actions": {
+            "Cancel": "Cancelar",
+            "Save": "Guardar"
+          }
+        },
         "SidebarView": {
           "Description": "Ver detalles del agente de WhatsApp",
           "PromptLabel": "Prompt:",
@@ -321,14 +360,21 @@
             "Name": "Nombre",
             "Prompt": "Prompt",
             "Task": "Tarea",
-            "FirstMessage": "Primer Mensaje"
+            "FirstMessage": "Primer Mensaje",
+            "Direction": "Dirección",
+            "Status": "Estado"
           },
           "Placeholders": {
             "Name": "Nombre del Agente",
             "Prompt": "Introduce el prompt con variables...",
             "Task": "Describe la tarea...",
-            "FirstMessage": "Escribe el primer mensaje..."
+            "FirstMessage": "Escribe el primer mensaje...",
+            "Direction": "Selecciona dirección",
+            "Status": "Selecciona estado"
           },
+          "AddVariablePrompt": "Agregar variable al prompt",
+          "AddVariableTask": "Agregar variable a la tarea",
+          "AddVariableFirstMessage": "Agregar variable al primer mensaje",
           "Actions": {
             "Cancel": "Cancelar",
             "Save": "Guardar"
@@ -352,8 +398,32 @@
         "View": "Ver Detalles",
         "Edit": "Editar",
         "Delete": "Eliminar",
+        "Create": {
+          "Title": "Crear plantilla de Llamada",
+          "Name": "Nombre de la plantilla",
+          "NamePlaceholder": "Introduce un nombre para la plantilla",
+          "Description": "Descripción",
+          "Direction": "Dirección",
+          "DirectionOptions": {
+            "Outbound": "Saliente",
+            "Inbound": "Entrante"
+          },
+          "Status": "Estado",
+          "StatusOptions": {
+            "Active": "Activo",
+            "Inactive": "Inactivo"
+          },
+          "Prompt": "Prompt",
+          "FirstMessage": "Primer mensaje",
+          "AddVariable": "Agregar variable",
+          "MaxAttempts": "Intentos máximos",
+          "IntervalMinutes": "Intervalo (minutos)",
+          "AskPermission": "¿Pedir permiso antes de llamar?",
+          "Cancel": "Cancelar",
+          "Save": "Guardar"
+        },
         "SidebarView": {
-          "Title": "Detalles del Call Agent",
+          "Title": "Detalles del Agente de Llamada",
           "PromptLabel": "Prompt:",
           "FirstMessageLabel": "Primer Mensaje:",
           "MaxAttemptsLabel": "Intentos Máximos:",
@@ -367,13 +437,16 @@
           "Edit": "Editar"
         },
         "SidebarEdit": {
-          "Title": "Editar Call Agent",
+          "Title": "Editar Agente de Llamada",
           "Name": "Nombre",
+          "Description": "Descripción",
           "Prompt": "Prompt",
           "FirstMessage": "Primer Mensaje",
           "MaxAttempts": "Intentos Máximos",
           "IntervalMinutes": "Intervalo (minutos)",
           "AskPermission": "Pedir Permiso",
+          "AddVariablePrompt": "Agregar variable al prompt",
+          "AddVariableFirstMessage": "Agregar variable al primer mensaje",
           "Save": "Guardar",
           "Cancel": "Cancelar"
         }
@@ -393,12 +466,35 @@
         "View": "Ver Detalles",
         "Edit": "Editar",
         "Delete": "Eliminar",
+        "Create": {
+          "Title": "Crear plantilla de Email",
+          "Name": "Nombre de la plantilla",
+          "NamePlaceholder": "Ej: Email seguimiento técnico",
+          "Direction": "Dirección",
+          "DirectionPlaceholder": "Selecciona dirección",
+          "Status": "Estado",
+          "StatusPlaceholder": "Selecciona estado",
+          "Prompt": "Prompt",
+          "AddVariablePrompt": "Agregar variable al Prompt",
+          "Task": "Tarea",
+          "AddVariableTask": "Agregar variable a la Tarea",
+          "FirstMessage": "Primer mensaje",
+          "AddVariableFirstMessage": "Agregar variable al Primer Mensaje",
+          "Cancel": "Cancelar",
+          "Save": "Guardar"
+        },
         "SidebarEdit": {
           "Title": "Editar Agente de Email",
+          "NameLabel": "Nombre",
           "PromptLabel": "Prompt",
           "TaskLabel": "Tarea",
           "FirstMessageLabel": "Primer Mensaje",
           "AddVariable": "Agregar Variable",
+          "AddVariablePrompt": "Agregar variable al prompt",
+          "AddVariableTask": "Agregar variable a la tarea",
+          "AddVariableFirstMessage": "Agregar variable al primer mensaje",
+          "DirectionLabel": "Dirección",
+          "StatusLabel": "Estado",
           "Save": "Guardar",
           "Cancel": "Cancelar"
         },
@@ -430,6 +526,34 @@
         "Edit": "Editar",
         "Delete": "Eliminar",
         "NoName": "Sin nombre",
+        "Create": {
+          "Title": "Crear plantilla de LinkedIn",
+          "Description": "Define el comportamiento del agente de mensajes de LinkedIn.",
+          "Fields": {
+            "Name": "Nombre",
+            "NamePlaceholder": "Ej: Seguimiento post entrevista",
+            "Description": "Descripción",
+            "DescriptionPlaceholder": "Breve descripción de la plantilla",
+            "Prompt": "Prompt",
+            "Task": "Tarea",
+            "FirstMessage": "Primer mensaje",
+            "Direction": "Dirección",
+            "Status": "Estado"
+          },
+          "Dropdowns": {
+            "DirectionOutbound": "Salida",
+            "DirectionInbound": "Entrada",
+            "StatusActive": "Activo",
+            "StatusInactive": "Inactivo"
+          },
+          "Actions": {
+            "Save": "Guardar",
+            "Cancel": "Cancelar"
+          },
+          "AddVariablePrompt": "Agregar variable de Prompt",
+          "AddVariableTask": "Agregar variable de Tarea",
+          "AddVariableFirstMessage": "Agregar variable de Primer Mensaje"
+        },
         "SidebarView": {
           "Description": "Ver detalles del agente de Linkedin",
           "Prompt": "Prompt",
@@ -444,14 +568,23 @@
         },
         "SidebarEdit": {
           "Title": "Editar Agente de Linkedin",
+          "Description": "Actualiza los detalles del agente a continuación.",
           "Fields": {
+            "Name": "Nombre",
+            "Description": "Descripción",
             "Prompt": "Prompt",
             "Task": "Tarea",
             "FirstMessage": "Primer Mensaje",
+            "Direction": "Dirección",
+            "Status": "Estado",
             "AddVariable": "Agregar Variable",
             "PreviewPrompt": "Vista Previa Prompt",
             "PreviewTask": "Vista Previa Tarea",
             "PreviewFirstMessage": "Vista Previa Primer Mensaje"
+          },
+          "Placeholders": {
+            "Name": "Nombre del agente",
+            "Description": "Descripción del agente"
           },
           "Actions": {
             "Save": "Guardar",
@@ -474,6 +607,30 @@
         "View": "Ver Detalles",
         "Edit": "Editar",
         "Delete": "Eliminar",
+        "Create": {
+          "Title": "Crear plantilla HTTP",
+          "Description": "Define una nueva plantilla para un agente HTTP.",
+          "Fields": {
+            "Name": "Nombre",
+            "Method": "Método",
+            "URL": "URL",
+            "Timeout": "Tiempo de espera (segundos)",
+            "Retries": "Reintentos",
+            "RequestBody": "Cuerpo de la solicitud",
+            "SaveOutput": "Guardar salida",
+            "QueryParams": "Parámetros de consulta",
+            "Headers": "Encabezados"
+          },
+          "Buttons": {
+            "AddQueryParam": "Agregar query param",
+            "AddHeader": "Agregar header",
+            "Cancel": "Cancelar",
+            "Save": "Guardar",
+            "AddVariableUrl": "Agregar variable a la URL",
+            "AddVariableBody": "Agregar variable al cuerpo",
+            "AddVariableSaveOutput": "Agregar variable a salida"
+          }
+        },
         "SidebarEdit": {
           "Title": "Editar Agente HTTP",
           "Fields": {
@@ -482,7 +639,19 @@
             "URL": "URL",
             "Timeout": "Tiempo de espera (segundos)",
             "Retries": "Reintentos",
-            "RequestBody": "Cuerpo de la solicitud"
+            "RequestBody": "Cuerpo de la solicitud",
+            "SaveOutput": "Guardar salida",
+            "AddVariableURL": "Agregar variable a la URL",
+            "AddVariableBody": "Agregar variable al cuerpo",
+            "AddVariableSaveOutput": "Agregar variable a la salida"
+          },
+          "QueryParams": {
+            "Label": "Parámetros de consulta",
+            "Add": "Agregar parámetro de consulta"
+          },
+          "Headers": {
+            "Label": "Encabezados",
+            "Add": "Agregar encabezado"
           },
           "Actions": {
             "Save": "Guardar",
@@ -496,6 +665,9 @@
           "Timeout": "Tiempo de espera",
           "Retries": "Reintentos",
           "Body": "Cuerpo",
+          "SaveOutput": "Guardar resultado",
+          "QueryParams": "Parámetros de consulta",
+          "Headers": "Encabezados",
           "CreatedAt": "Creado el",
           "UpdatedAt": "Actualizado el",
           "Close": "Cerrar",

@@ -42,7 +42,7 @@ export default function WhatsAppAgentTemplateCreate({
   onSave,
 }: WhatsAppAgentTemplateCreateProps) {
   const t = useTranslations(
-    "Templates.TemplatesView.WhatsAppAgents.SidebarCreate"
+    "Templates.TemplatesView.WhatsAppAgents.Create"
   );
 
   const [name, setName] = React.useState("");

@@ -94,7 +94,7 @@ export default function EditEmailAgentsSidebar({
         {/* Direction y Status */}
         <div className="flex gap-6">
           <div className="flex-1">
-            <Label className="text-sm font-medium mb-1 block">Direction</Label>
+            <Label className="text-sm font-medium mb-1 block">{t("DirectionLabel")}</Label>
             <Select value={direction} onValueChange={setDirection}>
               <SelectTrigger>
                 <SelectValue placeholder="Selecciona dirección" />
@@ -106,7 +106,7 @@ export default function EditEmailAgentsSidebar({
             </Select>
           </div>
           <div className="flex-1">
-            <Label className="text-sm font-medium mb-1 block">Status</Label>
+            <Label className="text-sm font-medium mb-1 block">{t("StatusLabel")}</Label>
             <Select value={status} onValueChange={setStatus}>
               <SelectTrigger>
                 <SelectValue placeholder="Selecciona estado" />
@@ -129,7 +129,7 @@ export default function EditEmailAgentsSidebar({
             onChange={setPrompt}
           />
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <Label className="block mb-1">{t("AddVariablePrompt")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={promptEditorRef}
@@ -147,7 +147,7 @@ export default function EditEmailAgentsSidebar({
             onChange={setTask}
           />
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <Label className="block mb-1">{t("AddVariableTask")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={taskEditorRef}
@@ -165,7 +165,7 @@ export default function EditEmailAgentsSidebar({
             onChange={setFirstMessage}
           />
           <div className="mt-2">
-            <Label className="block mb-1">{t("AddVariable")}</Label>
+            <Label className="block mb-1">{t("AddVariableFirstMessage")}</Label>
             <VariableDropdown
               allVariables={allVariables}
               editorRef={firstMessageEditorRef}

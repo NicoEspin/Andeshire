@@ -9,6 +9,7 @@ import EmailAgentsTemplateCreate from "./EmailAgentsTemplateCreate";
 import WhatsAppAgentTemplateCreate from "./WhatsAppAgentTemplateCreate";
 import CallAgentsTemplateCreate from "./CallAgentsTemplateCreate";
 import LinkedinAgentsTemplateCreate from "./LinkedinAgentsTemplateCreate";
+import HttpAgentsTemplateCreate from "./HttpAgentsTemplatesCreate";
 
 // ...otros imports según tu estructura
 
@@ -19,7 +20,8 @@ const CREATE_COMPONENTS: { [key: string]: React.FC<{ onCancel: () => void }> } =
     EmailAgents: EmailAgentsTemplateCreate,
     WhatsappAgents: WhatsAppAgentTemplateCreate,
     CallAgents: CallAgentsTemplateCreate,
-    LinkedinAgents: LinkedinAgentsTemplateCreate
+    LinkedinAgents: LinkedinAgentsTemplateCreate,
+    HTTP: HttpAgentsTemplateCreate,
     // agrega tus otros tipos aquí
   };
 

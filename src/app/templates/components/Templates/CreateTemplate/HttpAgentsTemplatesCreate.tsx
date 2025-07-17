@@ -1,15 +1,15 @@
 "use client";
 
 import * as React from "react";
-import { useTranslations } from "next-intl";
 import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@radix-ui/react-label";
+import { Label } from "@/components/ui/label";
 import { TrashIcon, PlusIcon } from "lucide-react";
 import {
   Select,
@@ -18,6 +18,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { useTranslations } from "next-intl";
 
 import mockKeys from "../../data/mockkeys.json";
 import VariableRichTextEditor, {
@@ -25,41 +26,32 @@ import VariableRichTextEditor, {
 } from "../VariableRichTextEditor";
 import VariableDropdown from "../VariableDropdown";
 
-import type { HttpAgent } from "./HttpAgentsSidebar";
-
-interface EditHttpAgentsSidebarProps {
-  agent: HttpAgent;
+interface HttpAgentsTemplateCreateProps {
   onCancel: () => void;
-  onSave: (updated: HttpAgent) => void;
+  onSave?: (data: any) => void;
 }
 
-export default function EditHttpAgentsSidebar({
-  agent,
+export default function HttpAgentsTemplateCreate({
   onCancel,
   onSave,
-}: EditHttpAgentsSidebarProps) {
-  const t = useTranslations("Templates.TemplatesView.HTTPAgents.SidebarEdit");
+}: HttpAgentsTemplateCreateProps) {
+  const t = useTranslations("Templates.TemplatesView.HTTPAgents.Create");
 
-  const [name, setName] = React.useState(agent.name);
-  const [method, setMethod] = React.useState(agent.method);
-  const [url, setUrl] = React.useState(agent.url);
-  const [timeout, setTimeout] = React.useState(agent.timeout);
-  const [retries, setRetries] = React.useState(agent.retries);
-  const [requestBody, setRequestBody] = React.useState(agent.request_body);
-  const [saveOutput, setSaveOutput] = React.useState(agent.save_output ?? []);
+  const [name, setName] = React.useState("");
+  const [method, setMethod] = React.useState("GET");
+  const [url, setUrl] = React.useState("");
+  const [timeout, setTimeout] = React.useState(0);
+  const [retries, setRetries] = React.useState(0);
+  const [requestBody, setRequestBody] = React.useState("");
+  const [saveOutput, setSaveOutput] = React.useState<string[]>([]);
+  const [queryParams, setQueryParams] = React.useState<[string, string][]>([]);
+  const [headers, setHeaders] = React.useState<[string, string][]>([]);
 
-  const [queryParams, setQueryParams] = React.useState(
-    Object.entries(agent.query_params || {})
-  );
-  const [headers, setHeaders] = React.useState(
-    Object.entries(agent.headers || {})
-  );
+  const allVariables = mockKeys.data.all_keys;
 
   const urlEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
   const bodyEditorRef = React.useRef<VariableRichTextEditorHandle>(null);
   const saveOutputRef = React.useRef<VariableRichTextEditorHandle>(null);
-
-  const allVariables = mockKeys.data.all_keys;
 
   const handleAddEntry = (
     setter: React.Dispatch<React.SetStateAction<[string, string][]>>,
@@ -79,15 +71,16 @@ export default function EditHttpAgentsSidebar({
   ) =>
     setter((prev) =>
       prev.map(([k, v], i) =>
-        i === index ? [field === "key" ? value : k, field === "value" ? value : v] : [k, v]
+        i === index
+          ? [field === "key" ? value : k, field === "value" ? value : v]
+          : [k, v]
       )
     );
 
   const handleSave = () => {
     const qp = Object.fromEntries(queryParams.filter(([k]) => k));
     const hd = Object.fromEntries(headers.filter(([k]) => k));
-    onSave({
-      ...agent,
+    onSave?.({
       name,
       method,
       url,
@@ -98,6 +91,7 @@ export default function EditHttpAgentsSidebar({
       query_params: qp,
       headers: hd,
     });
+    onCancel();
   };
 
   return (
@@ -107,19 +101,24 @@ export default function EditHttpAgentsSidebar({
     >
       <SheetHeader>
         <SheetTitle className="text-xl font-semibold">{t("Title")}</SheetTitle>
+        <SheetDescription className="text-muted-foreground">
+          {t("Description")}
+        </SheetDescription>
       </SheetHeader>
 
       <div className="flex flex-col gap-5 flex-grow">
+        {/* Nombre */}
         <div>
-          <Label>{t("Fields.Name")}</Label>
+          <Label className="mb-1">{t("Fields.Name")}</Label>
           <Input value={name} onChange={(e) => setName(e.target.value)} />
         </div>
 
+        {/* Método */}
         <div>
-          <Label>{t("Fields.Method")}</Label>
+          <Label className="mb-1">{t("Fields.Method")}</Label>
           <Select value={method} onValueChange={setMethod}>
             <SelectTrigger>
-              <SelectValue placeholder="Selecciona método" />
+              <SelectValue placeholder={t("Fields.Method")} />
             </SelectTrigger>
             <SelectContent>
               {["GET", "POST", "PUT", "DELETE"].map((m) => (
@@ -131,70 +130,86 @@ export default function EditHttpAgentsSidebar({
           </Select>
         </div>
 
+        {/* URL */}
         <div>
-          <Label>{t("Fields.URL")}</Label>
+          <Label className="mb-1">{t("Fields.URL")}</Label>
           <VariableRichTextEditor
             ref={urlEditorRef}
             value={url}
+            allVariables={allVariables}
             onChange={setUrl}
-            allVariables={allVariables}
           />
-          <VariableDropdown
-            allVariables={allVariables}
-            editorRef={urlEditorRef}
-          />
+          <div className="mt-2">
+            <Label className="mb-1">{t("Buttons.AddVariableUrl")}</Label>
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={urlEditorRef}
+      
+            />
+          </div>
         </div>
 
-        <div>
-          <Label>{t("Fields.Timeout")}</Label>
-          <Input
-            type="number"
-            value={timeout}
-            onChange={(e) => setTimeout(Number(e.target.value))}
-          />
+        {/* Timeout y Retries */}
+        <div className="flex gap-4">
+          <div>
+            <Label className="mb-1">{t("Fields.Timeout")}</Label>
+            <Input
+              type="number"
+              value={timeout}
+              onChange={(e) => setTimeout(Number(e.target.value))}
+            />
+          </div>
+          <div>
+            <Label className="mb-1">{t("Fields.Retries")}</Label>
+            <Input
+              type="number"
+              value={retries}
+              onChange={(e) => setRetries(Number(e.target.value))}
+            />
+          </div>
         </div>
 
+        {/* Request Body */}
         <div>
-          <Label>{t("Fields.Retries")}</Label>
-          <Input
-            type="number"
-            value={retries}
-            onChange={(e) => setRetries(Number(e.target.value))}
-          />
-        </div>
-
-        <div>
-          <Label>{t("Fields.RequestBody")}</Label>
+          <Label className="mb-1">{t("Fields.RequestBody")}</Label>
           <VariableRichTextEditor
             ref={bodyEditorRef}
             value={requestBody}
+            allVariables={allVariables}
             onChange={setRequestBody}
-            allVariables={allVariables}
           />
-          <VariableDropdown
-            allVariables={allVariables}
-            editorRef={bodyEditorRef}
-          />
+          <div className="mt-2">
+            <Label className="mb-1">{t("Buttons.AddVariableBody")}</Label>
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={bodyEditorRef}
+            
+            />
+          </div>
         </div>
 
         {/* Save Output */}
         <div>
-          <Label>{t("Fields.SaveOutput")}</Label>
+          <Label className="mb-1">{t("Fields.SaveOutput")}</Label>
           <VariableRichTextEditor
             ref={saveOutputRef}
             value={saveOutput.join("\n")}
+            allVariables={allVariables}
             onChange={(val) => setSaveOutput(val.split("\n").filter(Boolean))}
-            allVariables={allVariables}
           />
-          <VariableDropdown
-            allVariables={allVariables}
-            editorRef={saveOutputRef}
-          />
+          <div className="mt-2">
+            <Label className="mb-1">{t("Buttons.AddVariableSaveOutput")}</Label>
+            <VariableDropdown
+              allVariables={allVariables}
+              editorRef={saveOutputRef}
+            
+            />
+          </div>
         </div>
 
         {/* Query Params */}
         <div>
-          <Label className="mb-2 block">Query Params</Label>
+          <Label className="mb-1 block">{t("Fields.QueryParams")}</Label>
           {queryParams.map(([key, value], i) => (
             <div key={i} className="flex gap-2 items-center mb-2">
               <Input
@@ -212,7 +227,6 @@ export default function EditHttpAgentsSidebar({
                 }
               />
               <Button
-              className="cursor-pointer"
                 variant="outline"
                 size="icon"
                 onClick={() => handleRemoveEntry(i, setQueryParams)}
@@ -221,18 +235,14 @@ export default function EditHttpAgentsSidebar({
               </Button>
             </div>
           ))}
-          <Button
-          className="cursor-pointer"
-            variant="secondary"
-            onClick={() => handleAddEntry(setQueryParams)}
-          >
-            <PlusIcon className="mr-2" /> Agregar query param
+          <Button variant="secondary" onClick={() => handleAddEntry(setQueryParams)}>
+            <PlusIcon className="mr-2" /> {t("Buttons.AddQueryParam")}
           </Button>
         </div>
 
         {/* Headers */}
         <div>
-          <Label className="mb-2 block">Headers</Label>
+          <Label className="mb-1 block">{t("Fields.Headers")}</Label>
           {headers.map(([key, value], i) => (
             <div key={i} className="flex gap-2 items-center mb-2">
               <Input
@@ -250,31 +260,29 @@ export default function EditHttpAgentsSidebar({
                 }
               />
               <Button
-              className="cursor-pointer"
                 variant="outline"
                 size="icon"
                 onClick={() => handleRemoveEntry(i, setHeaders)}
               >
-                <TrashIcon  className="text-red-500"/>
+                <TrashIcon className="text-red-500" />
               </Button>
             </div>
           ))}
-          <Button
-          className="cursor-pointer"
-            variant="secondary"
-            onClick={() => handleAddEntry(setHeaders)}
-          >
-            <PlusIcon className="mr-2" /> Agregar header
+          <Button variant="secondary" onClick={() => handleAddEntry(setHeaders)}>
+            <PlusIcon className="mr-2" /> {t("Buttons.AddHeader")}
           </Button>
         </div>
       </div>
 
-      <div className="flex justify-end gap-2 border-t pt-4 mt-auto">
-        <Button variant="outline" className="cursor-pointer" onClick={onCancel}>
-          {t("Actions.Cancel")}
+      <div className="flex justify-end gap-2 mt-auto border-t pt-4">
+        <Button variant="outline" onClick={onCancel}>
+          {t("Buttons.Cancel")}
         </Button>
-        <Button className="bg-purple-600 hover:bg-purple-700 text-white cursor-pointer " onClick={handleSave}>
-          {t("Actions.Save")}
+        <Button
+          className="bg-purple-600 hover:bg-purple-700 text-white"
+          onClick={handleSave}
+        >
+          {t("Buttons.Save")}
         </Button>
       </div>
     </SheetContent>

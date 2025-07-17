@@ -22,10 +22,12 @@ export default function ViewHttpAgentsSidebar({
 }: ViewHttpAgentsSidebarProps) {
   const t = useTranslations("Templates.TemplatesView.HTTPAgents.SidebarView");
 
-  // Extrae las variables del request_body
-  const keys = extractKeysFromContent(agent.request_body).map((key) => ({
-    key,
-  }));
+  const keys = [
+    ...extractKeysFromContent(agent.request_body),
+    ...extractKeysFromContent(agent.url),
+    ...(agent.save_output || []),
+  ].map((key) => ({ key }));
+
   const keyMetaMap = useKeyMetaMap(keys);
 
   const renderWithBadges = (text: string) => {
@@ -78,6 +80,40 @@ export default function ViewHttpAgentsSidebar({
     return parts;
   };
 
+  const renderBadgeList = (items: string[]) => (
+    <div className="flex flex-wrap gap-2 mt-2">
+      {items.map((key) => {
+        const meta = keyMetaMap[key];
+        return meta ? (
+          <Badge
+            key={key}
+            style={{ backgroundColor: meta.color, color: "#fff" }}
+          >
+            {meta.label}
+          </Badge>
+        ) : (
+          <Badge variant="outline" key={key}>
+            {key}
+          </Badge>
+        );
+      })}
+    </div>
+  );
+
+  const renderKeyValue = (obj: Record<string, string>) => (
+    <div className="grid gap-2 mt-2">
+      {Object.entries(obj).map(([key, value]) => (
+        <div
+          key={key}
+          className="flex justify-between items-center border rounded-md p-2 text-sm bg-muted"
+        >
+          <span className="font-medium">{key}</span>
+          <span>{value}</span>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <SheetContent
       side="right"
@@ -88,32 +124,58 @@ export default function ViewHttpAgentsSidebar({
         <p className="text-sm text-muted-foreground">{t("Title")}</p>
       </SheetHeader>
 
-      <div className="space-y-4">
+      <div className="space-y-4 text-sm">
         <div>
           <strong>{t("Method")}:</strong> {agent.method}
         </div>
+
         <div>
-          <strong>{t("URL")}:</strong> {agent.url}
+          <strong>{t("URL")}:</strong>
+          <p className="whitespace-pre-wrap break-all border p-4 rounded-md">
+            {renderWithBadges(agent.url)}
+          </p>
         </div>
-        <div>
-          <strong>{t("Timeout")}:</strong> {agent.timeout}s
+
+        <div className="flex gap-4">
+          <div>
+            <strong>{t("Timeout")}:</strong> {agent.timeout}s
+          </div>
+          <div>
+            <strong>{t("Retries")}:</strong> {agent.retries}
+          </div>
         </div>
-        <div>
-          <strong>{t("Retries")}:</strong> {agent.retries}
-        </div>
+
         <div>
           <strong>{t("Body")}:</strong>
           <p className="whitespace-pre-wrap border p-4 rounded-md">
             {renderWithBadges(agent.request_body)}
           </p>
         </div>
+
         <div>
-          <strong>{t("CreatedAt")}:</strong>{" "}
-          {new Date(agent.created_at).toLocaleDateString()}
+          <strong>{t("SaveOutput")}:</strong>
+          {renderBadgeList(agent.save_output)}
         </div>
+
         <div>
-          <strong>{t("UpdatedAt")}:</strong>{" "}
-          {new Date(agent.updated_at).toLocaleDateString()}
+          <strong>{t("QueryParams")}:</strong>
+          {renderKeyValue(agent.query_params)}
+        </div>
+
+        <div>
+          <strong>{t("Headers")}:</strong>
+          {renderKeyValue(agent.headers)}
+        </div>
+
+        <div className="text-muted-foreground text-xs pt-4 border-t mt-4">
+          <div>
+            <strong>{t("CreatedAt")}:</strong>{" "}
+            {new Date(agent.created_at).toLocaleString()}
+          </div>
+          <div>
+            <strong>{t("UpdatedAt")}:</strong>{" "}
+            {new Date(agent.updated_at).toLocaleString()}
+          </div>
         </div>
       </div>
 

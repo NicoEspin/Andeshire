@@ -228,6 +228,15 @@
         "View": "View Details",
         "Edit": "Edit",
         "Delete": "Delete",
+        "Create": {
+          "Title": "Create a WhatsApp Template",
+          "NameLabel": "Template Name",
+          "NamePlaceholder": "Template Name",
+          "ContentLabel": "Content",
+          "AddVariable": "Add Variable",
+          "Cancel": "Cancel",
+          "Save": "Save"
+        },
         "WhatsAppSidebar": {
           "CreatedAt": "Created",
           "UpdatedAt": "Updated",
@@ -258,6 +267,15 @@
         "View": "View Details",
         "Edit": "Edit",
         "Delete": "Delete",
+        "Create": {
+          "Title": "Create an Email Template",
+          "TemplateName": "Template Name",
+          "Subject": "Subject",
+          "Content": "Content",
+          "AddVariable": "Add Variable",
+          "Save": "Save",
+          "Cancel": "Cancel"
+        },
         "SidebarView": {
           "View": "View Email Template",
           "ViewDescription": "Detailed information about the selected email template.",
@@ -275,12 +293,15 @@
           "EditDescription": "Modify the details of your email template below.",
           "Name": "Name",
           "TemplateName": "Template Name",
+          "TemplateNamePlaceholder": "Enter a name for the template",
           "Subject": "Subject",
           "Content": "Content",
           "AddVariable": "Add variable",
+          "AddVariableSubject": "Add variable to subject",
+          "AddVariableContent": "Add variable to content",
           "SelectVariable": "Select variable",
-          "PreviewSubject": "Preview Subject",
-          "PreviewContent": "Preview Content",
+          "PreviewSubject": "Subject preview",
+          "PreviewContent": "Content preview",
           "Cancel": "Cancel",
           "Save": "Save"
         }
@@ -300,6 +321,24 @@
         "View": "View Details",
         "Edit": "Edit",
         "Delete": "Delete",
+        "Create": {
+          "Title": "Create WhatsApp Agent",
+          "Description": "Fill in the details below to create a new WhatsApp agent.",
+          "Fields": {
+            "Name": "Name",
+            "Prompt": "Prompt",
+            "Task": "Task",
+            "FirstMessage": "First Message"
+          },
+          "Placeholders": {
+            "Name": "Enter agent name"
+          },
+          "AddVariable": "Add variable",
+          "Actions": {
+            "Cancel": "Cancel",
+            "Save": "Save"
+          }
+        },
         "SidebarView": {
           "Description": "View WhatsApp Agent Details",
           "PromptLabel": "Prompt:",
@@ -321,14 +360,21 @@
             "Name": "Name",
             "Prompt": "Prompt",
             "Task": "Task",
-            "FirstMessage": "First Message"
+            "FirstMessage": "First Message",
+            "Direction": "Direction",
+            "Status": "Status"
           },
           "Placeholders": {
-            "Name": "Agent Name",
+            "Name": "Agent name",
             "Prompt": "Enter the prompt with variables...",
             "Task": "Describe the task...",
-            "FirstMessage": "Write the first message..."
+            "FirstMessage": "Write the first message...",
+            "Direction": "Select direction",
+            "Status": "Select status"
           },
+          "AddVariablePrompt": "Add variable to prompt",
+          "AddVariableTask": "Add variable to task",
+          "AddVariableFirstMessage": "Add variable to first message",
           "Actions": {
             "Cancel": "Cancel",
             "Save": "Save"
@@ -352,6 +398,30 @@
         "View": "View Details",
         "Edit": "Edit",
         "Delete": "Delete",
+        "Create": {
+          "Title": "Create Call Template",
+          "Name": "Template Name",
+          "NamePlaceholder": "Enter a name for the template",
+          "Description": "Description",
+          "Direction": "Direction",
+          "DirectionOptions": {
+            "Outbound": "Outbound",
+            "Inbound": "Inbound"
+          },
+          "Status": "Status",
+          "StatusOptions": {
+            "Active": "Active",
+            "Inactive": "Inactive"
+          },
+          "Prompt": "Prompt",
+          "FirstMessage": "First Message",
+          "AddVariable": "Add variable",
+          "MaxAttempts": "Max Attempts",
+          "IntervalMinutes": "Interval (minutes)",
+          "AskPermission": "Ask permission before calling?",
+          "Cancel": "Cancel",
+          "Save": "Save"
+        },
         "SidebarView": {
           "Title": "Call Agent Details",
           "PromptLabel": "Prompt:",
@@ -369,11 +439,14 @@
         "SidebarEdit": {
           "Title": "Edit Call Agent",
           "Name": "Name",
+          "Description": "Description",
           "Prompt": "Prompt",
           "FirstMessage": "First Message",
           "MaxAttempts": "Max Attempts",
           "IntervalMinutes": "Interval (minutes)",
           "AskPermission": "Ask Permission",
+          "AddVariablePrompt": "Add variable to prompt",
+          "AddVariableFirstMessage": "Add variable to first message",
           "Save": "Save",
           "Cancel": "Cancel"
         }
@@ -393,12 +466,35 @@
         "View": "View Details",
         "Edit": "Edit",
         "Delete": "Delete",
+        "Create": {
+          "Title": "Create Email Template",
+          "Name": "Template Name",
+          "NamePlaceholder": "e.g. Technical follow-up email",
+          "Direction": "Direction",
+          "DirectionPlaceholder": "Select direction",
+          "Status": "Status",
+          "StatusPlaceholder": "Select status",
+          "Prompt": "Prompt",
+          "AddVariablePrompt": "Add variable to Prompt",
+          "Task": "Task",
+          "AddVariableTask": "Add variable to Task",
+          "FirstMessage": "First message",
+          "AddVariableFirstMessage": "Add variable to First Message",
+          "Cancel": "Cancel",
+          "Save": "Save"
+        },
         "SidebarEdit": {
           "Title": "Edit Email Agent",
+          "NameLabel": "Name",
           "PromptLabel": "Prompt",
           "TaskLabel": "Task",
           "FirstMessageLabel": "First Message",
           "AddVariable": "Add Variable",
+          "AddVariablePrompt": "Add variable to prompt",
+          "AddVariableTask": "Add variable to task",
+          "AddVariableFirstMessage": "Add variable to first message",
+          "DirectionLabel": "Direction",
+          "StatusLabel": "Status",
           "Save": "Save",
           "Cancel": "Cancel"
         },
@@ -430,6 +526,34 @@
         "Edit": "Edit",
         "Delete": "Delete",
         "NoName": "No name",
+        "Create": {
+          "Title": "Create LinkedIn Template",
+          "Description": "Define the behavior of the LinkedIn message agent.",
+          "Fields": {
+            "Name": "Name",
+            "NamePlaceholder": "e.g., Post-interview follow-up",
+            "Description": "Description",
+            "DescriptionPlaceholder": "Brief description of the template",
+            "Prompt": "Prompt",
+            "Task": "Task",
+            "FirstMessage": "First Message",
+            "Direction": "Direction",
+            "Status": "Status"
+          },
+          "Dropdowns": {
+            "DirectionOutbound": "Outbound",
+            "DirectionInbound": "Inbound",
+            "StatusActive": "Active",
+            "StatusInactive": "Inactive"
+          },
+          "Actions": {
+            "Save": "Save",
+            "Cancel": "Cancel"
+          },
+          "AddVariablePrompt": "Add Prompt Variable",
+          "AddVariableTask": "Add Task Variable",
+          "AddVariableFirstMessage": "Add First Message Variable"
+        },
         "SidebarView": {
           "Description": "View Linkedin Agent details",
           "Prompt": "Prompt",
@@ -443,15 +567,24 @@
           "Edit": "Edit"
         },
         "SidebarEdit": {
-          "Title": "Edit Linkedin Agent",
+          "Title": "Edit LinkedIn Agent",
+          "Description": "Update the agent’s details below.",
           "Fields": {
+            "Name": "Name",
+            "Description": "Description",
             "Prompt": "Prompt",
             "Task": "Task",
             "FirstMessage": "First Message",
+            "Direction": "Direction",
+            "Status": "Status",
             "AddVariable": "Add Variable",
-            "PreviewPrompt": "Preview Prompt",
-            "PreviewTask": "Preview Task",
-            "PreviewFirstMessage": "Preview First Message"
+            "PreviewPrompt": "Prompt Preview",
+            "PreviewTask": "Task Preview",
+            "PreviewFirstMessage": "First Message Preview"
+          },
+          "Placeholders": {
+            "Name": "Agent name",
+            "Description": "Agent description"
           },
           "Actions": {
             "Save": "Save",
@@ -474,19 +607,55 @@
         "View": "View Details",
         "Edit": "Edit",
         "Delete": "Delete",
-        "SidebarEdit": {
-          "Title": "Edit HTTP Agent",
+        "Create": {
+          "Title": "Create HTTP Template",
+          "Description": "Define a new template for an HTTP agent.",
           "Fields": {
             "Name": "Name",
             "Method": "Method",
             "URL": "URL",
             "Timeout": "Timeout (seconds)",
             "Retries": "Retries",
-            "RequestBody": "Request Body"
+            "RequestBody": "Request Body",
+            "SaveOutput": "Save Output",
+            "QueryParams": "Query Params",
+            "Headers": "Headers"
+          },
+          "Buttons": {
+            "AddQueryParam": "Add query param",
+            "AddHeader": "Add header",
+            "Cancel": "Cancel",
+            "Save": "Save",
+            "AddVariableUrl": "Add variable to URL",
+            "AddVariableBody": "Add variable to body",
+            "AddVariableSaveOutput": "Add variable to output"
+          }
+        },
+        "SidebarEdit": {
+          "Title": "Editar Agente HTTP",
+          "Fields": {
+            "Name": "Nombre",
+            "Method": "Método",
+            "URL": "URL",
+            "Timeout": "Tiempo de espera (segundos)",
+            "Retries": "Reintentos",
+            "RequestBody": "Cuerpo de la solicitud",
+            "SaveOutput": "Guardar salida",
+            "AddVariableURL": "Agregar variable a la URL",
+            "AddVariableBody": "Agregar variable al cuerpo",
+            "AddVariableSaveOutput": "Agregar variable a la salida"
+          },
+          "QueryParams": {
+            "Label": "Parámetros de consulta",
+            "Add": "Agregar parámetro de consulta"
+          },
+          "Headers": {
+            "Label": "Encabezados",
+            "Add": "Agregar encabezado"
           },
           "Actions": {
-            "Save": "Save",
-            "Cancel": "Cancel"
+            "Save": "Guardar",
+            "Cancel": "Cancelar"
           }
         },
         "SidebarView": {
@@ -496,6 +665,9 @@
           "Timeout": "Timeout",
           "Retries": "Retries",
           "Body": "Body",
+          "SaveOutput": "Save Output",
+          "QueryParams": "Query Parameters",
+          "Headers": "Headers",
           "CreatedAt": "Created At",
           "UpdatedAt": "Updated At",
           "Close": "Close",

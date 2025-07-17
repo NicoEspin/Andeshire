@@ -112,7 +112,7 @@ export default function EditLinkedinAgentsSidebar({
         {/* Direction and Status */}
         <div className="flex gap-6">
           <div>
-            <Label className="text-sm font-medium mb-1 block">Direction</Label>
+            <Label className="text-sm font-medium mb-1 block">{t("Fields.Direction")}</Label>
             <Select value={direction} onValueChange={setDirection}>
               <SelectTrigger>
                 <SelectValue placeholder="Selecciona dirección" />
@@ -125,7 +125,7 @@ export default function EditLinkedinAgentsSidebar({
           </div>
 
           <div>
-            <Label className="text-sm font-medium mb-1 block">Status</Label>
+            <Label className="text-sm font-medium mb-1 block">{t("Fields.Status")}</Label>
             <Select value={status} onValueChange={setStatus}>
               <SelectTrigger>
                 <SelectValue placeholder="Selecciona estado" />

@@ -10,6 +10,9 @@ export interface HttpAgent {
   name: string;
   method: string;
   url: string;
+  save_output: string[];
+  query_params: Record<string, string>;
+  headers: Record<string, string>;
   timeout: number;
   retries: number;
   request_body: string;

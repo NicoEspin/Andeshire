@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import CandidateActions from "./CandidateActions/CandidateActions";
 import CandidateHeader from "./CandidateHeader";
 import CandidateContentRender from "./CandidateContentRender";
+import { CandidateDetailSkeleton } from "./index";
 
 interface CandidateDetailProps {
   candidateId: string;
@@ -35,13 +36,7 @@ export default function CandidateDetail({
   }, [candidateId, dispatch]);
 
   if (loading) {
-    return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <div className="bg-white p-6 rounded-lg shadow w-full max-w-md">
-          <h2 className="text-xl font-semibold">Cargando candidato...</h2>
-        </div>
-      </div>
-    );
+    return <CandidateDetailSkeleton />;
   }
 
   if (error) {

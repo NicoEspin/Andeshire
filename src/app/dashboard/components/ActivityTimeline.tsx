@@ -1,5 +1,6 @@
 "use client";
 
+import { CardContent } from "@/components/ui/card";
 import React from "react";
 import {
   AreaChart,
@@ -17,6 +18,7 @@ interface ActivityTimelineProps {
 
 export default function ActivityTimeline({ data }: ActivityTimelineProps) {
   return (
+ 
     <ResponsiveContainer width="100%" >
       <AreaChart
         data={data}
@@ -34,6 +36,7 @@ export default function ActivityTimeline({ data }: ActivityTimelineProps) {
         <YAxis tick={{ fontSize: 12 }} />
         <Tooltip labelFormatter={(value) => `Fecha: ${value}`} />
         <Area
+
           type="monotone"
           dataKey="count"
           stroke="#4f46e5"

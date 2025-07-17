@@ -9,7 +9,7 @@ import CandidatesPerJob from "./components/CandidatesPerJob";
 import JobsPerCompany from "./components/JobsPerCompany";
 import JobsByCategory from "./components/JobsByCategory";
 import RecentsList from "./components/RecentsList";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const DashboardPage = () => {
   const { metrics, categories_data, analytics, recent_data } = mockDashboard;
@@ -19,39 +19,51 @@ const DashboardPage = () => {
       <h1 className="text-3xl font-bold">Dashboard</h1>
 
       {/* KPIs */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <KPICards metrics={metrics} />
       </div>
 
       {/* BentoGrid personalizada */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  gap-4 auto-rows-[minmax(300px,_auto)]">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3  gap-6 auto-rows-[minmax(300px,_auto)]">
         <Card className="p-4 col-span-2 row-span-2">
-          <h2 className="text-lg font-semibold mb-2">
-            📈 Timeline de Actividad
-          </h2>
+          <CardHeader>
+            <h2 className="text-lg font-semibold mb-2">
+              📈 Timeline de Actividad
+            </h2>
+          </CardHeader>
           <ActivityTimeline data={categories_data.total_timeline} />
         </Card>
 
         <Card className="rounded-xl p-4 shadow-sm row-span-2">
-          <h2 className="text-lg font-semibold mb-2">
-            🧭 Candidatos por etapa
-          </h2>
-          <CandidatesPerStage  data={analytics.stages}/>
+          <CardHeader>
+            <h2 className="text-lg font-semibold mb-2">
+              🧭 Candidatos por etapa
+            </h2>
+          </CardHeader>
+          <CandidatesPerStage data={analytics.stages} />
         </Card>
 
-        <div className="bg-muted rounded-xl p-4 shadow-sm">
-          <h2 className="text-lg font-semibold mb-2">
-            📊 Candidatos por categoría
-          </h2>
-          <CandidatesByCategory />
-        </div>
+        <Card className=" rounded-xl p-4 shadow-sm row-span-2">
+          <CardHeader>
+            <h2 className="text-lg font-semibold mb-2">
+              🧑‍💼 Candidatos por trabajo
+            </h2>
+          </CardHeader>
+          <CandidatesPerJob data={analytics.candidates_per_job} />
+        </Card>
+        <Card className=" rounded-xl shadow-sm row-span-2 col-span-2">
+          <CardHeader>
+            <h2 className="text-lg font-semibold mb-2">
+              📊 Candidatos por categoría
+            </h2>
+          </CardHeader>
+          <CardContent>
+            <CandidatesByCategory
+              data={categories_data.candidates_by_category}
+            />
+          </CardContent>
+        </Card>
 
-        <div className="bg-muted rounded-xl p-4 shadow-sm">
-          <h2 className="text-lg font-semibold mb-2">
-            🧑‍💼 Candidatos por trabajo
-          </h2>
-          <CandidatesPerJob />
-        </div>
         <div className="bg-muted rounded-xl p-4 shadow-sm col-span-1 md:col-span-2">
           <h2 className="text-lg font-semibold mb-2">
             ⏳ Evolución por categoría

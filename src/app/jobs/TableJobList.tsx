@@ -37,6 +37,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import TablePagination from "./TablePagination";
 import { useTranslations } from "next-intl";
+import { TableSkeleton } from "@/components/ui/skeleton-variants";
 
 type Props = {
   jobList: JobListItem[];
@@ -188,9 +189,27 @@ export default function TableJobList({
           </TableHeader>
           <TableBody>
             {loading ? (
-              <TableRow>
-                <TableCell colSpan={8}>{t("status.loading")}</TableCell>
-              </TableRow>
+              Array.from({ length: 8 }).map((_, index) => (
+                <TableRow key={index}>
+                  {Array.from({ length: 8 }).map((_, colIndex) => (
+                    <TableCell key={colIndex}>
+                      <div className="flex items-center space-x-2">
+                        {colIndex === 0 && (
+                          <div className="w-4 h-4 bg-muted rounded animate-pulse" />
+                        )}
+                        <div 
+                          className="h-4 bg-muted rounded animate-pulse relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent"
+                          style={{ 
+                            width: colIndex === 0 ? "120px" : 
+                                   colIndex === 4 || colIndex === 7 ? "80px" :
+                                   colIndex === 5 || colIndex === 6 ? "60px" : "100px"
+                          }}
+                        />
+                      </div>
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
             ) : jobList.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={8}>{t("status.noJobs")}</TableCell>

@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { setJobListFiltersApplied } from "@/store/slices/Jobs/JobListSlice";
 import { useTranslations } from "next-intl";
+import { PageLoadingSkeleton } from "@/components/ui/skeleton-variants";
+import { LoadingAnnouncer } from "@/components/ui/loading-announcer";
 
 export default function JobList() {
   const dispatch = useAppDispatch();
@@ -84,33 +86,45 @@ export default function JobList() {
     return () => clearTimeout(debounce);
   }, [title]);
 
-  return (
-    <div className="space-y-6 pr-8">
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">{t("filterTitle")}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <Input
-            placeholder={t("searchPlaceholder")}
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full sm:w-1/2"
-          />
-        </CardContent>
-      </Card>
+  // Show full page skeleton on initial load (no data yet)
+  if (jobListLoading && jobList.length === 0) {
+    return <PageLoadingSkeleton type="jobs" />;
+  }
 
-      <TableJobList
-        jobList={jobList}
-        loading={jobListLoading}
-        error={jobListError}
-        filters={jobListFilters}
-        filtersApplied={jobListFiltersApplied}
-        currentPage={parseInt(jobListCurrentPage || "1", 10)}
-        totalPages={jobListTotalPages}
-        onFilterChange={(filters) => handleFilterChange(filters)}
-        onPageChange={(page) => handleFilterChange({ page }, true)}
+  return (
+    <>
+      <LoadingAnnouncer 
+        isLoading={jobListLoading}
+        loadingMessage="Loading jobs data and filters"
+        completedMessage="Jobs data has been loaded successfully"
       />
-    </div>
+      <div className="space-y-6 pr-8">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">{t("filterTitle")}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Input
+              placeholder={t("searchPlaceholder")}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full sm:w-1/2"
+            />
+          </CardContent>
+        </Card>
+
+        <TableJobList
+          jobList={jobList}
+          loading={jobListLoading}
+          error={jobListError}
+          filters={jobListFilters}
+          filtersApplied={jobListFiltersApplied}
+          currentPage={parseInt(jobListCurrentPage || "1", 10)}
+          totalPages={jobListTotalPages}
+          onFilterChange={(filters) => handleFilterChange(filters)}
+          onPageChange={(page) => handleFilterChange({ page }, true)}
+        />
+      </div>
+    </>
   );
 }

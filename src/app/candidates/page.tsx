@@ -8,6 +8,8 @@ import CandidatesTable from "./components/CandidatesTable";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
+import { PageLoadingSkeleton } from "@/components/ui/skeleton-variants";
+import { LoadingAnnouncer } from "@/components/ui/loading-announcer";
 
 export default function CandidateList() {
   const dispatch = useAppDispatch();
@@ -68,40 +70,52 @@ export default function CandidateList() {
     return () => clearTimeout(debounce);
   }, [name, jobName]);
 
-  return (
-    <div className="space-y-6 pr-8">
-      {/* Card para filtros */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">{t("FilterCardTitle")}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Input
-              placeholder={t("NamePlaceholder")}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="sm:w-1/2"
-            />
-            <Input
-              placeholder={t("JobNamePlaceholder")}
-              value={jobName}
-              onChange={(e) => setJobName(e.target.value)}
-              className="sm:w-1/2"
-            />
-          </div>
-        </CardContent>
-      </Card>
+  // Show full page skeleton on initial load (no data yet)
+  if (loading && candidates.length === 0) {
+    return <PageLoadingSkeleton type="candidates" />;
+  }
 
-      {/* Tabla */}
-      <CandidatesTable
-        candidates={candidates}
-        loading={loading}
-        error={error}
-        pagination={pagination}
-        filters={filters}
-        onFilterChange={handleFilterChange}
+  return (
+    <>
+      <LoadingAnnouncer 
+        isLoading={loading}
+        loadingMessage="Loading candidates data and filters"
+        completedMessage="Candidates data has been loaded successfully"
       />
-    </div>
+      <div className="space-y-6 pr-8">
+        {/* Card para filtros */}
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">{t("FilterCardTitle")}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Input
+                placeholder={t("NamePlaceholder")}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="sm:w-1/2"
+              />
+              <Input
+                placeholder={t("JobNamePlaceholder")}
+                value={jobName}
+                onChange={(e) => setJobName(e.target.value)}
+                className="sm:w-1/2"
+              />
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Tabla */}
+        <CandidatesTable
+          candidates={candidates}
+          loading={loading}
+          error={error}
+          pagination={pagination}
+          filters={filters}
+          onFilterChange={handleFilterChange}
+        />
+      </div>
+    </>
   );
 }

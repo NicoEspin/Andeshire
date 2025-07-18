@@ -30,7 +30,7 @@ const DashboardPage = () => {
   const { metrics, categories_data, analytics, recent_data } = mockDashboard;
 
   return (
-    <div className="p-6 space-y-10 pb-10">
+    <div className="pr-8 space-y-6 pb-20">
       <div className="flex items-center gap-2">
         <h1 className="text-3xl font-bold">{t("title")}</h1>
       </div>

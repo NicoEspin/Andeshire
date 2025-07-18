@@ -148,9 +148,10 @@
     }
   },
   "Workflows": {
-    "title": "Workflows",
-    "searchPlaceholder": "Search by workflow name",
+    "title": "Filter Workflows",
+    "searchPlaceholder": "🔍 Search by workflow name",
     "table": {
+      "title": "Workflows List",
       "name": "Name",
       "recruiter": "Recruiter",
       "createdAt": "Created At",

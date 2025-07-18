@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/app/redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import WorkflowsTable from "./WorkflowsTable";
-import { Card, CardContent } from "@/components/ui/card";
 import { fetchWorkflowList } from "@/state/api/Workflows/fetchWorkflowList";
+import WorkflowsTable from "./WorkflowsTable";
 
 export default function WorkflowList() {
   const dispatch = useDispatch<AppDispatch>();
-  const { list: workflows, loading, error } = useSelector(
-    (state: RootState) => state.workflowList
-  );
+  const {
+    list: workflows,
+    loading,
+    error,
+  } = useSelector((state: RootState) => state.workflowList);
 
   useEffect(() => {
     dispatch(fetchWorkflowList);
@@ -27,10 +28,8 @@ export default function WorkflowList() {
   }
 
   return (
-    <Card className="mr-8">
-      <CardContent>
-        <WorkflowsTable workflows={workflows} />
-      </CardContent>
-    </Card>
+    <div className="mr-8">
+      <WorkflowsTable workflows={workflows} />
+    </div>
   );
 }

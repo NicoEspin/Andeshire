@@ -83,7 +83,7 @@ export default function TableJobList({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl font-semibold">
+        <CardTitle className="text-xl ">
           {t("tableTitle")}
         </CardTitle>
       </CardHeader>
@@ -111,7 +111,9 @@ export default function TableJobList({
                     >
                       <SelectTrigger>
                         <SelectValue
-                          placeholder={filtersApplied.category || t("columns.all")}
+                          placeholder={
+                            filtersApplied.category || t("columns.all")
+                          }
                         />
                       </SelectTrigger>
                       <SelectContent>
@@ -197,12 +199,17 @@ export default function TableJobList({
                         {colIndex === 0 && (
                           <div className="w-4 h-4 bg-muted rounded animate-pulse" />
                         )}
-                        <div 
+                        <div
                           className="h-4 bg-muted rounded animate-pulse relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent"
-                          style={{ 
-                            width: colIndex === 0 ? "120px" : 
-                                   colIndex === 4 || colIndex === 7 ? "80px" :
-                                   colIndex === 5 || colIndex === 6 ? "60px" : "100px"
+                          style={{
+                            width:
+                              colIndex === 0
+                                ? "120px"
+                                : colIndex === 4 || colIndex === 7
+                                ? "80px"
+                                : colIndex === 5 || colIndex === 6
+                                ? "60px"
+                                : "100px",
                           }}
                         />
                       </div>

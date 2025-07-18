@@ -148,9 +148,10 @@
     }
   },
   "Workflows": {
-    "title": "Workflows",
-    "searchPlaceholder": "Buscar por nombre de workflow",
+    "title": "Filtrar Workflows",
+    "searchPlaceholder": "🔍 Buscar por nombre de workflow",
     "table": {
+      "title": "Lista de Workflows",
       "name": "Nombre",
       "recruiter": "Recruiter",
       "createdAt": "Fecha de Creación",

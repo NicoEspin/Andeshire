@@ -1,4 +1,32 @@
 {
+  "Login": {
+    "welcome": "Bienvenido",
+    "subtitle": "Inicia sesión para comenzar tu experiencia con Andeshire.",
+    "googleButton": "Iniciar sesión con Google",
+    "termsText": "Al continuar, aceptas los",
+    "termsLink": "Términos de servicio",
+    "privacyLink": "Política de privacidad",
+    "Benefits": {
+      "welcome": "Bienvenido",
+      "title": "Andeshire",
+      "subtitle": "La plataforma de reclutamiento moderna que simplifica tu proceso de contratación.",
+      "unlimitedManagementTitle": "Gestión ilimitada",
+      "unlimitedManagementDescription": "Sin límites de candidatos",
+      "optimizedProcessTitle": "Proceso optimizado",
+      "optimizedProcessDescription": "Selección automatizada",
+      "startFreeTitle": "Comience gratis",
+      "startFreeDescription": "Sin costos ocultos",
+      "footer": "Hecho en LATAM"
+    }
+  },
+  "404": {
+    "title": "¡Ups! Página perdida",
+    "description": "Parece que esta página decidió tomar unas vacaciones. No te preocupes, te ayudamos a encontrar el camino de vuelta.",
+    "backHome": "Volver al inicio",
+    "previousPage": "Página anterior",
+    "needHelp": "¿Necesitas ayuda?",
+    "contactUs": "Contáctanos"
+  },
   "Sidebar": {
     "Dashboard": "Dashboard",
     "Workflow": "Workflow",
@@ -35,6 +63,7 @@
       "candidateCount": "Cantidad de candidatos",
       "Candidates": "candidatos",
       "jobCount": "Cantidad de trabajos",
+      "Job": "trabajo",
       "Jobs": "trabajos"
     }
   },

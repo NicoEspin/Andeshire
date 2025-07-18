@@ -1,4 +1,32 @@
 {
+  "Login": {
+    "welcome": "Welcome",
+    "subtitle": "Sign in to start your experience with Andeshire.",
+    "googleButton": "Sign in with Google",
+    "termsText": "By continuing, you agree to the",
+    "termsLink": "Terms of Service",
+    "privacyLink": "Privacy Policy",
+    "Benefits": {
+      "welcome": "Welcome",
+      "title": "Andeshire",
+      "subtitle": "The modern recruitment platform that simplifies your hiring process.",
+      "unlimitedManagementTitle": "Unlimited Management",
+      "unlimitedManagementDescription": "No candidate limits",
+      "optimizedProcessTitle": "Optimized Process",
+      "optimizedProcessDescription": "Automated selection",
+      "startFreeTitle": "Start Free",
+      "startFreeDescription": "No hidden costs",
+      "footer": "Made in LATAM"
+    }
+  },
+  "404": {
+    "title": "Oops! Page not found",
+    "description": "It seems this page went on vacation. Don’t worry, we’ll help you get back on track.",
+    "backHome": "Back to homepage",
+    "previousPage": "Previous page",
+    "needHelp": "Need help?",
+    "contactUs": "Contact us"
+  },
   "Sidebar": {
     "Dashboard": "Dashboard",
     "Workflow": "Workflow",
@@ -35,6 +63,7 @@
       "candidateCount": "Candidate count",
       "Candidates": "candidates",
       "jobCount": "Job count",
+      "Job": "job",
       "Jobs": "jobs"
     }
   },

@@ -36,7 +36,7 @@ export default function ActivityTimeline({ data }: ActivityTimelineProps) {
         <YAxis tick={{ fontSize: 12 }} />
         <Tooltip labelFormatter={(value) => `Fecha: ${value}`} />
         <Area
-
+          name="Nuevos candidatos"
           type="monotone"
           dataKey="count"
           stroke="#4f46e5"

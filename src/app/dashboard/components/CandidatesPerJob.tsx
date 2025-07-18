@@ -53,7 +53,7 @@ export default function CandidatesPerJob({ data }: CandidatesPerJobProps) {
             borderRadius: '8px'
           }}
         />
-        <Bar dataKey="candidate_count" radius={[0, 8, 8, 0]}>
+        <Bar dataKey="candidate_count" name={"Cantidad de candidatos"} radius={[0, 8, 8, 0]}>
           {sortedData.map((_, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}

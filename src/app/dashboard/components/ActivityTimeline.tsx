@@ -1,6 +1,7 @@
 "use client";
 
 import { CardContent } from "@/components/ui/card";
+import { useTranslations } from "next-intl";
 import React from "react";
 import {
   AreaChart,
@@ -17,9 +18,9 @@ interface ActivityTimelineProps {
 }
 
 export default function ActivityTimeline({ data }: ActivityTimelineProps) {
+  const t = useTranslations("Dashboard.Charts");
   return (
- 
-    <ResponsiveContainer width="100%" >
+    <ResponsiveContainer width="100%">
       <AreaChart
         data={data}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
@@ -36,7 +37,7 @@ export default function ActivityTimeline({ data }: ActivityTimelineProps) {
         <YAxis tick={{ fontSize: 12 }} />
         <Tooltip labelFormatter={(value) => `Fecha: ${value}`} />
         <Area
-          name="Nuevos candidatos"
+          name={t("newCandidates")}
           type="monotone"
           dataKey="count"
           stroke="#4f46e5"

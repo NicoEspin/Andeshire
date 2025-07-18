@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 import {
   BarChart,
@@ -29,6 +30,7 @@ const COLORS = [
 
 export default function CandidatesPerJob({ data }: CandidatesPerJobProps) {
   const sortedData = [...data].sort((a, b) => b.candidate_count - a.candidate_count);
+  const t = useTranslations("Dashboard.Charts");
 
   return (
     <ResponsiveContainer width="100%"  className="overflow-hidden">
@@ -45,15 +47,15 @@ export default function CandidatesPerJob({ data }: CandidatesPerJobProps) {
           tick={{ fontSize: 12 }}
         />
         <Tooltip
-          formatter={(value: number) => `${value} candidatos`}
-          labelFormatter={(label: string) => `Trabajo: ${label}`}
+          formatter={(value: number) => `${value} ${t("Candidates")}`}
+          labelFormatter={(label: string) => `${t("Job")} : ${label}`}
           contentStyle={{
             backgroundColor: '#f8f9fa',
             border: '1px solid #e9ecef',
             borderRadius: '8px'
           }}
         />
-        <Bar dataKey="candidate_count" name={"Cantidad de candidatos"} radius={[0, 8, 8, 0]}>
+        <Bar dataKey="candidate_count" name={t("candidateCount")} radius={[0, 8, 8, 0]}>
           {sortedData.map((_, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}

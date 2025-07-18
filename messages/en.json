@@ -13,6 +13,31 @@
   "EmptyState": {
     "NoRecords": "There are no records to display at the moment."
   },
+  "Dashboard": {
+    "title": "Dashboard",
+    "activityTimeline": "Activity Timeline",
+    "candidatesByStage": "Candidates by Stage",
+    "candidatesByJob": "Candidates by Job",
+    "candidatesByCategory": "Candidates by Category",
+    "categoriesOverTime": "Category Trends",
+    "jobsPerCompany": "Jobs per Company",
+    "jobsByCategory": "Jobs by Category",
+    "recentCandidates": "Recent Candidates",
+    "recentJobs": "Recent Jobs",
+    "KPICards": {
+      "total_companies": "Companies",
+      "total_jobs": "Jobs",
+      "total_candidates": "Candidates",
+      "total_recruiters": "Recruiters"
+    },
+    "Charts": {
+      "newCandidates": "New candidates",
+      "candidateCount": "Candidate count",
+      "Candidates": "candidates",
+      "jobCount": "Job count",
+      "Jobs": "jobs"
+    }
+  },
   "Settings": {
     "Header": {
       "AdminBadge": "Admin",

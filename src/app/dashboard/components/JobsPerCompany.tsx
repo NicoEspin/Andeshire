@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React from "react";
 import {
   BarChart,
@@ -34,8 +35,9 @@ const COLORS = [
 ];
 
 export default function JobsPerCompany({ data }: JobsPerCompanyProps) {
+  const t = useTranslations("Dashboard.Charts");
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width="100%" height={300} className={"overflow-hidden"}>
       <BarChart data={data} margin={{ top: 20, right: 30, left: 10, bottom: 50 }}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
@@ -46,8 +48,8 @@ export default function JobsPerCompany({ data }: JobsPerCompanyProps) {
           height={60}
         />
         <YAxis />
-        <Tooltip formatter={(value: number) => `${value} trabajos`} />
-        <Bar dataKey="job_count" name="Cantidad de trabajos">
+        <Tooltip formatter={(value: number) => `${value} ${t("Jobs")}`} />
+        <Bar dataKey="job_count" name={t("jobCount")}>
           {data.map((entry, index) => (
             <Cell
               key={`cell-${entry.id}`}

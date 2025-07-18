@@ -1,14 +1,10 @@
 "use client";
 
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUp, ArrowDown } from "lucide-react";
 import React from "react";
+import { useTranslations } from "next-intl";
 
 interface KPICardsProps {
   metrics: {
@@ -26,32 +22,32 @@ interface KPICardsProps {
 }
 
 const kpiMeta = {
-  total_companies: { label: "Empresas", trendKey: "companies_trend" },
-  total_jobs: { label: "Trabajos", trendKey: "jobs_trend" },
-  total_candidates: { label: "Candidatos", trendKey: "candidates_trend" },
-  total_recruiters: { label: "Recruiters", trendKey: "recruiters_trend" },
+  total_companies: { trendKey: "companies_trend" },
+  total_jobs: { trendKey: "jobs_trend" },
+  total_candidates: { trendKey: "candidates_trend" },
+  total_recruiters: { trendKey: "recruiters_trend" },
 };
 
 const KPICards = ({ metrics }: KPICardsProps) => {
+  const t = useTranslations("Dashboard.KPICards");
+
   return (
     <>
       {Object.entries(kpiMeta).map(([key, meta]) => {
         const total = metrics[key as keyof typeof metrics] as number;
         const trend =
           metrics.trends[meta.trendKey as keyof typeof metrics.trends];
-
         const isPositive = trend >= 0;
-
         const TrendIcon = isPositive ? ArrowUp : ArrowDown;
 
         return (
           <Card
             key={key}
-            className=" shadow-sm rounded-2xl transition hover:shadow-md"
+            className="shadow-sm rounded-2xl transition hover:shadow-md"
           >
             <CardHeader className="pb-1">
               <CardTitle className="text-sm text-muted-foreground font-medium">
-                {meta.label}
+                {t(key)}
               </CardTitle>
             </CardHeader>
             <CardContent className="flex items-center justify-between">

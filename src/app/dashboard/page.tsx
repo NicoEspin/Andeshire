@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ActivitySquare,
   BarChart3,
@@ -11,7 +11,7 @@ import {
   TrendingUp,
   Users,
 } from "lucide-react";
-import mockDashboard from "./data/mockdashboard.json";
+import { fetchDashboard, DashboardData } from "@/state/api/fetchDashboard";
 import KPICards from "./components/KPICards";
 import ActivityTimeline from "./components/ActivityTimeline";
 import CandidatesPerStage from "./components/CandidatesPerStage";
@@ -27,7 +27,42 @@ import { useTranslations } from "next-intl";
 
 const DashboardPage = () => {
   const t = useTranslations("Dashboard");
-  const { metrics, categories_data, analytics, recent_data } = mockDashboard;
+  const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadDashboard = async () => {
+      try {
+        const data = await fetchDashboard();
+        setDashboardData(data);
+      } catch (error) {
+        console.error("Failed to load dashboard:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadDashboard();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="pr-8 space-y-6 pb-20">
+        <div className="flex items-center gap-2">
+          <h1 className="text-3xl font-bold">{t("title")}</h1>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="h-32 bg-gray-200 animate-pulse rounded-xl" />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (!dashboardData) return null;
+
+  const { metrics, categories_data, analytics, recent_data } = dashboardData;
 
   return (
     <div className="pr-8 space-y-6 pb-20">

@@ -66,8 +66,23 @@ export interface DashboardData {
 
 export const fetchDashboard = async (): Promise<DashboardData> => {
   try {
-    const response = await api.get("/dashboard");
-    return response.data;
+    // Always try same domain first
+    const currentDomain = typeof window !== 'undefined' 
+      ? window.location.origin 
+      : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000');
+    
+    const response = await fetch(`${currentDomain}/api/v1/dashboard`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error("Dashboard API Error:", error);
     
